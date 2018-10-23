@@ -1,21 +1,22 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-<<<<<<< HEAD
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgPipesModule } from 'ngx-pipes';
 import { MatButtonModule, MatListModule, MatFormFieldModule, MatIconModule, MatExpansionModule, MatSliderModule, MatInputModule } from '@angular/material';
-=======
 import { NgPipesModule } from 'ngx-pipes';
->>>>>>> 0b385d9284792a703a38655a2236b26003697e44
+
+import { SidenavComponent } from './sidenav/sidenav.component';
+// Material Modules
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 import { AppComponent } from './app.component';
-import { SidenavComponent } from './sidenav/sidenav.component';
+import { ContentListComponent } from './content-list/content-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SidenavComponent
+    SidenavComponent,
+    ContentListComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +28,9 @@ import { SidenavComponent } from './sidenav/sidenav.component';
     MatSliderModule,
     MatInputModule,
     MatListModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatGridListModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

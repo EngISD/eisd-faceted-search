@@ -1,0 +1,29 @@
+.header-container {
+  padding: 2px 2px;
+}
+.header{
+  color: rgb(2, 9, 23, 0.6);
+  background-color: rgb(58, 152, 219, 0.5);
+  text-align: center;
+  padding-top: 12px;
+}
+h1 {
+  margin: 0;
+}
+.paginator-container {
+  box-shadow: 0px 3px 4px -1px rgba(0,0,0,0.7);
+}
+.paginator-option {
+  background-color: rgb(58, 152, 219, 0.5);
+}
+.list {
+  padding: 10px 10px;
+}
+.contentlist {
+  background-color: rgb(99, 142, 207, 0.40);
+  padding: 20px 20px;
+  box-shadow: 3px 3px 4px -1px rgba(0,0,0,0.7);
+}
+.list-item-header {
+  font-size: 24px;
+}
