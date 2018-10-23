@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgPipesModule } from 'ngx-pipes';
 
 import { AppComponent } from './app.component';
 
@@ -8,7 +10,9 @@ import { AppComponent } from './app.component';
     AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    BrowserAnimationsModule,
+    NgPipesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
