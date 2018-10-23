@@ -8,7 +8,7 @@ mat-expansion-panel {
 .resetAll {
     text-align: center;
     box-shadow: 0px 1px 0px 0.5px grey;
-    font-size: 1.1em;
+    font-size: 1.2em;
 }
 mat-panel-title {
     font-size: 1.3em;
