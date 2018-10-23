@@ -1,5 +1,6 @@
 .header-container {
-  padding: 2px 2px;
+  margin: 2px 2px;
+  box-shadow: 0px 3px 4px -1px rgba(0,0,0,0.7);
 }
 .header{
   color: rgb(2, 9, 23, 0.6);
@@ -11,7 +12,7 @@ h1 {
   margin: 0;
 }
 .paginator-container {
-  box-shadow: 0px 3px 4px -1px rgba(0,0,0,0.7);
+
 }
 .paginator-option {
   background-color: rgb(58, 152, 219, 0.5);
