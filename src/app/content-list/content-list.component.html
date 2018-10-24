@@ -5,18 +5,21 @@
       <div class="paginator">
         <mat-paginator class="paginator-option"
                       [length]="100"
+                      [pageIndex]="pageIndex"
                       [pageSize]="10"
-                      [pageSizeOptions]="[5, 10, 25, 100]">
+                      [pageSizeOptions]="[5, 10, 25, 100]"
+                      (page)="pageEvent = method($event)">
         </mat-paginator>
       </div>
   </mat-grid-list>
 </div>
 <mat-grid-list cols="1" class="list" >
     <div class="contentlist">
-      <mat-list>
+      <mat-list *ngIf="results">
         <mat-list-item *ngFor="let result of results" class="list-item">
-          <h1 mat-line>{{result.name}}</h1>
+          <h1 mat-line >{{result.title}}</h1>
         </mat-list-item>
       </mat-list>
+          <span *ngIf="!results">Loading...</span>
     </div>
 </mat-grid-list>

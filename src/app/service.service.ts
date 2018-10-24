@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ServiceService {
 
-  dataUrl: string = 'https://jsonplaceholder.typicode.com/users';
+  dataUrl: string = 'https://raw.githubusercontent.com/prust/wikipedia-movie-data/master/movies.json';
 
   constructor(private http: HttpClient) { }
 

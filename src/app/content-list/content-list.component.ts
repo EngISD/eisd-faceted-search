@@ -9,11 +9,16 @@ import { ServiceService } from '../service.service';
 export class ContentListComponent implements OnInit {
 
   results: any;
+  pageSize = 10;
+  currentPage = 0;
 
   constructor(private service: ServiceService) { }
 
   ngOnInit() {
     this.service.getResults().subscribe(res => this.results = res)
+  }
+  getData(){
+    
   }
 
 }
