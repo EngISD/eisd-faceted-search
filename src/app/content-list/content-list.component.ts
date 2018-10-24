@@ -31,6 +31,7 @@ export class ContentListComponent implements OnInit {
     this.service.getResults(event).subscribe(response => {
       this.results = response;
       this.activePageDataChunk = this.results.slice(0,this.pageSize);
+      this.length = this.results.length;
     });
     return event;
   }
