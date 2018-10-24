@@ -14,15 +14,16 @@ export class ContentListComponent implements OnInit {
   page: PageEvent;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   currentPage: number = 0;
-  length = 10000;
+  length;
   pageSize = 10;
   pageSizeOptions: number[] = [5, 10, 25, 100];
   activePageDataChunk = [];
-
+  categories = [];
   constructor(private service: ServiceService) { }
 
   ngOnInit() {
     this.getData();
+    
   }
   trackByFn(index, result){
     return index;
@@ -32,6 +33,7 @@ export class ContentListComponent implements OnInit {
       this.results = response;
       this.activePageDataChunk = this.results.slice(0,this.pageSize);
       this.length = this.results.length;
+      this.categories = (Object.keys(this.results[1]));
     });
     return event;
   }
