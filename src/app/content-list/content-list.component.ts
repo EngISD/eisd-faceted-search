@@ -19,6 +19,9 @@ export class ContentListComponent implements OnInit {
     this.service.getResults().subscribe(res => this.results = res);
     // this.getData();
   }
+  trackByFn(index, item){
+    return index;
+  }
   // getData(event?:PageEvent){
   //   this.service.getResults(event).subscribe(res => {
   //     this.results = res
