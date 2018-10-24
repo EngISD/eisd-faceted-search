@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ServiceService } from '../service.service';
 
 @Component({
@@ -8,12 +8,13 @@ import { ServiceService } from '../service.service';
 })
 export class ContentListComponent implements OnInit {
 
+   @Input() searchText: string;
   results: any;
 
   constructor(private service: ServiceService) { }
 
   ngOnInit() {
-    this.service.getResults().subscribe(res => this.results = res)
+    this.service.getResults().subscribe(res => this.results = res);
   }
 
 }

@@ -5,7 +5,7 @@
       <form>
         <div class="searchbar">
           <mat-form-field class="example-form-field">
-            <input autocomplete="off" matInput type="text" name="search" placeholder="Search" [(ngModel)]="value">
+            <input autocomplete="off" matInput type="text" name="search" placeholder="Search" [(ngModel)]="value" (keyup)="onKeyUp(value)">
             <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
               <mat-icon>close</mat-icon>
             </button>
