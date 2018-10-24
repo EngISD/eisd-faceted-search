@@ -17,7 +17,7 @@
     <div class="contentlist">
       <mat-list>
         <cdk-virtual-scroll-viewport [itemSize]="50" class="viewport">
-          <div *cdkVirtualFor="let result of results | filterBy: ['title']: searchText" class="viewport-item">
+          <div *cdkVirtualFor="let result of results" class="viewport-item">
             <p class="viewport-item-title">{{result.title}}</p>
           </div>
         </cdk-virtual-scroll-viewport>
