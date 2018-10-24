@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ServiceService {
 
-  dataUrl: string = '';
+  dataUrl: string = 'https://jsonplaceholder.typicode.com/users';
 
   constructor(private http: HttpClient) { }
 

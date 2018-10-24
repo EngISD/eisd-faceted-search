@@ -20,10 +20,9 @@
 <mat-grid-list cols="1" class="list" >
     <div class="contentlist">
       <mat-list>
-        <h3 mat-subheader class="list-item-header">Result</h3>
-        <mat-list-item>
-          <h4 mat-line>result value</h4>
-          <p mat-line>result value</p>
+        <mat-list-item *ngFor="let result of results" class="list-item">
+          <h4 mat-line>{{result.name}}</h4>
+          <p mat-line></p>
         </mat-list-item>
       </mat-list>
     </div>
