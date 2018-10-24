@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ServiceService } from '../service.service';
 
 @Component({
   selector: 'app-content-list',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContentListComponent implements OnInit {
 
-  constructor() { }
+  results: any;
+
+  constructor(private service: ServiceService) { }
 
   ngOnInit() {
+    this.service.getResults().subscribe(res => this.results = res)
   }
 
 }

@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatListModule, MatFormFieldModule, MatIconModule, MatExpansionModule, MatSliderModule, MatInputModule } from '@angular/material';
 import { NgPipesModule } from 'ngx-pipes';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { SidenavComponent } from './sidenav/sidenav.component';
 // Material Modules
@@ -27,6 +28,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     BrowserAnimationsModule,
     NgPipesModule,
     FormsModule,
+    HttpClientModule,
     MatButtonModule,
     MatIconModule,
     MatExpansionModule,
