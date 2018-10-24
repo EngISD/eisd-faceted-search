@@ -16,10 +16,10 @@
 <mat-grid-list cols="1" class="list" >
     <div class="contentlist">
       <mat-list *ngIf="results">
-        <mat-list-item *ngFor="let result of results" class="list-item">
-          <h1 mat-line >{{result.title}}</h1>
+        <mat-list-item *ngFor="let result of results | filterBy: ['title']: searchText" class="list-item">
+          <h1 mat-line>{{result.title}}</h1>
         </mat-list-item>
       </mat-list>
-          <span *ngIf="!results">Loading...</span>
+      <span *ngIf="!results">Loading...</span>
     </div>
 </mat-grid-list>
