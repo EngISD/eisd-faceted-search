@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ServiceService } from '../service.service';
 
 @Component({
   selector: 'app-sidenav',
@@ -7,15 +8,36 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidenavComponent implements OnInit {
 
-  categories = [ 'category 1', 'category 2', 'category 3', 'category 4' ];
+  categories = [];
   checkboxes = [ 'checkbox 1', 'checkbox 2', 'checkbox 3', 'checkbox 4' ];
+  results: any;
 
-  constructor() { }
+  constructor(private service: ServiceService) { }
 
   ngOnInit() {
+    this.service.getRawResults().subscribe(response => {
+      this.results = response;
+      this.categories = (Object.keys(this.results[1]));
+    });
+
   }
 
   onNgModelChange($event) {
     console.log($event);
+  }
+
+  uniqueItems(data, key) {
+    const result = [];
+    for (let i = 0; i < data.length; i++) {
+      const value = data[i][key];
+      if (result.indexOf(value) === -1) {
+        result.push(value);
+      }
+    }
+    return result;
+  }
+
+  trackByFn(index, result) {
+    return index;
   }
 }

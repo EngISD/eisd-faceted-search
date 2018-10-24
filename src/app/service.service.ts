@@ -9,7 +9,10 @@ export class ServiceService {
   dataUrl: string = 'https://raw.githubusercontent.com/prust/wikipedia-movie-data/master/movies.json';
 
   constructor(private http: HttpClient) { }
+  getRawResults(){
 
+    return this.http.get(this.dataUrl);
+  }
   getResults(event){
     return this.http.get(this.dataUrl);
   }

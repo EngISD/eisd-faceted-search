@@ -6,21 +6,21 @@
     </button>
   </div>
   <div class="test">
-    <mat-expansion-panel [expanded]="i < 2" *ngFor="let category of categories; let i = index" >
+    <mat-expansion-panel [expanded]="i < 2" *ngFor="let category of categories; trackBy: trackByFn; let i = index" >
       <mat-expansion-panel-header>
         <mat-panel-title>
-            <mat-icon matListIcon>assessment</mat-icon>&nbsp;{{ category }}
+            <mat-icon matListIcon>assessment</mat-icon>&nbsp;{{ category | titlecase }}
         </mat-panel-title>
       </mat-expansion-panel-header>
       <div>
         <div class="resetThis">
           Reset {{ category }} filter
-          <button class="resetbutton" mat-icon-button>
+          <button class="resetbutton" mat-icon-button (click)="dud();">
               <mat-icon>cached</mat-icon>
           </button>
         </div>
         <mat-selection-list dense (ngModelChange)="onNgModelChange($event)" *ngIf="category != somethingThatNeedsSlider">
-          <mat-list-option *ngFor="let checkbox of checkboxes" [value]="checkbox">
+          <mat-list-option *ngFor="let checkbox of checkboxes; trackBy: trackByFn;" [value]="checkbox">
             <mat-icon matListIcon>label</mat-icon>
             <p>{{ checkbox }}</p>
           </mat-list-option>
