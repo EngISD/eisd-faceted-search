@@ -10,7 +10,8 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 // Material Modules
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatPaginatorModule} from '@angular/material/paginator';
-
+import {ScrollDispatchModule} from '@angular/cdk/scrolling';
+import { ScrollingModule, ScrollDispatcher } from '@angular/cdk/scrolling';
 
 import { AppComponent } from './app.component';
 import { ContentListComponent } from './content-list/content-list.component';
@@ -29,6 +30,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     NgPipesModule,
     FormsModule,
     HttpClientModule,
+    ScrollDispatchModule,
+    ScrollingModule,
     MatButtonModule,
     MatIconModule,
     MatExpansionModule,
@@ -39,7 +42,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     MatGridListModule,
     MatPaginatorModule
   ],
-  providers: [],
+  providers: [ScrollDispatcher],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -8,17 +8,22 @@
                       [pageIndex]="pageIndex"
                       [pageSize]="10"
                       [pageSizeOptions]="[5, 10, 25, 100]"
-                      (page)="pageEvent = method($event)">
+                      (page)="pageEvent = $event">
         </mat-paginator>
       </div>
   </mat-grid-list>
 </div>
 <mat-grid-list cols="1" class="list" >
     <div class="contentlist">
-      <mat-list *ngIf="results">
-        <mat-list-item *ngFor="let result of results | filterBy: ['title']: searchText" class="list-item">
+      <mat-list>
+        <cdk-virtual-scroll-viewport [itemSize]="50" class="viewport">
+          <div *cdkVirtualFor="let result of results | filterBy: ['title']: searchText" class="viewport-item">
+            <p class="viewport-item-title">{{result.title}}</p>
+          </div>
+        </cdk-virtual-scroll-viewport>
+        <!-- <mat-list-item *ngFor="let result of results | filterBy: ['title']: searchText" class="list-item">
           <h1 mat-line>{{result.title}}</h1>
-        </mat-list-item>
+        </mat-list-item> -->
       </mat-list>
       <span *ngIf="!results">Loading...</span>
     </div>

@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ServiceService } from '../service.service';
+import {PageEvent} from '@angular/material';
+
 
 @Component({
   selector: 'app-content-list',
@@ -8,18 +10,20 @@ import { ServiceService } from '../service.service';
 })
 export class ContentListComponent implements OnInit {
 
-   @Input() searchText: string;
+  @Input() searchText: string;
   results: any;
-  pageSize = 10;
-  currentPage = 0;
 
   constructor(private service: ServiceService) { }
 
   ngOnInit() {
     this.service.getResults().subscribe(res => this.results = res);
+    // this.getData();
   }
-  getData(){
-    
-  }
+  // getData(event?:PageEvent){
+  //   this.service.getResults(event).subscribe(res => {
+  //     this.results = res
+  //   });
+  //   return event;
+  // }
 
 }
