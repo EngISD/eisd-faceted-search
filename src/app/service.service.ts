@@ -10,7 +10,7 @@ export class ServiceService {
 
   constructor(private http: HttpClient) { }
 
-  getResults(){
+  getResults(event){
     return this.http.get(this.dataUrl);
   }
   getResult(resultId: number){

@@ -1,6 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ServiceService } from '../service.service';
-import {PageEvent} from '@angular/material';
+import {PageEvent, MatPaginator} from '@angular/material';
 
 
 @Component({
@@ -10,23 +10,38 @@ import {PageEvent} from '@angular/material';
 })
 export class ContentListComponent implements OnInit {
 
-  @Input() searchText: string;
   results: any;
+  page: PageEvent;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  currentPage: number = 0;
+  length = 10000;
+  pageSize = 10;
+  pageSizeOptions: number[] = [5, 10, 25, 100];
+  activePageDataChunk = [];
 
   constructor(private service: ServiceService) { }
 
   ngOnInit() {
-    this.service.getResults().subscribe(res => this.results = res);
-    // this.getData();
+    this.getData();
   }
-  trackByFn(index, item){
+  trackByFn(index, result){
     return index;
   }
-  // getData(event?:PageEvent){
-  //   this.service.getResults(event).subscribe(res => {
-  //     this.results = res
-  //   });
-  //   return event;
-  // }
+  getData(event?:PageEvent){
+    this.service.getResults(event).subscribe(response => {
+      this.results = response;
+      this.activePageDataChunk = this.results.slice(0,this.pageSize);
+    });
+    return event;
+  }
+  setPageSizeOptions(setPageSizeOptionsInput: string) {
+    this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
+  }
+
+  onPageChanged(e) {
+    let firstCut = e.pageIndex * e.pageSize;
+    let secondCut = firstCut + e.pageSize;
+    this.activePageDataChunk = this.results.slice(firstCut, secondCut);
+  }
 
 }

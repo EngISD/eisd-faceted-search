@@ -4,11 +4,11 @@
   <mat-grid-list cols="1" class="paginator-container">
       <div class="paginator">
         <mat-paginator class="paginator-option"
-                      [length]="100"
+                      [length]="length"
                       [pageIndex]="pageIndex"
-                      [pageSize]="10"
-                      [pageSizeOptions]="[5, 10, 25, 100]"
-                      (page)="pageEvent = $event">
+                      [pageSize]="pageSize"
+                      [pageSizeOptions]="pageSizeOptions"
+                      (page)="onPageChanged($event)">
         </mat-paginator>
       </div>
   </mat-grid-list>
@@ -16,12 +16,14 @@
 <mat-grid-list cols="1" class="list" >
     <div class="contentlist">
       <mat-list>
-        <cdk-virtual-scroll-viewport [itemSize]="50" class="viewport">
-          <div *cdkVirtualFor="let result of results; trackBy: trackByFn" class="viewport-item">
+        <cdk-virtual-scroll-viewport itemSize="50" class="viewport">
+          <div *cdkVirtualFor="let result of activePageDataChunk;
+                               let last = last; 
+                               trackBy: trackByFn" class="viewport-item" [class.last] = "last">
             <p class="viewport-item-title">{{result.title}}</p>
           </div>
         </cdk-virtual-scroll-viewport>
-        <!-- <mat-list-item *ngFor="let result of results | filterBy: ['title']: searchText" class="list-item">
+        <!-- <mat-list-item *ngFor="let result of results" class="list-item">
           <h1 mat-line>{{result.title}}</h1>
         </mat-list-item> -->
       </mat-list>
