@@ -5,15 +5,15 @@
       <form>
         <div class="searchbar">
           <mat-form-field class="example-form-field">
-            <input autocomplete="off" matInput type="text" name="search" placeholder="Search" [(ngModel)]="value" (keyup)="onKeyUp(value)">
+            <input list="data" autocomplete="off" matInput type="text" name="search" placeholder="Search" [(ngModel)]="value" (ngModelChange)="onKeyUp(value)">
             <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
               <mat-icon>close</mat-icon>
             </button>
           </mat-form-field>
 
-          <span> <!-- *ngIf="isFocused && results" -->
+          <span *ngIf="result"> <!-- *ngIf="isFocused && results" -->
             <datalist id="data">
-              <option> </option> <!-- Looping through options  *ngFor="let result of results" value="{{result?.id}}">{{result?.name + ' ' + result?.surname}} -->
+              <option *ngFor="let item of result; trackBy: trackByFn;">{{ item.title }} {{ item.year }}</option> <!-- Looping through options  *ngFor="let result of results" value="{{result?.id}}">{{result?.name + ' ' + result?.surname}} -->
             </datalist>
           </span>
         </div>
