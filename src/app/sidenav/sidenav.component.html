@@ -20,7 +20,7 @@
           </button>
         </div>
         <mat-selection-list dense (ngModelChange)="onNgModelChange($event)" *ngIf="category != somethingThatNeedsSlider">
-          <mat-list-option *ngFor="let checkbox of checkboxes; trackBy: trackByFn;" [value]="checkbox">
+          <mat-list-option *ngFor="let checkbox of checkboxes[category]; trackBy: trackByFn;" [value]="checkbox">
             <mat-icon matListIcon>label</mat-icon>
             <p>{{ checkbox }}</p>
           </mat-list-option>

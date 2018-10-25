@@ -9,7 +9,7 @@ import { ServiceService } from '../service.service';
 export class SidenavComponent implements OnInit {
 
   categories = [];
-  checkboxes = [ 'checkbox 1', 'checkbox 2', 'checkbox 3', 'checkbox 4' ];
+  checkboxes: {[id: string]: any } = {};
   results: any;
 
   constructor(private service: ServiceService) { }
@@ -17,7 +17,24 @@ export class SidenavComponent implements OnInit {
   ngOnInit() {
     this.service.getRawResults().subscribe(response => {
       this.results = response;
-      this.categories = (Object.keys(this.results[1]));
+      this.categories = (Object.keys(response[1]));
+      // FOR loop that isolates only unique items from all records
+      //   for every category of facet, then it sorts that new array by count of number of appearing
+      //     in all records, and at last it slices that array to show only first 5 elements
+      //       NOT WORKING BECAUSE WE USE FOR LOOP 5 TIMES ON HUGE ARRAY - causes crash
+      //         BUT WORKS FOR SMALL ARRAYS :(
+      /* for (let i = 0; i < this.categories.length; i++) {
+        this.checkboxes[this.categories[i]] = this.uniqueItems(this.results, this.categories[i])
+                                                          .sort((n1, n2) => {
+                                                            if (this.count(this.categories[i], n1) > this.count(this.categories[i], n2)) {
+                                                              return 1;
+                                                            }
+                                                            if (this.count(this.categories[i], n1) < this.count(this.categories[i], n2)) {
+                                                              return -1;
+                                                            }
+                                                              return 0;
+                                                          }).slice(0, 5);
+      } */
     });
 
   }
@@ -32,6 +49,16 @@ export class SidenavComponent implements OnInit {
       const value = data[i][key];
       if (result.indexOf(value) === -1) {
         result.push(value);
+      }
+    }
+    return result;
+  }
+
+  count(prop, value) {
+    let result = 0;
+    for (let i = 0; i < this.results.length; i++) {
+      if (this.results[i][prop] == value) {
+        result++;
       }
     }
     return result;
