@@ -10,6 +10,7 @@ import { debounceTime } from 'rxjs/operators';
 export class NavbarComponent implements OnInit {
   @Output() searchText = new EventEmitter;
   result: any;
+
   constructor(private service: ServiceService) { }
 
   ngOnInit() {
@@ -20,7 +21,7 @@ export class NavbarComponent implements OnInit {
       this.service.getSearchedItem(text).pipe(
         debounceTime(300)
       ).subscribe(response => {
-        this.result = response.slice(0, 10);
+        this.result = response.slice(0,50);
       }
       );
     }

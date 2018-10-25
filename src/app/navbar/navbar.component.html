@@ -4,18 +4,17 @@
     <nav class="search">
       <form>
         <div class="searchbar">
-          <mat-form-field class="example-form-field">
-            <input list="data" autocomplete="off" matInput type="text" name="search" placeholder="Search" [(ngModel)]="value" (ngModelChange)="onKeyUp(value)">
+          <mat-form-field class="form-field">
+            <input list="data" [matAutocomplete]="auto" autocomplete="off" matInput type="text" name="search" placeholder="Search" [(ngModel)]="value" (ngModelChange)="onKeyUp(value)">
             <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
               <mat-icon>close</mat-icon>
             </button>
           </mat-form-field>
 
-          <span *ngIf="result"> <!-- *ngIf="isFocused && results" -->
-            <datalist id="data">
-              <option *ngFor="let item of result; trackBy: trackByFn;">{{ item.title }} {{ item.year }}</option> <!-- Looping through options  *ngFor="let result of results" value="{{result?.id}}">{{result?.name + ' ' + result?.surname}} -->
-            </datalist>
-          </span>
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option [value]="item.title + ' ' + item.year" *ngFor="let item of result; trackBy: trackByFn;">{{ item.title }} {{ item.year }}</mat-option>
+          </mat-autocomplete>
+
         </div>
       </form>
     </nav>

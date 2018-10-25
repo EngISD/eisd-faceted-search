@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { filter, map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -23,16 +24,16 @@ export class ServiceService {
     return this.http.get(this.dataUrl + '/' + resultId);
   }
 
-  getFilterBy(data: string) {
+  /* getFilterBy(data: string) {
     return this.http.get(this.dataUrl).pipe(
       map(items => {
         return items.filter(items => items[data] > 2000);
       }, error => error)
     );
-  }
+  } */
 
   getSearchedItem(data: string) {
-    return this.http.get(this.dataUrl).pipe(
+    return this.http.get<Array<Object>>(this.dataUrl).pipe(
       map(items => {
         return items.filter(items => items.title.toLowerCase().includes(data.toLowerCase()));
       }, error => error)
