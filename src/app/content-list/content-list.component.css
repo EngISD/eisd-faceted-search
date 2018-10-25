@@ -10,6 +10,9 @@
 }
 mat-list {
   padding: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.171);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.171);
+  border-left: 1px solid rgba(0, 0, 0, 0.171);
 }
 .paginator-option {
   background-color: rgb(58, 152, 219, 0.5);
@@ -18,16 +21,16 @@ mat-list {
   padding: 10px 10px;
 }
 .contentlist {
-  background-color: rgb(99, 142, 207, 0.10);
+  background-color: rgba(255, 255, 255, 0.1);
   padding: 15px 15px;
-  box-shadow: 3px 3px 4px -1px rgba(0,0,0,0.7);
+  /* box-shadow: 3px 3px 4px -1px rgba(0,0,0,0.7); */
 }
 .list-item {
-  background-color: rgba(255, 255, 255, 0.60);
+  background-color: rgba(255, 255, 255, 0.6);
   box-shadow: 1px 1px 2px -1px rgba(0,0,0,0.7);
 }
 .viewport {
-  height: 610px;
+  height: 70vh;
   width: 100%;
 }
 .viewport-item {
@@ -35,15 +38,15 @@ mat-list {
   width: 99%;
 }
 .viewport-item-title {
-  background-color: rgba(255, 255, 255, 0.545);
+  background-color: rgba(0, 183, 255, 0.014);
   box-shadow: 1px 2px 2px 0px rgba(0,0,0,0.75);
   height: 50px;
   padding-left: 3%;
   padding-top: 1%;
   border-left: 0.2px solid rgba(58, 58, 58, 0.829);
   border-top: 0.2px solid rgba(58, 58, 58, 0.829);
+  margin: 10px 0px 10px 0px;
 }
 .last {
   min-height: 70px;
 }
-
