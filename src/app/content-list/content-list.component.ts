@@ -29,12 +29,13 @@ export class ContentListComponent implements OnInit {
     return index;
   }
   getData(event?:PageEvent){
-    this.service.getResults(event).subscribe(response => {
-      this.results = response;
-      this.activePageDataChunk = this.results.slice(0,this.pageSize);
-      this.length = this.results.length;
-      this.categories = (Object.keys(this.results[1]));
-    });
+    this.service.getResults(event)
+      .subscribe(response => {
+        this.results = response;
+        this.activePageDataChunk = this.results.slice(0,this.pageSize);
+        this.length = this.results.length;
+        this.categories = (Object.keys(this.results[1]));
+      });
     return event;
   }
   setPageSizeOptions(setPageSizeOptionsInput: string) {

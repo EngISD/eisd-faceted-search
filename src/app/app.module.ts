@@ -4,12 +4,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatListModule, MatFormFieldModule, MatIconModule, MatExpansionModule, MatSliderModule, MatInputModule } from '@angular/material';
 import { NgPipesModule } from 'ngx-pipes';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { SidenavComponent } from './sidenav/sidenav.component';
 // Material Modules
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {ScrollDispatchModule} from '@angular/cdk/scrolling';
 import { ScrollingModule, ScrollDispatcher } from '@angular/cdk/scrolling';
 
@@ -29,6 +31,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     BrowserAnimationsModule,
     NgPipesModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     ScrollDispatchModule,
     ScrollingModule,
@@ -40,7 +43,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     MatListModule,
     MatFormFieldModule,
     MatGridListModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatAutocompleteModule
   ],
   providers: [ScrollDispatcher],
   bootstrap: [AppComponent]
