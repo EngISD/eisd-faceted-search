@@ -33,12 +33,8 @@ export class ServiceService {
   } */
 
   getSearchedItem(data: string) {
-    return this.http.get<Array<Object>>(this.dataUrl).pipe(
+    return this.http.get<Array<any>>(this.dataUrl).pipe(
       map(items => {
-        // this prints an error "Property 'filter' does not exist on type 'Object'." but works
-        // after doing some research i think it shows error because Angular 7 returns an object
-        // from http.get, on link bellow is some kind of explanation
-        // https://stackoverflow.com/questions/52989723/angular-7-http-get-returning-object-object
         return items.filter(items => items.title.toLowerCase().includes(data.toLowerCase()));
       }, error => error)
     );
