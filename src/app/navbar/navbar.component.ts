@@ -21,7 +21,7 @@ export class NavbarComponent implements OnInit {
       this.service.getSearchedItem(text).pipe(
         debounceTime(300)
       ).subscribe(response => {
-        this.result = response.slice(0,50);
+        this.result = response.slice(0, 50);
       }
       );
     }
