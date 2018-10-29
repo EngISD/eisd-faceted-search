@@ -2,12 +2,6 @@
   margin: 0px 2px;
   box-shadow: 0px 3px 4px -1px rgba(0,0,0,0.7);
 }
-.header{
-  color: rgb(2, 9, 23, 0.6);
-  background-color: rgb(58, 152, 219, 0.5);
-  text-align: center;
-  padding-top: 12px;
-}
 mat-list {
   padding: 0;
   border: 1px solid rgba(0, 0, 0, 0.171);
@@ -21,11 +15,6 @@ mat-list {
 .contentlist {
   background-color: rgba(255, 255, 255, 0.1);
   padding: 15px 15px;
-  /* box-shadow: 3px 3px 4px -1px rgba(0,0,0,0.7); */
-}
-.list-item {
-  background-color: rgba(255, 255, 255, 0.6);
-  box-shadow: 1px 1px 2px -1px rgba(0,0,0,0.7);
 }
 .viewport {
   height: 70vh;

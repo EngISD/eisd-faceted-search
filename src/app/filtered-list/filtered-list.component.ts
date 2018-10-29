@@ -10,7 +10,6 @@ import { Router } from '@angular/router';
 })
 export class FilteredListComponent implements OnInit {
 
-  results: any;
   page: PageEvent;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   currentPage: number = 0;
@@ -18,44 +17,30 @@ export class FilteredListComponent implements OnInit {
   pageSize = 10;
   pageSizeOptions: number[] = [5, 10, 25, 100];
   activePageDataChunk = [];
-  categories = ['title','year'];
-  filteredResults: any;
-  bindFilter: any;
+  categories = [];
+  filteredResult: any;
 
   constructor(private service: ServiceService, public router: Router) { }
 
   ngOnInit() {
-     this.getFilteredData(); 
-     /* this.service.getFilteredData(this.bindFilter).subscribe(
-       res => {this.filteredResults = res;
-        console.log(this.filteredResults);
-        this.categories = (Object.keys(this.filteredResults[1])); }
-     ) */
-     
-     
+    this.service.getCategories().subscribe(res => {
+      this.categories = res;
+    })
+     this.service.filterValue$.subscribe(res => {
+       this.activePageDataChunk = res;
+       this.filteredResult = res;
+       this.length = this.activePageDataChunk.length;
+     })  
   }
   trackByFn(index, result){
     return index;
   }
-  getFilteredData() {
-    return this.service.getSelected();
-
-  }
   setPageSizeOptions(setPageSizeOptionsInput: string) {
     this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
   }
-
   onPageChanged(e) {
     let firstCut = e.pageIndex * e.pageSize;
     let secondCut = firstCut + e.pageSize;
-    this.activePageDataChunk = this.results.slice(firstCut, secondCut);
+    this.activePageDataChunk = this.filteredResult.slice(firstCut, secondCut);
   }
-  
-  ngDoCheck(): void {
-    /* this.service.getFilteredData(this.bindFilter).subscribe(
-      res => {this.filteredResults = res;
-       console.log(this.filteredResults);
-       this.categories = (Object.keys(this.filteredResults[1])); }
-    )*/
-  } 
 }

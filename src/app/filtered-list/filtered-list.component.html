@@ -13,14 +13,15 @@
             </div>
         </mat-grid-list>
       </div>
+<!-- List -->
       <div class="list" >
           <div class="contentlist">
             <mat-list>
               <cdk-virtual-scroll-viewport itemSize="50" class="viewport">
-                  <div *cdkVirtualFor="let result of (getFilteredData());
+                  <div *cdkVirtualFor="let result of activePageDataChunk;
                                        let last = last; 
                                        trackBy: trackByFn" class="viewport-item" [class.last] = "last">
-                    <p class="viewport-item-title">{{result[categories[0]]}}</p>
+                    <p class="viewport-item-title">{{result[categories[0]]}} - {{ result[categories[1]] }}</p>
                   </div>
                 </cdk-virtual-scroll-viewport>
             </mat-list>

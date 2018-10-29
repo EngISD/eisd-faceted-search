@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ServiceService } from '../service.service';
 import { debounceTime } from 'rxjs/operators';
 import { Router } from '@angular/router';
@@ -9,9 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  @Output() searchText = new EventEmitter;
   result: any;
-  bindFilter: any;
 
   constructor(private service: ServiceService, private route: Router) { }
 
@@ -33,12 +31,7 @@ export class NavbarComponent implements OnInit {
     return index;
   }
   selectOption(value){
-    if(this.route.url != '/filter'){
-      this.service.setFilteredValue(value);
-      this.route.navigateByUrl('/filter');
-    } else {
-      this.service.setFilteredValue(value);
-    }
-    
+    this.service.setFilteredValue(value);
+    this.route.navigateByUrl('/filter');
   }
 }

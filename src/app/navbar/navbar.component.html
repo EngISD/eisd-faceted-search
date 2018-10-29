@@ -10,7 +10,7 @@
               <mat-icon>close</mat-icon>
             </button>
           </mat-form-field>
-
+<!-- Dropdown search -->
           <mat-autocomplete #auto="matAutocomplete">
             <mat-option  class="data-option" value="{{item.title}}" *ngFor="let item of result; trackBy: trackByFn;" (click)="selectOption(this.value)">{{ item.title }} {{ item.year }}</mat-option>
           </mat-autocomplete>

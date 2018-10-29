@@ -13,10 +13,13 @@ export class ServiceService {
 
   dataUrl: string = 'https://raw.githubusercontent.com/prust/wikipedia-movie-data/master/movies.json';
 
+  filterValue$: Observable<any>
+  private _filterValue: BehaviorSubject<any>
 
-  // for testing of the sorting and slicing mechanism (it works)
-  // dataUrl: string = 'https://jsonplaceholder.typicode.com/todos';
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this._filterValue = new BehaviorSubject<any>([]);
+    this.filterValue$ = this._filterValue.asObservable();
+   }
   getCategories() {
     return this.http.get<Array<any>>(this.dataUrl).pipe(
       map(items => Object.keys(items[0]) )
@@ -48,11 +51,6 @@ export class ServiceService {
   getResults(event) {
     return this.http.get(this.dataUrl);
   }
-  getResult(resultId: number) {
-    return this.http.get(this.dataUrl + '/' + resultId);
-  }
-
-
   getSearchedItem(data: string) {
     return this.http.get<Array<any>>(this.dataUrl).pipe(
       map(items => {
@@ -69,16 +67,6 @@ export class ServiceService {
   }
   setFilteredValue(value){
     this.filteredValue.next(value);
-    this.getFilteredData().subscribe(res => this.selected.next(res))
-  }
-  getFilteredValue(){
-    this.filteredValue.subscribe((val) => val);
-    return this.filteredValue.getValue();
-  }
-
-  getSelected() {
-    this.selected.subscribe((val1) => val1);
-    return this.selected.getValue();
-
+    this.getFilteredData().subscribe(res => this._filterValue.next(res));
   }
 }

@@ -13,11 +13,12 @@
       </div>
   </mat-grid-list>
 </div>
+<!-- List -->
 <div class="list" >
     <div class="contentlist">
       <mat-list>
         <span *ngIf="!results"><div class="loading">Loading...</div></span>
-        <cdk-virtual-scroll-viewport itemSize="50" class="viewport" *ngIf="router.url === '/'">
+        <cdk-virtual-scroll-viewport itemSize="50" class="viewport">
           <div *cdkVirtualFor="let result of activePageDataChunk;
                                let last = last; 
                                trackBy: trackByFn" class="viewport-item" [class.last] = "last">

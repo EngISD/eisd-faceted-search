@@ -22,12 +22,11 @@ export class ContentListComponent implements OnInit {
   pageSizeOptions: number[] = [5, 10, 25, 100];
   activePageDataChunk = [];
   categories = [];
+  
   constructor(private service: ServiceService, public router: Router) { }
 
   ngOnInit() {
     this.getData();
-
-
   }
   trackByFn(index, result) {
     return index;
