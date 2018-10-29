@@ -13,6 +13,11 @@
     font-size: 1.5em;
   }
 }
+.title a {
+  text-decoration: none;
+  font-style: none;
+  color: black;
+}
 .header {
   padding: 10px 10px;
   background-color: rgba(77, 153, 241, 0.84);

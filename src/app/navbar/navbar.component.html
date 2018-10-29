@@ -1,18 +1,18 @@
 <div class="header">
-    <div class="title">Search app</div>
+    <div class="title"><a [routerLink]="[ '/' ]">Search app</a></div>
     <!-- Search form -->
     <nav class="search">
       <form>
         <div class="searchbar">
           <mat-form-field class="form-field">
-            <input list="data" [matAutocomplete]="auto" autocomplete="off" matInput type="text" name="search" placeholder="Search..." [(ngModel)]="value" (ngModelChange)="onKeyUp(value)"  >
+            <input list="data" [matAutocomplete]="auto" autocomplete="off" matInput type="text" name="search" placeholder="Search..." [(ngModel)]="value" (ngModelChange)="onKeyUp(value)" (keydown.enter)="onEnter(value)" >
             <button *ngIf="value" mat-button matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
               <mat-icon>close</mat-icon>
             </button>
           </mat-form-field>
 <!-- Dropdown search -->
           <mat-autocomplete #auto="matAutocomplete">
-            <mat-option  class="data-option" value="{{item.title}}" *ngFor="let item of result; trackBy: trackByFn;" (click)="selectOption(this.value)">{{ item.title }} {{ item.year }}</mat-option>
+            <mat-option #option class="data-option" value="{{item.title}}" *ngFor="let item of result; trackBy: trackByFn;" (click)="selectOption(this.value)">{{ item.title }} {{ item.year }}</mat-option>
           </mat-autocomplete>
 
         </div>

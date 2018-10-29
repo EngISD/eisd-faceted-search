@@ -61,7 +61,7 @@ export class ServiceService {
   getFilteredData() {
     return this.http.get<Array<any>>(this.dataUrl).pipe(
       map(items => {
-        return items.filter(items => items.title.includes(this.filteredValue.getValue()));
+        return items.filter(items => items.title.toLowerCase().includes(this.filteredValue.getValue().toLowerCase()));
       }, error => error)
     );
   }
