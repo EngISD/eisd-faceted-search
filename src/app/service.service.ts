@@ -48,7 +48,7 @@ export class ServiceService {
       })
     );
   }
-  getResults(event) {
+  getResults(event?) {
     return this.http.get(this.dataUrl);
   }
   getSearchedItem(data: string) {

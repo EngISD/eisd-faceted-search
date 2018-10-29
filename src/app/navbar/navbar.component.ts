@@ -32,7 +32,6 @@ export class NavbarComponent implements OnInit {
     this.service.setFilteredValue(e);
     this.route.navigateByUrl('/filter');
   }
-
   trackByFn(index, item) {
     return index;
   }
@@ -40,4 +39,5 @@ export class NavbarComponent implements OnInit {
     this.service.setFilteredValue(value);
     this.route.navigateByUrl('/filter');
   }
+
 }
