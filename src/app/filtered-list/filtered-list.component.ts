@@ -27,9 +27,9 @@ export class FilteredListComponent implements OnInit {
       this.categories = res;
     });
      this.service.filterValue$.subscribe(res => {
-       this.activePageDataChunk = res;
        this.filteredResult = res;
-       this.length = this.activePageDataChunk.length;
+       this.length = this.filteredResult.length;
+       this.activePageDataChunk = this.filteredResult.slice(0, this.pageSize);
      });
   }
   trackByFn(index, result){
