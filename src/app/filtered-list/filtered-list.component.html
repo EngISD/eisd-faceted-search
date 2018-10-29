@@ -1,0 +1,30 @@
+<!-- Header -->
+<div class="header-container">
+        <!-- Paginator -->
+        <mat-grid-list cols="1" class="paginator-container">
+            <div class="paginator">
+              <mat-paginator class="paginator-option"
+                            [length]="length"
+                            [pageIndex]="pageIndex"
+                            [pageSize]="pageSize"
+                            [pageSizeOptions]="pageSizeOptions"
+                            (page)="onPageChanged($event)">
+              </mat-paginator>
+            </div>
+        </mat-grid-list>
+      </div>
+      <div class="list" >
+          <div class="contentlist">
+            <mat-list>
+              <cdk-virtual-scroll-viewport itemSize="50" class="viewport">
+                  <div *cdkVirtualFor="let result of (getFilteredData());
+                                       let last = last; 
+                                       trackBy: trackByFn" class="viewport-item" [class.last] = "last">
+                    <p class="viewport-item-title">{{result[categories[0]]}}</p>
+                  </div>
+                </cdk-virtual-scroll-viewport>
+            </mat-list>
+          </div>
+        </div>
+      
+      

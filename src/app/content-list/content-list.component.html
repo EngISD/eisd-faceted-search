@@ -16,17 +16,14 @@
 <div class="list" >
     <div class="contentlist">
       <mat-list>
-        <cdk-virtual-scroll-viewport itemSize="50" class="viewport">
+        <span *ngIf="!results"><div class="loading">Loading...</div></span>
+        <cdk-virtual-scroll-viewport itemSize="50" class="viewport" *ngIf="router.url === '/'">
           <div *cdkVirtualFor="let result of activePageDataChunk;
                                let last = last; 
                                trackBy: trackByFn" class="viewport-item" [class.last] = "last">
             <p class="viewport-item-title">{{result[categories[0]]}}</p>
           </div>
         </cdk-virtual-scroll-viewport>
-        <!-- <mat-list-item *ngFor="let result of results" class="list-item">
-          <h1 mat-line>{{result.title}}</h1>
-        </mat-list-item> -->
       </mat-list>
-      <span *ngIf="!results">Loading...</span>
     </div>
   </div>

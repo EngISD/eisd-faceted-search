@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ServiceService } from '../service.service';
 import {PageEvent, MatPaginator} from '@angular/material';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -19,11 +20,11 @@ export class ContentListComponent implements OnInit {
   pageSizeOptions: number[] = [5, 10, 25, 100];
   activePageDataChunk = [];
   categories = [];
-  constructor(private service: ServiceService) { }
+  constructor(private service: ServiceService, public router: Router) { }
 
   ngOnInit() {
     this.getData();
-    
+
   }
   trackByFn(index, result){
     return index;
@@ -47,5 +48,4 @@ export class ContentListComponent implements OnInit {
     let secondCut = firstCut + e.pageSize;
     this.activePageDataChunk = this.results.slice(firstCut, secondCut);
   }
-
 }

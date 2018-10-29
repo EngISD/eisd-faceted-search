@@ -6,6 +6,8 @@ import { NgPipesModule } from 'ngx-pipes';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
+import { Routes } from './app.routing';
 
 import { SidenavComponent } from './sidenav/sidenav.component';
 // Material Modules
@@ -18,13 +20,15 @@ import { ScrollingModule, ScrollDispatcher } from '@angular/cdk/scrolling';
 import { AppComponent } from './app.component';
 import { ContentListComponent } from './content-list/content-list.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { FilteredListComponent } from './filtered-list/filtered-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SidenavComponent,
     ContentListComponent,
-    NavbarComponent
+    NavbarComponent,
+    FilteredListComponent
   ],
   imports: [
     BrowserModule,
@@ -33,6 +37,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    RouterModule.forRoot(Routes),
     ScrollDispatchModule,
     ScrollingModule,
     MatButtonModule,
