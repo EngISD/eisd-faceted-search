@@ -25,12 +25,12 @@ export class FilteredListComponent implements OnInit {
   ngOnInit() {
     this.service.getCategories().subscribe(res => {
       this.categories = res;
-    })
+    });
      this.service.filterValue$.subscribe(res => {
        this.activePageDataChunk = res;
        this.filteredResult = res;
        this.length = this.activePageDataChunk.length;
-     })  
+     });
   }
   trackByFn(index, result){
     return index;
@@ -39,8 +39,8 @@ export class FilteredListComponent implements OnInit {
     this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
   }
   onPageChanged(e) {
-    let firstCut = e.pageIndex * e.pageSize;
-    let secondCut = firstCut + e.pageSize;
+    const firstCut = e.pageIndex * e.pageSize;
+    const secondCut = firstCut + e.pageSize;
     this.activePageDataChunk = this.filteredResult.slice(firstCut, secondCut);
   }
 }
