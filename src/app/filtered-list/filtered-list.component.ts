@@ -15,7 +15,7 @@ export class FilteredListComponent implements OnInit {
   page: PageEvent;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   currentPage: number = 0;
-  length;
+  length = 0;
   pageSize = 10;
   pageSizeOptions: number[] = [5, 10, 25, 100];
   activePageDataChunk = [];
@@ -40,6 +40,7 @@ export class FilteredListComponent implements OnInit {
     return index;
   }
   getFilteredData() {
+    this.length = this.service.getSelected().length;
     return this.service.getSelected();
   }
   setPageSizeOptions(setPageSizeOptionsInput: string) {
