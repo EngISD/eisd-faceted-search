@@ -11,6 +11,7 @@ export class SidenavComponent implements OnInit {
   categories = [];
   checkboxes: {[id: string]: any } = {};
   results: any;
+  selectedCategory = [];
 
   constructor(private service: ServiceService) { }
 
@@ -45,6 +46,12 @@ export class SidenavComponent implements OnInit {
       this.checkboxes.year = response;
     }); */
 
+  }
+  reset() {
+    this.selectedCategory = [];
+  }
+  resetThis(category: string) {
+    this.selectedCategory[category] = [];
   }
 
   onNgModelChange($event) {

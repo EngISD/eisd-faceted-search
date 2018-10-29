@@ -1,12 +1,12 @@
 <div class="sidenav-container">
   <div class="resetAll">
     Reset all filters 
-    <button mat-icon-button>
+    <button mat-icon-button (click)="reset();">
         <mat-icon>cached</mat-icon>
     </button>
   </div>
   <div class="test">
-    <mat-expansion-panel [expanded]="i < 1" *ngFor="let category of categories; trackBy: trackByFn; let i = index" >
+    <mat-expansion-panel [expanded]="i < 1" *ngFor="let category of categories; trackBy: trackByFn; let i = index">
       <mat-expansion-panel-header>
         <mat-panel-title>
             <mat-icon matListIcon>assessment</mat-icon>&nbsp;{{ category | titlecase }}
@@ -15,12 +15,12 @@
       <div>
         <div class="resetThis">
           Reset {{ category }} filter
-          <button class="resetbutton" mat-icon-button (click)="dud();">
+          <button class="resetbutton" mat-icon-button (click)="resetThis(category);">
               <mat-icon>cached</mat-icon>
           </button>
         </div>
-        <mat-selection-list dense (ngModelChange)="onNgModelChange($event)" *ngIf="category != somethingThatNeedsSlider">
-          <mat-list-option *ngFor="let checkbox of checkboxes[category]; trackBy: trackByFn;" [value]="checkbox">
+        <mat-selection-list dense [(ngModel)]="selectedCategory[category]" (ngModelChange)="onNgModelChange($event)" [ngModelOptions]="{standalone: true}">
+          <mat-list-option *ngFor="let checkbox of checkboxes[category]; trackBy: trackByFn;" [value]="checkbox.id">
             <mat-icon matListIcon>label</mat-icon>
             <p>{{ checkbox.id }} ({{ checkbox.count }})</p>
           </mat-list-option>

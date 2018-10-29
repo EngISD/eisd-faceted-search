@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
 import { PageEvent, MatPaginator } from '@angular/material';
 import { ServiceService } from '../service.service';
 import { Router } from '@angular/router';
@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class FilteredListComponent implements OnInit {
 
+
   results: any;
   page: PageEvent;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -18,44 +19,42 @@ export class FilteredListComponent implements OnInit {
   pageSize = 10;
   pageSizeOptions: number[] = [5, 10, 25, 100];
   activePageDataChunk = [];
-  categories = ['title','year'];
+  categories = [];
   filteredResults: any;
   bindFilter: any;
 
   constructor(private service: ServiceService, public router: Router) { }
 
   ngOnInit() {
-     this.getFilteredData(); 
+     this.getFilteredData();
+     this.service.getCategories().subscribe(res => {
+      this.categories = res;
+     });
      /* this.service.getFilteredData(this.bindFilter).subscribe(
        res => {this.filteredResults = res;
         console.log(this.filteredResults);
         this.categories = (Object.keys(this.filteredResults[1])); }
      ) */
-     
-     
   }
   trackByFn(index, result){
     return index;
   }
   getFilteredData() {
     return this.service.getSelected();
-
   }
   setPageSizeOptions(setPageSizeOptionsInput: string) {
     this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
   }
 
   onPageChanged(e) {
-    let firstCut = e.pageIndex * e.pageSize;
-    let secondCut = firstCut + e.pageSize;
+    const firstCut = e.pageIndex * e.pageSize;
+    const secondCut = firstCut + e.pageSize;
     this.activePageDataChunk = this.results.slice(firstCut, secondCut);
   }
-  
-  ngDoCheck(): void {
-    /* this.service.getFilteredData(this.bindFilter).subscribe(
-      res => {this.filteredResults = res;
-       console.log(this.filteredResults);
-       this.categories = (Object.keys(this.filteredResults[1])); }
-    )*/
-  } 
+
+
+  @HostListener('document:click', ['$event'])
+    documentClick(event: MouseEvent) {
+        this.getFilteredData();
+    }
 }
