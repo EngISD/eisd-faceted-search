@@ -58,7 +58,7 @@ export class ServiceService {
       }, error => error)
     );
   }
-  getFilteredData(){
+  getFilteredData() {
     return this.http.get<Array<any>>(this.dataUrl).pipe(
       map(items => {
         return items.filter(items => items.title.includes(this.filteredValue.getValue()));

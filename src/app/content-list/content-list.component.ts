@@ -37,7 +37,9 @@ export class ContentListComponent implements OnInit {
         this.results = response;
         this.activePageDataChunk = this.results.slice(0, this.pageSize);
         this.length = this.results.length;
-        this.categories = (Object.keys(this.results[1]));
+      });
+    this.service.getCategories().subscribe(res => {
+      this.categories = res;
       });
     return event;
   }
