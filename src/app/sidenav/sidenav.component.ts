@@ -15,9 +15,14 @@ export class SidenavComponent implements OnInit {
   constructor(private service: ServiceService) { }
 
   ngOnInit() {
-    this.service.getRawResults().subscribe(response => {
-      this.results = response;
-      this.categories = (Object.keys(response[1]));
+    this.service.getCategories().subscribe(response => {
+      this.categories = response;
+
+      for (let i = 0; i < this.categories.length; i++) {
+        this.service.getCheckboxes(this.categories[i]).subscribe(ress => {
+          this.checkboxes[this.categories[i]] = ress;
+        });
+      }
       // FOR loop that isolates only unique items from all records
       //   for every category of facet, then it sorts that new array by count of number of appearing
       //     in all records, and at last it slices that array to show only first 5 elements
@@ -36,6 +41,9 @@ export class SidenavComponent implements OnInit {
                                                           }).slice(0, 5);
       } */
     });
+    /* this.service.getCheckboxes('year').subscribe(response => {
+      this.checkboxes.year = response;
+    }); */
 
   }
 
