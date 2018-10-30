@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+
+  // Results received from the service
   result: any;
 
   constructor(private service: ServiceService, private route: Router) { }
@@ -16,6 +18,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
   }
 
+  // Function which brings up the options while typing
   onKeyUp(text: string) {
     console.log(text);
     
@@ -28,6 +31,7 @@ export class NavbarComponent implements OnInit {
       );
     }
   }
+  // Function triggered when Enter button is pressed to fetch the results
   onEnter(e){
     this.service.setFilteredValue(e);
     this.route.navigateByUrl('/filter');
@@ -35,6 +39,7 @@ export class NavbarComponent implements OnInit {
   trackByFn(index, item) {
     return index;
   }
+  // Function triggered when the option is selected
   selectOption(value){
     this.service.setFilteredValue(value);
     this.route.navigateByUrl('/filter');

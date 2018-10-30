@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PageEvent, MatPaginator } from '@angular/material';
 import { ServiceService } from '../service.service';
 import { Router } from '@angular/router';
@@ -10,6 +10,10 @@ import { Router } from '@angular/router';
 })
 export class FilteredListComponent implements OnInit {
 
+  // Data received from the service
+  filteredResult: any;
+
+  // Paginator variables
   page: PageEvent;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   currentPage: number = 0;
@@ -18,23 +22,29 @@ export class FilteredListComponent implements OnInit {
   pageSizeOptions: number[] = [5, 10, 25, 100];
   activePageDataChunk = [];
   categories = [];
-  filteredResult: any;
+  // Paginator variables
+ 
 
   constructor(private service: ServiceService, public router: Router) { }
 
+  /* On initialization, keys are extracted from the results and 
+  results are filtered based on the value from the previous page */
   ngOnInit() {
     this.service.getCategories().subscribe(res => {
       this.categories = res;
     });
      this.service.filterValue$.subscribe(res => {
-       this.activePageDataChunk = res;
        this.filteredResult = res;
-       this.length = this.activePageDataChunk.length;
+       this.length = this.filteredResult.length;
+       this.activePageDataChunk = this.filteredResult.slice(0, this.pageSize);
+       // Paginator resets to first page
+       this.paginator.firstPage();
      });
   }
   trackByFn(index, result){
     return index;
   }
+  // Paginator functions
   setPageSizeOptions(setPageSizeOptionsInput: string) {
     this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
   }
@@ -43,4 +53,5 @@ export class FilteredListComponent implements OnInit {
     const secondCut = firstCut + e.pageSize;
     this.activePageDataChunk = this.filteredResult.slice(firstCut, secondCut);
   }
+  // Paginator functions
 }

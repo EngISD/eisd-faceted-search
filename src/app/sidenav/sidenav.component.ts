@@ -15,6 +15,7 @@ export class SidenavComponent implements OnInit {
 
   constructor(private service: ServiceService) { }
 
+  // On initialization, extract keys from the results and set up the checkboxes accordingly
   ngOnInit() {
     this.service.getCategories().subscribe(response => {
       this.categories = response;
@@ -24,59 +25,19 @@ export class SidenavComponent implements OnInit {
           this.checkboxes[this.categories[i]] = ress;
         });
       }
-      // FOR loop that isolates only unique items from all records
-      //   for every category of facet, then it sorts that new array by count of number of appearing
-      //     in all records, and at last it slices that array to show only first 5 elements
-      //       NOT WORKING BECAUSE WE USE FOR LOOP 5 TIMES ON HUGE ARRAY - causes crash
-      //         BUT WORKS FOR SMALL ARRAYS :(
-      /* for (let i = 0; i < this.categories.length; i++) {
-        this.checkboxes[this.categories[i]] = this.uniqueItems(this.results, this.categories[i])
-                                                          .sort((n1, n2) => {
-                                                            if (this.count(this.categories[i], n1) > this.count(this.categories[i], n2)) {
-                                                              return 1;
-                                                            }
-                                                            if (this.count(this.categories[i], n1) < this.count(this.categories[i], n2)) {
-                                                              return -1;
-                                                            }
-                                                              return 0;
-                                                          }).slice(0, 5);
-      } */
     });
-    /* this.service.getCheckboxes('year').subscribe(response => {
-      this.checkboxes.year = response;
-    }); */
-
   }
+  // Resets all the checkboxes
   reset() {
     this.selectedCategory = [];
   }
+  // Resets only one group of checkboxes
   resetThis(category: string) {
     this.selectedCategory[category] = [];
   }
 
   onNgModelChange($event) {
     console.log($event);
-  }
-
-  uniqueItems(data, key) {
-    const result = [];
-    for (let i = 0; i < data.length; i++) {
-      const value = data[i][key];
-      if (result.indexOf(value) === -1) {
-        result.push(value);
-      }
-    }
-    return result;
-  }
-
-  count(prop, value) {
-    let result = 0;
-    for (let i = 0; i < this.results.length; i++) {
-      if (this.results[i][prop] == value) {
-        result++;
-      }
-    }
-    return result;
   }
 
   trackByFn(index, result) {

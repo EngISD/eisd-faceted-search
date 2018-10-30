@@ -5,6 +5,7 @@
         <mat-icon>cached</mat-icon>
     </button>
   </div>
+  <!-- Panels -->
   <div class="test">
     <mat-expansion-panel [expanded]="i < 1" *ngFor="let category of categories; trackBy: trackByFn; let i = index">
       <mat-expansion-panel-header>
@@ -19,25 +20,13 @@
               <mat-icon>cached</mat-icon>
           </button>
         </div>
+<!-- Checkboxes inside every category -->
         <mat-selection-list dense [(ngModel)]="selectedCategory[category]" (ngModelChange)="onNgModelChange($event)" [ngModelOptions]="{standalone: true}">
           <mat-list-option *ngFor="let checkbox of checkboxes[category]; trackBy: trackByFn;" [value]="checkbox.id">
             <mat-icon matListIcon>label</mat-icon>
             <p>{{ checkbox.id }} ({{ checkbox.count }})</p>
           </mat-list-option>
         </mat-selection-list>
-      </div>
-      <div class="slider" *ngIf="category == somethingThatNeedsSlider">
-        <button mat-icon-button>
-            <mat-icon>cached</mat-icon>
-        </button>
-        <p>Slider for {{ category }}</p>
-        <mat-slider
-          thumbLabel
-          [displayWith]="formatLabel"
-          tickInterval="10"
-          min="0"
-          max="100"
-          (ngModelChange)="onNgModelChange($event)"></mat-slider>
       </div>
     </mat-expansion-panel>
   </div>

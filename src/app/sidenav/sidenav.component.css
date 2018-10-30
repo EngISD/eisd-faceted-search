@@ -1,6 +1,15 @@
+/* Customizes the facet container */
+.sidenav-container {
+    box-shadow: 1px 1px 10px grey;
+}
+/* Customizes panels */
+mat-panel-title {
+    font-size: 1.3em;
+}
 mat-expansion-panel {
     margin: 3px 0;
 }
+/* Customizes reset buttons */
 .resetThis {
     text-align: center;
     font-style: italic;
@@ -10,13 +19,7 @@ mat-expansion-panel {
     box-shadow: 0px 1px 0px 0.5px grey;
     font-size: 1.2em;
 }
-mat-panel-title {
-    font-size: 1.3em;
-}
 *::-webkit-scrollbar {
     width: 0px;  /* remove scrollbar space */
     background: transparent;  /* make scrollbar invisible */
-}
-.sidenav-container {
-    box-shadow: 1px 1px 10px grey;
 }

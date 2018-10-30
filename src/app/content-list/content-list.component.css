@@ -1,14 +1,12 @@
+/* Customizes paginator */
 .header-container {
   margin: 0px 2px;
   box-shadow: 0px 3px 4px -1px rgba(0,0,0,0.7);
 }
-mat-list {
-  padding: 0;
-  border: 1px solid rgba(0, 0, 0, 0.171);
-}
 .paginator-option {
   background-color: rgb(58, 152, 219, 0.5);
 }
+/* Customizes background of the content below the paginator */
 .list {
   padding: 10px 10px;
 }
@@ -16,6 +14,12 @@ mat-list {
   background-color: rgba(255, 255, 255, 0.1);
   padding: 15px 15px;
 }
+/* Customizes border of the box with results */
+mat-list {
+  padding: 0;
+  border: 1px solid rgba(0, 0, 0, 0.171);
+}
+/* Customizes elements containing results */
 .viewport {
   height: 70vh;
   width: 100%;
@@ -35,9 +39,11 @@ mat-list {
   border-top: 0.2px solid rgba(58, 58, 58, 0.829);
   margin: 10px 0px 10px 0px;
 }
+/* Customizes last element in the result list */
 .last {
   min-height: 70px;
 }
+/* Customizes loading screen */
 .loading {
   font-size: 50px;
   text-align: center;

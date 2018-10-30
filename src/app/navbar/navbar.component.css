@@ -13,18 +13,20 @@
     font-size: 1.5em;
   }
 }
-.title a {
-  text-decoration: none;
-  font-style: none;
-  color: black;
-}
+/* Customizes the navbar */
 .header {
   padding: 10px 10px;
   background-color: rgba(77, 153, 241, 0.84);
   margin-bottom: 4px;
   box-shadow: 2px 2px 4px -1px rgba(0,0,0,0.7);
 }
-
+/* Customizes the link for the home page */
+.title a {
+  text-decoration: none;
+  font-style: none;
+  color: black;
+}
+/* Customizes the search input box */
 .search {
    display: inline-block;
    height: 100%;
@@ -36,6 +38,7 @@
 .form-field {
   width: 100%;
 }
+/* Customizes the options from the dropdown list */
 .data-option {
   border-bottom: 0.3px solid rgba(0, 0, 0, 0.562);
 }

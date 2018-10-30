@@ -8,7 +8,7 @@
                             [pageIndex]="pageIndex"
                             [pageSize]="pageSize"
                             [pageSizeOptions]="pageSizeOptions"
-                            (page)="onPageChanged($event)">
+                            (page)="onPageChanged($event);">
               </mat-paginator>
             </div>
         </mat-grid-list>
@@ -20,7 +20,9 @@
               <cdk-virtual-scroll-viewport itemSize="50" class="viewport">
                   <div *cdkVirtualFor="let result of activePageDataChunk;
                                        let last = last; 
-                                       trackBy: trackByFn" class="viewport-item" [class.last] = "last">
+                                       trackBy: trackByFn" 
+                        class="viewport-item" 
+                        [class.last] = "last">
                     <p class="viewport-item-title">{{result[categories[0]]}} - {{ result[categories[1]] }}</p>
                   </div>
                 </cdk-virtual-scroll-viewport>

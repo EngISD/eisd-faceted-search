@@ -11,17 +11,19 @@ import { Router } from '@angular/router';
 })
 export class ContentListComponent implements OnInit {
 
+  //Results received from the service
   results: any;
+  
+  //Paginator variables
   page: PageEvent;
-
   @ViewChild(MatPaginator) paginator: MatPaginator;
   currentPage = 0;
-
   length;
   pageSize = 10;
   pageSizeOptions: number[] = [5, 10, 25, 100];
   activePageDataChunk = [];
   categories = [];
+  //Paginator variables
   
   constructor(private service: ServiceService, public router: Router) { }
 
@@ -31,6 +33,7 @@ export class ContentListComponent implements OnInit {
   trackByFn(index, result) {
     return index;
   }
+  //Returns data from the service and slices them to fit page size
   getData(event?: PageEvent) {
     this.service.getResults(event)
       .subscribe(response => {
@@ -38,11 +41,13 @@ export class ContentListComponent implements OnInit {
         this.activePageDataChunk = this.results.slice(0, this.pageSize);
         this.length = this.results.length;
       });
+    // Used to extract the keys from the results
     this.service.getCategories().subscribe(res => {
       this.categories = res;
       });
     return event;
   }
+  //Paginator functions
   setPageSizeOptions(setPageSizeOptionsInput: string) {
     this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
   }
@@ -51,4 +56,5 @@ export class ContentListComponent implements OnInit {
     const secondCut = firstCut + e.pageSize;
     this.activePageDataChunk = this.results.slice(firstCut, secondCut);
   }
+  //Paginator functions
 }

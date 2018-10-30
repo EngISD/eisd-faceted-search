@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { filter, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { Observable, BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -8,11 +8,13 @@ import { Observable, BehaviorSubject } from 'rxjs';
 })
 export class ServiceService {
 
+  // Variable that shares the value with all components
   filteredValue = new BehaviorSubject<any>([]);
-  selected = new BehaviorSubject<any>([]);
 
+  // Link providing the results from a JSON file or a database
   dataUrl: string = 'https://raw.githubusercontent.com/prust/wikipedia-movie-data/master/movies.json';
 
+  // Variables that track the changes made on search
   filterValue$: Observable<any>
   private _filterValue: BehaviorSubject<any>
 
@@ -20,11 +22,13 @@ export class ServiceService {
     this._filterValue = new BehaviorSubject<any>([]);
     this.filterValue$ = this._filterValue.asObservable();
    }
+  // Extracts keys from results
   getCategories() {
     return this.http.get<Array<any>>(this.dataUrl).pipe(
       map(items => Object.keys(items[0]) )
     );
   }
+  // Extracts fields for each category
   getCheckboxes(category?: string) {
     return this.http.get<Array<any>>(this.dataUrl).pipe(
       map(items => {
@@ -48,9 +52,11 @@ export class ServiceService {
       })
     );
   }
+  // Fetches all results
   getResults(event?) {
     return this.http.get(this.dataUrl);
   }
+  // Fetches results for the autocomplete dropdown by search value
   getSearchedItem(data: string) {
     return this.http.get<Array<any>>(this.dataUrl).pipe(
       map(items => {
@@ -58,6 +64,7 @@ export class ServiceService {
       }, error => error)
     );
   }
+  // Fetches filtered results
   getFilteredData() {
     return this.http.get<Array<any>>(this.dataUrl).pipe(
       map(items => {
@@ -65,6 +72,7 @@ export class ServiceService {
       }, error => error)
     );
   }
+  // Sets the value which is used to filter results
   setFilteredValue(value){
     this.filteredValue.next(value);
     this.getFilteredData().subscribe(res => this._filterValue.next(res));
