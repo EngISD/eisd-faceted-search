@@ -14,9 +14,9 @@ export class NavbarComponent implements OnInit {
   // Results received from the service
   result: any;
   categories = [];
-  value;
+  value: string = '';
 
-  @ViewChild(MatAutocompleteTrigger) trigger: MatAutocompleteTrigger;
+  @ViewChild(MatAutocompleteTrigger) autoTrigger: MatAutocompleteTrigger;
   constructor(private service: ServiceService, private route: Router) { }
 
   ngOnInit() {
@@ -36,18 +36,23 @@ export class NavbarComponent implements OnInit {
       );
     }
   }
+  trigger(value: string) {
+    if (value.length > 2) {
+      return true;
+    }
+  }
   // Function triggered when Enter button is pressed to fetch the results
   onEnter(e) {
     this.service.setFilteredValue(e);
-    this.trigger.closePanel();
+    this.autoTrigger.closePanel();
     this.route.navigateByUrl('/filter');
   }
   trackByFn(index, item) {
     return index;
   }
-  // Function triggered when the option is selected
+  // Function triggered when the option is selected and returns only one value
   selectOption(value) {
-    this.service.setFilteredValue(value);
+    this.service.pushObject(value);
     this.route.navigateByUrl('/filter');
   }
   clean() {

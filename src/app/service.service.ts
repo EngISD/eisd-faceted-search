@@ -108,8 +108,8 @@ export class ServiceService {
     this.filteredValue.next(value);
     this.getFilteredData().subscribe(res => this._filterValue.next(res));
   }
-  // Idea to filter by facets
-  // updateCheckboxes(data){
-  //   this._filterValue.next(data);
-  // }
+  // Pushes a specific item
+  pushObject(data){
+    this._filterValue.next(data);
+  }
 }

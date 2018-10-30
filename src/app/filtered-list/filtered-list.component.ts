@@ -39,8 +39,15 @@ export class FilteredListComponent implements OnInit {
     });
      this.service.filterValue$.subscribe(res => {
        this.filteredResult = res;
-       this.length = this.filteredResult.length;
-       this.activePageDataChunk = this.filteredResult.slice(0, this.pageSize);
+       if (Array.isArray(this.filteredResult)) {
+        this.length = this.filteredResult.length;   
+        this.activePageDataChunk = this.filteredResult.slice(0, this.pageSize);
+       } else {
+         this.length = 1;
+         this.activePageDataChunk = [];
+         this.activePageDataChunk.push(this.filteredResult);
+       }
+       
        // Paginator resets to first page
        this.paginator.firstPage();
      });
