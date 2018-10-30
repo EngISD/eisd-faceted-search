@@ -12,27 +12,28 @@ export class NavbarComponent implements OnInit {
 
   // Results received from the service
   result: any;
-
+  categories = [];
   constructor(private service: ServiceService, private route: Router) { }
 
   ngOnInit() {
+    this.service.getCategories().subscribe(res => {
+      this.categories = res;
+    });
   }
 
   // Function which brings up the options while typing
   onKeyUp(text: string) {
-    console.log(text);
-    
     if (text.length > 2) {
       this.service.getSearchedItem(text).pipe(
-        debounceTime(300)
+        debounceTime(500)
       ).subscribe(response => {
-        this.result = response.slice(0, 50);
+        this.result = response.slice(0, 20);
       }
       );
     }
   }
   // Function triggered when Enter button is pressed to fetch the results
-  onEnter(e){
+  onEnter(e) {
     this.service.setFilteredValue(e);
     this.route.navigateByUrl('/filter');
   }
@@ -40,7 +41,7 @@ export class NavbarComponent implements OnInit {
     return index;
   }
   // Function triggered when the option is selected
-  selectOption(value){
+  selectOption(value) {
     this.service.setFilteredValue(value);
     this.route.navigateByUrl('/filter');
   }

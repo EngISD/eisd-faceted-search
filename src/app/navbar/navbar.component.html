@@ -12,7 +12,7 @@
           </mat-form-field>
 <!-- Dropdown search -->
           <mat-autocomplete #auto="matAutocomplete">
-            <mat-option #option class="data-option" value="{{item.title}}" *ngFor="let item of result; trackBy: trackByFn;" (click)="selectOption(this.value)">{{ item.title }} {{ item.year }}</mat-option>
+            <mat-option #option class="data-option" value="{{item[categories[0]]}}" *ngFor="let item of result; trackBy: trackByFn;" (click)="selectOption(this.value)">{{ item[categories[0]] }} - {{ item[categories[1]] }} (Genres: {{ item[categories[3]] }})</mat-option>
           </mat-autocomplete>
 
         </div>

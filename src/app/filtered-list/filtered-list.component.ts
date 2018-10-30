@@ -16,7 +16,7 @@ export class FilteredListComponent implements OnInit {
   // Paginator variables
   page: PageEvent;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  currentPage: number = 0;
+  currentPage = 0;
   length = 0;
   pageSize = 10;
   pageSizeOptions: number[] = [5, 10, 25, 100];
@@ -41,7 +41,7 @@ export class FilteredListComponent implements OnInit {
        this.paginator.firstPage();
      });
   }
-  trackByFn(index, result){
+  trackByFn(index, result) {
     return index;
   }
   // Paginator functions
