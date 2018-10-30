@@ -9,16 +9,19 @@ import { Observable, BehaviorSubject } from 'rxjs';
 export class ServiceService {
 
   filteredValue = new BehaviorSubject<any>([]);
-  selected = new BehaviorSubject<any>([]);
 
   dataUrl: string = 'https://raw.githubusercontent.com/prust/wikipedia-movie-data/master/movies.json';
 
-  filterValue$: Observable<any>
-  private _filterValue: BehaviorSubject<any>
-
+  filterValue$: Observable<any>;
+  private _filterValue: BehaviorSubject<any>;
+  private categories = [];
   constructor(private http: HttpClient) {
     this._filterValue = new BehaviorSubject<any>([]);
     this.filterValue$ = this._filterValue.asObservable();
+
+    this.getCategories().subscribe(res => {
+      this.categories = res;
+    });
    }
   getCategories() {
     return this.http.get<Array<any>>(this.dataUrl).pipe(
@@ -54,18 +57,30 @@ export class ServiceService {
   getSearchedItem(data: string) {
     return this.http.get<Array<any>>(this.dataUrl).pipe(
       map(items => {
-        return items.filter(res => res.title.toLowerCase().includes(data.toLowerCase()));
+        return items.filter(res => {
+          for (let i = 0; i < this.categories.length; i++) {
+            if (res[this.categories[i]].toString().toLowerCase().includes(data.toLowerCase())) {
+                  return true;
+              }
+           }
+        });
       }, error => error)
     );
   }
   getFilteredData() {
     return this.http.get<Array<any>>(this.dataUrl).pipe(
       map(items => {
-        return items.filter(items => items.title.toLowerCase().includes(this.filteredValue.getValue().toLowerCase()));
+        return items.filter(res => {
+                for (let i = 0; i < this.categories.length; i++) {
+                  if (res[this.categories[i]].toString().toLowerCase().includes(this.filteredValue.getValue().toLowerCase())) {
+                        return true;
+                    }
+                 }
+        });
       }, error => error)
     );
   }
-  setFilteredValue(value){
+  setFilteredValue(value) {
     this.filteredValue.next(value);
     this.getFilteredData().subscribe(res => this._filterValue.next(res));
   }

@@ -10,32 +10,33 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
   result: any;
-
+  categories = [];
   constructor(private service: ServiceService, private route: Router) { }
 
   ngOnInit() {
+    this.service.getCategories().subscribe(res => {
+      this.categories = res;
+    });
   }
 
   onKeyUp(text: string) {
-    console.log(text);
-    
     if (text.length > 2) {
       this.service.getSearchedItem(text).pipe(
-        debounceTime(300)
+        debounceTime(500)
       ).subscribe(response => {
-        this.result = response.slice(0, 50);
+        this.result = response.slice(0, 20);
       }
       );
     }
   }
-  onEnter(e){
+  onEnter(e) {
     this.service.setFilteredValue(e);
     this.route.navigateByUrl('/filter');
   }
   trackByFn(index, item) {
     return index;
   }
-  selectOption(value){
+  selectOption(value) {
     this.service.setFilteredValue(value);
     this.route.navigateByUrl('/filter');
   }

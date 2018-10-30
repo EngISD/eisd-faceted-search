@@ -12,7 +12,7 @@ export class FilteredListComponent implements OnInit {
 
   page: PageEvent;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  currentPage: number = 0;
+  currentPage = 0;
   length = 0;
   pageSize = 10;
   pageSizeOptions: number[] = [5, 10, 25, 100];
@@ -32,7 +32,7 @@ export class FilteredListComponent implements OnInit {
        this.activePageDataChunk = this.filteredResult.slice(0, this.pageSize);
      });
   }
-  trackByFn(index, result){
+  trackByFn(index, result) {
     return index;
   }
   setPageSizeOptions(setPageSizeOptionsInput: string) {
