@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { PageEvent, MatPaginator } from '@angular/material';
 import { ServiceService } from '../service.service';
 import { Router } from '@angular/router';
+import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 
 @Component({
   selector: 'app-filtered-list',
@@ -12,6 +13,7 @@ export class FilteredListComponent implements OnInit {
 
   // Data received from the service
   filteredResult: any;
+  categories = [];
 
   // Paginator variables
   page: PageEvent;
@@ -21,8 +23,10 @@ export class FilteredListComponent implements OnInit {
   pageSize = 10;
   pageSizeOptions: number[] = [5, 10, 25, 100];
   activePageDataChunk = [];
-  categories = [];
   // Paginator variables
+
+  // Scroll customization
+  @ViewChild(CdkVirtualScrollViewport) scroll: CdkVirtualScrollViewport;
  
 
   constructor(private service: ServiceService, public router: Router) { }
@@ -51,6 +55,7 @@ export class FilteredListComponent implements OnInit {
   onPageChanged(e) {
     const firstCut = e.pageIndex * e.pageSize;
     const secondCut = firstCut + e.pageSize;
+    this.scroll.scrollToIndex(0); // Returns the scroll to top when page changes
     this.activePageDataChunk = this.filteredResult.slice(firstCut, secondCut);
   }
   // Paginator functions

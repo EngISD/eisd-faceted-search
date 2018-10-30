@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ServiceService } from '../service.service';
 import {PageEvent, MatPaginator} from '@angular/material';
 import { Router } from '@angular/router';
+import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 
 
 @Component({
@@ -13,6 +14,7 @@ export class ContentListComponent implements OnInit {
 
   //Results received from the service
   results: any;
+  categories = [];
   
   //Paginator variables
   page: PageEvent;
@@ -22,8 +24,10 @@ export class ContentListComponent implements OnInit {
   pageSize = 10;
   pageSizeOptions: number[] = [5, 10, 25, 100];
   activePageDataChunk = [];
-  categories = [];
   //Paginator variables
+
+  // Scroll customization
+  @ViewChild(CdkVirtualScrollViewport) scroll: CdkVirtualScrollViewport;
   
   constructor(private service: ServiceService, public router: Router) { }
 
@@ -54,6 +58,7 @@ export class ContentListComponent implements OnInit {
   onPageChanged(e) {
     const firstCut = e.pageIndex * e.pageSize;
     const secondCut = firstCut + e.pageSize;
+    this.scroll.scrollToIndex(0); // Returns the scroll to top when page changes
     this.activePageDataChunk = this.results.slice(firstCut, secondCut);
   }
   //Paginator functions
