@@ -29,15 +29,22 @@ export class SidenavComponent implements OnInit {
   }
   // Resets all the checkboxes
   reset() {
-    this.selectedCategory = [];
+    for (let i = 0; i < this.categories.length; i++) {
+      this.selectedCategory[this.categories[i]] = [];
+    }
+    this.onNgModelChange();
   }
   // Resets only one group of checkboxes
   resetThis(category: string) {
     this.selectedCategory[category] = [];
+    this.onNgModelChange();
   }
 
-  onNgModelChange($event) {
-    console.log($event);
+  onNgModelChange() {
+    // Idea to filter facets
+    // this.service.getSearchArray(this.selectedCategory['title']).subscribe(res => {
+    //   this.service.updateCheckboxes(res);
+    // })
   }
 
   trackByFn(index, result) {

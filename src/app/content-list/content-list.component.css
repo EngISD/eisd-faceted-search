@@ -43,8 +43,7 @@ mat-list {
 .last {
   min-height: 70px;
 }
-/* Customizes loading screen */
-.loading {
-  font-size: 50px;
-  text-align: center;
+/* Customizes progress bar */
+.progress-bar {
+  height: 8px !important;
 }

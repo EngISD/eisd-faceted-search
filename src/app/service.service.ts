@@ -75,6 +75,20 @@ export class ServiceService {
       }, error => error)
     );
   }
+  // Idea to search by facets
+  // getSearchArray(arr: Array<string>) {
+  //   return this.http.get<Array<any>>(this.dataUrl).pipe(
+  //     map(items => {
+  //       return items.filter(res => {
+  //         for (let i = 0; i < arr.length; i++) {
+  //           if (res['title'].toString().toLowerCase().includes(arr[i].toLowerCase())) {
+  //             return true;
+  //           }
+  //          }
+  //       });
+  //     }, error => error)
+  //   );
+  // }
   // Fetches filtered results
   getFilteredData() {
     return this.http.get<Array<any>>(this.dataUrl).pipe(
@@ -94,4 +108,8 @@ export class ServiceService {
     this.filteredValue.next(value);
     this.getFilteredData().subscribe(res => this._filterValue.next(res));
   }
+  // Idea to filter by facets
+  // updateCheckboxes(data){
+  //   this._filterValue.next(data);
+  // }
 }

@@ -17,7 +17,11 @@
 <div class="list" >
     <div class="contentlist">
       <mat-list>
-        <span *ngIf="!results"><div class="loading">Loading...</div></span>
+        <span id="loading" *ngIf="!results">
+          <mat-progress-bar class="progress-bar"
+            mode="indeterminate">
+          </mat-progress-bar>
+        </span>
         <cdk-virtual-scroll-viewport itemSize="50" class="viewport">
           <div *cdkVirtualFor="let result of activePageDataChunk;
                                let last = last; 

@@ -12,6 +12,7 @@ import { Routes } from './app.routing';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {ScrollDispatchModule} from '@angular/cdk/scrolling';
 import { ScrollingModule, ScrollDispatcher } from '@angular/cdk/scrolling';
 import { MatButtonModule, MatListModule, MatFormFieldModule, MatIconModule, MatExpansionModule, MatSliderModule, MatInputModule } from '@angular/material';
@@ -49,7 +50,8 @@ import { SidenavComponent } from './sidenav/sidenav.component';
     MatFormFieldModule,
     MatGridListModule,
     MatPaginatorModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatProgressBarModule
   ],
   providers: [ScrollDispatcher],
   bootstrap: [AppComponent]
