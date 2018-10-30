@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ServiceService } from '../service.service';
 import { debounceTime } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { MatAutocompleteTrigger } from '@angular/material';
 
 @Component({
   selector: 'app-navbar',
@@ -13,6 +14,9 @@ export class NavbarComponent implements OnInit {
   // Results received from the service
   result: any;
   categories = [];
+  value;
+
+  @ViewChild(MatAutocompleteTrigger) trigger: MatAutocompleteTrigger;
   constructor(private service: ServiceService, private route: Router) { }
 
   ngOnInit() {
@@ -35,6 +39,7 @@ export class NavbarComponent implements OnInit {
   // Function triggered when Enter button is pressed to fetch the results
   onEnter(e) {
     this.service.setFilteredValue(e);
+    this.trigger.closePanel();
     this.route.navigateByUrl('/filter');
   }
   trackByFn(index, item) {
@@ -45,5 +50,9 @@ export class NavbarComponent implements OnInit {
     this.service.setFilteredValue(value);
     this.route.navigateByUrl('/filter');
   }
-
+  clean() {
+    this.value = '';
+    this.service.setFilteredValue(this.value);
+    this.route.navigateByUrl('/filter');
+  }
 }

@@ -1,12 +1,12 @@
 <div class="header">
-    <div class="title"><a [routerLink]="[ '/' ]">Search app</a></div>
+    <div class="title"><a [routerLink]="[ '/' ]" (click)="value=''">Search app</a></div>
     <!-- Search form -->
     <nav class="search">
       <form>
         <div class="searchbar">
           <mat-form-field class="form-field">
-            <input list="data" [matAutocomplete]="auto" autocomplete="off" matInput type="text" name="search" placeholder="Search..." [(ngModel)]="value" (ngModelChange)="onKeyUp(value)" (keydown.enter)="onEnter(value)" >
-            <button *ngIf="value" mat-button matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+            <input list="data" [matAutocomplete]="auto" autocomplete="off" matInput type="text" name="search" placeholder="Search..." [(ngModel)]="value" (ngModelChange)="onKeyUp(value)" (keydown.enter)="$event.preventDefault(); onEnter(value)" >
+            <button *ngIf="value" mat-button matSuffix mat-icon-button aria-label="Clear" (click)="clean()">
               <mat-icon>close</mat-icon>
             </button>
           </mat-form-field>
