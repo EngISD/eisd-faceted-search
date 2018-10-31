@@ -15,8 +15,8 @@ export class ServiceService {
   dataUrl: string = 'https://raw.githubusercontent.com/prust/wikipedia-movie-data/master/movies.json';
 
   // Variables that track the changes made on search
-  filterValue$: Observable<any>
-  private _filterValue: BehaviorSubject<any>
+  filterValue$: Observable<any>;
+  private _filterValue: BehaviorSubject<any>;
   private categories = [];
 
   constructor(private http: HttpClient) {
@@ -41,19 +41,35 @@ export class ServiceService {
         for (let i = 0; i < items.length; i++) {
           temp.push(items[i][category]);
         }
-        const counted: Array<any> = temp.reduce(function (acc, item) {
-          if (acc[item]) {
-              acc[item]++;
-          } else {
-              acc[item] = 1;
-          }
-          return acc;
-        }, {});
-        const array = Object.keys(counted).map(function (k) {
-          return { id: k, count: counted[k]};
-        });
-        array.sort(function (a, b) { return b.count - a.count; });
-        return array.slice(0, 10);
+        if (Array.isArray(temp[0])) {
+          const counted: Array<any> = temp.reduce(function (acc, item) {
+            if (acc[item]) {
+                acc[item]++;
+            } else {
+                acc[item] = 1;
+            }
+            return acc;
+          }, {});
+          const array = Object.keys(counted).map(function (k) {
+            return { id: k, count: counted[k]};
+          });
+          array.sort(function (a, b) { return b.count - a.count; });
+          return array;
+        } else {
+          const counted: Array<any> = temp.reduce(function (acc, item) {
+            if (acc[item]) {
+                acc[item]++;
+            } else {
+                acc[item] = 1;
+            }
+            return acc;
+          }, {});
+          const array = Object.keys(counted).map(function (k) {
+            return { id: k, count: counted[k]};
+          });
+          array.sort(function (a, b) { return b.count - a.count; });
+          return array;
+        }
       })
     );
   }
@@ -109,7 +125,7 @@ export class ServiceService {
     this.getFilteredData().subscribe(res => this._filterValue.next(res));
   }
   // Pushes a specific item
-  pushObject(data){
+  pushObject(data) {
     this._filterValue.next(data);
   }
 }

@@ -12,6 +12,7 @@ export class SidenavComponent implements OnInit {
   checkboxes: {[id: string]: any } = {};
   results: any;
   selectedCategory = [];
+  moreCounter = [];
 
   constructor(private service: ServiceService) { }
 
@@ -21,8 +22,9 @@ export class SidenavComponent implements OnInit {
       this.categories = response;
 
       for (let i = 0; i < this.categories.length; i++) {
+        this.moreCounter[this.categories[i]] = 2;
         this.service.getCheckboxes(this.categories[i]).subscribe(ress => {
-          this.checkboxes[this.categories[i]] = ress;
+          this.checkboxes[this.categories[i]] = ress.slice(0, 10);
         });
       }
     });
@@ -46,7 +48,18 @@ export class SidenavComponent implements OnInit {
     //   this.service.updateCheckboxes(res);
     // })
   }
-
+  showMore(cat) {
+    this.service.getCheckboxes(cat).subscribe(ress => {
+      this.checkboxes[cat] = ress.slice(0, 10 * this.moreCounter[cat]);
+      this.moreCounter[cat]++;
+    });
+  }
+  showLess(cat) {
+    this.service.getCheckboxes(cat).subscribe(ress => {
+      this.checkboxes[cat] = ress.slice(0, 10);
+      this.moreCounter[cat] = 2;
+    });
+  }
   trackByFn(index, result) {
     return index;
   }

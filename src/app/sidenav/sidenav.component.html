@@ -26,6 +26,8 @@
             <mat-icon matListIcon>label</mat-icon>
             <p>{{ checkbox.id }} ({{ checkbox.count }})</p>
           </mat-list-option>
+          <button mat-raised-button class="moreButton" *ngIf="checkboxes[category]" (click)="showMore(category)">Show more</button>
+          <button mat-raised-button class="moreButton" *ngIf="(checkboxes[category] && (moreCounter[category] != 2))" (click)="showLess(category)">Show less</button>
         </mat-selection-list>
       </div>
     </mat-expansion-panel>

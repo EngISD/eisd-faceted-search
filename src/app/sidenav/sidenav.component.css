@@ -23,3 +23,8 @@ mat-expansion-panel {
     width: 0px;  /* remove scrollbar space */
     background: transparent;  /* make scrollbar invisible */
 }
+.moreButton {
+    margin-left: 4%;
+    margin-right: 4%;
+    color: blue;
+}
