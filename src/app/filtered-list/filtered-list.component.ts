@@ -60,6 +60,7 @@ export class FilteredListComponent implements OnInit {
     this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
   }
   onPageChanged(e) {
+    this.pageSize = e.pageSize;
     const firstCut = e.pageIndex * e.pageSize;
     const secondCut = firstCut + e.pageSize;
     this.scroll.scrollToIndex(0); // Returns the scroll to top when page changes
