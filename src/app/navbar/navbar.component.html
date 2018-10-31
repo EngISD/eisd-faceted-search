@@ -4,7 +4,7 @@
     <nav class="search">
       <form>
         <div class="searchbar">
-          <mat-form-field class="form-field">
+          <mat-form-field class="form-field" style="height: 40px !important;">
             <input list="data" [matAutocomplete]="auto" autocomplete="off" matInput type="text" name="search" placeholder="Search..." [(ngModel)]="value" (ngModelChange)="onKeyUp(value)" (keydown.enter)="$event.preventDefault(); onEnter(value)" >
             <button *ngIf="value" mat-button matSuffix mat-icon-button aria-label="Clear" (click)="clean()">
               <mat-icon>close</mat-icon>

@@ -1,6 +1,7 @@
 /* Customizes the facet container */
 .sidenav-container {
     box-shadow: 1px 1px 10px grey;
+    background-color: rgba(245, 245, 245, 0.829);
 }
 /* Customizes panels */
 mat-panel-title {
@@ -8,6 +9,7 @@ mat-panel-title {
 }
 mat-expansion-panel {
     margin: 3px 0;
+    background-color: rgba(245, 245, 245, 0.01);
 }
 /* Customizes reset buttons */
 .resetThis {

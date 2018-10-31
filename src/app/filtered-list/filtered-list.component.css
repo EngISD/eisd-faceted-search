@@ -4,7 +4,7 @@
   box-shadow: 0px 3px 4px -1px rgba(0,0,0,0.7);
 }
 .paginator-option {
-  background-color: rgb(58, 152, 219, 0.5);
+  background-color: rgba(245, 245, 245, 0.829);
 }
 /* Customizes background of the content below the paginator */
 .list {
