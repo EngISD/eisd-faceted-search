@@ -6,6 +6,19 @@
 .paginator-option {
   background-color: rgb(58, 152, 219, 0.5);
 }
+.paginator-container {
+  height: 50px !important;
+}
+.mat-paginator-outer-container {
+  height: 50px !important;
+}
+mat-paginator {
+  height: 50px !important;
+}
+.paginator {
+  margin: 0;
+  padding: 0;
+}
 /* Customizes background of the content below the paginator */
 .list {
   padding: 2px 2px;

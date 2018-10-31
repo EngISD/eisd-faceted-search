@@ -25,6 +25,7 @@
   background-color: rgba(77, 153, 241, 0.84);
   margin-bottom: 4px;
   box-shadow: 2px 2px 4px -1px rgba(0,0,0,0.7);
+  height: 46px;
 }
 /* Customizes the link for the home page */
 .title a {
