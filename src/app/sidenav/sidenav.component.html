@@ -13,23 +13,25 @@
             <mat-icon matListIcon>assessment</mat-icon>&nbsp;{{ category | titlecase }}
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <div>
-        <div class="resetThis">
-          Reset {{ category }} filter
-          <button class="resetbutton" mat-icon-button (click)="resetThis(category);">
-              <mat-icon>cached</mat-icon>
-          </button>
+      <ng-template matExpansionPanelContent>
+        <div>
+          <div class="resetThis">
+            Reset {{ category }} filter
+            <button class="resetbutton" mat-icon-button (click)="resetThis(category);">
+                <mat-icon>cached</mat-icon>
+            </button>
+          </div>
+  <!-- Checkboxes inside every category -->
+          <mat-selection-list dense [(ngModel)]="selectedCategory[category]" (ngModelChange)="onNgModelChange($event)" [ngModelOptions]="{standalone: true}">
+            <mat-list-option *ngFor="let checkbox of checkboxes[category]; trackBy: trackByFn;" [value]="checkbox.id">
+              <mat-icon matListIcon>label</mat-icon>
+              <p>{{ checkbox.id }} ({{ checkbox.count }})</p>
+            </mat-list-option>
+            <button mat-raised-button class="moreButton" *ngIf="checkboxes[category]" (click)="showMore(category)">Show more</button>
+            <button mat-raised-button class="moreButton" *ngIf="(checkboxes[category] && (moreCounter[category] != 2))" (click)="showLess(category)">Show less</button>
+          </mat-selection-list>
         </div>
-<!-- Checkboxes inside every category -->
-        <mat-selection-list dense [(ngModel)]="selectedCategory[category]" (ngModelChange)="onNgModelChange($event)" [ngModelOptions]="{standalone: true}">
-          <mat-list-option *ngFor="let checkbox of checkboxes[category]; trackBy: trackByFn;" [value]="checkbox.id">
-            <mat-icon matListIcon>label</mat-icon>
-            <p>{{ checkbox.id }} ({{ checkbox.count }})</p>
-          </mat-list-option>
-          <button mat-raised-button class="moreButton" *ngIf="checkboxes[category]" (click)="showMore(category)">Show more</button>
-          <button mat-raised-button class="moreButton" *ngIf="(checkboxes[category] && (moreCounter[category] != 2))" (click)="showLess(category)">Show less</button>
-        </mat-selection-list>
-      </div>
+      </ng-template>
     </mat-expansion-panel>
   </div>
 </div>
