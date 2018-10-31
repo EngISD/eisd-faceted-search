@@ -12,11 +12,11 @@ import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 })
 export class ContentListComponent implements OnInit {
 
-  //Results received from the service
+  // Results received from the service
   results: any;
   categories = [];
-  
-  //Paginator variables
+
+  // Paginator variables
   page: PageEvent;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   currentPage = 0;
@@ -24,11 +24,11 @@ export class ContentListComponent implements OnInit {
   pageSize = 10;
   pageSizeOptions: number[] = [5, 10, 25, 100];
   activePageDataChunk = [];
-  //Paginator variables
+  // Paginator variables
 
   // Scroll customization
   @ViewChild(CdkVirtualScrollViewport) scroll: CdkVirtualScrollViewport;
-  
+
   constructor(private service: ServiceService, public router: Router) { }
 
   ngOnInit() {
@@ -37,7 +37,7 @@ export class ContentListComponent implements OnInit {
   trackByFn(index, result) {
     return index;
   }
-  //Returns data from the service and slices them to fit page size
+  // Returns data from the service and slices them to fit page size
   getData(event?: PageEvent) {
     this.service.getResults(event)
       .subscribe(response => {
@@ -51,7 +51,7 @@ export class ContentListComponent implements OnInit {
       });
     return event;
   }
-  //Paginator functions
+  // Paginator functions
   setPageSizeOptions(setPageSizeOptionsInput: string) {
     this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
   }
@@ -61,5 +61,5 @@ export class ContentListComponent implements OnInit {
     this.scroll.scrollToIndex(0); // Returns the scroll to top when page changes
     this.activePageDataChunk = this.results.slice(firstCut, secondCut);
   }
-  //Paginator functions
+  // Paginator functions
 }

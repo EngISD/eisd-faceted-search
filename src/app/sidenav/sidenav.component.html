@@ -22,6 +22,9 @@
             </button>
           </div>
   <!-- Checkboxes inside every category -->
+          <div id="loading" *ngIf="!checkboxes[category]" style="padding-left: 40%;">
+            <mat-spinner diameter="60" strokeWidth="35"></mat-spinner>
+          </div>
           <mat-selection-list dense [(ngModel)]="selectedCategory[category]" (ngModelChange)="onNgModelChange($event)" [ngModelOptions]="{standalone: true}">
             <mat-list-option *ngFor="let checkbox of checkboxes[category]; trackBy: trackByFn;" [value]="checkbox.id">
               <mat-icon matListIcon>label</mat-icon>
