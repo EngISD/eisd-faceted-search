@@ -1,8 +1,23 @@
+@media only screen and (max-width: 840px) {
+    .searchbutton {
+        display: none;
+    }
+    .searchicon {
+        display: none;
+    }
+    .search {
+        position: relative;
+        left: 2%;
+    }
+    .searchbar {
+       line-height: 46px;
+    }
+}
 @media only screen and (max-width: 450px) {
     .searchbar {
-      min-width: 300px !important;
       display: block;
       min-height: 50px;
+      margin: 0 60px !important;
     }
     mat-toolbar-row {
         display: block !important;
@@ -10,19 +25,34 @@
     mat-toolbar {
         height: 105px;
     }
-    .searchicon {
-        margin: 10px 10px !important;
-    }
     .logo {
-        margin: 0 40px;
+        margin: 0 80px;
+        display: block;
+    }
+    .search {
+        margin-left: 5%;
     }
   }
+@media only screen and (max-width: 385px) {
+    .searchbar {
+        display: block;
+        min-height: 50px;
+        margin: 0 55px !important;
+    }
+    .logo {
+        margin: 0 60px !important;
+        display: block;
+    }   
+}
 @media only screen and (max-width: 350px) {
     .searchbar {
-        max-width: 320px !important;
         display: block;
-        margin-left: -6px !important;
+        margin: 0 40px !important;
     }
+    .logo {
+        margin: 0 30px !important;
+        display: block;
+    }   
 }
 mat-toolbar {
     background-color: #081B2A !important;
@@ -39,34 +69,36 @@ mat-toolbar {
     float: left;
 }
 .searchbar {
-    margin-left: 5%;
+    margin-left: 7%;
     width: 70%;
     height: 80%;
     min-height: 50px;
     background-color: white;
     border-radius: 6px;
     float: left;
+    box-shadow:inset 0 0 1px 1px #888;
+    background: #fff;
 }
 .searchbutton {
-    margin: 6px 6px;
+    margin: 6px 0px;
+    padding: 0 6px;
+    width: 5%;
 }
 .searchicon {
-    /* margin: 15px 15px; */
-    color: black !important;
+    color: black;
 }
 .search {
     position: relative;
     top: 7%;
-    width: 70%;
+    width: 92%;
     height: 50%;
     border: none;
     font-size: 1em;
     outline: none;
-    object-fit: contain;
 }
 .clearfix {
     clear: left;
 }
-/* .test {
-     color: white !important;
-} */
+.data-option {
+    width: 140% !important;
+}

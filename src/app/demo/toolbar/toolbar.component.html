@@ -4,12 +4,15 @@
       <mat-icon>menu</mat-icon>
     </button>
     <img class="logo" src="../../../assets/engineeringsmaller.png" alt="logo" width="150px">
-    <div class="searchbar" #searchbar>
+    <form class="searchbar">
       <button class="searchbutton" mat-icon-button>
-        <mat-icon #searchicon class="searchicon">search</mat-icon>
+        <mat-icon class="searchicon">search</mat-icon>
       </button>
-      <input #input class="search" type="text" placeholder="Search..." > <!--(click)="testF()" (blur)="testF2()"-->
-    </div>
+      <input [matAutocomplete]="auto" autocomplete="off" matInput class="search" type="text" placeholder="Search...">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option #option class="data-option"></mat-option>
+    </mat-autocomplete>
+    </form>
     <div class="clearfix"></div>
   </mat-toolbar-row>
 </mat-toolbar>
