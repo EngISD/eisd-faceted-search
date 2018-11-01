@@ -11,6 +11,7 @@ import { MatSidenav } from '@angular/material';
 export class DemoSidenavComponent implements OnInit, OnDestroy {
 
   mobileQuery: MediaQueryList;
+  mobileQuery1: MediaQueryList;
   @ViewChild(MatSidenav) sidenav: MatSidenav;
   categories = [
     {id: 'cdc', icon: 'attach_money'},
@@ -34,8 +35,10 @@ export class DemoSidenavComponent implements OnInit, OnDestroy {
 
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
+    this.mobileQuery1 = media.matchMedia('(max-width: 450px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
+    this.mobileQuery1.addListener(this._mobileQueryListener);
   }
   ngOnInit() {
     /* this.toolbar1.toogled$.subscribe(res => {

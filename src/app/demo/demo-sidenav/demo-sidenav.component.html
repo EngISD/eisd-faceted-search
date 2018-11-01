@@ -3,7 +3,7 @@
   <mat-sidenav-container class="example-sidenav-container"
                           [style.marginTop.px]="mobileQuery.matches ? 0 : 0">
     <mat-sidenav #snav [opened]="true" [mode]="mobileQuery.matches ? 'over' : 'side'"
-                  [fixedInViewport]="mobileQuery.matches" fixedTopGap="65">
+                  [fixedInViewport]="mobileQuery.matches" [fixedTopGap]="mobileQuery1.matches ? 105 : 56">
       <mat-nav-list class="facet">
           <mat-expansion-panel [expanded]="i < 2" *ngFor="let category of categories; trackBy: trackByFn; let i = index">
               <mat-expansion-panel-header>
