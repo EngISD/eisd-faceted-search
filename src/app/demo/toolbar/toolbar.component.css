@@ -46,13 +46,14 @@ mat-toolbar {
     background-color: white;
     border-radius: 6px;
     float: left;
+    box-shadow:inset 0 0 2px 2px #888;
+    background: #fff;
 }
 .searchbutton {
     margin: 6px 6px;
 }
 .searchicon {
-    /* margin: 15px 15px; */
-    color: black !important;
+    color: black;
 }
 .search {
     position: relative;
@@ -67,6 +68,3 @@ mat-toolbar {
 .clearfix {
     clear: left;
 }
-/* .test {
-     color: white !important;
-} */
