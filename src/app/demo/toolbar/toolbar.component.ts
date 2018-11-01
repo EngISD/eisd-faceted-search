@@ -1,5 +1,4 @@
-import { BehaviorSubject, Observable } from 'rxjs';
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'demo-toolbar',
@@ -8,17 +7,11 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class ToolbarComponent implements OnInit {
 
-  /* private _toogled = new BehaviorSubject<boolean>(true);
-  toogled$: Observable<boolean> = this._toogled.asObservable(); */
   constructor() {
-    /* this._toogled = new BehaviorSubject<boolean>(true);
-    this.toogled$ = this._toogled.asObservable(); */
    }
 
   ngOnInit() {
   }
-
   switch() {
-    /* this._toogled.next(!this._toogled.getValue()); */
   }
 }

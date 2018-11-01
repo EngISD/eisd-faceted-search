@@ -1,12 +1,15 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <button mat-icon-button (click)="switch()">
+    <button class="menubutton" mat-icon-button (click)="switch()">
       <mat-icon>menu</mat-icon>
     </button>
-    <img class="logo" src="../../../assets/engineering.png" alt="" height="150px">
-    <div class="searchbar">
-      <mat-icon class="searchicon">search</mat-icon>
-      <input class="search" type="text" placeholder="Search...">
+    <img class="logo" src="../../../assets/engineeringsmaller.png" alt="logo" width="150px">
+    <div class="searchbar" #searchbar>
+      <button class="searchbutton" mat-icon-button>
+        <mat-icon #searchicon class="searchicon">search</mat-icon>
+      </button>
+      <input #input class="search" type="text" placeholder="Search..." > <!--(click)="testF()" (blur)="testF2()"-->
     </div>
+    <div class="clearfix"></div>
   </mat-toolbar-row>
 </mat-toolbar>
