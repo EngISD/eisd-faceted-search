@@ -1,3 +1,30 @@
-<p>
-  demo-sidenav works!
-</p>
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+    <!-- <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button> -->
+  <mat-sidenav-container class="example-sidenav-container"
+                          [style.marginTop.px]="mobileQuery.matches ? 0 : 0">
+    <mat-sidenav #snav [opened]="true" [mode]="mobileQuery.matches ? 'over' : 'side'"
+                  [fixedInViewport]="mobileQuery.matches" fixedTopGap="65">
+      <mat-nav-list class="facet">
+          <mat-expansion-panel [expanded]="i < 2" *ngFor="let category of categories; trackBy: trackByFn; let i = index">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <mat-icon matListIcon>assessment</mat-icon>&nbsp;{{ category | titlecase }}
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <ng-template matExpansionPanelContent>
+                  <mat-selection-list dense (ngModelChange)="onNgModelChange($event)">
+                    <mat-list-option *ngFor="let checkbox of checkboxes; trackBy: trackByFn;" [value]="checkbox">
+                      <mat-icon matListIcon>label</mat-icon>
+                      <p>{{ checkbox }}</p>
+                    </mat-list-option>
+                    <button mat-raised-button class="moreButton" *ngIf="checkboxes" (click)="showMore(category)">Show more</button>
+                  </mat-selection-list>
+              </ng-template>
+            </mat-expansion-panel>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <p>sjkdjkshdjkdkjsdkjsfskjdjksdflkshklsadjlbdjksbd</p>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
