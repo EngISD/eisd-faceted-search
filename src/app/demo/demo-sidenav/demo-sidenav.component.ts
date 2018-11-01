@@ -12,8 +12,22 @@ export class DemoSidenavComponent implements OnInit, OnDestroy {
 
   mobileQuery: MediaQueryList;
   @ViewChild(MatSidenav) sidenav: MatSidenav;
-  categories = ['One', 'Two', 'Three', 'Four'];
-  checkboxes = [1, 2, 3, 4];
+  categories = [
+    {id: 'cdc', icon: 'attach_money'},
+    {id: 'anno', icon: 'date_range'},
+    {id: 'cliente', icon: 'account_box'},
+    {id: 'soc', icon: 'business'},
+    {id: 'rcdc', icon: 'visibility'},
+    {id: 'cp', icon: 'person'},
+    {id: 'fun', icon: 'person_outline'},
+    {id: 'l136', icon: 'contact_support'},
+    {id: 'tr', icon: 'contact_support'},
+    {id: 'l136', icon: 'contact_support'},
+    {id: 'ta', icon: 'contact_support'},
+    {id: 'lp', icon: 'contact_support'},
+    {id: 't8', icon: 'contact_support'}
+  ];
+  checkboxes = [1];
   toolbar1: ToolbarComponent;
   /* toogled = true; */
   private _mobileQueryListener: () => void;

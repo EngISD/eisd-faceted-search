@@ -7,15 +7,15 @@
       <mat-nav-list class="facet">
           <mat-expansion-panel [expanded]="i < 2" *ngFor="let category of categories; trackBy: trackByFn; let i = index">
               <mat-expansion-panel-header>
-                <mat-panel-title>
-                    <mat-icon matListIcon>assessment</mat-icon>&nbsp;{{ category | titlecase }}
+                <mat-panel-title class="noSelect">
+                    <mat-icon class="catIcon" matListIcon>{{ category.icon }}</mat-icon>&nbsp;&nbsp;&nbsp;&nbsp;{{ category.id | titlecase }}
                 </mat-panel-title>
               </mat-expansion-panel-header>
               <ng-template matExpansionPanelContent>
                   <mat-selection-list dense (ngModelChange)="onNgModelChange($event)">
                     <mat-list-option *ngFor="let checkbox of checkboxes; trackBy: trackByFn;" [value]="checkbox">
                       <mat-icon matListIcon>label</mat-icon>
-                      <p>{{ checkbox }}</p>
+                      <p class="noSelect">{{ checkbox }}</p>
                     </mat-list-option>
                     <button mat-raised-button class="moreButton" *ngIf="checkboxes" (click)="showMore(category)">Show more</button>
                   </mat-selection-list>
