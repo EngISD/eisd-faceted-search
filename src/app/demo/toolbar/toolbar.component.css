@@ -2,25 +2,32 @@
     .searchbar {
       min-width: 300px !important;
       display: block;
+      min-height: 50px;
     }
     mat-toolbar-row {
         display: block !important;
-        background-color: #081B2A !important;
     }
     mat-toolbar {
-        height: 100px;
+        height: 105px;
     }
     .searchicon {
         margin: 10px 10px !important;
     }
     .logo {
-        margin: 0 50px;
+        margin: 0 40px;
     }
   }
+@media only screen and (max-width: 350px) {
+    .searchbar {
+        max-width: 320px !important;
+        display: block;
+        margin-left: -6px !important;
+    }
+}
 mat-toolbar {
     background-color: #081B2A !important;
 }
-.mat-icon-button {
+.menubutton {
     color: white;
     float: left;
 }
@@ -35,17 +42,21 @@ mat-toolbar {
     margin-left: 5%;
     width: 70%;
     height: 80%;
+    min-height: 50px;
     background-color: white;
-    border-radius: 3px;
+    border-radius: 6px;
     float: left;
 }
+.searchbutton {
+    margin: 6px 6px;
+}
 .searchicon {
-    margin: 15px 15px;
+    /* margin: 15px 15px; */
     color: black !important;
 }
 .search {
     position: relative;
-    bottom: 10%;
+    top: 7%;
     width: 70%;
     height: 50%;
     border: none;
@@ -56,3 +67,6 @@ mat-toolbar {
 .clearfix {
     clear: left;
 }
+/* .test {
+     color: white !important;
+} */
