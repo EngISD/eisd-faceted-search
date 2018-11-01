@@ -1,10 +1,9 @@
-import { Component } from '@angular/core';
-import { FilteredListComponent } from "./filtered-list/filtered-list.component";
-import { ContentListComponent } from "./content-list/content-list.component";
+import { FilterPageComponent } from './filter-page/filter-page.component';
 import { DemoComponent } from './demo/demo.component';
+import { StartpageComponent } from './startpage/startpage.component';
 
 export const Routes = [
-    { path: '', component: ContentListComponent },
-    { path: 'filter', component: FilteredListComponent},
+    { path: '', component: StartpageComponent },
+    { path: 'filter', component: FilterPageComponent},
     { path: 'demo', component: DemoComponent}
 ];

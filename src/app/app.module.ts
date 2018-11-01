@@ -27,6 +27,8 @@ import { DemoComponent } from './demo/demo.component';
 import { ToolbarComponent } from './demo/toolbar/toolbar.component';
 import { ContentComponent } from './demo/content/content.component';
 import { DemoSidenavComponent } from './demo/demo-sidenav/demo-sidenav.component';
+import { StartpageComponent } from './startpage/startpage.component';
+import { FilterPageComponent } from './filter-page/filter-page.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { DemoSidenavComponent } from './demo/demo-sidenav/demo-sidenav.component
     DemoComponent,
     ToolbarComponent,
     ContentComponent,
-    DemoSidenavComponent
+    DemoSidenavComponent,
+    StartpageComponent,
+    FilterPageComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,81 @@
+/* Extra small devices (phones, 600px and down) */
+.container {
+    display: flex;
+  }
+  @media only screen and (max-width: 450px) {
+      .w400px {
+        display: none; /* for now to be responsive on xs screens */
+        width: 75%;
+      }
+      .content {
+          width: 100%;
+      }
+  }
+  
+  @media only screen and (min-width: 450px) {
+      .w400px {
+          width: 60%;
+      }
+      .content {
+          width: 40%;
+      }
+  }
+  
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+  @media only screen and (min-width: 600px) {
+      .w400px {
+          width: 50%;
+      }
+      .content {
+          width: 50%;
+      }
+  }
+  
+  /* Medium devices (landscape tablets, 768px and up) */
+  @media only screen and (min-width: 768px) {
+      .w400px {
+          width: 45%;
+      }
+      .content {
+          width: 55%;
+      }
+  }
+  
+  @media only screen and (min-width: 880px) {
+      .w400px {
+          width: 35%;
+      }
+      .content {
+          width: 65%;
+      }
+  }
+  
+  /* Large devices (laptops/desktops, 992px and up) */
+  @media only screen and (min-width: 992px) {
+      .w400px {
+          width: 33%;
+      }
+      .content {
+          width: 67%;
+      }
+  }
+  
+  /* Extra large devices (large laptops and desktops, 1200px and up) */
+  @media only screen and (min-width: 1200px) {
+      .w400px {
+          width: 27%;
+      }
+      .content {
+          width: 73%;
+      }
+  }
+  
+  @media only screen and (min-width: 1500px) {
+      .w400px {
+          width: 20%;
+      }
+      .content {
+          width: 80%;
+      }
+  }
+  
