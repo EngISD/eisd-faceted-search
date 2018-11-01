@@ -128,4 +128,14 @@ export class ServiceService {
   pushObject(data) {
     this._filterValue.next(data);
   }
+
+
+
+
+
+
+
+  // DEMO SERVICE
+
+
 }

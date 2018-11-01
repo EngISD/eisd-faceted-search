@@ -23,6 +23,10 @@ import { ContentListComponent } from './content-list/content-list.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FilteredListComponent } from './filtered-list/filtered-list.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
+import { DemoComponent } from './demo/demo.component';
+import { ToolbarComponent } from './demo/toolbar/toolbar.component';
+import { ContentComponent } from './demo/content/content.component';
+import { DemoSidenavComponent } from './demo/demo-sidenav/demo-sidenav.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +34,11 @@ import { SidenavComponent } from './sidenav/sidenav.component';
     SidenavComponent,
     ContentListComponent,
     NavbarComponent,
-    FilteredListComponent
+    FilteredListComponent,
+    DemoComponent,
+    ToolbarComponent,
+    ContentComponent,
+    DemoSidenavComponent
   ],
   imports: [
     BrowserModule,
