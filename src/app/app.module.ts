@@ -14,6 +14,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatToolbarModule} from '@angular/material/toolbar';
 import {ScrollDispatchModule} from '@angular/cdk/scrolling';
 import { ScrollingModule, ScrollDispatcher } from '@angular/cdk/scrolling';
 import { MatButtonModule, MatListModule, MatFormFieldModule, MatIconModule, MatExpansionModule, MatSliderModule, MatInputModule } from '@angular/material';
@@ -65,7 +66,8 @@ import { FilterPageComponent } from './filter-page/filter-page.component';
     MatPaginatorModule,
     MatAutocompleteModule,
     MatProgressBarModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatToolbarModule
   ],
   providers: [ScrollDispatcher],
   bootstrap: [AppComponent]
