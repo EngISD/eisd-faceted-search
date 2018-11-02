@@ -68,3 +68,19 @@ mat-expansion-panel {
 .mat-drawer-container {
     background-color: white !important;
 }
+.list {
+    border: 1px solid rgba(114, 110, 110, 0.281);
+}
+.viewport {
+    height: 70vh;
+    width: 100%;
+  }
+  .viewport-item {
+    height: 90px;
+    width: 100%;
+    border-top: 1px solid rgba(121, 14, 14, 0.616);
+  }
+  .viewport-item-title {
+    padding-left: 3%;
+    padding-top: 0.5%;
+  }

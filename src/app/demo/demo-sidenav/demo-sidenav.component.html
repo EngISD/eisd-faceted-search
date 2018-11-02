@@ -23,7 +23,13 @@
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
-      <p>sjkdjkshdjkdkjsdkjsf skjdjksdflkshkls adjlbdjksbd dslihdlsjdsldk dskjdsjd hslkdskldj slkdlkd slkdskldslkd slkd</p>
+      <div class="list">
+        <cdk-virtual-scroll-viewport itemSize="20" class="viewport">
+          <div *cdkVirtualFor="let category of categories"  class="viewport-item">
+            <p class="viewport-item-title">{{ category.id }} - {{ category.icon }}</p>
+          </div>
+        </cdk-virtual-scroll-viewport>
+      </div>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>
