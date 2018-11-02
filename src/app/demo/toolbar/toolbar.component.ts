@@ -1,3 +1,4 @@
+import { ServiceService } from './../../service.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,12 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ToolbarComponent implements OnInit {
 
-  constructor() {
+  constructor(private service: ServiceService) {
    }
 
   ngOnInit() {
   }
   switch() {
+    this.service.setToggledValue(1);
   }
 
 }
