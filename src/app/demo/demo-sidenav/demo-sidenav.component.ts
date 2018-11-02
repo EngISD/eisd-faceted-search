@@ -4,6 +4,7 @@ import { Component, OnInit, OnDestroy, ChangeDetectorRef, ViewChild, Input } fro
 import { MediaMatcher } from '@angular/cdk/layout';
 import { MatSidenav, PageEvent, MatPaginator } from '@angular/material';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
+import { ngxLoadingAnimationTypes } from 'ngx-loading';
 
 @Component({
   selector: 'demo-sidenav',
@@ -32,6 +33,11 @@ export class DemoSidenavComponent implements OnInit, OnDestroy {
   content = [];
   checkboxes = [1];
 
+  public loading = false;
+  public ngxLoadingAnimationTypes = ngxLoadingAnimationTypes;
+  public primaryColour = 'rgb(217, 0, 80)';
+  public secondaryColour = 'rgb(0, 47, 90)';
+
   page: PageEvent;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   currentPage = 0;
@@ -50,6 +56,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy {
     this.mobileQuery.addListener(this._mobileQueryListener);
   }
   ngOnInit() {
+    this.loading = true;
     this.service.toggled.subscribe(res => {
       if (res != 2) {
         this.sidenav.toggle();
@@ -58,9 +65,10 @@ export class DemoSidenavComponent implements OnInit, OnDestroy {
     this.service.getCountOfAll().subscribe(res => {
       this.length = res;
     });
-    this.service.getRealData(this.pageSize, 1).subscribe(res => {
+    this.service.getRealData(this.pageSize, 0).subscribe(res => {
       this.content = res;
-      this.activePageDataChunk = this.content.slice(0, this.pageSize);
+      this.activePageDataChunk = this.content;
+      this.loading = false;
     });
   }
 
@@ -80,6 +88,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy {
     this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
   }
   onPageChanged(e) {
+    this.loading = true;
     this.service.getRealData(e.pageSize, e.pageIndex).subscribe(res => {
       this.content = res;
       this.pageSize = e.pageSize;
@@ -87,6 +96,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy {
       const secondCut = firstCut + e.pageSize;
       this.scroll.scrollToIndex(0); // Returns the scroll to top when page changes
       this.activePageDataChunk = this.content;
+      this.loading = false;
     });
   }
 }

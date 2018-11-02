@@ -18,6 +18,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {ScrollDispatchModule} from '@angular/cdk/scrolling';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { ScrollingModule, ScrollDispatcher } from '@angular/cdk/scrolling';
+import { NgxLoadingModule } from 'ngx-loading';
 import { MatButtonModule, MatListModule, MatFormFieldModule, MatIconModule, MatExpansionModule, MatSliderModule, MatInputModule } from '@angular/material';
 // Components
 import { AppComponent } from './app.component';
@@ -52,6 +53,7 @@ import { FilterPageComponent } from './filter-page/filter-page.component';
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot(Routes),
+    NgxLoadingModule.forRoot({}),
     ScrollDispatchModule,
     ScrollingModule,
     MatButtonModule,
