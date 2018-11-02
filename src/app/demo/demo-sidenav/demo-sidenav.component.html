@@ -30,13 +30,20 @@
                     [pageSizeOptions]="pageSizeOptions"
                     (page)="onPageChanged($event);">
       </mat-paginator>
-      <cdk-virtual-scroll-viewport itemSize="20" class="viewport">
-        <div *cdkVirtualFor="let item of activePageDataChunk; let first = first"  
-              class="viewport-item"
-              [class.first] = "first">
-          <p class="viewport-item-title">{{ item.comCodice }} - {{ item.anno }}</p>
-        </div>
-      </cdk-virtual-scroll-viewport>
+        <cdk-virtual-scroll-viewport itemSize="20" class="viewport">
+          <div *cdkVirtualFor="let item of activePageDataChunk; let first = first;"  
+               class="viewport-item mat-elevation-z2"
+               [class.first] = "first">
+            <div class="round mat-elevation-z4">{{ item.comCodice | slice:0:3 }}</div>
+            <div class="viewport-item-title">{{ item.comCodice }}</div>
+            <div class="viewport-item-title">{{ item.anno }} -
+              {{item.comDescrizione}} 
+            </div>
+            <div class="viewport-item-title"> {{item.comCliente}} </div>
+            <div class="viewport-item-title"> {{item.cdcBusinessUnit}} </div>
+            <div class="viewport-item-title"> {{item.cpNome}} </div>
+          </div>
+        </cdk-virtual-scroll-viewport>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>

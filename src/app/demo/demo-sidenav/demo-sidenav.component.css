@@ -67,17 +67,33 @@ mat-expansion-panel {
     width: 100%;
   }
   .viewport-item {
-    height: 90px;
+    height: 110px;
     width: 100%;
-    border-top: 1px solid rgba(121, 14, 14, 0.616);
+    border-top: 1px solid rgba(211, 195, 202, 0.295);
+    display: inline-block;
+    padding: 9px 23px;
+    margin-top: 2px;
+    border-radius: 3px;
   }
   .viewport-item-title {
-    padding-left: 3%;
-    padding-top: 0.5%;
+    margin: 0;
+    padding-bottom: 5px;
+    display: inline;
+    margin-left: 8px;
   }
-  .first {
-      border-top: 1px solid rgba(0, 0, 0, 0);
-  }
-  .paginator-option {
-      box-shadow: 3px 3px 3px grey;
-  }
+.paginator-option {
+    box-shadow: 3px 3px 3px grey;
+}
+.round {
+    border-radius: 50%;
+    background-color: rgb(195, 0, 72);
+    width: 60px;
+    height: 60px;
+    display: inline-block;
+    text-align: center;
+    color: white;
+    margin: 0 auto;
+    line-height: 60px;
+    font-size: 1.2em;
+    margin-top: 20px;
+}

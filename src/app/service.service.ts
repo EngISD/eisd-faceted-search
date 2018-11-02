@@ -141,7 +141,8 @@ export class ServiceService {
     this.toggled.next(value);
   }
   getRealData(pageSize, pageIndex) {
-    return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/list?size=' + pageSize + '&page=' + pageIndex + '&order=2&asc=true').pipe(
+    // tslint:disable-next-line:max-line-length
+    return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/list?size=' + pageSize + '&page=' + (pageIndex + 1) + '&order=2&asc=true').pipe(
       map(items => {
         return items['data'];
       }, error => error)
