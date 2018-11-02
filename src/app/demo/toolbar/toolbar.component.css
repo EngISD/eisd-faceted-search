@@ -10,48 +10,53 @@
         left: 2%;
     }
     .searchbar {
-       line-height: 46px;
+       line-height: 36px;
+    }
+}
+@media only screen and (max-width: 599px) {
+    .mat-toolbar-row, .mat-toolbar-single-row {
+        height: 64px !important;
     }
 }
 @media only screen and (max-width: 450px) {
     .searchbar {
       display: block;
       min-height: 50px;
-      margin: 0 60px !important;
+      margin: 0 9% !important;
+      position: relative;
+      top: 15%;
     }
     mat-toolbar-row {
         display: block !important;
     }
-    mat-toolbar {
-        height: 105px;
-    }
     .logo {
-        margin: 0 80px;
-        display: block;
+        display: none;
     }
     .search {
         margin-left: 5%;
     }
+    .menubutton {
+        position: relative;
+        top: 15%;
+    }
   }
-@media only screen and (max-width: 385px) {
+@media only screen and (max-width: 390px) {
     .searchbar {
         display: block;
         min-height: 50px;
-        margin: 0 55px !important;
+        margin: 0 8% !important;
     }
     .logo {
-        margin: 0 60px !important;
-        display: block;
+        display: none;
     }   
 }
 @media only screen and (max-width: 350px) {
     .searchbar {
         display: block;
-        margin: 0 40px !important;
+        margin: 0 7% !important;
     }
     .logo {
-        margin: 0 30px !important;
-        display: block;
+        display: none;
     }   
 }
 mat-toolbar {
@@ -60,6 +65,8 @@ mat-toolbar {
 .menubutton {
     color: white;
     float: left;
+    position: relative;
+    bottom: 4%;
 }
 .logo {
     /* -webkit-filter: drop-shadow(0.5px 0.5px 0 white);
@@ -71,8 +78,8 @@ mat-toolbar {
 .searchbar {
     margin-left: 7%;
     width: 70%;
-    height: 80%;
-    min-height: 50px;
+    height: 70%;
+    min-height: 40px;
     background-color: white;
     border-radius: 6px;
     float: left;
@@ -80,8 +87,8 @@ mat-toolbar {
     background: #fff;
 }
 .searchbutton {
-    margin: 6px 0px;
-    padding: 0 6px;
+    margin: 4px 0px;
+    padding: 0 4px;
     width: 5%;
 }
 .searchicon {
