@@ -1,9 +1,8 @@
 <div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
-    <!-- <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button> -->
   <mat-sidenav-container class="example-sidenav-container"
                           [style.marginTop.px]="mobileQuery.matches ? 0 : 0">
     <mat-sidenav #snav [opened]="true" [mode]="mobileQuery.matches ? 'over' : 'side'"
-                  [fixedInViewport]="mobileQuery.matches" [fixedTopGap]="mobileQuery1.matches ? 105 : 56">
+                  [fixedInViewport]="mobileQuery.matches" [fixedTopGap]="mobileQuery1.matches ? 64 : 64">
       <mat-nav-list class="facet">
           <mat-expansion-panel [expanded]="i < 2" *ngFor="let category of categories; trackBy: trackByFn; let i = index">
               <mat-expansion-panel-header>
