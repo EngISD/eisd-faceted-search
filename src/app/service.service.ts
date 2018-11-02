@@ -140,5 +140,11 @@ export class ServiceService {
   setToggledValue(value) {
     this.toggled.next(value);
   }
-
+  getRealData() {
+    return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/list?size=50&page=1&order=2&asc=true').pipe(
+      map(items => {
+        return items['data'];
+      }, error => error)
+    );
+  }
 }
