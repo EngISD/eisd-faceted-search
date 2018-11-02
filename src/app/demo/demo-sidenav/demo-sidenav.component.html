@@ -23,13 +23,15 @@
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
-      <div class="list">
+     
         <cdk-virtual-scroll-viewport itemSize="20" class="viewport">
-          <div *cdkVirtualFor="let category of categories"  class="viewport-item">
-            <p class="viewport-item-title">{{ category.id }} - {{ category.icon }}</p>
+          <div *cdkVirtualFor="let item of content; let first = first"  
+               class="viewport-item"
+               [class.first] = "first">
+            <p class="viewport-item-title">{{ item.comCodice }} - {{ item.anno }}</p>
           </div>
         </cdk-virtual-scroll-viewport>
-      </div>
+  
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>

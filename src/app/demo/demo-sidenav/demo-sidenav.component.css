@@ -4,12 +4,6 @@
         width: 100%;
     }
   }
-mat-sidenav-container {
-    width: 100%;
-}
-mat-sidenav-content {
-    width: 100%;
-}
 .facet.mat-nav-list {
     padding-top: 0;
 }
@@ -68,11 +62,8 @@ mat-expansion-panel {
 .mat-drawer-container {
     background-color: white !important;
 }
-.list {
-    border: 1px solid rgba(114, 110, 110, 0.281);
-}
 .viewport {
-    height: 70vh;
+    height: calc(100vh - 64px) !important;
     width: 100%;
   }
   .viewport-item {
@@ -83,4 +74,7 @@ mat-expansion-panel {
   .viewport-item-title {
     padding-left: 3%;
     padding-top: 0.5%;
+  }
+  .first {
+      border-top: 1px solid rgba(0, 0, 0, 0);
   }
