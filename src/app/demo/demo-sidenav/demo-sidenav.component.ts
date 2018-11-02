@@ -1,6 +1,5 @@
 import { ServiceService } from './../../service.service';
-import { ToolbarComponent } from './../toolbar/toolbar.component';
-import { Component, OnInit, OnDestroy, ChangeDetectorRef, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { MatSidenav, PageEvent, MatPaginator } from '@angular/material';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
@@ -98,5 +97,9 @@ export class DemoSidenavComponent implements OnInit, OnDestroy {
       this.activePageDataChunk = this.content;
       this.loading = false;
     });
+  }
+
+  showMore(cat) {
+    console.log('Clicked show more');
   }
 }

@@ -10,7 +10,7 @@ import { Routes } from './app.routing';
 
 // Material Modules
 import {MatGridListModule} from '@angular/material/grid-list';
-import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatPaginatorModule, MatPaginatorIntl} from '@angular/material/paginator';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
@@ -31,6 +31,7 @@ import { ToolbarComponent } from './demo/toolbar/toolbar.component';
 import { DemoSidenavComponent } from './demo/demo-sidenav/demo-sidenav.component';
 import { StartpageComponent } from './startpage/startpage.component';
 import { FilterPageComponent } from './filter-page/filter-page.component';
+import { MatPaginatorIntlIta } from './demo/demo-sidenav/customPaginatorLabels';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,7 @@ import { FilterPageComponent } from './filter-page/filter-page.component';
     MatSidenavModule,
     MatToolbarModule
   ],
-  providers: [ScrollDispatcher],
+  providers: [{ provide: MatPaginatorIntl, useClass: MatPaginatorIntlIta}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
