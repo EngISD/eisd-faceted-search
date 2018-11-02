@@ -29,9 +29,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy {
     {id: 'lp', icon: 'contact_support'},
     {id: 't8', icon: 'contact_support'}
   ];
-  content = [
-    {id: 'PITA115', desc: 'SIPAC (ODA 4501191120)', year: '2014', clientId: '0000100501' }
-  ];
+  content = [];
   checkboxes = [1];
   toolbar1: ToolbarComponent;
   /* toogled = true; */
@@ -45,16 +43,13 @@ export class DemoSidenavComponent implements OnInit, OnDestroy {
     this.mobileQuery1.addListener(this._mobileQueryListener);
   }
   ngOnInit() {
-    /* this.toolbar1.toogled$.subscribe(res => {
-      if (this.toogled != res) {
-        this.toogled = res;
-        this.sidenav.toggle();
-      }
-    }) */
     this.service.toggled.subscribe(res => {
       if (res != 2) {
         this.sidenav.toggle();
       }
+    });
+    this.service.getRealData().subscribe(res => {
+      this.content = res;
     });
   }
 
