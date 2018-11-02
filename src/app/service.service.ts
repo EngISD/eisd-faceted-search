@@ -140,10 +140,24 @@ export class ServiceService {
   setToggledValue(value) {
     this.toggled.next(value);
   }
-  getRealData() {
-    return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/list?size=50&page=1&order=2&asc=true').pipe(
+  getRealData(pageSize, pageIndex) {
+    return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/list?size=' + pageSize + '&page=' + pageIndex + '&order=2&asc=true').pipe(
       map(items => {
         return items['data'];
+      }, error => error)
+    );
+  }
+  getCountOfAll() {
+    return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/list?').pipe(
+      map(items => {
+        return items['count'];
+      }, error => error)
+    );
+  }
+  getFacets(category) {
+    return this.http.get<Array<any>>('http://localhost:50010/internal_order/api/internal_order/facet').pipe(
+      map(items => {
+        return items['data'][category];
       }, error => error)
     );
   }

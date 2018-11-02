@@ -2,7 +2,8 @@ import { ServiceService } from './../../service.service';
 import { ToolbarComponent } from './../toolbar/toolbar.component';
 import { Component, OnInit, OnDestroy, ChangeDetectorRef, ViewChild, Input } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
-import { MatSidenav } from '@angular/material';
+import { MatSidenav, PageEvent, MatPaginator } from '@angular/material';
+import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 
 @Component({
   selector: 'demo-sidenav',
@@ -30,6 +31,17 @@ export class DemoSidenavComponent implements OnInit, OnDestroy {
   ];
   content = [];
   checkboxes = [1];
+
+  page: PageEvent;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  currentPage = 0;
+  length = 0;
+  pageSize = 50;
+  pageSizeOptions: number[] = [10, 20, 50, 100];
+  activePageDataChunk = [];
+
+  @ViewChild(CdkVirtualScrollViewport) scroll: CdkVirtualScrollViewport;
+
   private _mobileQueryListener: () => void;
 
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private service: ServiceService) {
@@ -43,8 +55,12 @@ export class DemoSidenavComponent implements OnInit, OnDestroy {
         this.sidenav.toggle();
       }
     });
-    this.service.getRealData().subscribe(res => {
+    this.service.getCountOfAll().subscribe(res => {
+      this.length = res;
+    });
+    this.service.getRealData(this.pageSize, 1).subscribe(res => {
       this.content = res;
+      this.activePageDataChunk = this.content.slice(0, this.pageSize);
     });
   }
 
@@ -58,5 +74,19 @@ export class DemoSidenavComponent implements OnInit, OnDestroy {
 
   trackByFn(index, item) {
     return index;
+  }
+
+  setPageSizeOptions(setPageSizeOptionsInput: string) {
+    this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
+  }
+  onPageChanged(e) {
+    this.service.getRealData(e.pageSize, e.pageIndex).subscribe(res => {
+      this.content = res;
+      this.pageSize = e.pageSize;
+      const firstCut = e.pageIndex * e.pageSize;
+      const secondCut = firstCut + e.pageSize;
+      this.scroll.scrollToIndex(0); // Returns the scroll to top when page changes
+      this.activePageDataChunk = this.content;
+    });
   }
 }

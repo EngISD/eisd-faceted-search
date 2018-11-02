@@ -23,15 +23,20 @@
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
-     
-        <cdk-virtual-scroll-viewport itemSize="20" class="viewport">
-          <div *cdkVirtualFor="let item of content; let first = first"  
-               class="viewport-item"
-               [class.first] = "first">
-            <p class="viewport-item-title">{{ item.comCodice }} - {{ item.anno }}</p>
-          </div>
-        </cdk-virtual-scroll-viewport>
-  
+      <mat-paginator class="paginator-option"
+                    [length]="length"
+                    [pageIndex]="pageIndex"
+                    [pageSize]="pageSize"
+                    [pageSizeOptions]="pageSizeOptions"
+                    (page)="onPageChanged($event);">
+      </mat-paginator>
+      <cdk-virtual-scroll-viewport itemSize="20" class="viewport">
+        <div *cdkVirtualFor="let item of activePageDataChunk; let first = first"  
+              class="viewport-item"
+              [class.first] = "first">
+          <p class="viewport-item-title">{{ item.comCodice }} - {{ item.anno }}</p>
+        </div>
+      </cdk-virtual-scroll-viewport>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>

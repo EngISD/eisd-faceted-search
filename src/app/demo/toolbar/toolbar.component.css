@@ -96,7 +96,7 @@ mat-toolbar {
 }
 .search {
     position: relative;
-    top: 7%;
+    top: -10px;
     width: 92%;
     height: 50%;
     border: none;
