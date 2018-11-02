@@ -29,6 +29,9 @@ export class DemoSidenavComponent implements OnInit, OnDestroy {
     {id: 'lp', icon: 'contact_support'},
     {id: 't8', icon: 'contact_support'}
   ];
+  content = [
+    {id: 'PITA115', desc: 'SIPAC (ODA 4501191120)', year: '2014', clientId: '0000100501' }
+  ];
   checkboxes = [1];
   toolbar1: ToolbarComponent;
   /* toogled = true; */

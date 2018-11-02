@@ -10,6 +10,9 @@ mat-sidenav-container {
 mat-sidenav-content {
     width: 100%;
 }
+.facet.mat-nav-list {
+    padding-top: 0;
+}
 .mat-drawer-backdrop {
     width: 100%;
 }
