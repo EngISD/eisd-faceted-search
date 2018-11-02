@@ -1,3 +1,4 @@
+import { ServiceService } from './../../service.service';
 import { ToolbarComponent } from './../toolbar/toolbar.component';
 import { Component, OnInit, OnDestroy, ChangeDetectorRef, ViewChild, Input } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
@@ -33,7 +34,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy {
   /* toogled = true; */
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private service: ServiceService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this.mobileQuery1 = media.matchMedia('(max-width: 450px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -47,6 +48,11 @@ export class DemoSidenavComponent implements OnInit, OnDestroy {
         this.sidenav.toggle();
       }
     }) */
+    this.service.toggled.subscribe(res => {
+      if (res != 2) {
+        this.sidenav.toggle();
+      }
+    });
   }
 
   ngOnDestroy(): void {

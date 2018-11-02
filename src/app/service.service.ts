@@ -10,6 +10,7 @@ export class ServiceService {
 
   // Variable that shares the value with all components
   filteredValue = new BehaviorSubject<any>([]);
+  toggled = new BehaviorSubject<any>([]);
 
   // Link providing the results from a JSON file or a database
   dataUrl: string = 'https://raw.githubusercontent.com/prust/wikipedia-movie-data/master/movies.json';
@@ -136,6 +137,8 @@ export class ServiceService {
 
 
   // DEMO SERVICE
-
+  setToggledValue(value) {
+    this.toggled.next(value);
+  }
 
 }

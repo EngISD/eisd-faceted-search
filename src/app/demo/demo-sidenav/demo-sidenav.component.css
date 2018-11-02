@@ -8,6 +8,15 @@
         height: calc(100vh - 56px) !important;
     }
   }
+  mat-sidenav-container {
+      width: 100%;
+  }
+mat-sidenav-content {
+    width: 100%;
+}
+.mat-drawer-backdrop {
+    width: 100%;
+}
 .example-container {
     display: flex;
     flex-direction: column;
