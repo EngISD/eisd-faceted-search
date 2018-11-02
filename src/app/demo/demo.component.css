@@ -1,3 +1,6 @@
 .flex {
     display: flex;
 }
+demo-sidenav {
+    width: 100%;
+}

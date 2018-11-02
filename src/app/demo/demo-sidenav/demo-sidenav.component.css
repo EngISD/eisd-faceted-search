@@ -1,16 +1,12 @@
-@media only screen and (max-width: 450px) {
-    .example-container {
-        height: calc(100vh - 105px) !important;
-    }
-  }
 @media only screen and (max-width: 600px) {
     .example-container {
-        height: calc(100vh - 56px) !important;
+        height: calc(100vh - 64px) !important;
+        width: 100%;
     }
   }
-  mat-sidenav-container {
-      width: 100%;
-  }
+mat-sidenav-container {
+    width: 100%;
+}
 mat-sidenav-content {
     width: 100%;
 }
