@@ -48,6 +48,9 @@ mat-expansion-panel {
     margin: 3px 0;
     background-color: rgba(245, 245, 245, 0.01);
 }
+mat-selection-list {
+    outline: none;
+}
 .example-sidenav-container {
 /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
     causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
@@ -95,6 +98,10 @@ mat-expansion-panel {
     margin-top: 2px;
     border-radius: 3px;
   }
+.viewport-item:hover {
+    background-color: rgb(245, 245, 245);
+    cursor: pointer;
+}
   .viewport-item-title {
     margin: 0;
     padding-bottom: 5px;

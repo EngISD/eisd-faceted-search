@@ -109,6 +109,7 @@ mat-toolbar {
     border: none;
     font-size: 1em;
     outline: none;
+    color: black;
 }
 .clearfix {
     clear: left;

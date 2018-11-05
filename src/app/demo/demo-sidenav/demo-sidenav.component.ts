@@ -1,9 +1,11 @@
 import { ServiceService } from './../../service.service';
 import { Component, OnInit, OnDestroy, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
-import { MatSidenav, PageEvent, MatPaginator } from '@angular/material';
+import { MatSidenav, PageEvent, MatPaginator, MatDialogConfig } from '@angular/material';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { ngxLoadingAnimationTypes } from 'ngx-loading';
+import { MatDialog } from '@angular/material';
+import { DialogComponent } from '../dialog/dialog.component';
 
 @Component({
   selector: 'demo-sidenav',
@@ -49,7 +51,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy {
 
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private service: ServiceService) {
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private service: ServiceService, public dialog: MatDialog) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -102,4 +104,26 @@ export class DemoSidenavComponent implements OnInit, OnDestroy {
   showMore(cat) {
     console.log('Clicked show more');
   }
+
+  openDialog(item){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = false;
+    dialogConfig.data = item;
+    if (this.mobileQuery.matches) {
+      dialogConfig.height = '100%';
+      dialogConfig.width = '100%';
+      dialogConfig.hasBackdrop = false;
+      dialogConfig.maxWidth = '100%'
+    } else {
+      dialogConfig.height = '600px';
+      dialogConfig.width = '800px';
+    }
+    this.dialog.open(DialogComponent, dialogConfig);
+
+    
+    
+
+    
+  }
+
 }

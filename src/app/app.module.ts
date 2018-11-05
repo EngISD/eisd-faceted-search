@@ -17,6 +17,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {ScrollDispatchModule} from '@angular/cdk/scrolling';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatDialogModule} from '@angular/material/dialog';
 import { ScrollingModule, ScrollDispatcher } from '@angular/cdk/scrolling';
 import { NgxLoadingModule } from 'ngx-loading';
 import { MatButtonModule, MatListModule, MatFormFieldModule, MatIconModule, MatExpansionModule, MatSliderModule, MatInputModule } from '@angular/material';
@@ -32,6 +33,7 @@ import { DemoSidenavComponent } from './demo/demo-sidenav/demo-sidenav.component
 import { StartpageComponent } from './startpage/startpage.component';
 import { FilterPageComponent } from './filter-page/filter-page.component';
 import { MatPaginatorIntlIta } from './demo/demo-sidenav/customPaginatorLabels';
+import { DialogComponent } from './demo/dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,8 @@ import { MatPaginatorIntlIta } from './demo/demo-sidenav/customPaginatorLabels';
     ToolbarComponent,
     DemoSidenavComponent,
     StartpageComponent,
-    FilterPageComponent
+    FilterPageComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -70,8 +73,10 @@ import { MatPaginatorIntlIta } from './demo/demo-sidenav/customPaginatorLabels';
     MatProgressBarModule,
     MatProgressSpinnerModule,
     MatSidenavModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatDialogModule
   ],
+  entryComponents: [DialogComponent],
   providers: [{ provide: MatPaginatorIntl, useClass: MatPaginatorIntlIta}],
   bootstrap: [AppComponent]
 })

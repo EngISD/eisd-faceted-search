@@ -9,7 +9,7 @@
         <mat-icon class="searchicon">search</mat-icon>
       </button>
       <input [matAutocomplete]="auto" autocomplete="off" matInput class="search" type="text" placeholder="Ricerca...">
-    <mat-autocomplete #auto="matAutocomplete">
+    <mat-autocomplete #auto="matAutocomplete" autoActiveFirstOption>
       <mat-option #option class="data-option"></mat-option>
     </mat-autocomplete>
     </form>
