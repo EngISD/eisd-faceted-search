@@ -16,5 +16,8 @@ export class ToolbarComponent implements OnInit {
   switch() {
     this.service.setToggledValue(1);
   }
+  toHome(){
+    location.reload();
+  }
 
 }

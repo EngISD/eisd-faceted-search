@@ -1,5 +1,5 @@
-<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
-  <mat-sidenav-container class="example-sidenav-container"
+<div class="container" [class.is-mobile]="mobileQuery.matches">
+  <mat-sidenav-container class="sidenav-container"
                           [style.marginTop.px]="mobileQuery.matches ? 0 : 0">
     <mat-sidenav #snav [opened]="mobileQuery.matches ? 'false' : 'true'" [mode]="mobileQuery.matches ? 'over' : 'side'"
                   [fixedInViewport]="mobileQuery.matches" [fixedTopGap]="mobileQuery.matches ? 64 : 64">

@@ -1,5 +1,5 @@
 @media only screen and (max-width: 600px) {
-    .example-container {
+    .container {
         height: calc(100vh - 64px) !important;
         width: 100%;
     }
@@ -30,7 +30,7 @@
 .mat-drawer-backdrop {
     width: 100%;
 }
-.example-container {
+.container {
     display: flex;
     flex-direction: column;
     height: calc(100vh - 64px) !important;
@@ -51,12 +51,12 @@ mat-expansion-panel {
 mat-selection-list {
     outline: none;
 }
-.example-sidenav-container {
+.sidenav-container {
 /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
     causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
     flex: 1;
 }
-.example-is-mobile .example-sidenav-container {
+.is-mobile .sidenav-container {
 /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
     `<body>` to be our scrolling element for mobile layouts. */
     flex: 1 0 auto;
@@ -97,6 +97,7 @@ mat-selection-list {
     padding: 9px 23px;
     margin-top: 2px;
     border-radius: 3px;
+    overflow: hidden;
   }
 .viewport-item:hover {
     background-color: rgb(245, 245, 245);
@@ -109,7 +110,7 @@ mat-selection-list {
     margin-left: 8px;
   }
 .paginator-option {
-    box-shadow: 3px 3px 3px grey;
+    box-shadow: 3px 1px 3px grey;
 }
 .round {
     border-radius: 50%;

@@ -3,7 +3,11 @@
     <button class="menubutton" mat-icon-button (click)="switch()">
       <mat-icon>menu</mat-icon>
     </button>
-    <img class="logo" src="../../../assets/engineeringsmaller.png" alt="logo" width="150px">
+    <img class="logo" 
+         src="../../../assets/engineeringsmaller.png" 
+         alt="logo" 
+         width="150px" 
+         (click) = "toHome()">
     <form class="searchbar">
       <button mat-icon-button class="searchbutton" disableRipple = "true">
         <mat-icon class="searchicon">search</mat-icon>

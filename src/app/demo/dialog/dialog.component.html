@@ -3,20 +3,30 @@
     <h3 >Additional information </h3>
   </div>
   <div class="div">
-    <button mat-icon-button class="cancel" (click)="close()"><mat-icon class="icon">cancel</mat-icon></button>
+    <button mat-icon-button class="cancel" (click)="close()"><mat-icon class="icon">clear</mat-icon></button>
   </div>
   
 </div>
 
 
-<mat-dialog-content>
+<mat-dialog-content class="content">
+  <div class="card mat-elevation-z4">
+    <div>
+      <div class="round mat-elevation-z2">{{ data.comCodice | slice:0:3 }}</div>
+      {{data.comCodice}} - {{data.anno}}
+    </div>
+    <div>
+      <p>{{data.comDescrizione}}</p>
+      <mat-divider></mat-divider>
+      <p>{{data.cdcBusinessArea}} - {{data.codNazione}} - {{data.codProvincia}}</p>
+      <p>{{data.cdcBusinessUnit}}</p>
+      <p>{{data.cdcCodice}}</p>
+      <mat-divider></mat-divider>
+      <p>{{data.cdcConsolidationSegment}}</p>
+      <p>{{data.cdcDepartment1}}</p>
+      <p>{{data.comDescrizione}}</p>
+      <p>{{data.cdcResponsabile}}</p>
+    </div>
+  </div>
 
-  <p>{{data.comCodice}}</p>
-  <p>{{data.anno}}</p>
-  <p>{{data.cdcBusinessArea}}</p>
-  <p>{{data.cdcCodice}}</p>
-  <p>{{data.codNazione}}</p>
-  <p>{{data.codProvincia}}</p>
-  <p>{{data.comDescrizione}}</p>
- 
 </mat-dialog-content>

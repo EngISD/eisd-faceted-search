@@ -1,6 +1,10 @@
 .title {
     display: inline-block;
 }
+.title h3 {
+    margin: 0;
+    color: rgb(0, 47, 90);
+}
 .div {
     margin: 0 auto;
     text-align: center;
@@ -22,4 +26,29 @@
     height: 50px;
     font-size: 45px;
     padding-top: 18px;
+    color: rgb(0, 47, 90);
+}
+  .round {
+    border-radius: 50%;
+    background-color: rgb(195, 0, 72);
+    width: 60px;
+    height: 60px;
+    display: inline-block;
+    text-align: center;
+    color: white;
+    margin: 0 auto;
+    line-height: 60px;
+    font-size: 1.2em;
+    margin-top: 20px;
+}
+.card {
+    min-height: 400px;
+    border-radius: 10px;
+    padding: 20px 40px;
+}
+.content {
+    padding: 10px 10px;
+}
+.mat-dialog-title {
+    margin: 0 !important;
 }
