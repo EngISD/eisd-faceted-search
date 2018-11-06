@@ -166,8 +166,8 @@ export class DemoSidenavComponent implements OnInit, OnDestroy {
       dialogConfig.hasBackdrop = false;
       dialogConfig.maxWidth = '100%';
     } else {
-      dialogConfig.height = '600px';
-      dialogConfig.width = '800px';
+      dialogConfig.height = '550px';
+      dialogConfig.width = '900px';
     }
     this.dialog.open(DialogComponent, dialogConfig);
   }
