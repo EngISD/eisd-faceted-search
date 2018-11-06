@@ -109,8 +109,8 @@ mat-paginator {
     background: #014274 !important;
 }
 .moreButton {
-    margin-left: 4%;
-    margin-right: 4%;
+    margin-left: 2%;
+    margin-right: 2%;
     color: #014274;
 }
 .catIcon {
@@ -137,7 +137,7 @@ mat-paginator {
     height: 90px;
     width: 100%;
     border-top: 1px solid rgba(211, 195, 202, 0.295);
-    display: inline-block;
+    display: inline-flex;
     padding: 9px 23px;
     margin-top: 2px;
     border-radius: 3px;
@@ -149,9 +149,14 @@ mat-paginator {
 }
   .viewport-item-title {
     margin: 0;
-    padding-bottom: 5px;
-    display: inline;
     margin-left: 8px;
+    display: flex;
+    width: 21%;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    text-align: center;
+    line-height: 20px;
   }
 /* .paginator-option {
     box-shadow: 3px 1px 3px grey;
@@ -167,5 +172,13 @@ mat-paginator {
     margin: 0 auto;
     line-height: 60px;
     font-size: 1.2em;
-    margin-top: 20px;
+    margin: 20px 0 0 0;
+}
+.bold1 {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+.italic1 {
+    font-size: 0.7em;
+    font-style: italic;
 }

@@ -35,14 +35,26 @@
                     <mat-icon class="catIcon" matListIcon>{{ category.icon }}</mat-icon>&nbsp;&nbsp;&nbsp;&nbsp;{{ category.id | titlecase }}
                 </mat-panel-title>
               </mat-expansion-panel-header>
-              <ng-template matExpansionPanelContent>
-                  <mat-selection-list dense (ngModelChange)="onNgModelChange($event)">
-                    <mat-list-option *ngFor="let checkbox of checkboxes; trackBy: trackByFn;" [value]="checkbox">
+              <ng-template matExpansionPanelContent *ngIf="category.id != 'anno'">
+                  <mat-selection-list dense [(ngModel)]="selected[category.id]" (ngModelChange)="onNgModelChange($event)" [ngModelOptions]="{standalone: true}">
+                    <mat-list-option *ngFor="let checkbox of checkboxes[category.id]; trackBy: trackByFn;" [value]="checkbox.code">
                       <mat-icon matListIcon>label</mat-icon>
-                      <p class="noSelect">{{ checkbox }}</p>
+                      <p class="noSelect">{{ checkbox.descr }} ({{ checkbox.count }})</p>
                     </mat-list-option>
-                    <button mat-raised-button class="moreButton" *ngIf="checkboxes" (click)="showMore(category)">Mostra di più</button>
+                    <button mat-raised-button class="moreButton" *ngIf="hasMore[category.id]" (click)="showMore(category.id)">Mostra di più</button>
+                    <button mat-raised-button class="moreButton" *ngIf="numMore[category.id] > 1" (click)="showLess(category.id)">Mostra meno</button>
                   </mat-selection-list>
+              </ng-template>
+              <ng-template matExpansionPanelContent *ngIf="category.id == 'anno'">
+                <canvas baseChart *ngIf="barChartData[0].data.length > 0"
+                    [datasets]="barChartData"
+                    [labels]="barChartLabels"
+                    [options]="barChartOptions"
+                    [legend]="barChartLegend"
+                    [colors]="barChartColors"
+                    [chartType]="barChartType"
+                    (chartHover)="chartHovered($event)"
+                    (chartClick)="chartClicked($event)"></canvas>
               </ng-template>
             </mat-expansion-panel>
       </mat-nav-list>
@@ -55,13 +67,12 @@
                [class.first] = "first"
                (click) = "openDialog(item)">
             <div class="round mat-elevation-z4">{{ item.comCodice | slice:0:3 }}</div>
-            <div class="viewport-item-title">{{ item.comCodice }}</div>
-            <div class="viewport-item-title">{{ item.anno }} -
-              {{item.comDescrizione}} 
+            <div class="viewport-item-title">
+              {{ item.comCodice }}<br>{{ item.anno }}<br>{{item.comDescrizione}}
             </div>
-            <div class="viewport-item-title"> {{item.comCliente}} </div>
-            <div class="viewport-item-title"> {{item.cdcBusinessUnit}} </div>
-            <div class="viewport-item-title"> {{item.cpNome}} </div>
+            <div class="viewport-item-title">{{item.comCliente}}<br>{{item.cliPartitaIva}}<br>{{item.cliTipologia}} </div>
+            <div class="viewport-item-title">{{item.cdcCodice}}<br>{{item.cdcDescrizione}}<br>{{item.cdcBusinessUnit}}<br></div>
+            <div class="viewport-item-title">{{item.cdcResponsabile}}<br>{{item.respCognome}} {{item.respNome}}</div>
           </div>
         </cdk-virtual-scroll-viewport>
     </mat-sidenav-content>

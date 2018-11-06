@@ -137,7 +137,7 @@ export class ServiceService {
   // DEMO SERVICE
   getRealData(pageSize, pageIndex) {
     // tslint:disable-next-line:max-line-length
-    return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/list?size=' + pageSize + '&page=' + (pageIndex + 1) + '&order=2&asc=true').pipe(
+    return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/list?size=' + pageSize + '&page=' + (pageIndex + 1)).pipe(
       map(items => {
         return items['data'];
       }, error => error)
@@ -151,9 +151,16 @@ export class ServiceService {
     );
   }
   getFacets(category) {
-    return this.http.get<Array<any>>('http://localhost:50010/internal_order/api/internal_order/facet').pipe(
+    return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/facet?facet=' + category).pipe(
       map(items => {
-        return items['data'][category];
+        return items;
+      }, error => error)
+    );
+  }
+  getMoreFacets(category, num) {
+    return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/facet?facetMaxOptions=' + num*10 + '&facet=' + category).pipe(
+      map(items => {
+        return items;
       }, error => error)
     );
   }

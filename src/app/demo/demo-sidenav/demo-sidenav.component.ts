@@ -28,18 +28,40 @@ export class DemoSidenavComponent implements OnInit, OnDestroy {
     {id: 'fun', icon: 'person_outline'},
     {id: 'l136', icon: 'contact_support'},
     {id: 'tr', icon: 'contact_support'},
-    {id: 'l136', icon: 'contact_support'},
     {id: 'ta', icon: 'contact_support'},
     {id: 'lp', icon: 'contact_support'},
     {id: 't8', icon: 'contact_support'}
   ];
   content = [];
-  checkboxes = [1];
-
+  checkboxes = [];
+  selected = [];
+  numMore = [];
+  hasMore = [];
   public loading = false;
   public ngxLoadingAnimationTypes = ngxLoadingAnimationTypes;
   public primaryColour = 'rgb(217, 0, 80)';
   public secondaryColour = 'rgb(0, 47, 90)';
+
+  public barChartOptions:any = {
+    scaleShowVerticalLines: false,
+    responsive: true
+  };
+  public barChartLabels:string[] = [];
+  public barChartType:string = 'bar';
+  public barChartLegend:boolean = true;
+  public barChartColors:Array<any> = [
+    {
+      backgroundColor: '#0278bd8a',
+      borderColor: '#0277bd8a',
+      pointBackgroundColor: '#0278bd8a',
+      pointBorderColor: '#0277bd8a',
+      pointHoverBackgroundColor: '#0278bd',
+      pointHoverBorderColor: '#0278bd'
+    }
+  ];
+  public barChartData:any[] = [
+    {data: [], label: ''}
+  ];
 
   page: PageEvent;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -68,6 +90,26 @@ export class DemoSidenavComponent implements OnInit, OnDestroy {
       this.activePageDataChunk = this.content;
       this.loading = false;
     });
+    for (let i = 0; i < this.categories.length; i++) {
+      this.numMore[this.categories[i].id] = 1;
+      this.service.getFacets(this.categories[i].id).subscribe(res => {
+        this.checkboxes[this.categories[i].id] = res['facetOptions'];
+        this.hasMore[this.categories[i].id] = res['hasMore'];
+
+        if (this.categories[i].id == 'anno') {
+          const temp = [];
+          const temp1 = [];
+          for (let j = 0; j < this.checkboxes['anno'].length; j++) {
+            temp.push(this.checkboxes['anno'][j].code);
+            temp1.push(this.checkboxes['anno'][j].count);
+          }
+          this.barChartLabels = temp;
+          this.barChartData[0] = Object.assign({
+            data: temp1, label: 'Number of items'
+          });
+        }
+      });
+    }
   }
 
   ngOnDestroy(): void {
@@ -90,8 +132,6 @@ export class DemoSidenavComponent implements OnInit, OnDestroy {
     this.service.getRealData(e.pageSize, e.pageIndex).subscribe(res => {
       this.content = res;
       this.pageSize = e.pageSize;
-      const firstCut = e.pageIndex * e.pageSize;
-      const secondCut = firstCut + e.pageSize;
       this.scroll.scrollToIndex(0); // Returns the scroll to top when page changes
       this.activePageDataChunk = this.content;
       this.loading = false;
@@ -99,7 +139,18 @@ export class DemoSidenavComponent implements OnInit, OnDestroy {
   }
 
   showMore(cat) {
-    console.log('Clicked show more');
+    ++this.numMore[cat];
+    this.service.getMoreFacets(cat, this.numMore[cat]).subscribe(res => {
+      this.checkboxes[cat] = res['facetOptions'];
+      this.hasMore[cat] = res['hasMore'];
+    });
+  }
+  showLess(cat) {
+    this.numMore[cat] = 1;
+    this.service.getFacets(cat).subscribe(res => {
+      this.checkboxes[cat] = res['facetOptions'];
+      this.hasMore[cat] = res['hasMore'];
+    });
   }
 
   openDialog(item){
@@ -110,7 +161,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy {
       dialogConfig.height = '100%';
       dialogConfig.width = '100%';
       dialogConfig.hasBackdrop = false;
-      dialogConfig.maxWidth = '100%'
+      dialogConfig.maxWidth = '100%';
     } else {
       dialogConfig.height = '550px';
       dialogConfig.width = '900px';
@@ -120,5 +171,11 @@ export class DemoSidenavComponent implements OnInit, OnDestroy {
   toggle(){
     this.toggled = !this.toggled;  
   }
+  public chartClicked(e:any):void {
+    console.log(e);
+  }
 
+  public chartHovered(e:any):void {
+    console.log(e);
+  }
 }

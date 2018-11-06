@@ -8,8 +8,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { Routes } from './app.routing';
 
+import { ChartsModule } from 'ng2-charts';
+
 // Material Modules
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatPaginatorModule, MatPaginatorIntl} from '@angular/material/paginator';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
@@ -18,7 +21,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {ScrollDispatchModule} from '@angular/cdk/scrolling';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatDialogModule} from '@angular/material/dialog';
-import { ScrollingModule, ScrollDispatcher } from '@angular/cdk/scrolling';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import { NgxLoadingModule } from 'ngx-loading';
 import { MatButtonModule, MatListModule, MatFormFieldModule, MatIconModule, MatIconRegistry,  MatExpansionModule, MatSliderModule, MatInputModule, MatCardModule, MatDividerModule } from '@angular/material';
 // Components
@@ -75,6 +78,8 @@ import { DialogComponent } from './demo/dialog/dialog.component';
     MatSidenavModule,
     MatToolbarModule,
     MatDialogModule,
+    ChartsModule,
+    MatSlideToggleModule,
     MatCardModule,
     MatDividerModule
   ],
