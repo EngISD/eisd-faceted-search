@@ -178,4 +178,10 @@ export class DemoSidenavComponent implements OnInit, OnDestroy {
   public chartHovered(e:any):void {
     console.log(e);
   }
+
+  resetAll() {
+    for (let i = 0; i < this.categories.length; i++) {
+      this.selected[this.categories[i].id] = [];
+    }
+  }
 }

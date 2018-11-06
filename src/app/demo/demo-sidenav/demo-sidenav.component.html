@@ -6,7 +6,7 @@
         <mat-icon class="arrows" svgIcon="chevron-double-right" matListIcon *ngIf="toggled"></mat-icon>
         <mat-icon class="filter1" svgIcon="filter-outline" matListIcon></mat-icon>
       </button>
-      <button class="filterButton" mat-icon-button>
+      <button class="filterButton" mat-icon-button (click)="resetAll()">
           <mat-icon class="filter2" svgIcon="filter-outline" matListIcon></mat-icon>
           <mat-icon class="reset" svgIcon="close" matListIcon></mat-icon>
         </button>
@@ -68,11 +68,11 @@
                (click) = "openDialog(item)">
             <div class="round mat-elevation-z4">{{ item.comCodice | slice:0:3 }}</div>
             <div class="viewport-item-title">
-              {{ item.comCodice }}<br>{{ item.anno }}<br>{{item.comDescrizione}}
+              Com Codice: {{ item.comCodice }} Anno: {{ item.anno }} &nbsp;&nbsp;&nbsp;&nbsp;Descrizione: {{item.comDescrizione}}<br>
+              Cliente: {{item.comCliente}} &nbsp;&nbsp;&nbsp;&nbsp;ClientPartitaIva: {{item.cliPartitaIva}} Tipologia: {{item.cliTipologia}}<br>
+              Cdc Codice: {{item.cdcCodice}} Cdc Descrizione: {{item.cdcDescrizione}} &nbsp;&nbsp;&nbsp;&nbsp;Business Unit: {{item.cdcBusinessUnit}}<br>
+              Cdc Responsabile: {{item.cdcResponsabile}} &nbsp;&nbsp;&nbsp;&nbsp;Responsabile: {{item.respCognome}} {{item.respNome}}
             </div>
-            <div class="viewport-item-title">{{item.comCliente}}<br>{{item.cliPartitaIva}}<br>{{item.cliTipologia}} </div>
-            <div class="viewport-item-title">{{item.cdcCodice}}<br>{{item.cdcDescrizione}}<br>{{item.cdcBusinessUnit}}<br></div>
-            <div class="viewport-item-title">{{item.cdcResponsabile}}<br>{{item.respCognome}} {{item.respNome}}</div>
           </div>
         </cdk-virtual-scroll-viewport>
     </mat-sidenav-content>

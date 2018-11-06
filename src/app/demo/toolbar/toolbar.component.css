@@ -37,9 +37,6 @@
       position: relative;
       top: 5px;
     }
-    mat-toolbar-row {
-        display: block !important;
-    }
     .logo {
         display: none;
     }
@@ -134,7 +131,6 @@ mat-toolbar {
     background: transparent;
 }
 .menuIcon {
-
 }
 .icon {
     color: white;

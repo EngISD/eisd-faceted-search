@@ -106,15 +106,15 @@ mat-paginator {
     flex: 1 0 auto;
 }
 ::ng-deep mat-pseudo-checkbox.mat-pseudo-checkbox.mat-pseudo-checkbox-checked {
-    background: #014274 !important;
+    background: #0277bd !important;
 }
 .moreButton {
     margin-left: 2%;
     margin-right: 2%;
-    color: #014274;
+    color: #0277bd;
 }
 .catIcon {
-    color: #081b2a !important;
+    color: #000000 !important;
     margin-top: -1px;
 }
 .noSelect {
@@ -128,6 +128,9 @@ mat-paginator {
 }
 .mat-drawer-container {
     background-color: white !important;
+}
+::ng-deep .mat-drawer-inner-container {
+    background-color: #f2f2f2 !important;
 }
 .viewport {
     height: calc(100vh - 97px) !important;
@@ -149,22 +152,19 @@ mat-paginator {
 }
   .viewport-item-title {
     margin: 0;
-    margin-left: 8px;
+    margin-left: 15px;
     display: flex;
-    width: 21%;
+    width: 90%;
     align-items: center;
-    justify-content: center;
     overflow: hidden;
-    text-align: center;
-    line-height: 20px;
   }
 /* .paginator-option {
     box-shadow: 3px 1px 3px grey;
 } */
 .round {
     border-radius: 50%;
-    background-color: rgb(195, 0, 72);
-    width: 60px;
+    background-color: #0278bdd8;
+    min-width: 60px;
     height: 60px;
     display: inline-block;
     text-align: center;
@@ -175,7 +175,6 @@ mat-paginator {
     margin: 20px 0 0 0;
 }
 .bold1 {
-    font-size: 1.5em;
     font-weight: bold;
 }
 .italic1 {
