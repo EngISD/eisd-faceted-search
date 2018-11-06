@@ -8,16 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ToolbarComponent implements OnInit {
 
+  value: string = '';
+
   constructor(private service: ServiceService) {
    }
 
   ngOnInit() {
   }
-  switch() {
-    this.service.setToggledValue(1);
-  }
   toHome(){
     location.reload();
+  }
+  cleanValue(){
+    this.value = '';
   }
 
 }

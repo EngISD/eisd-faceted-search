@@ -14,6 +14,8 @@ import { DialogComponent } from '../dialog/dialog.component';
 })
 export class DemoSidenavComponent implements OnInit, OnDestroy {
 
+  toggled: boolean = false;
+
   mobileQuery: MediaQueryList;
   @ViewChild(MatSidenav) sidenav: MatSidenav;
   categories = [
@@ -58,11 +60,6 @@ export class DemoSidenavComponent implements OnInit, OnDestroy {
   }
   ngOnInit() {
     this.loading = true;
-    this.service.toggled.subscribe(res => {
-      if (res != 2) {
-        this.sidenav.toggle();
-      }
-    });
     this.service.getCountOfAll().subscribe(res => {
       this.length = res;
     });
@@ -119,11 +116,9 @@ export class DemoSidenavComponent implements OnInit, OnDestroy {
       dialogConfig.width = '900px';
     }
     this.dialog.open(DialogComponent, dialogConfig);
-
-    
-    
-
-    
+  }
+  toggle(){
+    this.toggled = !this.toggled;  
   }
 
 }

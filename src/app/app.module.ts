@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgPipesModule } from 'ngx-pipes';
@@ -20,7 +20,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatDialogModule} from '@angular/material/dialog';
 import { ScrollingModule, ScrollDispatcher } from '@angular/cdk/scrolling';
 import { NgxLoadingModule } from 'ngx-loading';
-import { MatButtonModule, MatListModule, MatFormFieldModule, MatIconModule, MatExpansionModule, MatSliderModule, MatInputModule, MatCardModule, MatDividerModule } from '@angular/material';
+import { MatButtonModule, MatListModule, MatFormFieldModule, MatIconModule, MatIconRegistry,  MatExpansionModule, MatSliderModule, MatInputModule, MatCardModule, MatDividerModule } from '@angular/material';
 // Components
 import { AppComponent } from './app.component';
 import { ContentListComponent } from './content-list/content-list.component';
@@ -82,4 +82,9 @@ import { DialogComponent } from './demo/dialog/dialog.component';
   providers: [{ provide: MatPaginatorIntl, useClass: MatPaginatorIntlIta}],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+  constructor(matIconRegistry: MatIconRegistry, domSanitizer: DomSanitizer) {
+    matIconRegistry.addSvgIconSet(domSanitizer.bypassSecurityTrustResourceUrl('https://chan4077.github.io/res/mdi.svg'));
+  }
+}

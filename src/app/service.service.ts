@@ -10,8 +10,6 @@ export class ServiceService {
 
   // Variable that shares the value with all components
   filteredValue = new BehaviorSubject<any>([]);
-  toggled = new BehaviorSubject<any>([]);
-
   // Link providing the results from a JSON file or a database
   dataUrl: string = 'https://raw.githubusercontent.com/prust/wikipedia-movie-data/master/movies.json';
 
@@ -137,9 +135,6 @@ export class ServiceService {
 
 
   // DEMO SERVICE
-  setToggledValue(value) {
-    this.toggled.next(value);
-  }
   getRealData(pageSize, pageIndex) {
     // tslint:disable-next-line:max-line-length
     return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/list?size=' + pageSize + '&page=' + (pageIndex + 1) + '&order=2&asc=true').pipe(
