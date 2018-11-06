@@ -47,7 +47,7 @@
                 </mat-panel-title>
               </mat-expansion-panel-header>
               <ng-template matExpansionPanelContent *ngIf="category.id != 'anno'">
-                  <mat-selection-list dense [(ngModel)]="selected[category.id]" (ngModelChange)="onNgModelChange($event)" [ngModelOptions]="{standalone: true}">
+                  <mat-selection-list dense [(ngModel)]="selected[category.id]" (ngModelChange)="onNgModelChange(category.id)" [ngModelOptions]="{standalone: true}">
                     <mat-list-option *ngFor="let checkbox of checkboxes[category.id]; trackBy: trackByFn;" [value]="checkbox.code">
                       <mat-icon matListIcon>label</mat-icon>
                       <p class="noSelect">{{ checkbox.descr }} ({{ checkbox.count }})</p>

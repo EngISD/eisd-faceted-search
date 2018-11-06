@@ -164,4 +164,23 @@ export class ServiceService {
       }, error => error)
     );
   }
+
+  refreshFacets(category, selection) {
+      let dud = '';
+      const temp = selection;
+      Object.entries(temp).forEach(
+        ([key, value]) => {
+          Object.entries(value).forEach(
+            ([key1, value1]) => {
+              dud = dud.concat('&', key, '=', value1.toString());
+            }
+          );
+        }
+      );
+      return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/facet?facet=' + category + dud).pipe(
+        map(items => {
+          return items;
+        }, error => error)
+      );
+  }
 }

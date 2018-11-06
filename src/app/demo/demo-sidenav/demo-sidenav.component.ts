@@ -118,8 +118,27 @@ export class DemoSidenavComponent implements OnInit, OnDestroy {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 
-  onNgModelChange(e) {
-    console.log(e);
+  onNgModelChange(cat) {
+    for (let i = 0; i < this.categories.length; i++) {
+      if (this.categories[i].id != cat) {
+        this.service.refreshFacets(this.categories[i].id, this.selected).subscribe(res => {
+          this.checkboxes[this.categories[i].id] = res['facetOptions'];
+
+          if (this.categories[i].id == 'anno') {
+            const temp = [];
+            const temp1 = [];
+            for (let j = 0; j < this.checkboxes['anno'].length; j++) {
+              temp.push(this.checkboxes['anno'][j].code);
+              temp1.push(this.checkboxes['anno'][j].count);
+            }
+            this.barChartLabels = temp;
+            this.barChartData[0] = Object.assign({
+              data: temp1, label: 'Number of items'
+            });
+          }
+        });
+      }
+    }
   }
 
   trackByFn(index, item) {
@@ -171,7 +190,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy {
     this.dialog.open(DialogComponent, dialogConfig);
   }
   toggle(){
-    this.toggled = !this.toggled;  
+    this.toggled = !this.toggled;
   }
   public chartClicked(e:any):void {
     console.log(e);
@@ -184,6 +203,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy {
   resetAll() {
     for (let i = 0; i < this.categories.length; i++) {
       this.selected[this.categories[i].id] = [];
+      this.onNgModelChange(this.categories[i].id);
     }
   }
   sortResults(){
