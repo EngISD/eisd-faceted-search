@@ -1,3 +1,4 @@
+/* Responsive */
 @media only screen and (max-width: 840px) {
     .searchbutton {
         display: none;
@@ -18,7 +19,7 @@
     }
 }
 @media only screen and (max-width: 780px) {
-    .logo {
+    .title {
         display: none;
     }
     .searchbar {
@@ -28,60 +29,30 @@
         width: 92%;
     }
 }
-@media only screen and (max-width: 599px) {
-    .mat-toolbar-row, .mat-toolbar-single-row {
-        height: 64px !important;
-    }
-    .logo {
-        display: none;
-    }
-}
-@media only screen and (max-width: 450px) {
-    .logo {
-        display: none;
-    }
-  }
-@media only screen and (max-width: 390px) {
-    .searchbar {
-        display: block;
-    }
-    .logo {
-        display: none;
-    }   
-}
-@media only screen and (max-width: 350px) {
-    .logo {
-        display: none;
-    }   
-}
+/* Toolbar customization */
 mat-toolbar {
     background-color: rgb(2, 119, 189) !important;
     height: 48px !important;
 }
 .mat-toolbar-row {
     height: 48px !important;
-    position: absolute;
 }
 .mat-toolbar-multiple-rows {
     min-height: 0;
 }
 .menubutton {
     color: white;
-    /* float: left; */
-    position: relative;
-    bottom: 4%;
 }
-.logo {
+.title {
     padding-left: 1%;
-    /* float: left; */
     cursor: pointer;
     font-size: 25px;
 }
+/* Searchbar customization */
 .searchbar {
     margin-left: 7%;
     width: 90%;
     height: 80%;
-    min-height: 30px;
     background-color: rgb(2, 107, 170);
     border-radius: 6px;
     display: flex;
@@ -99,11 +70,13 @@ mat-toolbar {
     border: none;
     font-size: 1em;
     outline: none;
-    color: black;
+    color: white;
     background: transparent;
-    background-color: rgb(2, 107, 170);
     height: 37.65px;
     top: 2px;
+}
+.search:focus {
+    color: black;
 }
 ::placeholder {
     color: rgba(255, 255, 255, 0.377);
@@ -112,15 +85,13 @@ mat-toolbar {
     color: white;
     background: transparent;
 }
-.menuIcon:hover {
-    color: rgba(255, 255, 255, 0.74);
-}
+/* Icons after search */
 .icon {
     color: white;
 }
 .icon:hover {
     color: rgba(255, 255, 255, 0.74);
 }
-.data-option {
-    width: 140% !important;
+.menuIcon:hover {
+    color: rgba(255, 255, 255, 0.74);
 }
