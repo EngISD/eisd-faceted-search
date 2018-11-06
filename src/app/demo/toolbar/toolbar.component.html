@@ -4,18 +4,29 @@
       <mat-icon>menu</mat-icon>
     </button>
     <h1 class="logo" (click)="toHome()">Ricerca Commesse</h1>
-    <form class="searchbar">
-      <mat-icon class="searchicon">search</mat-icon>
-      <input [matAutocomplete]="auto" autocomplete="off" matInput class="search" type="text" placeholder="Ricerca..." [(ngModel)]="value" name="input">
-      <button  mat-icon-button class="cancel" (click)="cleanValue()"><mat-icon class="cancel">clear</mat-icon></button>
+    <form class="searchbar" [ngStyle]="{'background-color': searchColor}">
+      <mat-icon class="searchicon" [ngStyle]="{'color': iconColor}">search</mat-icon>
+      <input [matAutocomplete]="auto" 
+             autocomplete="off" 
+             matInput 
+             class="search" 
+             type="text" 
+             placeholder="Ricerca..." 
+             [(ngModel)]="value" 
+             name="input" 
+             (focus)="onFocus()"
+             (focusout)="onFocusOut()"
+             [ngStyle]="{'background-color': searchColor}">
+      <button  mat-icon-button class="cancel" (click)="cleanValue()"><mat-icon class="cancel" [ngStyle]="{'color': iconColor}">clear</mat-icon></button>
     <mat-autocomplete #auto="matAutocomplete" autoActiveFirstOption>
       <mat-option #option class="data-option"></mat-option>
     </mat-autocomplete>
     </form>
-    <button mat-icon-button ><mat-icon class="icon">help</mat-icon></button>
-    <button mat-icon-button ><mat-icon class="icon">person_pin</mat-icon></button>
-    <button mat-icon-button ><mat-icon class="menuIcon">more_vert</mat-icon></button>
-    
+    <button mat-icon-button class="iconButton" ><mat-icon class="icon">help</mat-icon></button>
+    <button mat-icon-button class="iconButton" ><mat-icon class="icon">person_pin</mat-icon></button>
     <div class="clearfix"></div>
+    <button mat-icon-button class="menuIconButton" ><mat-icon class="menuIcon">more_vert</mat-icon></button>
+    
+    
   </mat-toolbar-row>
 </mat-toolbar>

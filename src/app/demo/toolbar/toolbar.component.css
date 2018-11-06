@@ -13,13 +13,19 @@
        line-height: 47px;
        width: 60%;
     }
-    .icon {
+    .icon, .iconButton {
         display: none;
     }
 }
 @media only screen and (max-width: 780px) {
     .logo {
         display: none;
+    }
+    .searchbar {
+        width: 90%;
+    }
+    .search {
+        width: 92%;
     }
 }
 @media only screen and (max-width: 599px) {
@@ -31,45 +37,19 @@
     }
 }
 @media only screen and (max-width: 450px) {
-    .searchbar {
-      display: block;
-      min-height: 50px;
-      position: relative;
-      top: 5px;
-    }
-    mat-toolbar-row {
-        display: block !important;
-    }
     .logo {
         display: none;
-    }
-    .search {
-        margin-left: 5%;
-    }
-    .menubutton {
-        position: relative;
-        top: 15%;
     }
   }
 @media only screen and (max-width: 390px) {
     .searchbar {
         display: block;
-        min-height: 50px;
-        margin: 0 8% !important;
-        position: relative;
-        top: 5px;
     }
     .logo {
         display: none;
     }   
 }
 @media only screen and (max-width: 350px) {
-    .searchbar {
-        display: block;
-        width: 60% !important;
-        position: relative;
-        top: 5px;
-    }
     .logo {
         display: none;
     }   
@@ -80,33 +60,31 @@ mat-toolbar {
 }
 .mat-toolbar-row {
     height: 48px !important;
+    position: absolute;
 }
 .mat-toolbar-multiple-rows {
     min-height: 0;
 }
 .menubutton {
     color: white;
-    float: left;
+    /* float: left; */
     position: relative;
     bottom: 4%;
 }
 .logo {
     padding-left: 1%;
-    float: left;
+    /* float: left; */
     cursor: pointer;
     font-size: 25px;
 }
 .searchbar {
     margin-left: 7%;
-    width: 70%;
+    width: 90%;
     height: 80%;
     min-height: 30px;
     background-color: rgb(2, 107, 170);
     border-radius: 6px;
-    float: left;
-    background: #fff;
     display: flex;
-    background-color:  rgb(2, 107, 170);
 }
 .searchicon {
     color: white;
@@ -124,7 +102,8 @@ mat-toolbar {
     color: black;
     background: transparent;
     background-color: rgb(2, 107, 170);
-    top: 1px;
+    height: 37.65px;
+    top: 2px;
 }
 ::placeholder {
     color: rgba(255, 255, 255, 0.377);
@@ -133,14 +112,14 @@ mat-toolbar {
     color: white;
     background: transparent;
 }
-.menuIcon {
-
+.menuIcon:hover {
+    color: rgba(255, 255, 255, 0.74);
 }
 .icon {
     color: white;
 }
-.clearfix {
-    clear: left;
+.icon:hover {
+    color: rgba(255, 255, 255, 0.74);
 }
 .data-option {
     width: 140% !important;

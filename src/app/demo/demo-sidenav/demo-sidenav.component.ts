@@ -15,6 +15,8 @@ import { DialogComponent } from '../dialog/dialog.component';
 export class DemoSidenavComponent implements OnInit, OnDestroy {
 
   toggled: boolean = false;
+  showHide: any;
+  descending: any;
 
   mobileQuery: MediaQueryList;
   @ViewChild(MatSidenav) sidenav: MatSidenav;
@@ -177,5 +179,8 @@ export class DemoSidenavComponent implements OnInit, OnDestroy {
 
   public chartHovered(e:any):void {
     console.log(e);
+  }
+  sortResults(){
+    this.descending = !this.descending;
   }
 }
