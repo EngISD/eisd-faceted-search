@@ -11,20 +11,31 @@
     }
     .searchbar {
        line-height: 47px;
+       width: 60%;
+    }
+    .icon {
+        display: none;
+    }
+}
+@media only screen and (max-width: 780px) {
+    .logo {
+        display: none;
     }
 }
 @media only screen and (max-width: 599px) {
     .mat-toolbar-row, .mat-toolbar-single-row {
         height: 64px !important;
     }
+    .logo {
+        display: none;
+    }
 }
 @media only screen and (max-width: 450px) {
     .searchbar {
       display: block;
       min-height: 50px;
-      margin: 0 9% !important;
       position: relative;
-      top: 15%;
+      top: 5px;
     }
     mat-toolbar-row {
         display: block !important;
@@ -45,6 +56,8 @@
         display: block;
         min-height: 50px;
         margin: 0 8% !important;
+        position: relative;
+        top: 5px;
     }
     .logo {
         display: none;
@@ -53,14 +66,23 @@
 @media only screen and (max-width: 350px) {
     .searchbar {
         display: block;
-        margin: 0 7% !important;
+        width: 60% !important;
+        position: relative;
+        top: 5px;
     }
     .logo {
         display: none;
     }   
 }
 mat-toolbar {
-    background-color: #081B2A !important;
+    background-color: rgb(2, 119, 189) !important;
+    height: 48px !important;
+}
+.mat-toolbar-row {
+    height: 48px !important;
+}
+.mat-toolbar-multiple-rows {
+    min-height: 0;
 }
 .menubutton {
     color: white;
@@ -69,48 +91,53 @@ mat-toolbar {
     bottom: 4%;
 }
 .logo {
-    /* -webkit-filter: drop-shadow(0px 0px 6px white);
-    filter: drop-shadow(0px 0px 6px white); */
-    filter: brightness(110%);
     padding-left: 1%;
     float: left;
     cursor: pointer;
+    font-size: 25px;
 }
 .searchbar {
     margin-left: 7%;
     width: 70%;
-    height: 70%;
-    min-height: 40px;
-    background-color: white;
+    height: 80%;
+    min-height: 30px;
+    background-color: rgb(2, 107, 170);
     border-radius: 6px;
     float: left;
-    box-shadow:inset 0 0 1px 1px #888;
     background: #fff;
-}
-.searchbutton {
-    margin: 3px 0px;
-    padding: 0 4px;
-    width: 5%;
-}
-.searchbutton:hover {
-    background-color: rgba(0, 59, 115, 0.103);
-    border-radius: 8px;
+    display: flex;
+    background-color:  rgb(2, 107, 170);
 }
 .searchicon {
-    color: black;
-}
-.searchicon:hover {
-    color: rgb(0, 60, 115);
+    color: white;
+    padding-top: 7px;
+    padding-left: 9px;
+    padding-right: 9px;
+    background: transparent;
 }
 .search {
     position: relative;
-    top: -10px;
     width: 92%;
-    height: 50%;
     border: none;
     font-size: 1em;
     outline: none;
     color: black;
+    background: transparent;
+    background-color: rgb(2, 107, 170);
+    top: 1px;
+}
+::placeholder {
+    color: rgba(255, 255, 255, 0.377);
+}
+.cancel {
+    color: white;
+    background: transparent;
+}
+.menuIcon {
+
+}
+.icon {
+    color: white;
 }
 .clearfix {
     clear: left;

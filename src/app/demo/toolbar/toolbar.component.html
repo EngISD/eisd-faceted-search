@@ -1,22 +1,21 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <button class="menubutton" mat-icon-button (click)="switch()">
+    <button class="menubutton" mat-icon-button>
       <mat-icon>menu</mat-icon>
     </button>
-    <img class="logo" 
-         src="../../../assets/engineeringsmaller.png" 
-         alt="logo" 
-         width="150px" 
-         (click) = "toHome()">
+    <h1 class="logo" (click)="toHome()">Ricerca Commesse</h1>
     <form class="searchbar">
-      <button mat-icon-button class="searchbutton" disableRipple = "true">
-        <mat-icon class="searchicon">search</mat-icon>
-      </button>
-      <input [matAutocomplete]="auto" autocomplete="off" matInput class="search" type="text" placeholder="Ricerca...">
+      <mat-icon class="searchicon">search</mat-icon>
+      <input [matAutocomplete]="auto" autocomplete="off" matInput class="search" type="text" placeholder="Ricerca..." [(ngModel)]="value" name="input">
+      <button  mat-icon-button class="cancel" (click)="cleanValue()"><mat-icon class="cancel">clear</mat-icon></button>
     <mat-autocomplete #auto="matAutocomplete" autoActiveFirstOption>
       <mat-option #option class="data-option"></mat-option>
     </mat-autocomplete>
     </form>
+    <button mat-icon-button ><mat-icon class="icon">help</mat-icon></button>
+    <button mat-icon-button ><mat-icon class="icon">person_pin</mat-icon></button>
+    <button mat-icon-button ><mat-icon class="menuIcon">more_vert</mat-icon></button>
+    
     <div class="clearfix"></div>
   </mat-toolbar-row>
 </mat-toolbar>
