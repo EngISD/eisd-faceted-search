@@ -38,7 +38,7 @@
                           [style.marginTop.px]="mobileQuery.matches ? 0 : 0">
                           
     <mat-sidenav #snav [opened]="mobileQuery.matches ? 'false' : 'true'" [mode]="mobileQuery.matches ? 'over' : 'side'"
-                  [fixedInViewport]="mobileQuery.matches" [fixedTopGap]="mobileQuery.matches ? 64 : 64">
+                  [fixedInViewport]="mobileQuery.matches" [fixedTopGap]="mobileQuery.matches ? 97 : 97">
       <mat-nav-list class="facet">
           <mat-expansion-panel [expanded]="i < 2" *ngFor="let category of categories; trackBy: trackByFn; let i = index">
               <mat-expansion-panel-header>
@@ -78,7 +78,7 @@
                [class.first] = "first"
                (click) = "openDialog(item)"
                >
-            <div class="round mat-elevation-z4">{{ item.comCodice | slice:0:3 }}</div>
+            <div class="round mat-elevation-z4">{{ item.comCliente | slice:0:3 }}</div>
             <div class="feature"><mat-icon svgIcon="feature-search-outline" matListIcon></mat-icon></div>
             <div class="viewport-item-title">
               Com Codice: {{ item.comCodice }} Anno: {{ item.anno }} &nbsp;&nbsp;&nbsp;&nbsp;Descrizione: {{item.comDescrizione}}<br>
