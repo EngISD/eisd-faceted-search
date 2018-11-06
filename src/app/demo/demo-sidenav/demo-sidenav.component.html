@@ -35,7 +35,7 @@
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
-      <ngx-loading [show]="loading" [config]="{animationType: ngxLoadingAnimationTypes.wanderingCubes, primaryColour: primaryColour, secondaryColour: secondaryColour, backdropBorderRadius: '3px'}" [template]="customLoadingTemplate"></ngx-loading>
+      <ngx-loading [show]="loading" [config]="{animationType: ngxLoadingAnimationTypes.circle, primaryColour: primaryColour, secondaryColour: secondaryColour, backdropBorderRadius: '3px'}"></ngx-loading>
       <mat-paginator class="paginator-option"
                     [length]="length"
                     [pageIndex]="pageIndex"

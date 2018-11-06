@@ -37,8 +37,8 @@ export class DemoSidenavComponent implements OnInit, OnDestroy {
   hasMore = [];
   public loading = false;
   public ngxLoadingAnimationTypes = ngxLoadingAnimationTypes;
-  public primaryColour = 'rgb(217, 0, 80)';
-  public secondaryColour = 'rgb(0, 47, 90)';
+  public primaryColour = '#006dddee';
+  public secondaryColour = '#cccccc01';
 
   public barChartOptions:any = {
     scaleShowVerticalLines: false,
