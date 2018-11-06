@@ -23,7 +23,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatDialogModule} from '@angular/material/dialog';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { NgxLoadingModule } from 'ngx-loading';
-import { MatButtonModule, MatListModule, MatFormFieldModule, MatIconModule, MatIconRegistry,  MatExpansionModule, MatSliderModule, MatInputModule, MatCardModule, MatDividerModule } from '@angular/material';
+import { MatButtonModule, MatListModule, MatFormFieldModule, MatIconModule, MatIconRegistry,  MatExpansionModule, MatSliderModule, MatInputModule, MatCardModule, MatDividerModule, MatSelectModule } from '@angular/material';
 // Components
 import { AppComponent } from './app.component';
 import { ContentListComponent } from './content-list/content-list.component';
@@ -81,7 +81,8 @@ import { DialogComponent } from './demo/dialog/dialog.component';
     ChartsModule,
     MatSlideToggleModule,
     MatCardModule,
-    MatDividerModule
+    MatDividerModule,
+    MatSelectModule
   ],
   entryComponents: [DialogComponent],
   providers: [{ provide: MatPaginatorIntl, useClass: MatPaginatorIntlIta}],
