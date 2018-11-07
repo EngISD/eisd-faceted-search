@@ -183,4 +183,15 @@ export class ServiceService {
         }, error => error)
       );
   }
+  sortAllResults(value, pageSize, pageIndex, desc){
+    let res = '';
+    res = res.concat('&order=', value.toString());
+    return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/list?' + pageSize + '&page=' + (pageIndex + 1) + res + '&asc=' + !desc)
+    .pipe(
+      map(items => {
+        return items['data'];
+      }, error => error)
+    );
+  }
+
 }

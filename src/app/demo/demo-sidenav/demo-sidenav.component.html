@@ -64,9 +64,12 @@
       </button>
       <mat-form-field class="no-line">
           <mat-select placeholder="Ordina per" 
-                      [(value)]="option" 
-                      disableOptionCentering panelClass="sortPanel">
-            <mat-option value="some value">some value</mat-option>
+                      disableOptionCentering panelClass="sortPanel"
+                      [(ngModel)]="option"
+                      >  
+            <mat-option *ngFor="let option1 of options" 
+                        (click)="sortAllResults()"
+                        value="{{option1}}">{{option1}}</mat-option>
           </mat-select>
         </mat-form-field>
     </div>

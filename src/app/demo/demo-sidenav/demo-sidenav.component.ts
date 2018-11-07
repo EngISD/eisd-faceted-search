@@ -15,8 +15,10 @@ import { DialogComponent } from '../dialog/dialog.component';
 export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked {
 
   // Sort variables
-  descending: any;
-  option: string = 'some value';
+  descending: boolean = true;
+  option: any = '1';
+  options: any[] = [1, 2, 3, 4];
+  test: any;
 
   mobileQuery: MediaQueryList;
   @ViewChild(MatSidenav) sidenav: MatSidenav;
@@ -272,5 +274,14 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
   }
   sortResults(){
     this.descending = !this.descending;
+    this.sortAllResults();
+  }
+  sortAllResults(){
+    this.loading = true;
+    this.service.sortAllResults(this.option, this.pageSize, 0, this.descending).subscribe(res => {
+      this.test = res;
+      this.activePageDataChunk = this.test;
+      this.loading = false;
+    });
   }
 }
