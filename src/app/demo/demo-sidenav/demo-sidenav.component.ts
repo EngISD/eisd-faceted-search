@@ -1,5 +1,5 @@
 import { ServiceService } from './../../service.service';
-import { Component, OnInit, OnDestroy, ChangeDetectorRef, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef, ViewChild, AfterViewChecked } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { MatSidenav, PageEvent, MatPaginator, MatDialogConfig } from '@angular/material';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
@@ -12,11 +12,11 @@ import { DialogComponent } from '../dialog/dialog.component';
   templateUrl: './demo-sidenav.component.html',
   styleUrls: ['./demo-sidenav.component.css']
 })
-export class DemoSidenavComponent implements OnInit, OnDestroy {
+export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked {
 
-  toggled: boolean = false;
-  showHide: any;
+  // Sort variables
   descending: any;
+  option: string = 'some value';
 
   mobileQuery: MediaQueryList;
   @ViewChild(MatSidenav) sidenav: MatSidenav;
@@ -65,6 +65,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy {
     {data: [], label: ''}
   ];
 
+  // Paginator variables
   page: PageEvent;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   currentPage = 0;
@@ -77,12 +78,13 @@ export class DemoSidenavComponent implements OnInit, OnDestroy {
 
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private service: ServiceService, public dialog: MatDialog) {
+  constructor(private changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private service: ServiceService, public dialog: MatDialog) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
   }
   ngOnInit() {
+    this.changeDetectorRef.detectChanges();
     this.loading = true;
     this.service.getCountOfAll().subscribe(res => {
       this.length = res;
@@ -112,6 +114,9 @@ export class DemoSidenavComponent implements OnInit, OnDestroy {
         }
       });
     }
+  }
+  ngAfterViewChecked() {
+    this.changeDetectorRef.detectChanges();
   }
 
   ngOnDestroy(): void {
@@ -144,7 +149,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy {
   trackByFn(index, item) {
     return index;
   }
-
+  // Paginator functions
   setPageSizeOptions(setPageSizeOptionsInput: string) {
     this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
   }
@@ -158,6 +163,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy {
       this.loading = false;
     });
   }
+  // Paginator functions
 
   showMore(cat) {
     ++this.numMore[cat];
@@ -174,6 +180,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy {
     });
   }
 
+  // Opens dialog on click
   openDialog(item){
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = false;
@@ -189,9 +196,8 @@ export class DemoSidenavComponent implements OnInit, OnDestroy {
     }
     this.dialog.open(DialogComponent, dialogConfig);
   }
-  toggle(){
-    this.toggled = !this.toggled;
-  }
+  // Opens dialog on click
+  
   public chartClicked(e:any):void {
     console.log(e);
   }
