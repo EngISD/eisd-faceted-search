@@ -44,6 +44,8 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
   public primaryColour = '#006dddee';
   public secondaryColour = '#cccccc01';
 
+  barSelected = [];
+
   public barChartOptions:any = {
     scaleShowVerticalLines: false,
     responsive: true
@@ -123,25 +125,47 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 
-  onNgModelChange(cat) {
+  onNgModelChange(cat?) {
+    console.log(this.selected);
+    
     for (let i = 0; i < this.categories.length; i++) {
       if (this.categories[i].id != cat) {
-        this.service.refreshFacets(this.categories[i].id, this.selected).subscribe(res => {
-          this.checkboxes[this.categories[i].id] = res['facetOptions'];
+        if (cat == undefined) {
+          this.service.getFacets(this.categories[i].id).subscribe(res => {
+            this.checkboxes[this.categories[i].id] = res['facetOptions'];
+            this.hasMore[this.categories[i].id] = res['hasMore'];
 
-          if (this.categories[i].id == 'anno') {
-            const temp = [];
-            const temp1 = [];
-            for (let j = 0; j < this.checkboxes['anno'].length; j++) {
-              temp.push(this.checkboxes['anno'][j].code);
-              temp1.push(this.checkboxes['anno'][j].count);
+            if (this.categories[i].id == 'anno') {
+              const temp = [];
+              const temp1 = [];
+              for (let j = 0; j < this.checkboxes['anno'].length; j++) {
+                temp.push(this.checkboxes['anno'][j].code);
+                temp1.push(this.checkboxes['anno'][j].count);
+              }
+              this.barChartLabels = temp;
+              this.barChartData[0] = Object.assign({
+                data: temp1, label: 'Number of items'
+              });
             }
-            this.barChartLabels = temp;
-            this.barChartData[0] = Object.assign({
-              data: temp1, label: 'Number of items'
-            });
-          }
-        });
+          });
+        } else {
+          this.service.refreshFacets(this.categories[i].id, this.selected).subscribe(res => {
+            this.checkboxes[this.categories[i].id] = res['facetOptions'];
+
+            if (this.categories[i].id == 'anno') {
+              const temp = [];
+              const temp1 = [];
+              for (let j = 0; j < this.checkboxes['anno'].length; j++) {
+                temp.push(this.checkboxes['anno'][j].code);
+                temp1.push(this.checkboxes['anno'][j].count);
+              }
+              this.barChartLabels = temp;
+              this.barChartData[0] = Object.assign({
+                data: temp1, label: 'Number of items'
+              });
+            }
+          });
+        }
       }
     }
   }
@@ -199,7 +223,40 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
   // Opens dialog on click
   
   public chartClicked(e:any):void {
-    console.log(e);
+    if (e.active.length > 0) {
+      const temp = {anno: [e.active[0]._model.label]};
+
+      const index = this.barSelected.findIndex(x => x.anno == e.active[0]._model.label);
+      if (index != -1) {
+        this.barSelected.splice(index, 1);
+      } else {
+        this.barSelected.push(temp);
+      }
+
+      console.log(this.barSelected);
+
+      for (let i = 0; i < this.categories.length; i++) {
+        if (this.categories[i].id != 'anno') {
+          this.service.refreshFacets(this.categories[i].id, temp).subscribe(res => {
+            this.checkboxes[this.categories[i].id] = res['facetOptions'];
+          });
+        }
+      }
+    }
+
+      /* if (this.categories[i].id == 'anno') {
+        const temp = [];
+        const temp1 = [];
+        for (let j = 0; j < this.checkboxes['anno'].length; j++) {
+          temp.push(this.checkboxes['anno'][j].code);
+          temp1.push(this.checkboxes['anno'][j].count);
+        }
+        this.barChartLabels = temp;
+        this.barChartData[0] = Object.assign({
+          data: temp1, label: 'Number of items'
+        });
+      } */
+
   }
 
   public chartHovered(e:any):void {
@@ -209,8 +266,9 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
   resetAll() {
     for (let i = 0; i < this.categories.length; i++) {
       this.selected[this.categories[i].id] = [];
-      this.onNgModelChange(this.categories[i].id);
     }
+    this.barSelected = [];
+    this.onNgModelChange();
   }
   sortResults(){
     this.descending = !this.descending;
