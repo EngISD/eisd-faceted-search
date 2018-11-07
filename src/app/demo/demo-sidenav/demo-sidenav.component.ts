@@ -59,8 +59,8 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
       borderColor: '#0277bd8a',
       pointBackgroundColor: '#0278bd8a',
       pointBorderColor: '#0277bd8a',
-      pointHoverBackgroundColor: '#0278bd',
-      pointHoverBorderColor: '#0278bd'
+      pointHoverBackgroundColor: '#0277bd8a',
+      pointHoverBorderColor: '#0277bd8a'
     }
   ];
   public barChartData:any[] = [
@@ -221,23 +221,21 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
     this.dialog.open(DialogComponent, dialogConfig);
   }
   // Opens dialog on click
-  
+
   public chartClicked(e:any):void {
     if (e.active.length > 0) {
-      const temp = {anno: [e.active[0]._model.label]};
+      const temp = e.active[0]._model.label;
 
-      const index = this.barSelected.findIndex(x => x.anno == e.active[0]._model.label);
+      const index = this.barSelected.findIndex(x => x == e.active[0]._model.label);
       if (index != -1) {
         this.barSelected.splice(index, 1);
       } else {
         this.barSelected.push(temp);
       }
-
-      console.log(this.barSelected);
-
+      const tem = {anno: this.barSelected};
       for (let i = 0; i < this.categories.length; i++) {
         if (this.categories[i].id != 'anno') {
-          this.service.refreshFacets(this.categories[i].id, temp).subscribe(res => {
+          this.service.refreshFacets(this.categories[i].id, tem).subscribe(res => {
             this.checkboxes[this.categories[i].id] = res['facetOptions'];
           });
         }
