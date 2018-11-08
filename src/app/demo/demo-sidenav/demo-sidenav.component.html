@@ -134,18 +134,52 @@
       <ngx-loading [show]="loading" 
                    [config]="{animationType: ngxLoadingAnimationTypes.circle, primaryColour: primaryColour, secondaryColour: secondaryColour, backdropBorderRadius: '3px'}">
       </ngx-loading>
-      <cdk-virtual-scroll-viewport itemSize="20" class="viewport">
+      <cdk-virtual-scroll-viewport itemSize="20" 
+                                   class="viewport">
         <div *cdkVirtualFor="let item of activePageDataChunk; let first = first;"  
               class="viewport-item mat-elevation-z1"
               [class.first] = "first"
               (click) = "openDialog(item)">
-          <div class="round mat-elevation-z4">{{ item.comCodice | slice:0:3 }}</div>
-          <div class="feature"><mat-icon svgIcon="feature-search-outline" matListIcon></mat-icon></div>
+          <div class="round mat-elevation-z4"
+               *ngIf="!sidenav.opened">{{ item.comCodice | slice:0:3 }}</div>
+          <div class="feature"
+               *ngIf="!sidenav.opened">
+            <mat-icon svgIcon="feature-search-outline" matListIcon></mat-icon>
+          </div>
           <div class="viewport-item-title">
-            <div class="infoFirst">{{item.comDescrizione}}<span>({{ item.anno }})</span><span class="code">{{ item.comCodice }}</span></div>
-            <div class="info"><span class="infoTitle1">Cliente: </span>{{item.comCliente}}<span class="code">{{item.cliPartitaIva}} - {{item.cliTipologia}}</span></div>
-            <div class="info"><span class="infoTitle2">Business unit: </span>{{item.cdcDescrizione}}, {{item.cdcBusinessUnit}}<span class="code">{{item.cdcCodice}} </span></div>
-            <div class="info"><span class="infoTitle3">Responsabile: </span>{{item.respCognome}} {{item.respNome}}<span class="code">{{item.cdcResponsabile}}</span></div>
+            <div class="title" 
+                 [ngClass]="{'smallerStatus': sidenav.opened}">
+              <div class="infoFirst" 
+                   [ngClass]="{'noWrap': sidenav.opened}">
+                <span class="code">{{ item.comCodice }}</span>{{item.comDescrizione}} 
+              </div>
+              <div class="info">
+                <span class="code">{{ item.cdcResponsabile }}</span>{{ item.respCognome }} {{ item.respNome }}
+              </div>
+              <div class="info">
+                <span class="code">{{item.cdcCodice}}</span>{{item.cdcDescrizione}}, {{item.cdcBusinessUnit}}
+              </div>
+              <div class="info icons">
+                <mat-icon class="statusIconC" 
+                          svgIcon="clipboard-check" 
+                          *ngIf="item.comStato=='C'">
+                </mat-icon>
+                <mat-icon class="statusIconA" 
+                          svgIcon="clipboard-alert" 
+                          *ngIf="item.comStato=='A'">
+                </mat-icon>
+                <div class="yearIcon">
+                    <mat-icon class="statusIconA" 
+                              svgIcon="calendar">
+                    </mat-icon><div class="year">{{item.anno}}</div>
+                </div>
+              </div> 
+            </div>
+            <div class="statusInfo" [ngClass]="{'biggerStatus': sidenav.opened}">
+              <div class="status"
+                   [ngClass]="{'goodStatus': ((item.ricaviC12-item.costiC12) &gt; 0), 'badStatus': ((item.costiC12-item.ricaviC12) &gt; 0), 'neutralStatus': (item.costiC12==item.ricaviC12)}"> <span class="hideCosts">Costi:</span> {{ item.costiC12 | number: '1.0' }} € <br> <span class="hideCosts">Ricavi:</span> {{ item.ricaviC12 | number: '1.0' }} €
+              </div>
+            </div>
             <div class="clearfix"></div>
           </div>
         </div>
