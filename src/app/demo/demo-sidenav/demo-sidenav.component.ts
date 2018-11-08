@@ -38,9 +38,10 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
   ];
   content = [];
   checkboxes = [];
-  selected = [];
+  selected1 = [];
   numMore = [];
   hasMore = [];
+  dud1 = [];
   public loading = false;
   public ngxLoadingAnimationTypes = ngxLoadingAnimationTypes;
   public primaryColour = '#006dddee';
@@ -75,6 +76,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
   currentPage = 0;
   length = 0;
   pageSize = 50;
+  pageIndex = 0;
   pageSizeOptions: number[] = [10, 20, 50, 100];
   activePageDataChunk = [];
 
@@ -82,20 +84,23 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
 
   private _mobileQueryListener: () => void;
 
+  // tslint:disable:max-line-length
   constructor(private changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private service: ServiceService, public dialog: MatDialog) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
+    for (let i = 0; i < this.categories.length; i++) {
+      this.selected1[this.categories[i].id] = [];
+      this.dud1[this.categories[i].id] = [];
+    }
   }
   ngOnInit() {
     this.changeDetectorRef.detectChanges();
     this.loading = true;
-    this.service.getCountOfAll().subscribe(res => {
-      this.length = res;
-    });
-    this.service.getRealData(this.pageSize, 0).subscribe(res => {
-      this.content = res;
-      this.activePageDataChunk = this.content;
+    this.service.sortAllResults(this.option, this.pageSize, 0, this.descending, this.selected1).subscribe(res => {
+      this.test = res['data'];
+      this.length = res['count'];
+      this.activePageDataChunk = this.test;
       this.loading = false;
     });
     for (let i = 0; i < this.categories.length; i++) {
@@ -125,11 +130,26 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
+    this.changeDetectorRef.detach();
   }
 
   onNgModelChange(cat?) {
-    console.log(this.selected);
-    
+    this.loading = true;
+    /* setTimeout(() => {
+      this.service.sortAllResults(this.option, this.pageSize, 0, this.descending, this.dud1).subscribe(res => {
+        this.test = res['data'];
+        this.activePageDataChunk = this.test;
+        this.length = res['count'];
+        this.loading = false;
+      });
+    }); */
+    this.service.sortAllResults(this.option, this.pageSize, 0, this.descending, this.selected1).subscribe(res => {
+      this.test = res['data'];
+      this.activePageDataChunk = this.test;
+      this.length = res['count'];
+      this.loading = false;
+    });
+
     for (let i = 0; i < this.categories.length; i++) {
       if (this.categories[i].id != cat) {
         if (cat == undefined) {
@@ -151,7 +171,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
             }
           });
         } else {
-          this.service.refreshFacets(this.categories[i].id, this.selected).subscribe(res => {
+          this.service.refreshFacets(this.categories[i].id, this.selected1).subscribe(res => {
             this.checkboxes[this.categories[i].id] = res['facetOptions'];
 
             if (this.categories[i].id == 'anno') {
@@ -181,11 +201,11 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
   }
   onPageChanged(e) {
     this.loading = true;
-    this.service.getRealData(e.pageSize, e.pageIndex).subscribe(res => {
-      this.content = res;
+    this.service.sortAllResults(this.option, e.pageSize, e.pageIndex, this.descending, this.selected1).subscribe(res => {
+      this.test = res['data'];
       this.pageSize = e.pageSize;
-      this.scroll.scrollToIndex(0); // Returns the scroll to top when page changes
-      this.activePageDataChunk = this.content;
+      this.activePageDataChunk = this.test;
+      this.scroll.scrollToIndex(0);
       this.loading = false;
     });
   }
@@ -193,7 +213,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
 
   showMore(cat) {
     ++this.numMore[cat];
-    this.service.getMoreFacets(cat, this.numMore[cat]).subscribe(res => {
+    this.service.getFacets(cat, this.numMore[cat]).subscribe(res => {
       this.checkboxes[cat] = res['facetOptions'];
       this.hasMore[cat] = res['hasMore'];
     });
@@ -234,14 +254,23 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
       } else {
         this.barSelected.push(temp);
       }
-      const tem = {anno: this.barSelected};
+
+      this.selected1['anno'] = this.barSelected;
+
       for (let i = 0; i < this.categories.length; i++) {
         if (this.categories[i].id != 'anno') {
-          this.service.refreshFacets(this.categories[i].id, tem).subscribe(res => {
+          this.service.refreshFacets(this.categories[i].id, this.selected1).subscribe(res => {
             this.checkboxes[this.categories[i].id] = res['facetOptions'];
           });
         }
       }
+      this.loading = true;
+      this.service.sortAllResults(this.option, this.pageSize, 0, this.descending, this.selected1).subscribe(res => {
+        this.test = res['data'];
+        this.activePageDataChunk = this.test;
+        this.length = res['count'];
+        this.loading = false;
+      });
     }
 
       /* if (this.categories[i].id == 'anno') {
@@ -265,10 +294,11 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
 
   resetAll() {
     for (let i = 0; i < this.categories.length; i++) {
-      this.selected[this.categories[i].id] = [];
+      this.selected1[this.categories[i].id] = [];
+      this.dud1[this.categories[i].id] = [];
     }
     this.barSelected = [];
-    this.onNgModelChange();
+    this.onNgModelChange('anno');
   }
   sortResults(){
     this.descending = !this.descending;
@@ -276,10 +306,21 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
   }
   sortAllResults(){
     this.loading = true;
-    this.service.sortAllResults(this.option, this.pageSize, 0, this.descending).subscribe(res => {
-      this.test = res;
+    this.pageIndex = 0;
+    this.paginator.pageIndex = 0;
+    this.service.sortAllResults(this.option, this.pageSize, 0, this.descending, this.selected1).subscribe(res => {
+      this.test = res['data'];
       this.activePageDataChunk = this.test;
       this.loading = false;
     });
+  }
+
+  dud(code, cat) {
+    const index = this.dud1[cat].indexOf(code);
+    if (index == -1) {
+      this.dud1[cat].push(code);
+    } else {
+      this.dud1[cat].splice(index, 1);
+    }
   }
 }

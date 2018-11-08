@@ -295,3 +295,6 @@ mat-selection-list {
 .clearfix {
     clear: left;
 }
+.mat-form-field.mat-focused.mat-form-field-label {
+    color: #0277bd !important;
+}

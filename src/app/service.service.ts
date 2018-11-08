@@ -90,20 +90,6 @@ export class ServiceService {
       }, error => error)
     );
   }
-  // Idea to search by facets
-  // getSearchArray(arr: Array<string>) {
-  //   return this.http.get<Array<any>>(this.dataUrl).pipe(
-  //     map(items => {
-  //       return items.filter(res => {
-  //         for (let i = 0; i < arr.length; i++) {
-  //           if (res['title'].toString().toLowerCase().includes(arr[i].toLowerCase())) {
-  //             return true;
-  //           }
-  //          }
-  //       });
-  //     }, error => error)
-  //   );
-  // }
   // Fetches filtered results
   getFilteredData() {
     return this.http.get<Array<any>>(this.dataUrl).pipe(
@@ -135,29 +121,11 @@ export class ServiceService {
 
 
   // DEMO SERVICE
-  getRealData(pageSize, pageIndex) {
-    // tslint:disable-next-line:max-line-length
-    return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/list?size=' + pageSize + '&page=' + (pageIndex + 1)).pipe(
-      map(items => {
-        return items['data'];
-      }, error => error)
-    );
-  }
-  getCountOfAll() {
-    return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/list?').pipe(
-      map(items => {
-        return items['count'];
-      }, error => error)
-    );
-  }
-  getFacets(category) {
-    return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/facet?facet=' + category).pipe(
-      map(items => {
-        return items;
-      }, error => error)
-    );
-  }
-  getMoreFacets(category, num) {
+  // tslint:disable:max-line-length
+  getFacets(category, num?) {
+    if (num == undefined) {
+      num = 1;
+    }
     return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/facet?facetMaxOptions=' + num*10 + '&facet=' + category).pipe(
       map(items => {
         return items;
@@ -183,13 +151,25 @@ export class ServiceService {
         }, error => error)
       );
   }
-  sortAllResults(value, pageSize, pageIndex, desc){
+  sortAllResults(value, pageSize, pageIndex, desc, facets?) {
     let res = '';
+    let facet = '';
+    if (facets != undefined) {
+      Object.entries(facets).forEach(
+        ([key1, value1]) => {
+          Object.entries(value1).forEach(
+            ([key2, value2]) => {
+              facet = facet.concat('&', key1, '=', value2.toString());
+            }
+          );
+        }
+      );
+    }
     res = res.concat('&order=', value.toString());
-    return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/list?' + pageSize + '&page=' + (pageIndex + 1) + res + '&asc=' + !desc)
+    return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/list?size=' + pageSize + '&page=' + (pageIndex + 1) + res + '&asc=' + !desc + facet)
     .pipe(
       map(items => {
-        return items['data'];
+        return items;
       }, error => error)
     );
   }

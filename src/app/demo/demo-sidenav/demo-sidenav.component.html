@@ -40,7 +40,8 @@
   <!-- Filter icons -->
   <!-- Paginator -->
     <div class="paginator">
-      <mat-paginator [length]="length"
+      <mat-paginator #paginator
+                     [length]="length"
                      [pageIndex]="pageIndex"
                      [pageSize]="pageSize"
                      [pageSizeOptions]="pageSizeOptions"
@@ -95,11 +96,13 @@
             </mat-panel-title>
           </mat-expansion-panel-header>
           <ng-template matExpansionPanelContent *ngIf="category.id != 'anno'">
-            <mat-selection-list dense [(ngModel)]="selected[category.id]" 
-                                (ngModelChange)="onNgModelChange(category.id)" 
+            <mat-selection-list dense [(ngModel)]="selected1[category.id]" 
+                                (selectionChange)="onNgModelChange(category.id)" 
                                 [ngModelOptions]="{standalone: true}">
               <mat-list-option *ngFor="let checkbox of checkboxes[category.id]; trackBy: trackByFn;"
-                               [value]="checkbox.code">
+                               (click)="dud(checkbox.code, category.id)"
+                               [value]="checkbox.code"
+                               [selected]="!dud1[category.id].indexOf(checkbox.code)">
                 <mat-icon matListIcon>label</mat-icon>
                   <p class="noSelect">{{ checkbox.descr }} ({{ checkbox.count }})</p>
               </mat-list-option>
