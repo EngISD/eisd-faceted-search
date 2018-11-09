@@ -141,9 +141,9 @@
               [class.first] = "first"
               (click) = "openDialog(item)">
           <div class="round mat-elevation-z4"
-               *ngIf="!sidenav.opened">{{ item.comCodice | slice:0:3 }}</div>
+               [ngClass]="{'hideOnSmall': sidenav.opened}">{{ item.comCodice | slice:0:3 }}</div>
           <div class="feature"
-               *ngIf="!sidenav.opened">
+               [ngClass]="{'hideOnSmall': sidenav.opened}">
             <mat-icon svgIcon="feature-search-outline" matListIcon></mat-icon>
           </div>
           <div class="viewport-item-title">
@@ -166,7 +166,16 @@
                 </mat-icon>
                 <mat-icon class="statusIconA" 
                           svgIcon="clipboard-alert" 
-                          *ngIf="item.comStato=='A'">
+                          *ngIf="item.comStato=='A'"
+                          registry.getDefaultFontSetClass>
+                </mat-icon>
+                <mat-icon class="statusIconS" 
+                          svgIcon="clipboard" 
+                          *ngIf="item.comStato=='S'">
+                </mat-icon>
+                <mat-icon class="statusIconI" 
+                          svgIcon="clipboard-alert" 
+                          *ngIf="item.comStato=='I'">
                 </mat-icon>
                 <div class="yearIcon">
                     <mat-icon class="statusIconA" 
@@ -177,7 +186,22 @@
             </div>
             <div class="statusInfo" [ngClass]="{'biggerStatus': sidenav.opened}">
               <div class="status"
-                   [ngClass]="{'goodStatus': ((item.ricaviC12-item.costiC12) &gt; 0), 'badStatus': ((item.costiC12-item.ricaviC12) &gt; 0), 'neutralStatus': (item.costiC12==item.ricaviC12)}"> <span class="hideCosts">Costi:</span> {{ item.costiC12 | number: '1.0' }} € <br> <span class="hideCosts">Ricavi:</span> {{ item.ricaviC12 | number: '1.0' }} €
+                   [ngClass]="{'goodStatus': ((item.ricaviC12-item.costiC12) &gt; 0), 'badStatus': ((item.costiC12-item.ricaviC12) &gt; 0), 'neutralStatus': (item.costiC12==item.ricaviC12)}">
+                <div class="costs">
+                  <mat-icon class="minusIcon" svgIcon="minus"></mat-icon>
+                  <div class="costValue"
+                       [ngClass]="{'smallFont': sidenav.opened && !mobileQuery.matches}">
+                      {{ item.costiC12 | number: '1.0' }} €
+                  </div>
+                </div>
+                <br>
+                <div class="costs">
+                  <mat-icon class="plusIcon" svgIcon="plus"></mat-icon>
+                  <div class="costValue"
+                       [ngClass]="{'smallFont': sidenav.opened && !mobileQuery.matches}">
+                      {{ item.ricaviC12 | number: '1.0' }} €
+                  </div>
+                </div> 
               </div>
             </div>
             <div class="clearfix"></div>
