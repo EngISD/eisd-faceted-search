@@ -70,7 +70,7 @@
                       >  
             <mat-option *ngFor="let option1 of options" 
                         (click)="sortAllResults()"
-                        value="{{option1}}">{{option1}}</mat-option>
+                        value="{{option1.id}}">{{option1.value}}</mat-option>
           </mat-select>
         </mat-form-field>
     </div>
@@ -189,12 +189,12 @@
                           *ngIf="item.comStato=='C'">
                 </mat-icon>
                 <mat-icon class="statusIconA" 
-                          svgIcon="clipboard-alert" 
+                          svgIcon="clipboard-text" 
                           *ngIf="item.comStato=='A'"
                           registry.getDefaultFontSetClass>
                 </mat-icon>
                 <mat-icon class="statusIconS" 
-                          svgIcon="clipboard" 
+                          svgIcon="clipboard-arrow-down" 
                           *ngIf="item.comStato=='S'">
                 </mat-icon>
                 <mat-icon class="statusIconI" 
@@ -206,6 +206,18 @@
                               svgIcon="calendar">
                     </mat-icon><div class="year">{{item.anno}}</div>
                 </div>
+                <mat-icon class="L136Icon" 
+                          svgIcon="numeric-1-box-outline"
+                          *ngIf="item.comLegge136=='1'"></mat-icon>
+                <mat-icon class="L136Icon" 
+                          svgIcon="numeric-2-box-outline"
+                          *ngIf="item.comLegge136=='2'"></mat-icon>
+                <mat-icon class="L136Icon" 
+                          svgIcon="numeric-3-box-outline"
+                          *ngIf="item.comLegge136=='3'"></mat-icon>
+                <mat-icon class="L136Icon" 
+                          svgIcon="numeric-4-box-outline"
+                          *ngIf="item.comLegge136=='4'"></mat-icon>
               </div> 
             </div>
             <div class="statusInfo" [ngClass]="{'biggerStatus': sidenav.opened}">

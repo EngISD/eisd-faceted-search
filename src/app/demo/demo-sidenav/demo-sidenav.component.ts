@@ -16,8 +16,23 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
 
   // Sort variables
   descending: boolean = true;
-  option: any = '1';
-  options: any[] = [1, 2, 3, 4];
+  option: any = 'Inizio Validita';
+  options = [
+    {id: '1', value: 'Inizio Validita'},
+    {id: '2', value: 'Descrizione'},
+    {id: '3', value: 'Cliente'}, 
+    {id: '4', value: 'Responsabile del Progetto'},
+    {id: '5', value: 'Centro di costo Descrizione'},
+    {id: '6', value: 'Responsabile Commerciale'}, 
+    {id: '7', value: 'Centro di costo Responsabile'},
+    {id: '8', value: 'Costi'},
+    {id: '9', value: 'Ricavi'},
+    {id: '10', value: 'Linea Prodotto'},
+    {id: '11', value: 'Stato'},
+    {id: '12', value: 'Tipo Avanzamento'}, 
+    {id: '13', value: 'Tipo Ricavo'}, 
+    {id: '14', value: 'Azienda Descrizione'},   
+  ];
   test: any;
 
   mobileQuery: MediaQueryList;
