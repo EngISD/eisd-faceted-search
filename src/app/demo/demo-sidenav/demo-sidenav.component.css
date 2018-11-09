@@ -1,4 +1,15 @@
 /* Responsive */
+@media only screen and (max-width: 1700px) {
+    .title {
+        width: 85% !important;
+    }
+    .statusInfo {
+        width: 12% !important;
+    }
+    .costValue {
+        bottom: 5px !important;
+    }
+}
 @media only screen and (max-width: 1470px) {
     .filterIcons {
         width: 30% !important;
@@ -6,13 +17,19 @@
     .sorting {
         width: 20% !important;
     }
+    .title {
+        width: 80% !important;
+    }
+    .statusInfo {
+        width: 17% !important;
+    }
 }
 @media only screen and (max-width: 1300px){
     .title {
         width: 78% !important;
     }
     .statusInfo {
-        width: 22% !important;
+        width: 19% !important;
     }
 }
 @media only screen and (max-width: 1100px) {
@@ -23,12 +40,20 @@
         width: 25% !important;
     }
     .title {
-        width: 78% !important;
+        width: 72% !important;
     }
     .statusInfo {
-        width: 22% !important;
+        width: 25% !important;
     }
-    
+    .viewport-item-title {
+        width: 80% !important;
+    }
+    .smallFont {
+        font-size: 13px;
+    }
+    .costValue {
+        bottom: 6px !important;
+    }
 }
 @media only screen and (max-width: 880px) {
 .filterIcons {
@@ -40,18 +65,70 @@
 .paginator {
     width: 52% !important;
     }
+    .title {
+        width: 75% !important;
+    }
+    .statusInfo {
+        min-width: 22% !important;
+    }
+    .hideOnSmall {
+        display: none !important;
+    }
+    .hideCosts {
+        display: none !important;
+    }
+    .smallerStatus {
+        width: 62% !important;
+    }
+    .biggerStatus {
+        width: 35% !important;
+    }
+    .viewport-item-title {
+        width: 86% !important;
+    } 
 }
 @media only screen and (max-width: 830px) {
     ::ng-deep .mat-paginator-page-size-label {
         display: none !important;
     }
-}
-@media only screen and (max-width: 760){
     .title {
-        width: 78% !important;
+        width: 75% !important;
     }
     .statusInfo {
         width: 22% !important;
+    }
+    .hideOnSmall {
+        display: none !important;
+    }
+    .hideCosts {
+        display: none !important;
+    }
+    .smallerStatus {
+        width: 62% !important;
+    }
+    .biggerStatus {
+        width: 35% !important;
+    }
+}
+@media only screen and (max-width: 760px){
+    .title {
+        width: 75% !important;
+    }
+    .statusInfo {
+        width: 22% !important;
+        font-size: 15px;
+    }
+    .hideOnSmall {
+        display: none !important;
+    }
+    .hideCosts {
+        display: none !important;
+    }
+    .smallerStatus {
+        width: 66% !important;
+    }
+    .biggerStatus {
+        width: 31% !important;
     }
 }
 @media only screen and (max-width: 735px) {
@@ -68,10 +145,10 @@
         width: 45% !important;
     }
     .title {
-        width: 72% !important;
+        width: 69% !important;
     }
     .smallerStatus {
-        width: 62% !important;
+        width: 59% !important;
     }
     .code {
         display: block;
@@ -100,6 +177,9 @@
     }
     .icons {
         display: block !important;
+    }
+    .smallFont {
+        font-size: 11.5px;
     }
 }
 @media only screen and (max-width: 630px) {
@@ -110,10 +190,10 @@
         width: 40% !important;
     }
     .title {
-        width: 72% !important;
+        width: 67% !important;
     }
     .smallerStatus {
-        width: 62% !important;
+        width: 53% !important;
     }
     .code {
         display: block;
@@ -129,22 +209,19 @@
         white-space: nowrap !important;
     }
     .statusInfo {
-        width: 28% !important;
+        width: 30% !important;
     }
     .biggerStatus {
-        width: 38% !important;
-    }
-    .hideCosts {
-        display: none !important;
+        width: 44% !important;
     }
     .info {
         display: none;
     }
-    .infoDrawerClosed {
-        display: block !important;
-    }
     .icons {
         display: block !important;
+    }
+    .smallFont {
+        font-size: 13px;
     }
 }
 @media only screen and (max-width: 600px) {
@@ -162,7 +239,7 @@
         display: none !important;
     }
     .title {
-        width: 72% !important;
+        width: 68% !important;
     }
     .code {
         display: block;
@@ -175,16 +252,16 @@
         display: inline-block !important;
     }
     .statusInfo {
-        width: 28% !important;
-    }
-    .hideCosts {
-        display: none !important;
+        width: 29% !important;
     }
     .info {
         display: none;
     }
     .icons {
         display: block !important;
+    }
+    .costValue {
+        bottom: 5px !important;
     }
 }
 @media only screen and (max-width: 550px){
@@ -196,6 +273,16 @@
     }
     .paginator {
         width: 60% !important;
+    }
+    .statusInfo {
+        font-size: 14px;
+        width: 32% !important;
+    }
+    .costValue {
+        bottom: 5px !important;
+    }
+    .title {
+        width: 65% !important;
     }
     
 }
@@ -210,7 +297,7 @@
         display: none !important;
     }
     .title {
-        width: 72% !important;
+        width: 55% !important;
     }
     .code {
         display: block;
@@ -223,21 +310,23 @@
         display: inline-block !important;
     }
     .statusInfo {
-        width: 28% !important;
-        font-size: 11px;
-    }
-    .status {
-        position: relative;
-        top: 40px;
-    }
-    .hideCosts {
-        display: none !important;
+        width: 42% !important;
+        font-size: 13px;
     }
     .info {
         display: none;
     }
     .icons {
         display: block !important;
+    }
+    .minusIcon {
+        transform: scale(0.4) !important;
+    }
+    .plusIcon {
+        transform: scale(0.4) !important;
+    }
+    .costValue {
+        bottom: 6px !important;
     }
 } 
 .container {
@@ -405,7 +494,7 @@ mat-selection-list {
 }
 .viewport-item-title {
     margin: 0;
-    margin-left: 22px;
+    /* margin-left: 22px; */
     display: inline-flex;
     width: 90%;
     margin-top: 14px;
@@ -441,6 +530,8 @@ mat-selection-list {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+    max-height: 4.5em;
+    line-height: 1.5em;
 }
 .info {
     float: left;
@@ -471,10 +562,36 @@ mat-selection-list {
     border-radius: 5px;
 }
 .title {
-    width: 80%;
+    width: 77%;
+    padding-left: 3%;
 }
-.status {
-    max-width: 130px;
+.costIcons {
+    max-height: 2em;
+    line-height: 1em;
+}
+.cashIcon {
+    transform: scale(0.82);
+}
+.minusIcon {
+    transform: scale(0.6);
+    position: relative;
+    right: 6px;
+    top: 2px;
+}
+.plusIcon {
+    transform: scale(0.6);
+    position: relative;
+    top: 2px;
+    right: 5px;
+}
+.costs {
+    display: inline-block;
+}
+.costValue {
+    display: inline-block;
+    position: relative;
+    right: 10px;
+    bottom: 7px;
 }
 .statusIconC {
     color: rgb(30, 145, 30);
@@ -482,6 +599,14 @@ mat-selection-list {
 }
 .statusIconA {
     color: rgb(2, 119, 189);
+    position: relative;
+}
+.statusIconS {
+    color: rgb(132, 134, 132);
+    position: relative;
+}
+.statusIconI {
+    color: rgb(221, 233, 60);
     position: relative;
 }
 .yearIcon {
