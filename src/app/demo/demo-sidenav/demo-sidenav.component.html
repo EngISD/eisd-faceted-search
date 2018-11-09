@@ -128,23 +128,51 @@
           <ng-template matExpansionPanelContent *ngIf="category.id == 'l136'">
             <div class="flex">
               <div class="row">
-                <div class="one" *ngIf="checkboxes['l136'][0]" [ngClass]="{'mat-elevation-z9': hover1, 'mat-elevation-z1': !hover1, 'clickedColour': clicked1, 'pointer': hover1}" (mouseenter)="hover1 = true" (mouseleave)="hover1 = false" (click)="clicked1 = !clicked1; onNgModelChange('l136')">
-                  <mat-icon class="flagIcon" [ngClass]="{'colourChange': (hover1 || clicked1)}" svgIcon="numeric-1-box-outline"></mat-icon>
-                  <div class="counter" [ngClass]="{'colourChange': hover1}">({{checkboxes['l136'][0]?.count}})</div>
+                <div class="one" 
+                     *ngIf="checkboxes['l136'][0]" 
+                     [ngClass]="{'mat-elevation-z9': hover1, 'mat-elevation-z1': !hover1, 'clickedColour': clicked1, 'pointer': hover1}" 
+                     (mouseenter)="hover1 = true" 
+                     (mouseleave)="hover1 = false" 
+                     (click)="clicked1 = !clicked1; onNgModelChange('l136')">
+                  <mat-icon class="flagIcon" 
+                            [ngClass]="{'colourChange': (hover1 || clicked1)}" svgIcon="numeric-1-box-outline"></mat-icon>
+                  <div class="counter" 
+                       [ngClass]="{'colourChange': hover1}">({{checkboxes['l136'][0]?.count}})</div>
                 </div>
-                <div class="two" *ngIf="checkboxes['l136'][1]" [ngClass]="{'mat-elevation-z9': hover2, 'mat-elevation-z1': !hover2, 'clickedColour': clicked2, 'pointer': hover2}" (mouseenter)="hover2 = true" (mouseleave)="hover2 = false" (click)="clicked2 = !clicked2; onNgModelChange('l136')">
-                  <mat-icon class="flagIcon" [ngClass]="{'colourChange': (hover2 || clicked2)}" svgIcon="numeric-2-box-outline"></mat-icon>
-                  <div class="counter" [ngClass]="{'colourChange': hover2}">({{checkboxes['l136'][1]?.count}})</div>
+                <div class="two" 
+                     *ngIf="checkboxes['l136'][1]" 
+                     [ngClass]="{'mat-elevation-z9': hover2, 'mat-elevation-z1': !hover2, 'clickedColour': clicked2, 'pointer': hover2}" 
+                     (mouseenter)="hover2 = true" 
+                     (mouseleave)="hover2 = false" 
+                     (click)="clicked2 = !clicked2; onNgModelChange('l136')">
+                  <mat-icon class="flagIcon" 
+                            [ngClass]="{'colourChange': (hover2 || clicked2)}" svgIcon="numeric-2-box-outline"></mat-icon>
+                  <div class="counter" 
+                       [ngClass]="{'colourChange': hover2}">({{checkboxes['l136'][1]?.count}})</div>
                 </div>
               </div>
               <div class="row">
-                <div class="three" *ngIf="checkboxes['l136'][2]" [ngClass]="{'mat-elevation-z9': hover3, 'mat-elevation-z1': !hover3, 'clickedColour': clicked3, 'pointer': hover3}" (mouseenter)="hover3 = true" (mouseleave)="hover3 = false" (click)="clicked3 = !clicked3; onNgModelChange('l136')">
-                  <mat-icon class="flagIcon" [ngClass]="{'colourChange': (hover3 || clicked3)}" svgIcon="numeric-3-box-outline"></mat-icon>
-                  <div class="counter" [ngClass]="{'colourChange': hover3}">({{checkboxes['l136'][2]?.count}})</div>
+                <div class="three" 
+                     *ngIf="checkboxes['l136'][2]" 
+                     [ngClass]="{'mat-elevation-z9': hover3, 'mat-elevation-z1': !hover3, 'clickedColour': clicked3, 'pointer': hover3}" 
+                     (mouseenter)="hover3 = true" 
+                     (mouseleave)="hover3 = false" 
+                     (click)="clicked3 = !clicked3; onNgModelChange('l136')">
+                  <mat-icon class="flagIcon" 
+                            [ngClass]="{'colourChange': (hover3 || clicked3)}" svgIcon="numeric-3-box-outline"></mat-icon>
+                  <div class="counter" 
+                       [ngClass]="{'colourChange': hover3}">({{checkboxes['l136'][2]?.count}})</div>
                 </div>
-                <div class="four" *ngIf="checkboxes['l136'][3]" [ngClass]="{'mat-elevation-z9': hover4, 'mat-elevation-z1': !hover4, 'clickedColour': clicked4, 'pointer': hover4}" (mouseenter)="hover4 = true" (mouseleave)="hover4 = false" (click)="clicked4 = !clicked4; onNgModelChange('l136')">
-                  <mat-icon class="flagIcon" [ngClass]="{'colourChange': (hover4 || clicked4)}" svgIcon="numeric-4-box-outline"></mat-icon>
-                  <div class="counter" [ngClass]="{'colourChange': hover4}">({{checkboxes['l136'][3]?.count}})</div>
+                <div class="four" 
+                     *ngIf="checkboxes['l136'][3]" 
+                     [ngClass]="{'mat-elevation-z9': hover4, 'mat-elevation-z1': !hover4, 'clickedColour': clicked4, 'pointer': hover4}" 
+                     (mouseenter)="hover4 = true" 
+                     (mouseleave)="hover4 = false" 
+                     (click)="clicked4 = !clicked4; onNgModelChange('l136')">
+                  <mat-icon class="flagIcon" 
+                            [ngClass]="{'colourChange': (hover4 || clicked4)}" svgIcon="numeric-4-box-outline"></mat-icon>
+                  <div class="counter" 
+                       [ngClass]="{'colourChange': hover4}">({{checkboxes['l136'][3]?.count}})</div>
                 </div>
               </div>
             </div>
@@ -173,8 +201,7 @@
           <div class="viewport-item-title">
             <div class="title" 
                  [ngClass]="{'smallerStatus': sidenav.opened}">
-              <div class="infoFirst" 
-                   [ngClass]="{'noWrap': sidenav.opened}">
+              <div class="infoFirst">
                 <span class="code">{{ item.comCodice }}</span>{{item.comDescrizione}} 
               </div>
               <div class="info">
@@ -183,44 +210,58 @@
               <div class="info">
                 <span class="code">{{item.cdcCodice}}</span>{{item.cdcDescrizione}}, {{item.cdcBusinessUnit}}
               </div>
-              <div class="info icons">
+              <div class="info icons noHide">
                 <mat-icon class="statusIconC" 
                           svgIcon="clipboard-check" 
-                          *ngIf="item.comStato=='C'">
+                          *ngIf="item.comStato=='C'"
+                          [ngClass]="{'smallIcons': mobileQuery.matches}">
                 </mat-icon>
                 <mat-icon class="statusIconA" 
                           svgIcon="clipboard-text" 
                           *ngIf="item.comStato=='A'"
-                          registry.getDefaultFontSetClass>
+                          [ngClass]="{'smallIcons': mobileQuery.matches}">
                 </mat-icon>
                 <mat-icon class="statusIconS" 
                           svgIcon="clipboard-arrow-down" 
-                          *ngIf="item.comStato=='S'">
+                          *ngIf="item.comStato=='S'"
+                          [ngClass]="{'smallIcons': mobileQuery.matches}">
                 </mat-icon>
                 <mat-icon class="statusIconI" 
                           svgIcon="clipboard-alert" 
-                          *ngIf="item.comStato=='I'">
+                          *ngIf="item.comStato=='I'"
+                          [ngClass]="{'smallIcons': mobileQuery.matches}">
                 </mat-icon>
                 <div class="yearIcon">
                     <mat-icon class="statusIconA" 
-                              svgIcon="calendar">
-                    </mat-icon><div class="year">{{item.anno}}</div>
+                              svgIcon="calendar"
+                              [ngClass]="{'smallIcons': mobileQuery.matches}">
+                    </mat-icon>
+                      <div class="year"
+                           [ngClass]="{'smallIcons': mobileQuery.matches}">
+                        <div [ngClass]="{'noDisplay': mobileQuery.matches || sidenav.opened}">{{item.anno}}</div>
+                      </div>
                 </div>
                 <mat-icon class="L136Icon" 
                           svgIcon="numeric-1-box-outline"
-                          *ngIf="item.comLegge136=='1'"></mat-icon>
+                          *ngIf="item.comLegge136=='1'"
+                          [ngClass]="{'smallIcons': mobileQuery.matches}"></mat-icon>
                 <mat-icon class="L136Icon" 
                           svgIcon="numeric-2-box-outline"
-                          *ngIf="item.comLegge136=='2'"></mat-icon>
+                          *ngIf="item.comLegge136=='2'"
+                          [ngClass]="{'smallIcons': mobileQuery.matches}"></mat-icon>
                 <mat-icon class="L136Icon" 
                           svgIcon="numeric-3-box-outline"
-                          *ngIf="item.comLegge136=='3'"></mat-icon>
+                          *ngIf="item.comLegge136=='3'"
+                          [ngClass]="{'smallIcons': mobileQuery.matches}"></mat-icon>
                 <mat-icon class="L136Icon" 
                           svgIcon="numeric-4-box-outline"
-                          *ngIf="item.comLegge136=='4'"></mat-icon>
+                          *ngIf="item.comLegge136=='4'"
+                          [ngClass]="{'smallIcons': mobileQuery.matches}"></mat-icon>
+                <div class="trIcon">{{item.comTipoRicavo}}</div>
               </div> 
             </div>
-            <div class="statusInfo" [ngClass]="{'biggerStatus': sidenav.opened}">
+            <div class="statusInfo" 
+                 [ngClass]="{'biggerStatus': sidenav.opened}">
               <div class="status"
                    [ngClass]="{'goodStatus': ((item.ricaviC12-item.costiC12) &gt; 0), 'badStatus': ((item.costiC12-item.ricaviC12) &gt; 0), 'neutralStatus': (item.costiC12==item.ricaviC12)}">
                 <div class="costs">

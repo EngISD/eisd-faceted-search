@@ -26,10 +26,10 @@
 }
 @media only screen and (max-width: 1300px){
     .title {
-        width: 78% !important;
+        width: 76% !important;
     }
     .statusInfo {
-        width: 19% !important;
+        width: 21% !important;
     }
 }
 @media only screen and (max-width: 1100px) {
@@ -40,10 +40,10 @@
         width: 25% !important;
     }
     .title {
-        width: 72% !important;
+        width: 69% !important;
     }
     .statusInfo {
-        width: 25% !important;
+        width: 28% !important;
     }
     .viewport-item-title {
         width: 80% !important;
@@ -69,7 +69,7 @@
         width: 75% !important;
     }
     .statusInfo {
-        min-width: 22% !important;
+        width: 22% !important;
     }
     .hideOnSmall {
         display: none !important;
@@ -92,10 +92,10 @@
         display: none !important;
     }
     .title {
-        width: 75% !important;
+        width: 74% !important;
     }
     .statusInfo {
-        width: 22% !important;
+        width: 23% !important;
     }
     .hideOnSmall {
         display: none !important;
@@ -112,10 +112,10 @@
 }
 @media only screen and (max-width: 760px){
     .title {
-        width: 75% !important;
+        width: 74% !important;
     }
     .statusInfo {
-        width: 22% !important;
+        width: 23% !important;
         font-size: 15px;
     }
     .hideOnSmall {
@@ -125,10 +125,10 @@
         display: none !important;
     }
     .smallerStatus {
-        width: 66% !important;
+        width: 62% !important;
     }
     .biggerStatus {
-        width: 31% !important;
+        width: 35% !important;
     }
 }
 @media only screen and (max-width: 735px) {
@@ -148,7 +148,7 @@
         width: 69% !important;
     }
     .smallerStatus {
-        width: 59% !important;
+        width: 58% !important;
     }
     .code {
         display: block;
@@ -167,7 +167,7 @@
         width: 28% !important;
     }
     .biggerStatus {
-        width: 38% !important;
+        width: 39% !important;
     }
     .hideCosts {
         display: none !important;
@@ -179,7 +179,7 @@
         display: block !important;
     }
     .smallFont {
-        font-size: 11.5px;
+        font-size: 10.5px;
     }
 }
 @media only screen and (max-width: 630px) {
@@ -193,35 +193,16 @@
         width: 67% !important;
     }
     .smallerStatus {
-        width: 53% !important;
-    }
-    .code {
-        display: block;
-    }
-    .infoFirst {
-        text-overflow: ellipsis !important;
-        overflow: hidden !important;
-        white-space: normal !important;
-        font-size: 15px !important;
-        display: inline-block !important;
-    }
-    .noWrap {
-        white-space: nowrap !important;
+        width: 52% !important;
     }
     .statusInfo {
         width: 30% !important;
     }
     .biggerStatus {
-        width: 44% !important;
-    }
-    .info {
-        display: none;
-    }
-    .icons {
-        display: block !important;
+        width: 45% !important;
     }
     .smallFont {
-        font-size: 13px;
+        font-size: 11px;
     }
 }
 @media only screen and (max-width: 600px) {
@@ -239,26 +220,10 @@
         display: none !important;
     }
     .title {
-        width: 68% !important;
-    }
-    .code {
-        display: block;
-    }
-    .infoFirst {
-        text-overflow: ellipsis !important;
-        overflow: hidden !important;
-        white-space: normal !important;
-        font-size: 15px !important;
-        display: inline-block !important;
+        width: 66% !important;
     }
     .statusInfo {
-        width: 29% !important;
-    }
-    .info {
-        display: none;
-    }
-    .icons {
-        display: block !important;
+        width: 31% !important;
     }
     .costValue {
         bottom: 5px !important;
@@ -276,13 +241,13 @@
     }
     .statusInfo {
         font-size: 14px;
-        width: 32% !important;
+        width: 40% !important;
     }
     .costValue {
         bottom: 5px !important;
     }
     .title {
-        width: 65% !important;
+        width: 57% !important;
     }
     
 }
@@ -290,34 +255,12 @@
     ::ng-deep .mat-paginator-range-label, ::ng-deep .mat-paginator-page-size-label {
         display: none !important;
     }
-    .round {
-        display: none !important;
-    }
-    .feature {
-        display: none !important;
-    }
     .title {
         width: 55% !important;
     }
-    .code {
-        display: block;
-    }
-    .infoFirst {
-        text-overflow: clip !important;
-        overflow: hidden !important;
-        white-space: unset !important;
-        font-size: 15px !important;
-        display: inline-block !important;
-    }
     .statusInfo {
         width: 42% !important;
-        font-size: 13px;
-    }
-    .info {
-        display: none;
-    }
-    .icons {
-        display: block !important;
+        font-size: 11px;
     }
     .minusIcon {
         transform: scale(0.4) !important;
@@ -327,6 +270,9 @@
     }
     .costValue {
         bottom: 6px !important;
+    }
+    .smallIcons {
+        transform: scale(0.8);
     }
 } 
 .container {
@@ -480,7 +426,6 @@ mat-selection-list {
     padding-bottom: 4px;
     margin-top: 2px;
     border-radius: 3px;
-    overflow: hidden;
 }
 .viewport-item:hover {
     background-color: rgb(245, 245, 245);
@@ -494,7 +439,6 @@ mat-selection-list {
 }
 .viewport-item-title {
     margin: 0;
-    /* margin-left: 22px; */
     display: inline-flex;
     width: 90%;
     margin-top: 14px;
@@ -522,10 +466,9 @@ mat-selection-list {
 }
 .infoFirst {
     font-size: 18px;
-    padding-bottom: 1px;
     font-family: 'Roboto', sans-serif;
     color: #000000 !important;
-    display: inline-flex;
+    display: inline-block;
     width: 80%;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -564,13 +507,6 @@ mat-selection-list {
 .title {
     width: 77%;
     padding-left: 3%;
-}
-.costIcons {
-    max-height: 2em;
-    line-height: 1em;
-}
-.cashIcon {
-    transform: scale(0.82);
 }
 .minusIcon {
     transform: scale(0.6);
@@ -616,6 +552,16 @@ mat-selection-list {
     position: relative;
     bottom: 5px;
     display: inline-block;
+}
+.trIcon {
+    display: inline-block;
+    border: 2px solid rgb(3, 34, 24);
+    padding-left: 4px;
+    padding-right: 4px;
+    position: relative;
+    bottom: 8px;
+    font-size: 13px;
+    border-radius: 5px;
 }
 .code {
     font-weight: 700;
@@ -665,4 +611,11 @@ mat-selection-list {
     font-size: 12px;
     line-height: 24px;
     padding-left: 30px;
+}
+.noHide{
+    text-overflow: unset !important;
+    overflow: unset !important;
+}
+.noDisplay {
+    display: none;
 }
