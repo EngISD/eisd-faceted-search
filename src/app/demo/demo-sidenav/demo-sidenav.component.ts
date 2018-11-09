@@ -136,9 +136,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
     this.mobileQuery.removeListener(this._mobileQueryListener);
     this.changeDetectorRef.detach();
   }
-
-  onNgModelChange(cat?) {
-    this.loading = true;
+  checkClicked() {
     const l136click = [];
     if (this.clicked1) {
       l136click.push('1');
@@ -152,7 +150,12 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
     if (this.clicked4) {
       l136click.push('4');
     }
-    this.selected1['l136'] = l136click;
+    return l136click;
+  }
+  onNgModelChange(cat?) {
+    this.loading = true;
+
+    this.selected1['l136'] = this.checkClicked();
     /* setTimeout(() => {
       this.service.sortAllResults(this.option, this.pageSize, 0, this.descending, this.dud1).subscribe(res => {
         this.test = res['data'];
@@ -271,7 +274,6 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
       } else {
         this.barSelected.push(temp);
       }
-
       this.selected1['anno'] = this.barSelected;
       for (let i = 0; i < this.categories.length; i++) {
         if (this.categories[i].id != 'anno') {
