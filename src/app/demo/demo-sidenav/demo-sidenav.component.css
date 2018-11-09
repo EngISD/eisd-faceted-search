@@ -354,9 +354,10 @@ mat-selection-list {
     background: #0277bd !important;
 }
 .moreButton {
-    margin-left: 2%;
-    margin-right: 2%;
-    color: #0277bd;
+    margin-left: 4px;
+    margin-right: 4px;
+    color: #00639e;
+    border-radius: 20px;
 }
 .catIcon {
     color: #000000 !important;
@@ -501,4 +502,42 @@ mat-selection-list {
 }
 .mat-form-field.mat-focused.mat-form-field-label {
     color: #0277bd !important;
+}
+.flex {
+    display: block;
+}
+.row {
+    display: flex;
+    width: 100%;
+}
+.one, .two, .three, .four {
+    width: 45%;
+    margin: 5px;
+    text-align: center;
+    border-radius: 13px;
+    display: flex;
+    font-size: 1em;
+    background-color: lightgrey;
+}
+.flagIcon {
+    transform: scale(0.9);
+    color: rgb(0, 0, 0);
+    padding-left: 10px;
+}
+.pointer {
+    cursor: pointer;
+    background-color: #00000099;
+}
+.colourChange {
+    color: white;
+}
+.clickedColour {
+    background-color: #0277bd;
+    /* box-shadow: 0.5px 0px 4px inset; */
+    color: white;
+}
+.counter {
+    font-size: 12px;
+    line-height: 24px;
+    padding-left: 30px;
 }

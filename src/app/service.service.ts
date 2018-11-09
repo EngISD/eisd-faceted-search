@@ -126,7 +126,14 @@ export class ServiceService {
     if (num == undefined) {
       num = 1;
     }
-    return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/facet?facetMaxOptions=' + num*10 + '&facet=' + category).pipe(
+    if (category == 'anno') {
+      return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/facet?facetMaxOptions=10&facet=' + category).pipe(
+        map(items => {
+          return items;
+        }, error => error)
+      );
+    }
+    return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/facet?facetMaxOptions=' + num*5 + '&facet=' + category).pipe(
       map(items => {
         return items;
       }, error => error)
@@ -145,6 +152,13 @@ export class ServiceService {
           );
         }
       );
+      if (category == 'anno') {
+        return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/facet?facetMaxOptions=10&facet=' + category + dud).pipe(
+          map(items => {
+            return items;
+          }, error => error)
+        );
+      }
       return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/facet?facet=' + category + dud).pipe(
         map(items => {
           return items;

@@ -23,18 +23,18 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
   mobileQuery: MediaQueryList;
   @ViewChild(MatSidenav) sidenav: MatSidenav;
   categories = [
-    {id: 'cdc', icon: 'attach_money'},
+    {id: 'cdc', icon: 'euro_symbol'},
     {id: 'anno', icon: 'date_range'},
     {id: 'cliente', icon: 'account_box'},
     {id: 'soc', icon: 'business'},
     {id: 'rcdc', icon: 'visibility'},
     {id: 'cp', icon: 'person'},
     {id: 'fun', icon: 'person_outline'},
-    {id: 'l136', icon: 'contact_support'},
-    {id: 'tr', icon: 'contact_support'},
-    {id: 'ta', icon: 'contact_support'},
-    {id: 'lp', icon: 'contact_support'},
-    {id: 't8', icon: 'contact_support'}
+    {id: 'l136', icon: 'outlined_flag'},
+    {id: 'tr', icon: 'outlined_flag'},
+    {id: 'ta', icon: 'outlined_flag'},
+    {id: 'lp', icon: 'outlined_flag'},
+    {id: 't8', icon: 'outlined_flag'}
   ];
   content = [];
   checkboxes = [];
@@ -42,6 +42,10 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
   numMore = [];
   hasMore = [];
   dud1 = [];
+  clicked1 = false;
+  clicked2 = false;
+  clicked3 = false;
+  clicked4 = false;
   public loading = false;
   public ngxLoadingAnimationTypes = ngxLoadingAnimationTypes;
   public primaryColour = '#006dddee';
@@ -135,6 +139,20 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
 
   onNgModelChange(cat?) {
     this.loading = true;
+    const l136click = [];
+    if (this.clicked1) {
+      l136click.push('1');
+    }
+    if (this.clicked2) {
+      l136click.push('2');
+    }
+    if (this.clicked3) {
+      l136click.push('3');
+    }
+    if (this.clicked4) {
+      l136click.push('4');
+    }
+    this.selected1['l136'] = l136click;
     /* setTimeout(() => {
       this.service.sortAllResults(this.option, this.pageSize, 0, this.descending, this.dud1).subscribe(res => {
         this.test = res['data'];
@@ -247,7 +265,6 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
   public chartClicked(e:any):void {
     if (e.active.length > 0) {
       const temp = e.active[0]._model.label;
-
       const index = this.barSelected.findIndex(x => x == e.active[0]._model.label);
       if (index != -1) {
         this.barSelected.splice(index, 1);
@@ -256,7 +273,6 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
       }
 
       this.selected1['anno'] = this.barSelected;
-
       for (let i = 0; i < this.categories.length; i++) {
         if (this.categories[i].id != 'anno') {
           this.service.refreshFacets(this.categories[i].id, this.selected1).subscribe(res => {
@@ -296,9 +312,14 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
     for (let i = 0; i < this.categories.length; i++) {
       this.selected1[this.categories[i].id] = [];
       this.dud1[this.categories[i].id] = [];
+      this.numMore[this.categories[i].id] = 1;
     }
+    this.clicked1 = false;
+    this.clicked2 = false;
+    this.clicked3 = false;
+    this.clicked4 = false;
     this.barSelected = [];
-    this.onNgModelChange('anno');
+    this.onNgModelChange();
   }
   sortResults(){
     this.descending = !this.descending;
