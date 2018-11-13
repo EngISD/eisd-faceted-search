@@ -17,10 +17,13 @@ export class ServiceService {
   filterValue$: Observable<any>;
   private _filterValue: BehaviorSubject<any>;
   private categories = [];
+  _itemValue = new BehaviorSubject<any>([]);
+  itemValue$: Observable<any>;
 
   constructor(private http: HttpClient) {
     this._filterValue = new BehaviorSubject<any>([]);
     this.filterValue$ = this._filterValue.asObservable();
+    this.itemValue$ = this._itemValue.asObservable();
 
     this.getCategories().subscribe(res => {
       this.categories = res;
@@ -186,6 +189,12 @@ export class ServiceService {
         return items;
       }, error => error)
     );
+  }
+  receiveValue(item){
+    this.itemValue$ = item;
+  }
+  emitValue(){
+    return this.itemValue$;
   }
 
 }

@@ -89,6 +89,9 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
     {data: [], label: ''}
   ];
 
+  // End sidenav variables
+  endSidenav: boolean = false;
+
   // Paginator variables
   page: PageEvent;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -360,5 +363,9 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
     } else {
       this.dud1[cat].splice(index, 1);
     }
+  }
+  openSidenav(item){
+    this.service.receiveValue(item);
+    this.endSidenav = true;
   }
 }

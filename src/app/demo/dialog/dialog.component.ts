@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { ServiceService } from 'src/app/service.service';
 
 @Component({
   selector: 'app-dialog',
@@ -8,15 +9,24 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 })
 export class DialogComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<DialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) {
+  constructor(private service: ServiceService) {
   }
+
+  receivedItem: any;
 
   ngOnInit() {
+   
+    
+  }
+  ngAfterContentChecked(): void {
+    this.receivedItem = this.service.itemValue$;
   }
 
-  close() {
-      this.dialogRef.close();
+  // close() {
+  //     this.dialogRef.close();
+  // }
+  openSidenav(){
+    this.receivedItem = this.service.emitValue();
   }
 
 }

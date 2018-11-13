@@ -1,4 +1,4 @@
-<div mat-dialog-title  style="position: relative">
+<!-- <div mat-dialog-title  style="position: relative">
   <div class="title">
     <h3 >Additional information </h3>
   </div>
@@ -6,27 +6,27 @@
     <button mat-icon-button class="cancel" (click)="close()"><mat-icon class="icon">clear</mat-icon></button>
   </div>
   
-</div>
+</div> -->
 
 
-<mat-dialog-content class="content">
+
   <div class="card mat-elevation-z4">
     <div>
-      <div class="round mat-elevation-z2">{{ data.comCodice | slice:0:3 }}</div>
-      {{data.comCodice}} - {{data.anno}}
+      <div class="round mat-elevation-z2">{{ receivedItem.comCodice | slice:0:3 }}</div>
+      {{receivedItem.comCodice}} - {{receivedItem.anno}}
     </div>
     <div>
-      <p>{{data.comDescrizione}}</p>
+      <p>{{receivedItem.comDescrizione}}</p>
       <mat-divider></mat-divider>
-      <p>{{data.cdcBusinessArea}} - {{data.codNazione}} - {{data.codProvincia}}</p>
-      <p>{{data.cdcBusinessUnit}}</p>
-      <p>{{data.cdcCodice}}</p>
+      <p>{{receivedItem.cdcBusinessArea}} - {{receivedItem.codNazione}} - {{receivedItem.codProvincia}}</p>
+      <p>{{receivedItem.cdcBusinessUnit}}</p>
+      <p>{{receivedItem.cdcCodice}}</p>
       <mat-divider></mat-divider>
-      <p>{{data.cdcConsolidationSegment}}</p>
-      <p>{{data.cdcDepartment1}}</p>
-      <p>{{data.comDescrizione}}</p>
-      <p>{{data.cdcResponsabile}}</p>
+      <p>{{receivedItem.cdcConsolidationSegment}}</p>
+      <p>{{receivedItem.cdcDepartment1}}</p>
+      <p>{{receivedItem.comDescrizione}}</p>
+      <p>{{receivedItem.cdcResponsabile}}</p>
     </div>
   </div>
 
-</mat-dialog-content>
+

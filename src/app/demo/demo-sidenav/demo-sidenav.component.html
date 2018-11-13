@@ -86,7 +86,7 @@
                  [fixedInViewport]="mobileQuery.matches" 
                  [fixedTopGap]="mobileQuery.matches ? 97 : 97">
       <mat-nav-list class="facet">
-        <mat-expansion-panel [expanded]="i < 2" 
+        <mat-expansion-panel [expanded]="i &lt; 2" 
                              *ngFor="let category of categories; trackBy: trackByFn; let i = index">
           <mat-expansion-panel-header>
             <mat-panel-title class="noSelect">
@@ -191,7 +191,7 @@
         <div *cdkVirtualFor="let item of activePageDataChunk; let first = first;"  
               class="viewport-item mat-elevation-z1"
               [class.first] = "first"
-              (click) = "openDialog(item)">
+              (click) = "openSidenav(item)">
           <div class="round mat-elevation-z4"
                [ngClass]="{'hideOnSmall': sidenav.opened}">{{ item.comCodice | slice:0:3 }}</div>
           <div class="feature"
@@ -202,46 +202,74 @@
             <div class="title" 
                  [ngClass]="{'smallerStatus': sidenav.opened}">
               <div class="infoFirst">
-                <span class="code">{{ item.comCodice }}</span>{{item.comDescrizione}} 
-              </div>
+                <span class="code">{{ item.comCodice }}</span> {{item.comDescrizione}}</div>
               <div class="info">
+                <div class="infoIcon"><mat-icon>account_box</mat-icon></div>
+                <span class="code">{{ item.cliId }}</span>{{ item.comCliente }} 
+              </div>
+              <br>
+              <div class="info">
+                  <div class="infoIcon"><mat-icon>euro_symbol</mat-icon></div>
+                  <span class="code">{{item.cdcCodice}}</span>{{item.cdcDescrizione}}, {{item.cdcBusinessUnit}}
+                </div>
+              <br>
+              <div class="info">
+                <div class="infoIcon"><mat-icon>visibility</mat-icon></div>
                 <span class="code">{{ item.cdcResponsabile }}</span>{{ item.respCognome }} {{ item.respNome }}
               </div>
               <div class="info">
-                <span class="code">{{item.cdcCodice}}</span>{{item.cdcDescrizione}}, {{item.cdcBusinessUnit}}
-              </div>
-              <div class="info icons noHide">
+              <div class="infoIcon">
                 <mat-icon class="statusIconC" 
-                          svgIcon="clipboard-check" 
                           *ngIf="item.comStato=='C'"
-                          [ngClass]="{'smallIcons': mobileQuery.matches}">
+                          [ngClass]="{'smallIcons': mobileQuery.matches}">assignment_turned_in
                 </mat-icon>
                 <mat-icon class="statusIconA" 
-                          svgIcon="clipboard-text" 
                           *ngIf="item.comStato=='A'"
-                          [ngClass]="{'smallIcons': mobileQuery.matches}">
+                          [ngClass]="{'smallIcons': mobileQuery.matches}">assignment
                 </mat-icon>
                 <mat-icon class="statusIconS" 
-                          svgIcon="clipboard-arrow-down" 
                           *ngIf="item.comStato=='S'"
-                          [ngClass]="{'smallIcons': mobileQuery.matches}">
+                          [ngClass]="{'smallIcons': mobileQuery.matches}">assignment_returned
                 </mat-icon>
                 <mat-icon class="statusIconI" 
-                          svgIcon="clipboard-alert" 
                           *ngIf="item.comStato=='I'"
-                          [ngClass]="{'smallIcons': mobileQuery.matches}">
+                          [ngClass]="{'smallIcons': mobileQuery.matches}">assignment_late
                 </mat-icon>
                 <div class="yearIcon">
-                    <mat-icon class="statusIconA" 
-                              svgIcon="calendar"
-                              [ngClass]="{'smallIcons': mobileQuery.matches}">
-                    </mat-icon>
-                      <div class="year"
-                           [ngClass]="{'smallIcons': mobileQuery.matches}">
-                        <div [ngClass]="{'noDisplay': mobileQuery.matches || sidenav.opened}">{{item.anno}}</div>
-                      </div>
+                  <mat-icon [ngClass]="{'smallIcons': mobileQuery.matches}">
+                    date_range
+                  </mat-icon>
+                  <div class="iconText"
+                           [ngClass]="{'smallIcons': mobileQuery.matches}">{{item.anno}}
+                  </div>
                 </div>
-                <mat-icon class="L136Icon" 
+                <div [ngClass]="{'goodStatus': ((item.ricaviC12-item.costiC12) &gt; 0), 'badStatus': ((item.costiC12-item.ricaviC12) &gt; 0), 'neutralStatus': (item.costiC12==item.ricaviC12)}">
+                  <mat-icon class="bigcrIcon"
+                            [ngClass]="{'smallIcons': mobileQuery.matches}">
+                    euro_symbol
+                  </mat-icon>
+                  <mat-icon class="crIcon"
+                            [ngClass]="{'smallIcons': mobileQuery.matches}">
+                    remove
+                  </mat-icon>
+                  <div class="iconText"
+                       [ngClass]="{'smallIcons': mobileQuery.matches}">{{item.costiC12 | number:'1.0-0'}}
+                  </div>
+                  <mat-icon class="bigcrIcon"
+                            [ngClass]="{'smallIcons': mobileQuery.matches}">
+                      euro_symbol
+                  </mat-icon>
+                  <mat-icon class="crIcon"
+                            [ngClass]="{'smallIcons': mobileQuery.matches}">
+                      add
+                  </mat-icon>
+                  <div class="iconText"
+                       [ngClass]="{'smallIcons': mobileQuery.matches}">{{item.ricaviC12 | number:'1.0-0'}}
+                  </div>
+                </div>
+              </div>
+            
+                <!-- <mat-icon class="L136Icon" 
                           svgIcon="numeric-1-box-outline"
                           *ngIf="item.comLegge136=='1'"
                           [ngClass]="{'smallIcons': mobileQuery.matches}"></mat-icon>
@@ -256,36 +284,23 @@
                 <mat-icon class="L136Icon" 
                           svgIcon="numeric-4-box-outline"
                           *ngIf="item.comLegge136=='4'"
-                          [ngClass]="{'smallIcons': mobileQuery.matches}"></mat-icon>
-                <div class="trIcon">{{item.comTipoRicavo}}</div>
+                          [ngClass]="{'smallIcons': mobileQuery.matches}"></mat-icon> -->
+                <!-- <div class="trIcon">{{item.comTipoRicavo}}</div> -->
               </div> 
             </div>
-            <div class="statusInfo" 
-                 [ngClass]="{'biggerStatus': sidenav.opened}">
-              <div class="status"
-                   [ngClass]="{'goodStatus': ((item.ricaviC12-item.costiC12) &gt; 0), 'badStatus': ((item.costiC12-item.ricaviC12) &gt; 0), 'neutralStatus': (item.costiC12==item.ricaviC12)}">
-                <div class="costs">
-                  <mat-icon class="minusIcon" svgIcon="minus"></mat-icon>
-                  <div class="costValue"
-                       [ngClass]="{'smallFont': sidenav.opened && !mobileQuery.matches}">
-                      {{ item.costiC12 | number: '1.0' }} €
-                  </div>
-                </div>
-                <br>
-                <div class="costs">
-                  <mat-icon class="plusIcon" svgIcon="plus"></mat-icon>
-                  <div class="costValue"
-                       [ngClass]="{'smallFont': sidenav.opened && !mobileQuery.matches}">
-                      {{ item.ricaviC12 | number: '1.0' }} €
-                  </div>
-                </div> 
-              </div>
-            </div>
-            <div class="clearfix"></div>
           </div>
         </div>
       </cdk-virtual-scroll-viewport>
     </mat-sidenav-content>
+
+    <mat-sidenav #snav1 [opened]="endSidenav ? 'true' : 'false'" 
+              [mode]="mobileQuery.matches ? 'over' : 'side'"
+              [fixedInViewport]="mobileQuery.matches" 
+              [fixedTopGap]="mobileQuery.matches ? 97 : 97"
+              [position]="'end'">
+      <app-dialog></app-dialog>
+    </mat-sidenav>
+ 
   <!-- Content -->
   </mat-sidenav-container>
 <!-- Container -->
