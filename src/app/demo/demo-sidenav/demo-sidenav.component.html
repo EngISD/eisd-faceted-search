@@ -101,14 +101,12 @@
                         &nbsp;&nbsp;&nbsp;&nbsp;{{ category.id | titlecase }}
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <ng-template matExpansionPanelContent *ngIf="category.id != 'anno' && category.id != 'l136'">
-            <mat-selection-list dense [(ngModel)]="selected1[category.id]" 
-                                (selectionChange)="onNgModelChange(category.id)" 
-                                [ngModelOptions]="{standalone: true}">
+          <ng-template matExpansionPanelContent *ngIf="category.id != 'anno'">
+            <mat-selection-list dense>
               <mat-list-option *ngFor="let checkbox of checkboxes[category.id]; trackBy: trackByFn;"
-                               (click)="dud(checkbox.code, category.id)"
-                               [value]="checkbox.code"
-                               [selected]="!dud1[category.id].indexOf(checkbox.code)">
+                               (click)="select(checkbox.code, category.id); onNgModelChange();"
+                               [selected]="selectedFilters[category.id].includes(checkbox.code)"
+                               [value]="checkbox.code">
                 <mat-icon matListIcon>keyboard_arrow_right</mat-icon>
                   <p class="noSelect">{{ checkbox.descr }} ({{ checkbox.count }})</p>
               </mat-list-option>
@@ -128,60 +126,7 @@
                     [legend]="barChartLegend"
                     [colors]="barChartColors"
                     [chartType]="barChartType"
-                    (chartHover)="chartHovered($event)"
                     (chartClick)="chartClicked($event)"></canvas>
-          </ng-template>
-          <ng-template matExpansionPanelContent *ngIf="category.id == 'l136'">
-            <div class="flex">
-              <div class="row">
-                <div class="one" 
-                     *ngIf="checkboxes['l136'][0]" 
-                     [ngClass]="{'mat-elevation-z9': hover1, 'mat-elevation-z1': !hover1, 'clickedColour': clicked1, 'pointer': hover1}" 
-                     (mouseenter)="hover1 = true" 
-                     (mouseleave)="hover1 = false" 
-                     (click)="clicked1 = !clicked1; onNgModelChange('l136')">
-                  <mat-icon class="flagIcon" 
-                            [ngClass]="{'colourChange': (hover1 || clicked1)}" svgIcon="numeric-1-box-outline"></mat-icon>
-                  <div class="counter" 
-                       [ngClass]="{'colourChange': hover1}">({{checkboxes['l136'][0]?.count}})</div>
-                </div>
-                <div class="two" 
-                     *ngIf="checkboxes['l136'][1]" 
-                     [ngClass]="{'mat-elevation-z9': hover2, 'mat-elevation-z1': !hover2, 'clickedColour': clicked2, 'pointer': hover2}" 
-                     (mouseenter)="hover2 = true" 
-                     (mouseleave)="hover2 = false" 
-                     (click)="clicked2 = !clicked2; onNgModelChange('l136')">
-                  <mat-icon class="flagIcon" 
-                            [ngClass]="{'colourChange': (hover2 || clicked2)}" svgIcon="numeric-2-box-outline"></mat-icon>
-                  <div class="counter" 
-                       [ngClass]="{'colourChange': hover2}">({{checkboxes['l136'][1]?.count}})</div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="three" 
-                     *ngIf="checkboxes['l136'][2]" 
-                     [ngClass]="{'mat-elevation-z9': hover3, 'mat-elevation-z1': !hover3, 'clickedColour': clicked3, 'pointer': hover3}" 
-                     (mouseenter)="hover3 = true" 
-                     (mouseleave)="hover3 = false" 
-                     (click)="clicked3 = !clicked3; onNgModelChange('l136')">
-                  <mat-icon class="flagIcon" 
-                            [ngClass]="{'colourChange': (hover3 || clicked3)}" svgIcon="numeric-3-box-outline"></mat-icon>
-                  <div class="counter" 
-                       [ngClass]="{'colourChange': hover3}">({{checkboxes['l136'][2]?.count}})</div>
-                </div>
-                <div class="four" 
-                     *ngIf="checkboxes['l136'][3]" 
-                     [ngClass]="{'mat-elevation-z9': hover4, 'mat-elevation-z1': !hover4, 'clickedColour': clicked4, 'pointer': hover4}" 
-                     (mouseenter)="hover4 = true" 
-                     (mouseleave)="hover4 = false" 
-                     (click)="clicked4 = !clicked4; onNgModelChange('l136')">
-                  <mat-icon class="flagIcon" 
-                            [ngClass]="{'colourChange': (hover4 || clicked4)}" svgIcon="numeric-4-box-outline"></mat-icon>
-                  <div class="counter" 
-                       [ngClass]="{'colourChange': hover4}">({{checkboxes['l136'][3]?.count}})</div>
-                </div>
-              </div>
-            </div>
           </ng-template>
         </mat-expansion-panel>
       </mat-nav-list>
