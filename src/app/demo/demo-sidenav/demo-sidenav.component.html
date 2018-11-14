@@ -74,6 +74,11 @@
           </mat-select>
         </mat-form-field>
     </div>
+    <div class="endSidenavOpen">
+      <button  mat-icon-button 
+              (click)="snav1.toggle()"><mat-icon>toggle_on</mat-icon>
+      </button>
+    </div>
   <!-- Sort -->
   </div>
 <!-- Bar containing filter icons, paginator and sort -->
@@ -191,7 +196,7 @@
         <div *cdkVirtualFor="let item of activePageDataChunk; let first = first;"  
               class="viewport-item mat-elevation-z1"
               [class.first] = "first"
-              (click) = "openSidenav(item)">
+              (click) = "openSidenav(item); snav1.open()">
           <div class="round mat-elevation-z4"
                [ngClass]="{'hideOnSmall': sidenav.opened}">{{ item.comCodice | slice:0:3 }}</div>
           <div class="feature"
@@ -293,7 +298,7 @@
       </cdk-virtual-scroll-viewport>
     </mat-sidenav-content>
 
-    <mat-sidenav #snav1 [opened]="endSidenav ? 'true' : 'false'" 
+    <mat-sidenav #snav1 [opened]="false" 
               [mode]="mobileQuery.matches ? 'over' : 'side'"
               [fixedInViewport]="mobileQuery.matches" 
               [fixedTopGap]="mobileQuery.matches ? 97 : 97"

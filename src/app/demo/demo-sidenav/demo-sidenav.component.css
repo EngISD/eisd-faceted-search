@@ -100,13 +100,16 @@
 }
 @media only screen and (max-width: 550px){
     .filterIcons {
-        width: 40% !important;
+        width: 37% !important;
     }
     .sorting {
         display: none;
     }
     .paginator {
-        width: 60% !important;
+        width: 50% !important;
+    }
+    .endSidenavOpen {
+        width: 13% !important;
     } 
 }
 @media only screen and (max-width: 430px) {
@@ -127,7 +130,7 @@
 /* Filter icons */
 .filterIcons {
     color: black;
-    width: 35%;
+    width: 32%;
     background-color: rgb(242, 242, 242);
 }
 .filterButton {
@@ -181,6 +184,12 @@ mat-paginator {
 }
 .sortIcon {
     transform: scale(0.8);
+}
+.endSidenavOpen {
+    width: 3%;
+    background-color: rgb(242, 242, 242);
+    padding: 5px 5px 0 0;
+    color: rgb(111, 111, 111);
 }
 .mat-form-field {
     font-size: 15px !important;
