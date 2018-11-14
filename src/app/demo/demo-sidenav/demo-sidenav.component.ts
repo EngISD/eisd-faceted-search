@@ -34,9 +34,9 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
     {id: '14', value: 'Azienda Descrizione'},   
   ];
   test: any;
-
   mobileQuery: MediaQueryList;
-  @ViewChild(MatSidenav) sidenav: MatSidenav;
+  @ViewChild('snav') sidenav: MatSidenav;
+  @ViewChild('snav1') sidenav1: MatSidenav;
   categories = [
     {id: 'cdc', icon: 'euro_symbol'},
     {id: 'anno', icon: 'date_range'},
@@ -89,7 +89,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
   @ViewChild(MatPaginator) paginator: MatPaginator;
   currentPage = 0;
   length = 0;
-  pageSize = 50;
+  pageSize = 10;
   pageIndex = 0;
   pageSizeOptions: number[] = [10, 20, 50, 100];
   activePageDataChunk = [];
@@ -274,6 +274,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
     this.service.sortAllResults(this.option, this.pageSize, 0, this.descending, this.selectedFilters).subscribe(res => {
       this.test = res['data'];
       this.activePageDataChunk = this.test;
+      this.scroll.scrollToIndex(0);
       this.loading = false;
     });
   }

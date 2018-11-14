@@ -55,12 +55,12 @@
               class="sortButton" 
               (click)="sortResults()">
         <mat-icon svgIcon="arrow-collapse-up" 
-                  *ngIf="descending" 
-                  matTooltip="Ascendente"
+                  *ngIf="descending"
+                  matTooltip="Ascendente" 
                   class="sortIcon"></mat-icon>
         <mat-icon svgIcon="arrow-collapse-down" 
-                  *ngIf="!descending" 
-                  matTooltip="Discendente"
+                  *ngIf="!descending"
+                  matTooltip="Discendente" 
                   class="sortIcon"></mat-icon>
       </button>
       <mat-form-field class="no-line">
@@ -76,7 +76,8 @@
     </div>
     <div class="endSidenavOpen">
       <button  mat-icon-button 
-              (click)="snav1.toggle()"><mat-icon>toggle_on</mat-icon>
+              (click)="snav1.toggle()"
+              *ngIf="sidenav1.opened"><mat-icon>toggle_on</mat-icon>
       </button>
     </div>
   <!-- Sort -->
@@ -136,16 +137,17 @@
       <ngx-loading [show]="loading" 
                    [config]="{animationType: ngxLoadingAnimationTypes.circle, primaryColour: primaryColour, secondaryColour: secondaryColour, backdropBorderRadius: '3px'}">
       </ngx-loading>
-      <cdk-virtual-scroll-viewport itemSize="20" 
+      <cdk-virtual-scroll-viewport [itemSize]="137.5" 
                                    class="viewport">
-        <div *cdkVirtualFor="let item of activePageDataChunk; let first = first;"  
+        <div *cdkVirtualFor="let item of activePageDataChunk; let first = first;" 
               class="viewport-item mat-elevation-z1"
               [class.first] = "first"
-              (click) = "openSidenav(item); snav1.open()">
+              (click) = "openSidenav(item); snav1.open()"
+              cdkVirtualForTrackBy= 'trakByFn()'>
           <div class="round mat-elevation-z4"
-               [ngClass]="{'hideOnSmall': sidenav.opened}">{{ item.comCodice | slice:0:3 }}</div>
+               [ngClass]="{'hideOnSmall': sidenav.opened || mobileQuery.matches}">{{ item.comCodice | slice:0:3 }}</div>
           <div class="feature"
-               [ngClass]="{'hideOnSmall': sidenav.opened}">
+               [ngClass]="{'hideOnSmall': sidenav.opened || mobileQuery.matches}">
             <mat-icon svgIcon="feature-search-outline" matListIcon></mat-icon>
           </div>
           <div class="viewport-item-title">
@@ -218,24 +220,7 @@
                   </div>
                 </div>
               </div>
-            
-                <!-- <mat-icon class="L136Icon" 
-                          svgIcon="numeric-1-box-outline"
-                          *ngIf="item.comLegge136=='1'"
-                          [ngClass]="{'smallIcons': mobileQuery.matches}"></mat-icon>
-                <mat-icon class="L136Icon" 
-                          svgIcon="numeric-2-box-outline"
-                          *ngIf="item.comLegge136=='2'"
-                          [ngClass]="{'smallIcons': mobileQuery.matches}"></mat-icon>
-                <mat-icon class="L136Icon" 
-                          svgIcon="numeric-3-box-outline"
-                          *ngIf="item.comLegge136=='3'"
-                          [ngClass]="{'smallIcons': mobileQuery.matches}"></mat-icon>
-                <mat-icon class="L136Icon" 
-                          svgIcon="numeric-4-box-outline"
-                          *ngIf="item.comLegge136=='4'"
-                          [ngClass]="{'smallIcons': mobileQuery.matches}"></mat-icon> -->
-                <!-- <div class="trIcon">{{item.comTipoRicavo}}</div> -->
+
               </div> 
             </div>
           </div>

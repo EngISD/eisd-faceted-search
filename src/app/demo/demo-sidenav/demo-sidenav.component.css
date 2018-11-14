@@ -1,9 +1,4 @@
 /* Responsive */
-/* @media only screen and (max-width: 1700px) {
-    .title {
-        width: 90% !important;
-    } 
-} */
 @media only screen and (max-width: 1470px) {
     .filterIcons {
         width: 30% !important;
@@ -11,49 +6,55 @@
     .sorting {
         width: 20% !important;
     }
-    .title {
-        width: 90% !important;
-    }
+    .endSidenavOpen {
+        width: 5% !important;
+    } 
 }
 @media only screen and (max-width: 1300px){
-    .title {
-        width: 90% !important;
+    .filterIcons {
+        width: 15% !important;
+    }
+    .sorting {
+        width: 30% !important;
+    }
+    .paginator {
+        width: 52% !important;
     }
 }
 @media only screen and (max-width: 1100px) {
     .filterIcons {
-        width: 25% !important;
+        width: 18% !important;
     }
     .sorting {
-        width: 25% !important;
+        width: 29% !important;
     }
-    /* .viewport-item-title {
-        width: 80% !important;
-    } */
+    .paginator {
+        width: 48% !important;
+    }
 }
 @media only screen and (max-width: 880px) {
-.filterIcons {
-    width: 18% !important;
+    .filterIcons {
+        width: 15% !important;
     }
-.sorting {
-    width: 30% !important;
+    .paginator {
+        width: 51% !important;
     }
-.paginator {
-    width: 52% !important;
-    }
-    .hideOnSmall {
-        display: none !important;
-    }
-    /* .viewport-item-title {
-        width: 86% !important;
-    }  */
 }
 @media only screen and (max-width: 830px) {
     ::ng-deep .mat-paginator-page-size-label {
         display: none !important;
     }
-    .hideOnSmall {
-        display: none !important;
+    .filterIcons {
+        width: 16% !important;
+    }
+    .sorting {
+        width: 32% !important;
+    }
+    .paginator {
+        width: 46% !important;
+    }
+    .endSidenavOpen {
+        width: 6% !important;
     }
 }
 @media only screen and (max-width: 760px){
@@ -69,33 +70,35 @@
         width: 20% !important;
     }
     .sorting {
-        width: 35% !important;
+        width: 36% !important;
     }
     .paginator {
-        width: 45% !important;
+        width: 38% !important;
     }
 }
 @media only screen and (max-width: 630px) {
+    .filterIcons {
+        width: 22% !important;
+    }
     .sorting {
         width: 40% !important;
     }
     .paginator {
-        width: 40% !important;
+        width: 30% !important;
     }
+    .endSidenavOpen {
+        width: 7% !important;
+    } 
 }
 @media only screen and (max-width: 600px) {
     ::ng-deep .mat-paginator-range-label, ::ng-deep .mat-paginator-page-size-label {
         display: none !important;
     }
-    .container {
-        height: calc(100vh - 48px) !important;
-        width: 100%;
+    .filterIcons {
+        width: 21% !important;
     }
-    .round {
-        display: none !important;
-    }
-    .feature {
-        display: none !important;
+    .paginator {
+        width: 31% !important;
     }
 }
 @media only screen and (max-width: 550px){
@@ -106,21 +109,31 @@
         display: none;
     }
     .paginator {
-        width: 50% !important;
+        width: 55% !important;
     }
     .endSidenavOpen {
-        width: 13% !important;
+        width: 8% !important;
     } 
 }
 @media only screen and (max-width: 430px) {
     ::ng-deep .mat-paginator-range-label, ::ng-deep .mat-paginator-page-size-label {
         display: none !important;
     }
-} 
+    .paginator {
+        width: 55% !important;
+    }
+    .endSidenavOpen {
+        width: 11% !important;
+    }
+    .filterIcons {
+        width: 36% !important;
+    } 
+
+}
 .container {
     display: flex;
     flex-direction: column;
-    height: calc(100vh - 48px) !important;
+    height: calc(100vh - 48px);
 }
 /* Bar containing filter icons, paginator and sort */
 .subnavbar {
@@ -260,7 +273,7 @@ mat-selection-list {
 }
 /* Viewport content */
 .viewport {
-    height: calc(100vh - 98px) !important;
+    height: calc(100vh - 98px);
     width: 100%;
 }
 ::ng-deep .cdk-virtual-scroll-content-wrapper {
@@ -287,7 +300,6 @@ mat-selection-list {
 }
 .viewport-item-title {
     margin: 0;
-    display: inline-flex;
     width: 90%;
 }
 .feature {
@@ -392,16 +404,6 @@ mat-selection-list {
     transform: scale(0.7);
     position: relative;
     left: 5px;
-}
-.trIcon {
-    display: inline-block;
-    border: 2px solid rgb(3, 34, 24);
-    padding-left: 4px;
-    padding-right: 4px;
-    position: relative;
-    bottom: 8px;
-    font-size: 13px;
-    border-radius: 5px;
 }
 .code {
     font-weight: 700;
