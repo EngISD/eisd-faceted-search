@@ -1,6 +1,9 @@
 .card {
     padding: 20px 40px;
-    height: 695px;
+    height: calc(100vh - 138px);
+}
+.noWrap {
+    word-break: break-all;
 }
 .content {
     padding: 10px 10px;
@@ -11,10 +14,70 @@
 .icon {
     display: inline;
 }
+.cdcIcon {
+    padding: 1px 1px;
+}
 .info {
     display: inline;
     position: relative;
     bottom: 6px;
     left: 5px;
     line-height: 1.5pc;
+}
+.plainInfo {
+    display: inline;
+    position: relative;
+    left: 5px;
+    line-height: 1.5pc; 
+    font-size: 18px;
+}
+.statusInfo {
+    display: inline;
+    position: relative;
+    left: 5px;
+    line-height: 1.5pc;
+    font-size: 18px;  
+}
+.crIcon {
+    transform: scale(0.7);
+    position: relative;
+    right: 16px;
+}
+.goodStatus {
+    display: inline-block;
+    color: rgb(36, 146, 32);
+}
+.badStatus {
+    display: inline-block;
+    color: rgb(228, 45, 45);
+}
+.neutralStatus {
+    display: inline-block;
+    color: rgb(142, 163, 199);
+}
+.costs {
+    display: inline;
+    position: relative;
+    bottom: 7px;
+    right: 17px;
+}
+.statusIconC {
+    color: rgb(30, 145, 30);
+    position: relative;
+    top: 4px;
+}
+.statusIconA {
+    color: rgb(2, 119, 189);
+    position: relative;
+    top: 4px;
+}
+.statusIconS {
+    color: rgb(132, 134, 132);
+    position: relative;
+    top: 4px;
+}
+.statusIconI {
+    color: rgb(222, 178, 47);
+    position: relative;
+    top: 4px;
 }

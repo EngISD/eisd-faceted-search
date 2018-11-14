@@ -56,8 +56,6 @@
     .endSidenavOpen {
         width: 6% !important;
     }
-}
-@media only screen and (max-width: 760px){
     .hideOnSmall {
         display: none !important;
     }
@@ -226,9 +224,6 @@ mat-paginator {
 mat-sidenav {
     width: 300px !important; 
 }
-mat-sidenav.endSidenav {
-    width: 400px !important; 
-}
 ::ng-deep mat-sidenav.endSidenav > .mat-drawer-inner-container {
     background-color: white !important;
 }
@@ -279,7 +274,7 @@ mat-selection-list {
 }
 /* Viewport content */
 .viewport {
-    height: calc(100vh - 98px);
+    height: calc(100vh - 98px) !important;
     width: 100%;
 }
 ::ng-deep .cdk-virtual-scroll-content-wrapper {
@@ -329,11 +324,17 @@ mat-selection-list {
     font-size: 1.2em;
     margin: 33px 0 0 30px;
 }
+.hideOnSmall {
+    display: none !important;
+}
 .infoIcon {
     position: relative;
     top: 5px;
     left: 1px;
     display: inline-block;
+}
+.cdcIcon {
+    padding-right: 2px;
 }
 .material-icons {
     font-size: 22px !important;

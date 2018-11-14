@@ -1,19 +1,99 @@
-<div class="card mat-elevation-z4">
-  <h3>{{receivedItem.comCodice}} - {{receivedItem.comDescrizione}}</h3>
+<div class="card">
+  <h3 class="noWrap">{{receivedItem.comCodice}} - {{receivedItem.comDescrizione}}</h3>
   <div>
-    <mat-icon class="icon">euro_symbol</mat-icon><p class="info">{{receivedItem.cdcCodice}} - {{receivedItem.cdcDescrizione}}</p>
+    <img class="cdcIcon" src="../../../assets/sitemap.png" alt="icon" width="22px" height="22px"><p class="info">{{receivedItem.cdcCodice}} - {{receivedItem.cdcDescrizione}}</p>
+    
     <mat-divider></mat-divider>
+    
     <mat-icon class="icon">date_range</mat-icon><p class="info">{{receivedItem.anno}}</p>
+    
     <mat-divider></mat-divider>
+    
     <mat-icon class="icon">account_box</mat-icon><p class="info">{{receivedItem.cliId}} - {{receivedItem.comCliente}}</p>
+    
     <mat-divider></mat-divider>
+    
     <mat-icon class="icon">business</mat-icon><p class="info">{{receivedItem.socCodiceSap}} - {{receivedItem.socDescrizione}}</p>
+    
     <mat-divider></mat-divider>
+    
     <mat-icon class="icon">visibility</mat-icon><p class="info">{{receivedItem.cdcResponsabile}} - {{receivedItem.respCognome}} {{receivedItem.respNome}}</p>
+    
     <mat-divider></mat-divider>
+    
     <mat-icon class="icon">person</mat-icon><p class="info">{{receivedItem.comCp}} - {{receivedItem.cpCognome}} {{receivedItem.cpNome}}</p>
+    
     <mat-divider></mat-divider>
-    <mat-icon class="icon">person_outline</mat-icon><p class="info">{{receivedItem.comFunzionario}} - {{receivedItem.funzCognome}} - {{receivedItem.funzNome}}</p>
+    
+    <mat-icon class="icon">person_outline</mat-icon><p class="info">{{receivedItem.comFunzionario}} - {{receivedItem.funzCognome}} {{receivedItem.funzNome}}</p>
+    
+    <mat-divider></mat-divider>
+    
+    <div [ngClass]="{'goodStatus': ((receivedItem.ricaviC12-receivedItem.costiC12) &gt; 0), 'badStatus': ((receivedItem.costiC12-receivedItem.ricaviC12) &gt; 0), 'neutralStatus': (receivedItem.costiC12==receivedItem.ricaviC12)}">
+      <mat-icon class="icon">
+        euro_symbol
+      </mat-icon>
+      <mat-icon class="crIcon">
+        remove
+      </mat-icon>
+      <div class="costs">{{receivedItem.costiC12 | number:'1.0-0'}}
+      </div>
+      <mat-icon class="icon">
+          euro_symbol
+      </mat-icon>
+      <mat-icon class="crIcon">
+          add
+      </mat-icon>
+      <div class="costs">{{receivedItem.ricaviC12 | number:'1.0-0'}}</div>
+    </div>
+    
+    <mat-divider></mat-divider>
+    
+    <p class="plainInfo">Status: </p>
+    <div class="statusInfo" *ngIf="receivedItem.comStato=='C'">
+      <mat-icon class="statusIconC">assignment_turned_in</mat-icon>
+      <span>Closed</span>
+    </div>
+    <div class="statusInfo" *ngIf="receivedItem.comStato=='A'">
+        <mat-icon class="statusIconA">assignment</mat-icon>
+        <span>Active</span>
+    </div>
+    <div class="statusInfo" *ngIf="receivedItem.comStato=='S'">
+        <mat-icon class="statusIconS">assignment_returned</mat-icon>
+        <span>Suspended</span>
+    </div>
+    <div class="statusInfo" *ngIf="receivedItem.comStato=='I'">
+        <mat-icon class="statusIconI">assignment_late</mat-icon>
+        <span>New</span>
+    </div>
+    
+    <mat-divider></mat-divider>
+    
+    <p class="plainInfo">Interscambio: {{ receivedItem.comInterscambio}}</p>
+    
+    <mat-divider></mat-divider>
+    
+    <p class="plainInfo">Legge 136: {{receivedItem.comLegge136}}</p>
+    
+    <mat-divider></mat-divider>
+    
+    <p class="plainInfo">InizioValidita: {{ receivedItem.comInizioValidita | slice:4:6}} {{ receivedItem.comInizioValidita | slice:0:4}}</p>
+    
+    <mat-divider></mat-divider>
+    
+    <p class="plainInfo">Tipo Ricavo: {{ receivedItem.comTipoRicavo}}</p>
+    
+    <mat-divider></mat-divider>
+    
+    <p class="plainInfo">Tipo Avanzamento: {{ receivedItem.comTipoAvanzamento}}</p>
+    
+    <mat-divider></mat-divider>
+    
+    <p class="plainInfo">Linea Prodotto: {{ receivedItem.comLineaProdotto}}</p>
+    
+    <mat-divider></mat-divider>
+    
+    <p class="plainInfo">Esiste T8 Corrente: {{ receivedItem.comEsisteT8Corrente}}</p>
   </div>
 </div>
 
