@@ -21,12 +21,4 @@ export class DialogComponent implements OnInit {
   ngAfterContentChecked(): void {
     this.receivedItem = this.service.itemValue$;
   }
-
-  // close() {
-  //     this.dialogRef.close();
-  // }
-  openSidenav(){
-    this.receivedItem = this.service.emitValue();
-  }
-
 }

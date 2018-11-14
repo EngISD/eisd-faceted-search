@@ -118,7 +118,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
     });
     for (let i = 0; i < this.categories.length; i++) {
       this.numMore[this.categories[i].id] = 1;
-      this.service.getFacets(this.categories[i].id).subscribe(res => {
+      this.service.refreshFacets(this.categories[i].id, this.selectedFilters).subscribe(res => {
         this.checkboxes[this.categories[i].id] = res['facetOptions'];
         this.hasMore[this.categories[i].id] = res['hasMore'];
 
@@ -145,7 +145,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
     this.mobileQuery.removeListener(this._mobileQueryListener);
     this.changeDetectorRef.detach();
   }
-  onNgModelChange(cat?) {
+  onNgModelChange() {
     this.loading = true;
     this.service.sortAllResults(this.option, this.pageSize, 0, this.descending, this.selectedFilters).subscribe(res => {
       this.test = res['data'];
@@ -155,25 +155,6 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
     });
 
     for (let i = 0; i < this.categories.length; i++) {
-        if (cat == undefined) {
-          this.service.getFacets(this.categories[i].id).subscribe(res => {
-            this.checkboxes[this.categories[i].id] = res['facetOptions'];
-            this.hasMore[this.categories[i].id] = res['hasMore'];
-
-            if (this.categories[i].id == 'anno') {
-              const temp = [];
-              const temp1 = [];
-              for (let j = 0; j < this.checkboxes['anno'].length; j++) {
-                temp.push(this.checkboxes['anno'][j].code);
-                temp1.push(this.checkboxes['anno'][j].count);
-              }
-              this.barChartLabels = temp;
-              this.barChartData[0] = Object.assign({
-                data: temp1, label: 'Number of items'
-              });
-            }
-          });
-        } else {
           this.service.refreshFacets(this.categories[i].id, this.selectedFilters, this.numMore[this.categories[i].id]).subscribe(res => {
             this.checkboxes[this.categories[i].id] = res['facetOptions'];
             this.hasMore[this.categories[i].id] = res['hasMore'];
@@ -190,7 +171,6 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
               });
             }
           });
-        }
     }
   }
 
@@ -273,10 +253,6 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
       });
     }
 
-  }
-
-  public chartHovered(e:any):void {
-    console.log(e);
   }
 
   resetAll() {

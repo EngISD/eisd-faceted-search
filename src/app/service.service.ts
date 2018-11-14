@@ -125,53 +125,36 @@ export class ServiceService {
 
   // DEMO SERVICE
   // tslint:disable:max-line-length
-  getFacets(category, num?) {
-    if (num == undefined) {
-      num = 1;
-    }
-    if (category == 'anno') {
-      return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/facet?facetMaxOptions=10&facet=' + category).pipe(
-        map(items => {
-          return items;
-        }, error => error)
-      );
-    }
-    return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/facet?facetMaxOptions=' + num*5 + '&facet=' + category).pipe(
-      map(items => {
-        return items;
-      }, error => error)
-    );
-  }
 
   refreshFacets(category, selection, num?) {
     if (num == undefined) {
       num = 1;
     }
-      let facet = '';
-      const temp = selection;
-      Object.entries(temp).forEach(
-        ([key, value]) => {
-          if (key != category) {
-            Object.entries(value).forEach(
-              ([key1, value1]) => {
-                facet = facet.concat('&', key, '=', encodeURIComponent(value1.toString()));
-              }
-            );
-          }
+    let facet = '';
+    const temp = selection;
+    Object.entries(temp).forEach(
+      ([key, value]) => {
+        if (key != category) {
+          Object.entries(value).forEach(
+            ([key1, value1]) => {
+              facet = facet.concat('&', key, '=', encodeURIComponent(value1.toString()));
+            }
+          );
         }
-      );
-      if (category == 'anno') {
-        return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/facet?facetMaxOptions=10&facet=' + category + facet).pipe(
-          map(items => {
-            return items;
-          }, error => error)
-        );
       }
-      return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/facet?facetMaxOptions=' + num*5 + '&facet=' + category + facet).pipe(
+    );
+    if (category == 'anno') {
+      return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/facet?facetMaxOptions=10&facet=' + category + facet).pipe(
         map(items => {
           return items;
         }, error => error)
       );
+    }
+    return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/facet?facetMaxOptions=' + num*5 + '&facet=' + category + facet).pipe(
+      map(items => {
+        return items;
+      }, error => error)
+    );
   }
   sortAllResults(value, pageSize, pageIndex, desc, facets?) {
     let res = '';
@@ -189,17 +172,13 @@ export class ServiceService {
     }
     res = res.concat('&order=', value.toString());
     return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/list?size=' + pageSize + '&page=' + (pageIndex + 1) + res + '&asc=' + !desc + facet)
-    .pipe(
-      map(items => {
-        return items;
-      }, error => error)
-    );
+      .pipe(
+        map(items => {
+          return items;
+        }, error => error)
+      );
   }
   receiveValue(item){
     this.itemValue$ = item;
   }
-  emitValue(){
-    return this.itemValue$;
-  }
-
 }

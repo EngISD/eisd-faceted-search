@@ -103,7 +103,7 @@
           <ng-template matExpansionPanelContent *ngIf="category.id != 'anno'">
             <mat-selection-list dense>
               <mat-list-option *ngFor="let checkbox of checkboxes[category.id]; trackBy: trackByFn;"
-                               (click)="select(checkbox.code, category.id); onNgModelChange(category.id);"
+                               (click)="select(checkbox.code, category.id); onNgModelChange();"
                                [selected]="selectedFilters[category.id].includes(checkbox.code)"
                                [value]="checkbox.code">
                 <mat-icon matListIcon>keyboard_arrow_right</mat-icon>
@@ -125,7 +125,6 @@
                     [legend]="barChartLegend"
                     [colors]="barChartColors"
                     [chartType]="barChartType"
-                    (chartHover)="chartHovered($event)"
                     (chartClick)="chartClicked($event)"></canvas>
           </ng-template>
         </mat-expansion-panel>
