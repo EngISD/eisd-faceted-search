@@ -95,9 +95,11 @@
                              *ngFor="let category of categories; trackBy: trackByFn; let i = index">
           <mat-expansion-panel-header>
             <mat-panel-title class="noSelect">
-              <mat-icon class="catIcon" 
-                        matListIcon>{{ category.icon }}</mat-icon>
-                        &nbsp;&nbsp;&nbsp;&nbsp;{{ category.id | titlecase }}
+              <mat-icon class="catIcon" style="font-size: 27px !important" 
+                        matListIcon *ngIf="category.id != 'cdc'">{{ category.icon }}</mat-icon>
+                        <img src="../../../assets/sitemap.png" alt="icon" width="27px" height="27px" *ngIf="category.id == 'cdc'">
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="categoryTitle" *ngIf="category.id != 'rcdc' && category.id != 'cp' && category.id != 'fun'">{{ category.value }}</span>
+                        <span class="categoryTitleLong" *ngIf="category.id == 'rcdc' || category.id == 'cp' || category.id == 'fun'">{{ category.value }}</span>
             </mat-panel-title>
           </mat-expansion-panel-header>
           <ng-template matExpansionPanelContent *ngIf="category.id != 'anno'">
@@ -106,7 +108,13 @@
                                (click)="select(checkbox.code, category.id); onNgModelChange();"
                                [selected]="selectedFilters[category.id].includes(checkbox.code)"
                                [value]="checkbox.code">
-                <mat-icon matListIcon>keyboard_arrow_right</mat-icon>
+                <mat-icon matListIcon *ngIf="category.id != 't8' && category.id != 'l136'">keyboard_arrow_right</mat-icon>
+                <mat-icon matListIcon *ngIf="category.id == 't8' && checkbox.descr == 'N'">close</mat-icon>
+                <mat-icon matListIcon *ngIf="category.id == 't8' && checkbox.descr == 'S'">check</mat-icon>
+                <mat-icon matListIcon *ngIf="category.id == 'l136' && checkbox.descr == '1'">close</mat-icon>
+                <mat-icon matListIcon *ngIf="category.id == 'l136' && checkbox.descr == '2'">check</mat-icon>
+                <mat-icon matListIcon *ngIf="category.id == 'l136' && checkbox.descr == '3'">timer</mat-icon>
+                <mat-icon matListIcon *ngIf="category.id == 'l136' && checkbox.descr == '4'">priority_high</mat-icon>
                   <p class="noSelect">{{ checkbox.descr }} ({{ checkbox.count }})</p>
               </mat-list-option>
               <button mat-raised-button class="moreButton"

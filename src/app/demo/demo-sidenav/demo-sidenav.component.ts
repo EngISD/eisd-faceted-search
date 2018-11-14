@@ -38,18 +38,18 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
   @ViewChild('snav') sidenav: MatSidenav;
   @ViewChild('snav1') sidenav1: MatSidenav;
   categories = [
-    {id: 'cdc', icon: 'euro_symbol'},
-    {id: 'anno', icon: 'date_range'},
-    {id: 'cliente', icon: 'account_box'},
-    {id: 'soc', icon: 'business'},
-    {id: 'rcdc', icon: 'visibility'},
-    {id: 'cp', icon: 'person'},
-    {id: 'fun', icon: 'person_outline'},
-    {id: 'l136', icon: 'outlined_flag'},
-    {id: 'tr', icon: 'outlined_flag'},
-    {id: 'ta', icon: 'outlined_flag'},
-    {id: 'lp', icon: 'outlined_flag'},
-    {id: 't8', icon: 'outlined_flag'}
+    {id: 'cdc', icon: 'euro_symbol', value: 'Centro di Costo'},
+    {id: 'anno', icon: 'date_range', value: 'Anno'},
+    {id: 'cliente', icon: 'account_box', value: 'Cliente'},
+    {id: 'soc', icon: 'business', value: 'Azienda'},
+    {id: 'rcdc', icon: 'visibility', value: 'Centro di Costo Responsabile'},
+    {id: 'cp', icon: 'person', value: 'Responsabile del Progetto'},
+    {id: 'fun', icon: 'person_outline', value: 'Responsabile Commerciale'},
+    {id: 'l136', icon: 'outlined_flag', value: 'Legge 136'},
+    {id: 'tr', icon: 'outlined_flag', value: 'Tipo Ricavo'},
+    {id: 'ta', icon: 'outlined_flag', value: 'Tipo Avanzamento'},
+    {id: 'lp', icon: 'outlined_flag', value: 'Linea Prodotto'},
+    {id: 't8', icon: 'outlined_flag', value: 'Esiste T8 Corrente'}
   ];
   content = [];
   checkboxes = [];

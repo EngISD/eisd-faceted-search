@@ -260,6 +260,10 @@ mat-selection-list {
     color: #000000 !important;
     margin-top: -1px;
 }
+.catIconCdc {
+    color: #000000 !important;
+    margin-left: 2px !important;
+}
 .noSelect {
     -webkit-touch-callout: none; /* iOS Safari */
       -webkit-user-select: none; /* Safari */
@@ -459,4 +463,11 @@ mat-selection-list {
     font-size: 12px;
     line-height: 24px;
     padding-left: 30px;
+}
+.categoryTitle {
+    font-size: 20px;
+}
+.categoryTitleLong {
+    margin-top: 4px;
+    font-size: 13.5px;
 }
