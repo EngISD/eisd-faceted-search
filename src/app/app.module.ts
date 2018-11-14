@@ -18,7 +18,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatToolbarModule} from '@angular/material/toolbar';
-import {ScrollDispatchModule} from '@angular/cdk/scrolling';
+import {ScrollDispatchModule, ScrollDispatcher} from '@angular/cdk/scrolling';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatDialogModule} from '@angular/material/dialog';
 import { ScrollingModule } from '@angular/cdk/scrolling';
@@ -86,7 +86,7 @@ import { DialogComponent } from './demo/dialog/dialog.component';
     MatTooltipModule
   ],
   entryComponents: [DialogComponent],
-  providers: [{ provide: MatPaginatorIntl, useClass: MatPaginatorIntlIta}],
+  providers: [{ provide: MatPaginatorIntl, useClass: MatPaginatorIntlIta}, ScrollDispatcher],
   bootstrap: [AppComponent]
 })
 export class AppModule {
