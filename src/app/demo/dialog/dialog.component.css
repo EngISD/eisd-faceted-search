@@ -1,53 +1,20 @@
-.title {
-    display: inline-block;
-}
-.title h3 {
-    margin: 0;
-    color: rgb(0, 47, 90);
-}
-.div {
-    margin: 0 auto;
-    text-align: center;
-    display: inline-block;
-    position: absolute;
-    right: -20px;
-    top: -20px;
-}
-.cancel {
-    display: inline-block;
-    width: 60px;
-    height: 60px;
-}
-.cancel:hover { 
-    background-color: rgba(128, 128, 128, 0.1);
-}
-.icon {
-    width: 50px;
-    height: 50px;
-    font-size: 45px;
-    padding-top: 18px;
-    color: rgb(0, 47, 90);
-}
-  .round {
-    border-radius: 50%;
-    background-color: rgb(2, 119, 189, 0.847);
-    width: 60px;
-    height: 60px;
-    display: inline-block;
-    text-align: center;
-    color: white;
-    margin: 0 auto;
-    line-height: 60px;
-    font-size: 1.2em;
-    margin-top: 20px;
-}
 .card {
-    border-radius: 10px;
     padding: 20px 40px;
+    height: 695px;
 }
 .content {
     padding: 10px 10px;
 }
 .mat-dialog-title {
     margin: 0 !important;
+}
+.icon {
+    display: inline;
+}
+.info {
+    display: inline;
+    position: relative;
+    bottom: 6px;
+    left: 5px;
+    line-height: 1.5pc;
 }

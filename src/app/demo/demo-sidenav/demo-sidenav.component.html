@@ -283,7 +283,7 @@
       </cdk-virtual-scroll-viewport>
     </mat-sidenav-content>
 
-    <mat-sidenav #snav1 [opened]="false" 
+    <mat-sidenav class="endSidenav" #snav1 [opened]="false" 
               [mode]="mobileQuery.matches ? 'over' : 'side'"
               [fixedInViewport]="mobileQuery.matches" 
               [fixedTopGap]="mobileQuery.matches ? 97 : 97"

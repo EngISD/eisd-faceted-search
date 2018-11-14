@@ -1,28 +1,20 @@
-<!-- <div mat-dialog-title  style="position: relative">
-  <div class="title">
-    <h3 >Additional information </h3>
+<div class="card mat-elevation-z4">
+  <h3>{{receivedItem.comCodice}} - {{receivedItem.comDescrizione}}</h3>
+  <div>
+    <mat-icon class="icon">euro_symbol</mat-icon><p class="info">{{receivedItem.cdcCodice}} - {{receivedItem.cdcDescrizione}}</p>
+    <mat-divider></mat-divider>
+    <mat-icon class="icon">date_range</mat-icon><p class="info">{{receivedItem.anno}}</p>
+    <mat-divider></mat-divider>
+    <mat-icon class="icon">account_box</mat-icon><p class="info">{{receivedItem.cliId}} - {{receivedItem.comCliente}}</p>
+    <mat-divider></mat-divider>
+    <mat-icon class="icon">business</mat-icon><p class="info">{{receivedItem.socCodiceSap}} - {{receivedItem.socDescrizione}}</p>
+    <mat-divider></mat-divider>
+    <mat-icon class="icon">visibility</mat-icon><p class="info">{{receivedItem.cdcResponsabile}} - {{receivedItem.respCognome}} {{receivedItem.respNome}}</p>
+    <mat-divider></mat-divider>
+    <mat-icon class="icon">person</mat-icon><p class="info">{{receivedItem.comCp}} - {{receivedItem.cpCognome}} {{receivedItem.cpNome}}</p>
+    <mat-divider></mat-divider>
+    <mat-icon class="icon">person_outline</mat-icon><p class="info">{{receivedItem.comFunzionario}} - {{receivedItem.funzCognome}} - {{receivedItem.funzNome}}</p>
   </div>
-  <div class="div">
-    <button mat-icon-button class="cancel" (click)="close()"><mat-icon class="icon">clear</mat-icon></button>
-  </div>
-  
-</div> -->
-
-
-
-  <div class="card mat-elevation-z4">
-    <div>
-      <div class="round mat-elevation-z2">{{ receivedItem.comCodice | slice:0:3 }}</div>
-      {{receivedItem.comCodice}} - {{receivedItem.comDescrizione}}
-    </div>
-    <div>
-      <p>{{receivedItem.cliId}} - {{receivedItem.comCliente}}</p>
-      <mat-divider></mat-divider>
-      <p>{{receivedItem.cdcCodice}} - {{receivedItem.cdcDescrizione}} - {{receivedItem.cdcResponsabile}}</p>
-      <mat-divider></mat-divider>
-      <p>{{receivedItem.comCp}} - {{receivedItem.cpNome}} - {{receivedItem.cpCognome}}</p>
-      <p>{{receivedItem.comFunzionario}} - {{receivedItem.funzNome}} - {{receivedItem.funzCognome}}</p>
-    </div>
-  </div>
+</div>
 
 

@@ -226,6 +226,12 @@ mat-paginator {
 mat-sidenav {
     width: 300px !important; 
 }
+mat-sidenav.endSidenav {
+    width: 400px !important; 
+}
+::ng-deep mat-sidenav.endSidenav > .mat-drawer-inner-container {
+    background-color: white !important;
+}
 mat-panel-title {
     font-size: 1.3em;
 }
