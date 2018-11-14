@@ -143,26 +143,31 @@ export class ServiceService {
     );
   }
 
-  refreshFacets(category, selection) {
-      let dud = '';
+  refreshFacets(category, selection, num?) {
+    if (num == undefined) {
+      num = 1;
+    }
+      let facet = '';
       const temp = selection;
       Object.entries(temp).forEach(
         ([key, value]) => {
-          Object.entries(value).forEach(
-            ([key1, value1]) => {
-              dud = dud.concat('&', key, '=', value1.toString());
-            }
-          );
+          if (key != category) {
+            Object.entries(value).forEach(
+              ([key1, value1]) => {
+                facet = facet.concat('&', key, '=', encodeURIComponent(value1.toString()));
+              }
+            );
+          }
         }
       );
       if (category == 'anno') {
-        return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/facet?facetMaxOptions=10&facet=' + category + dud).pipe(
+        return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/facet?facetMaxOptions=10&facet=' + category + facet).pipe(
           map(items => {
             return items;
           }, error => error)
         );
       }
-      return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/facet?facet=' + category + dud).pipe(
+      return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/facet?facetMaxOptions=' + num*5 + '&facet=' + category + facet).pipe(
         map(items => {
           return items;
         }, error => error)
@@ -176,7 +181,7 @@ export class ServiceService {
         ([key1, value1]) => {
           Object.entries(value1).forEach(
             ([key2, value2]) => {
-              facet = facet.concat('&', key1, '=', value2.toString());
+              facet = facet.concat('&', key1, '=', encodeURIComponent(value2.toString()));
             }
           );
         }

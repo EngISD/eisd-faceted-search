@@ -53,14 +53,9 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
   ];
   content = [];
   checkboxes = [];
-  selected1 = [];
   numMore = [];
   hasMore = [];
-  dud1 = [];
-  clicked1 = false;
-  clicked2 = false;
-  clicked3 = false;
-  clicked4 = false;
+  selectedFilters = [];
   public loading = false;
   public ngxLoadingAnimationTypes = ngxLoadingAnimationTypes;
   public primaryColour = '#006dddee';
@@ -109,14 +104,13 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
     for (let i = 0; i < this.categories.length; i++) {
-      this.selected1[this.categories[i].id] = [];
-      this.dud1[this.categories[i].id] = [];
+      this.selectedFilters[this.categories[i].id] = [];
     }
   }
   ngOnInit() {
     this.changeDetectorRef.detectChanges();
     this.loading = true;
-    this.service.sortAllResults(this.option, this.pageSize, 0, this.descending, this.selected1).subscribe(res => {
+    this.service.sortAllResults(this.option, this.pageSize, 0, this.descending, this.selectedFilters).subscribe(res => {
       this.test = res['data'];
       this.length = res['count'];
       this.activePageDataChunk = this.test;
@@ -151,35 +145,9 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
     this.mobileQuery.removeListener(this._mobileQueryListener);
     this.changeDetectorRef.detach();
   }
-  checkClicked() {
-    const l136click = [];
-    if (this.clicked1) {
-      l136click.push('1');
-    }
-    if (this.clicked2) {
-      l136click.push('2');
-    }
-    if (this.clicked3) {
-      l136click.push('3');
-    }
-    if (this.clicked4) {
-      l136click.push('4');
-    }
-    return l136click;
-  }
   onNgModelChange(cat?) {
     this.loading = true;
-
-    this.selected1['l136'] = this.checkClicked();
-    /* setTimeout(() => {
-      this.service.sortAllResults(this.option, this.pageSize, 0, this.descending, this.dud1).subscribe(res => {
-        this.test = res['data'];
-        this.activePageDataChunk = this.test;
-        this.length = res['count'];
-        this.loading = false;
-      });
-    }); */
-    this.service.sortAllResults(this.option, this.pageSize, 0, this.descending, this.selected1).subscribe(res => {
+    this.service.sortAllResults(this.option, this.pageSize, 0, this.descending, this.selectedFilters).subscribe(res => {
       this.test = res['data'];
       this.activePageDataChunk = this.test;
       this.length = res['count'];
@@ -187,7 +155,6 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
     });
 
     for (let i = 0; i < this.categories.length; i++) {
-      if (this.categories[i].id != cat) {
         if (cat == undefined) {
           this.service.getFacets(this.categories[i].id).subscribe(res => {
             this.checkboxes[this.categories[i].id] = res['facetOptions'];
@@ -207,9 +174,9 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
             }
           });
         } else {
-          this.service.refreshFacets(this.categories[i].id, this.selected1).subscribe(res => {
+          this.service.refreshFacets(this.categories[i].id, this.selectedFilters, this.numMore[this.categories[i].id]).subscribe(res => {
             this.checkboxes[this.categories[i].id] = res['facetOptions'];
-
+            this.hasMore[this.categories[i].id] = res['hasMore'];
             if (this.categories[i].id == 'anno') {
               const temp = [];
               const temp1 = [];
@@ -224,7 +191,6 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
             }
           });
         }
-      }
     }
   }
 
@@ -237,7 +203,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
   }
   onPageChanged(e) {
     this.loading = true;
-    this.service.sortAllResults(this.option, e.pageSize, e.pageIndex, this.descending, this.selected1).subscribe(res => {
+    this.service.sortAllResults(this.option, e.pageSize, e.pageIndex, this.descending, this.selectedFilters).subscribe(res => {
       this.test = res['data'];
       this.pageSize = e.pageSize;
       this.activePageDataChunk = this.test;
@@ -249,14 +215,14 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
 
   showMore(cat) {
     ++this.numMore[cat];
-    this.service.getFacets(cat, this.numMore[cat]).subscribe(res => {
+    this.service.refreshFacets(cat, this.selectedFilters, this.numMore[cat]).subscribe(res => {
       this.checkboxes[cat] = res['facetOptions'];
       this.hasMore[cat] = res['hasMore'];
     });
   }
   showLess(cat) {
     this.numMore[cat] = 1;
-    this.service.getFacets(cat).subscribe(res => {
+    this.service.refreshFacets(cat, this.selectedFilters).subscribe(res => {
       this.checkboxes[cat] = res['facetOptions'];
       this.hasMore[cat] = res['hasMore'];
     });
@@ -289,35 +255,23 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
       } else {
         this.barSelected.push(temp);
       }
-      this.selected1['anno'] = this.barSelected;
+      this.selectedFilters['anno'] = this.barSelected;
       for (let i = 0; i < this.categories.length; i++) {
         if (this.categories[i].id != 'anno') {
-          this.service.refreshFacets(this.categories[i].id, this.selected1).subscribe(res => {
+          this.service.refreshFacets(this.categories[i].id, this.selectedFilters, this.numMore[this.categories[i].id]).subscribe(res => {
             this.checkboxes[this.categories[i].id] = res['facetOptions'];
+            this.hasMore[this.categories[i].id] = res['hasMore'];
           });
         }
       }
       this.loading = true;
-      this.service.sortAllResults(this.option, this.pageSize, 0, this.descending, this.selected1).subscribe(res => {
+      this.service.sortAllResults(this.option, this.pageSize, 0, this.descending, this.selectedFilters).subscribe(res => {
         this.test = res['data'];
         this.activePageDataChunk = this.test;
         this.length = res['count'];
         this.loading = false;
       });
     }
-
-      /* if (this.categories[i].id == 'anno') {
-        const temp = [];
-        const temp1 = [];
-        for (let j = 0; j < this.checkboxes['anno'].length; j++) {
-          temp.push(this.checkboxes['anno'][j].code);
-          temp1.push(this.checkboxes['anno'][j].count);
-        }
-        this.barChartLabels = temp;
-        this.barChartData[0] = Object.assign({
-          data: temp1, label: 'Number of items'
-        });
-      } */
 
   }
 
@@ -327,14 +281,9 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
 
   resetAll() {
     for (let i = 0; i < this.categories.length; i++) {
-      this.selected1[this.categories[i].id] = [];
-      this.dud1[this.categories[i].id] = [];
+      this.selectedFilters[this.categories[i].id] = [];
       this.numMore[this.categories[i].id] = 1;
     }
-    this.clicked1 = false;
-    this.clicked2 = false;
-    this.clicked3 = false;
-    this.clicked4 = false;
     this.barSelected = [];
     this.onNgModelChange();
   }
@@ -346,19 +295,19 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
     this.loading = true;
     this.pageIndex = 0;
     this.paginator.pageIndex = 0;
-    this.service.sortAllResults(this.option, this.pageSize, 0, this.descending, this.selected1).subscribe(res => {
+    this.service.sortAllResults(this.option, this.pageSize, 0, this.descending, this.selectedFilters).subscribe(res => {
       this.test = res['data'];
       this.activePageDataChunk = this.test;
       this.loading = false;
     });
   }
 
-  dud(code, cat) {
-    const index = this.dud1[cat].indexOf(code);
+  select(code, cat) {
+    const index = this.selectedFilters[cat].indexOf(code);
     if (index == -1) {
-      this.dud1[cat].push(code);
+      this.selectedFilters[cat].push(code);
     } else {
-      this.dud1[cat].splice(index, 1);
+      this.selectedFilters[cat].splice(index, 1);
     }
   }
   openSidenav(item){
