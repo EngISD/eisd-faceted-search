@@ -153,9 +153,12 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
   }
   onNgModelChange(override?) {
     this.loading = true;
+    this.pageIndex = 0;
+    this.paginator.pageIndex = 0;
     this.service.sortAllResults(this.option, this.pageSize, 0, this.descending, this.selectedFilters).subscribe(res => {
       this.test = res['data'];
       this.activePageDataChunk = this.test;
+      this.scroll.scrollToIndex(0);
       this.length = res['count'];
       this.loading = false;
     });

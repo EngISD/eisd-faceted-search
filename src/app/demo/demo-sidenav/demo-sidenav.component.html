@@ -209,7 +209,30 @@
               (click) = "openSidenav(item); snav1.open();"
               cdkVirtualForTrackBy= 'trakByFn()'>
           <div class="round mat-elevation-z4"
-               [ngClass]="{'hideOnSmall': mobileQuery.matches}">{{ item.comCodice | slice:0:3 }}</div>
+               [ngClass]="{
+                 'hideOnSmall': mobileQuery.matches,
+                 'soc1': item.socCodice == 'E',
+                 'soc2': item.socCodice == 'R',
+                 'soc3': item.socCodice == 'M',
+                 'soc4': item.socCodice == 'O',
+                 'soc5': item.socCodice == 'F',
+                 'soc6': item.socCodice == 'X',
+                 'soc7': item.socCodice == 'I',
+                 'soc8': item.socCodice == 'V',
+                 'soc9': item.socCodice == 'B',
+                 'soc10': item.socCodice == 'L',
+                 'soc11': item.socCodice == 'U',
+                 'soc12': item.socCodice == 'W',
+                 'soc13': item.socCodice == '°',
+                 'soc14': item.socCodice == 'A',
+                 'soc15': item.socCodice == 'S',
+                 'soc16': item.socCodice == 'H',
+                 'soc17': item.socCodice == 'Y',
+                 'soc18': item.socCodice == 'T',
+                 'soc19': item.socCodice == 'K',
+                 'soc20': item.socCodice == 'C',
+                 'soc21': item.socCodice == '>'
+                }">{{ item.comCodice | slice:0:3 }}</div>
           <div class="feature"
                [ngClass]="{'hideOnSmall': mobileQuery.matches}">
             <mat-icon svgIcon="feature-search-outline" 

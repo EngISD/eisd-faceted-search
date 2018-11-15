@@ -342,6 +342,69 @@ mat-selection-list {
     font-size: 1.2em;
     margin: 33px 0 0 30px;
 }
+.soc1 {
+    background-color: #0277bd !important;
+}
+.soc2 {
+    background-color: #54BDE0 !important;
+}
+.soc3 {
+    background-color: #32847E !important;
+}
+.soc4 {
+    background-color: #835104 !important;
+}
+.soc5 {
+    background-color: #D8C17F !important;
+}
+.soc6 {
+    background-color: #5A5997 !important;
+}
+.soc7 {
+    background-color: #005f20 !important;
+}
+.soc8 {
+    background-color: #2B4C4D !important;
+}
+.soc9 {
+    background-color: #BF320C!important;
+}
+.soc10 {
+    background-color: #9C9BCD !important;
+}
+.soc11 {
+    background-color: #FAB11D !important;
+}
+.soc12 {
+    background-color: #3D6092 !important;
+}
+.soc13 {
+    background-color: #D8263F !important;
+}
+.soc14 {
+    background-color: #B16C5F !important;
+}
+.soc15 {
+    background-color: #955FB1 !important;
+}
+.soc16 {
+    background-color: #83BD96 !important;
+}
+.soc17 {
+    background-color: #9D80FC !important;
+}
+.soc18 {
+    background-color: #365B68 !important;
+}
+.soc19 {
+    background-color: #927687 !important;
+}
+.soc20 {
+    background-color: #079861 !important;
+}
+.soc21 {
+    background-color: #8936DC !important;
+}
 .hideOnSmall {
     display: none !important;
 }
