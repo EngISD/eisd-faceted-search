@@ -106,10 +106,10 @@
                      *ngIf="category.id == 'cdc'">
                         &nbsp;&nbsp;&nbsp;&nbsp;
                   <span class="categoryTitle" 
-                        *ngIf="category.id != 'rcdc' && category.id != 'cp' && category.id != 'fun'">{{ category.value }}
+                        *ngIf="category.id != 'rcdc'">{{ category.value }}
                   </span>
                   <span class="categoryTitleLong" 
-                        *ngIf="category.id == 'rcdc' || category.id == 'cp' || category.id == 'fun'">{{ category.value }}
+                        *ngIf="category.id == 'rcdc'">{{ category.value }}
                   </span>
             </mat-panel-title>
           </mat-expansion-panel-header>
@@ -120,7 +120,7 @@
                                [selected]="selectedFilters[category.id].includes(checkbox.code)"
                                [value]="checkbox.code">
                 <mat-icon matListIcon 
-                          *ngIf="category.id != 't8' && category.id != 'l136'">keyboard_arrow_right
+                          *ngIf="category.id != 't8' && category.id != 'l136' && category.id != 'tr' && category.id != 'ta'">keyboard_arrow_right
                 </mat-icon>
                 <mat-icon matListIcon 
                           *ngIf="category.id == 't8' && checkbox.descr == 'N'">close
@@ -139,6 +139,27 @@
                 </mat-icon>
                 <mat-icon matListIcon 
                           *ngIf="category.id == 'l136' && checkbox.descr == '4'">priority_high
+                </mat-icon>
+                <mat-icon matListIcon 
+                          *ngIf="category.id == 'tr'">euro_symbol
+                </mat-icon>
+                <mat-icon matListIcon 
+                          *ngIf="category.id == 'ta' && checkbox.descr != 'C' && checkbox.descr != 'P' && checkbox.descr != 'E' && checkbox.descr != 'L' && checkbox.descr != 'R'">trending_up
+                </mat-icon>
+                <mat-icon matListIcon 
+                          *ngIf="category.id == 'ta' && checkbox.descr == 'C'">account_balance_wallet
+                </mat-icon>
+                <mat-icon matListIcon 
+                          *ngIf="category.id == 'ta' && checkbox.descr == 'P'">timer
+                </mat-icon>
+                <mat-icon matListIcon 
+                          *ngIf="category.id == 'ta' && checkbox.descr == 'E'">event
+                </mat-icon>
+                <mat-icon matListIcon 
+                          *ngIf="category.id == 'ta' && checkbox.descr == 'L'">euro_symbol
+                </mat-icon>
+                <mat-icon matListIcon 
+                          *ngIf="category.id == 'ta' && checkbox.descr == 'R'">directions_run
                 </mat-icon>
                 <p class="noSelect">{{ checkbox.descr }} ({{ checkbox.count }})</p>
               </mat-list-option>
@@ -185,7 +206,7 @@
                                    class="viewport">
         <div *cdkVirtualFor="let item of activePageDataChunk" 
               class="viewport-item mat-elevation-z1"
-              (click) = "openSidenav(item); snav1.open()"
+              (click) = "openSidenav(item); snav1.open();"
               cdkVirtualForTrackBy= 'trakByFn()'>
           <div class="round mat-elevation-z4"
                [ngClass]="{'hideOnSmall': mobileQuery.matches}">{{ item.comCodice | slice:0:3 }}</div>
