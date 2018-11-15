@@ -471,3 +471,9 @@ mat-selection-list {
     margin-top: 4px;
     font-size: 13.5px;
 }
+.chipTable {
+    width: 101%;
+}
+.removeIcon {
+    font-size: 18px !important;
+}

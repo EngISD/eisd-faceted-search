@@ -145,7 +145,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
     this.mobileQuery.removeListener(this._mobileQueryListener);
     this.changeDetectorRef.detach();
   }
-  onNgModelChange() {
+  onNgModelChange(override?) {
     this.loading = true;
     this.service.sortAllResults(this.option, this.pageSize, 0, this.descending, this.selectedFilters).subscribe(res => {
       this.test = res['data'];
@@ -157,8 +157,17 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
     for (let i = 0; i < this.categories.length; i++) {
           this.service.refreshFacets(this.categories[i].id, this.selectedFilters, this.numMore[this.categories[i].id]).subscribe(res => {
             this.checkboxes[this.categories[i].id] = res['facetOptions'];
+            this.checkboxes[this.categories[i].id].sort((n1, n2) => {
+              if ((this.selectedFilters[this.categories[i].id].indexOf(n1.code) != -1) && (this.selectedFilters[this.categories[i].id].indexOf(n2.code) == -1)) {
+                return -1;
+              }
+              if ((this.selectedFilters[this.categories[i].id].indexOf(n1.code) == -1) && (this.selectedFilters[this.categories[i].id].indexOf(n2.code) != -1)) {
+                return 1;
+              }
+              return 0;
+            });
             this.hasMore[this.categories[i].id] = res['hasMore'];
-            if (this.categories[i].id == 'anno') {
+            if ((this.categories[i].id == 'anno') && (override == undefined)) {
               const temp = [];
               const temp1 = [];
               for (let j = 0; j < this.checkboxes['anno'].length; j++) {
@@ -197,6 +206,15 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
     ++this.numMore[cat];
     this.service.refreshFacets(cat, this.selectedFilters, this.numMore[cat]).subscribe(res => {
       this.checkboxes[cat] = res['facetOptions'];
+      this.checkboxes[cat].sort((n1, n2) => {
+        if ((this.selectedFilters[cat].indexOf(n1.code) != -1) && (this.selectedFilters[cat].indexOf(n2.code) == -1)) {
+          return -1;
+        }
+        if ((this.selectedFilters[cat].indexOf(n1.code) == -1) && (this.selectedFilters[cat].indexOf(n2.code) != -1)) {
+          return 1;
+        }
+        return 0;
+      });
       this.hasMore[cat] = res['hasMore'];
     });
   }
@@ -204,6 +222,15 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
     this.numMore[cat] = 1;
     this.service.refreshFacets(cat, this.selectedFilters).subscribe(res => {
       this.checkboxes[cat] = res['facetOptions'];
+      this.checkboxes[cat].sort((n1, n2) => {
+        if ((this.selectedFilters[cat].indexOf(n1.code) != -1) && (this.selectedFilters[cat].indexOf(n2.code) == -1)) {
+          return -1;
+        }
+        if ((this.selectedFilters[cat].indexOf(n1.code) == -1) && (this.selectedFilters[cat].indexOf(n2.code) != -1)) {
+          return 1;
+        }
+        return 0;
+      });
       this.hasMore[cat] = res['hasMore'];
     });
   }
@@ -230,27 +257,11 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
     if (e.active.length > 0) {
       const temp = e.active[0]._model.label;
       const index = this.barSelected.findIndex(x => x == e.active[0]._model.label);
-      if (index != -1) {
-        this.barSelected.splice(index, 1);
-      } else {
+      if (index == -1) {
         this.barSelected.push(temp);
+        this.selectedFilters['anno'] = this.barSelected;
+        this.onNgModelChange(false);
       }
-      this.selectedFilters['anno'] = this.barSelected;
-      for (let i = 0; i < this.categories.length; i++) {
-        if (this.categories[i].id != 'anno') {
-          this.service.refreshFacets(this.categories[i].id, this.selectedFilters, this.numMore[this.categories[i].id]).subscribe(res => {
-            this.checkboxes[this.categories[i].id] = res['facetOptions'];
-            this.hasMore[this.categories[i].id] = res['hasMore'];
-          });
-        }
-      }
-      this.loading = true;
-      this.service.sortAllResults(this.option, this.pageSize, 0, this.descending, this.selectedFilters).subscribe(res => {
-        this.test = res['data'];
-        this.activePageDataChunk = this.test;
-        this.length = res['count'];
-        this.loading = false;
-      });
     }
 
   }
@@ -289,5 +300,13 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
   }
   openSidenav(item){
     this.service.receiveValue(item);
+  }
+  removeBarSelected(item) {
+    const index = this.barSelected.findIndex(x => x == item);
+    if (index != -1) {
+      this.barSelected.splice(index, 1);
+    }
+    this.selectedFilters['anno'] = this.barSelected;
+    this.onNgModelChange(false);
   }
 }

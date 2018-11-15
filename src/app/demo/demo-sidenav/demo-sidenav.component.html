@@ -134,6 +134,14 @@
                     [colors]="barChartColors"
                     [chartType]="barChartType"
                     (chartClick)="chartClicked($event)"></canvas>
+            <div class="chipTable">
+              <mat-chip-list #chipTable>
+                <mat-chip class="mat-elevation-z4" *ngFor="let item of barSelected" [selectable]="false" (removed)="removeBarSelected(item)">
+                  {{item}}
+                  <mat-icon matChipRemove class="removeIcon">cancel</mat-icon>
+                </mat-chip>
+              </mat-chip-list>
+            </div>
           </ng-template>
         </mat-expansion-panel>
       </mat-nav-list>
