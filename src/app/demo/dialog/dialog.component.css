@@ -3,7 +3,8 @@
     height: calc(100vh - 138px);
 }
 .noWrap {
-    word-break: break-all;
+    word-break: break-word;
+    text-align: center;
 }
 .content {
     padding: 10px 10px;
@@ -13,6 +14,11 @@
 }
 .icon {
     display: inline;
+}
+.lIcon {
+    display: inline;
+    position: relative;
+    top: 5px;
 }
 .cdcIcon {
     padding: 1px 1px;
@@ -30,6 +36,15 @@
     left: 5px;
     line-height: 1.5pc; 
     font-size: 18px;
+}
+.costInfo {
+    display: inline;
+    position: relative;
+    left: 5px;
+    bottom: 6px;
+    line-height: 1.5pc; 
+    font-size: 18px;
+    color: black;
 }
 .statusInfo {
     display: inline;
