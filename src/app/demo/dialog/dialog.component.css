@@ -5,6 +5,12 @@
 .noWrap {
     word-break: break-word;
     text-align: center;
+    letter-spacing: 1px;
+    border-top-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    padding: 10px;
+    background-color: #0278bdc7;
+    color: white;
 }
 .content {
     padding: 10px 10px;
@@ -14,6 +20,10 @@
 }
 .icon {
     display: inline;
+    color: rgb(98, 98, 98);
+}
+.iconC {
+    display: inline; 
 }
 .lIcon {
     display: inline;
@@ -22,6 +32,7 @@
 }
 .cdcIcon {
     padding: 1px 1px;
+    filter: opacity(0.6);
 }
 .info {
     display: inline;

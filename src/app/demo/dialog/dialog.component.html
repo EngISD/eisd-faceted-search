@@ -1,5 +1,5 @@
 <div class="card">
-  <h3 class="noWrap">{{receivedItem.comCodice}} - {{receivedItem.comDescrizione}}</h3>
+  <h3 class="noWrap mat-elevation-z6">{{receivedItem.comCodice}} - {{receivedItem.comDescrizione}}</h3>
   <div>
     <img class="cdcIcon" src="../../../assets/sitemap.png" alt="icon" width="22px" height="22px"><p class="info">{{receivedItem.cdcCodice}} - {{receivedItem.cdcDescrizione}}</p>
     <p class="info">{{receivedItem.cdcConsolidationSegment}}({{receivedItem.cdcSegmentsDg}})<br></p>
@@ -9,7 +9,7 @@
     <p class="info" *ngIf="receivedItem.cdcDepartment3">- {{receivedItem.cdcDepartment3}}<br></p>
     <p class="info" *ngIf="receivedItem.cdcDepartment4">- {{receivedItem.cdcDepartment4}}<br></p>
     <p class="info" *ngIf="receivedItem.cdcDepartment5">- {{receivedItem.cdcDepartment5}}</p>
-
+ 
     <mat-divider></mat-divider>
     
     <mat-icon class="icon">date_range</mat-icon><p class="info">{{receivedItem.anno}}</p>
@@ -40,7 +40,7 @@
     
     <div [ngClass]="{'goodStatus': ((receivedItem.ricaviC12-receivedItem.costiC12) &gt; 0), 'badStatus': ((receivedItem.costiC12-receivedItem.ricaviC12) &gt; 0), 'neutralStatus': (receivedItem.costiC12==receivedItem.ricaviC12)}">
       <div class="inline-block">
-        <p class="costInfo">Costi: </p><mat-icon class="icon">
+        <p class="costInfo">Costi: </p><mat-icon class="iconC">
           euro_symbol
         </mat-icon>
         <mat-icon class="crIcon">
@@ -50,7 +50,7 @@
         </div>
       </div>
       <div class="inline-block">
-        <p class="costInfo">Ricavi: </p><mat-icon class="icon">
+        <p class="costInfo">Ricavi: </p><mat-icon class="iconC">
             euro_symbol
         </mat-icon>
         <mat-icon class="crIcon">
@@ -89,21 +89,21 @@
     
     <p class="plainInfo">Legge 136: </p>
     <div class="statusInfo" *ngIf="receivedItem.comLegge136=='1'">
-        <mat-icon class="lIcon">close</mat-icon>
-        <span>Non conforme</span>
-      </div>
-      <div class="statusInfo" *ngIf="receivedItem.comLegge136=='2'">
-          <mat-icon class="lIcon">check</mat-icon>
-          <span>Conforme</span>
-      </div>
-      <div class="statusInfo" *ngIf="receivedItem.comLegge136=='3'">
-          <mat-icon class="lIcon">timer</mat-icon>
-          <span>In attesa di conferma</span>
-      </div>
-      <div class="statusInfo" *ngIf="receivedItem.comLegge136=='4'">
-          <mat-icon class="lIcon">priority_high</mat-icon>
-          <span>In deroga</span>
-      </div>
+      <mat-icon class="lIcon">close</mat-icon>
+      <span>Non conforme</span>
+    </div>
+    <div class="statusInfo" *ngIf="receivedItem.comLegge136=='2'">
+      <mat-icon class="lIcon">check</mat-icon>
+      <span>Conforme</span>
+    </div>
+    <div class="statusInfo" *ngIf="receivedItem.comLegge136=='3'">
+      <mat-icon class="lIcon">timer</mat-icon>
+      <span>In attesa di conferma</span>
+    </div>
+    <div class="statusInfo" *ngIf="receivedItem.comLegge136=='4'">
+      <mat-icon class="lIcon">priority_high</mat-icon>
+      <span>In deroga</span>
+    </div>
     
     <mat-divider></mat-divider>
     
@@ -123,7 +123,15 @@
     
     <mat-divider></mat-divider>
     
-    <p class="plainInfo">Esiste T8 Corrente: {{ receivedItem.comEsisteT8Corrente}}</p>
+    <p class="plainInfo">Esiste T8 Corrente: </p>
+    <div class="statusInfo" *ngIf="receivedItem.comEsisteT8Corrente=='N'">
+      <mat-icon class="lIcon">close</mat-icon>
+      <span>Non conforme</span>
+    </div>
+    <div class="statusInfo" *ngIf="receivedItem.comEsisteT8Corrente=='S'">
+      <mat-icon class="lIcon">check</mat-icon>
+      <span>Conforme</span>
+    </div>
   </div>
 </div>
 
