@@ -241,14 +241,14 @@
           </div>
           <div class="viewport-item-title">
             <div class="title">
-              <div class="infoFirst">
-                <span class="code">{{ item.comCodice }}</span> {{item.comDescrizione}}</div>
-              <div class="info">
+              <div class="infoFirst noSelect">
+                <span class="code noSelect">{{ item.comCodice }}</span> {{item.comDescrizione}}</div>
+              <div class="info noSelect">
                 <div class="infoIcon"><mat-icon>account_box</mat-icon></div>
-                <span class="code">{{ item.cliId }}</span>{{ item.comCliente }} 
+                <span class="code noSelect">{{ item.cliId }}</span>{{ item.comCliente }} 
               </div>
               <br>
-              <div class="info">
+              <div class="info noSelect">
                   <div class="infoIcon">
                     <img class="cdcIcon" 
                          src="../../../assets/sitemap.png" 
@@ -256,14 +256,14 @@
                          width="22px" 
                          height="22px">
                   </div>
-                  <span class="code">{{item.cdcCodice}}</span>{{item.cdcDescrizione}}, {{item.cdcBusinessUnit}}
+                  <span class="code noSelect">{{item.cdcCodice}}</span>{{item.cdcDescrizione}}, {{item.cdcBusinessUnit}}
               </div>
               <br>
-              <div class="info">
+              <div class="info noSelect">
                 <div class="infoIcon"><mat-icon>visibility</mat-icon></div>
-                <span class="code">{{ item.cdcResponsabile }}</span>{{ item.respCognome }} {{ item.respNome }}
+                <span class="code noSelect">{{ item.cdcResponsabile }}</span>{{ item.respCognome }} {{ item.respNome }}
               </div>
-              <div class="info">
+              <div class="info noSelect">
               <div class="infoIcon">
                 <mat-icon class="statusIconC" 
                           *ngIf="item.comStato=='C'">assignment_turned_in
@@ -281,7 +281,7 @@
                   <mat-icon>
                     date_range
                   </mat-icon>
-                  <div class="iconText">{{item.anno}}
+                  <div class="iconText noSelect">{{item.anno}}
                   </div>
                 </div>
                 <div [ngClass]="{'goodStatus': ((item.ricaviC12-item.costiC12) &gt; 0), 'badStatus': ((item.costiC12-item.ricaviC12) &gt; 0), 'neutralStatus': (item.costiC12==item.ricaviC12)}">
@@ -291,7 +291,7 @@
                   <mat-icon class="crIcon">
                     remove
                   </mat-icon>
-                  <div class="iconText">{{item.costiC12 | number:'1.0-0'}}
+                  <div class="iconText noSelect">{{item.costiC12 | number:'1.0-0'}}
                   </div>
                   <mat-icon class="bigcrIcon">
                       euro_symbol
@@ -299,7 +299,7 @@
                   <mat-icon class="crIcon">
                       add
                   </mat-icon>
-                  <div class="iconText">{{item.ricaviC12 | number:'1.0-0'}}
+                  <div class="iconText noSelect">{{item.ricaviC12 | number:'1.0-0'}}
                   </div>
                 </div>
               </div>
@@ -311,16 +311,15 @@
       </cdk-virtual-scroll-viewport>
     </mat-sidenav-content>
     <!-- Right sidenav -->
-    <mat-sidenav class="endSidenav"
-                 #snav1 
-                 [opened]="false" 
-                 [mode]="mobileQuery.matches ? 'over' : 'side'"
-                 [fixedInViewport]="mobileQuery.matches" 
-                 [fixedTopGap]="mobileQuery.matches ? 97 : 97"
-                 [position]="'end'">
+    <mat-sidenav  class="endSidenav" 
+                  #snav1 
+                  [opened]="false" 
+                  [mode]="mobileQuery.matches ? 'over' : 'side'"
+                  [fixedInViewport]="mobileQuery.matches" 
+                  [fixedTopGap]="mobileQuery.matches ? 97 : 97"
+                  [position]="'end'">
       <app-dialog></app-dialog>
     </mat-sidenav>
- 
   <!-- Content -->
   </mat-sidenav-container>
 <!-- Container -->

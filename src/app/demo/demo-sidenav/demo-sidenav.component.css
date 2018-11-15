@@ -413,9 +413,11 @@ mat-selection-list {
     top: 5px;
     left: 1px;
     display: inline-block;
+    color: rgb(98, 98, 98);
 }
 .cdcIcon {
     padding-right: 2px;
+    filter: opacity(0.6);
 }
 .material-icons {
     font-size: 22px !important;
@@ -426,7 +428,7 @@ mat-selection-list {
 .infoFirst {
     font-size: 18px;
     font-family: 'Roboto', sans-serif;
-    color: #000000 !important;
+    color: rgb(2, 119, 189) !important;
     display: inline-block;
     width: 90%;
     text-overflow: ellipsis;
@@ -435,6 +437,9 @@ mat-selection-list {
     max-height: 4.5em;
     line-height: 1em;
     letter-spacing: 2px;
+}
+.infoFirst > .code {
+    color: rgb(2, 119, 189);
 }
 .info {
     width: 100%;
@@ -446,6 +451,7 @@ mat-selection-list {
     bottom: 6px;
     display: inline-block;
     letter-spacing: 1px;
+    color: rgba(75, 77, 78, 0.801);
 }
 .title {
     width: 97%;
@@ -454,18 +460,22 @@ mat-selection-list {
 .statusIconC {
     color: rgb(30, 145, 30);
     position: relative;
+    top: 0.8px;
 }
 .statusIconA {
     color: rgb(2, 119, 189);
     position: relative;
+    top: 0.8px;
 }
 .statusIconS {
     color: rgb(132, 134, 132);
     position: relative;
+    top: 0.8px;
 }
 .statusIconI {
     color: rgb(222, 178, 47);
     position: relative;
+    top: 0.8px;
 }
 .yearIcon {
     display: inline-block;
@@ -500,8 +510,10 @@ mat-selection-list {
     font-weight: 700;
     text-decoration-line: underline;
     display: inline-block;
-    margin-right: 8px;
+    margin-right: 12px;
+    margin-left: 3px;
     letter-spacing: 1px;
+    color: rgba(72, 72, 80, 0.98);
 }
 .mat-form-field.mat-focused.mat-form-field-label {
     color: #0277bd !important;
