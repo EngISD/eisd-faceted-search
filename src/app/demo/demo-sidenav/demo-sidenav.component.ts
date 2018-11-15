@@ -1,11 +1,10 @@
 import { ServiceService } from './../../service.service';
 import { Component, OnInit, OnDestroy, ChangeDetectorRef, ViewChild, AfterViewChecked } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
-import { MatSidenav, PageEvent, MatPaginator, MatDialogConfig } from '@angular/material';
+import { MatSidenav, PageEvent, MatPaginator } from '@angular/material';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { ngxLoadingAnimationTypes } from 'ngx-loading';
 import { MatDialog } from '@angular/material';
-import { DialogComponent } from '../dialog/dialog.component';
 
 @Component({
   selector: 'demo-sidenav',
@@ -35,8 +34,10 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
   ];
   test: any;
   mobileQuery: MediaQueryList;
+  mobileQueryWide: MediaQueryList;
   @ViewChild('snav') sidenav: MatSidenav;
   @ViewChild('snav1') sidenav1: MatSidenav;
+  // Facet categories
   categories = [
     {id: 'cdc', icon: 'euro_symbol', value: 'Centro di Costo'},
     {id: 'anno', icon: 'date_range', value: 'Anno'},
@@ -56,11 +57,13 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
   numMore = [];
   hasMore = [];
   selectedFilters = [];
+  // Loading animation parameters
   public loading = false;
   public ngxLoadingAnimationTypes = ngxLoadingAnimationTypes;
   public primaryColour = '#006dddee';
   public secondaryColour = '#cccccc01';
 
+  // Chart parameters
   barSelected = [];
 
   public barChartOptions:any = {
@@ -101,8 +104,10 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
   // tslint:disable:max-line-length
   constructor(private changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private service: ServiceService, public dialog: MatDialog) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
+    this.mobileQueryWide = media.matchMedia('(max-width: 770px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
+    this.mobileQueryWide.addListener(this._mobileQueryListener);
     for (let i = 0; i < this.categories.length; i++) {
       this.selectedFilters[this.categories[i].id] = [];
     }
@@ -143,6 +148,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
+    this.mobileQueryWide.removeListener(this._mobileQueryListener);
     this.changeDetectorRef.detach();
   }
   onNgModelChange(override?) {
@@ -235,24 +241,6 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
     });
   }
 
-  // Opens dialog on click
-  openDialog(item){
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.autoFocus = false;
-    dialogConfig.data = item;
-    if (this.mobileQuery.matches) {
-      dialogConfig.height = '100%';
-      dialogConfig.width = '100%';
-      dialogConfig.hasBackdrop = false;
-      dialogConfig.maxWidth = '100%';
-    } else {
-      dialogConfig.height = '550px';
-      dialogConfig.width = '900px';
-    }
-    this.dialog.open(DialogComponent, dialogConfig);
-  }
-  // Opens dialog on click
-
   public chartClicked(e:any):void {
     if (e.active.length > 0) {
       const temp = e.active[0]._model.label;
@@ -300,6 +288,19 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
   }
   openSidenav(item){
     this.service.receiveValue(item);
+    if (this.mobileQueryWide.matches && this.sidenav.opened) {
+      this.sidenav.close();
+    }
+  }
+
+  toggle() {
+    if (this.mobileQuery.matches) {
+      this.sidenav1.close();
+    }
+  if (this.mobileQueryWide.matches && !this.sidenav.opened) {
+    this.sidenav1.close();
+  }
+    this.sidenav.toggle();
   }
   removeBarSelected(item) {
     const index = this.barSelected.findIndex(x => x == item);

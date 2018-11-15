@@ -5,7 +5,7 @@
     <div class="filterIcons">
       <button class="filterButton" 
               mat-icon-button 
-              (click)="snav.toggle(); snav1.close()">
+              (click)="toggle()">
         <mat-icon class="arrows" 
                   svgIcon="chevron-double-left" 
                   matListIcon        
@@ -76,7 +76,8 @@
     <div class="endSidenavOpen">
       <button  mat-icon-button 
               (click)="snav1.toggle()"
-              *ngIf="sidenav1.opened"><mat-icon>toggle_on</mat-icon>
+              *ngIf="sidenav1.opened">
+        <mat-icon matTooltip="Chiudi dettagli">toggle_on</mat-icon>
       </button>
     </div>
   <!-- Sort -->
@@ -95,11 +96,21 @@
                              *ngFor="let category of categories; trackBy: trackByFn; let i = index">
           <mat-expansion-panel-header>
             <mat-panel-title class="noSelect">
-              <mat-icon class="catIcon" style="font-size: 27px !important" 
-                        matListIcon *ngIf="category.id != 'cdc'">{{ category.icon }}</mat-icon>
-                        <img src="../../../assets/sitemap.png" alt="icon" width="27px" height="27px" *ngIf="category.id == 'cdc'">
-                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="categoryTitle" *ngIf="category.id != 'rcdc' && category.id != 'cp' && category.id != 'fun'">{{ category.value }}</span>
-                        <span class="categoryTitleLong" *ngIf="category.id == 'rcdc' || category.id == 'cp' || category.id == 'fun'">{{ category.value }}</span>
+              <mat-icon class="catIcon" 
+                        matListIcon 
+                        *ngIf="category.id != 'cdc'">{{ category.icon }}</mat-icon>
+                <img src="../../../assets/sitemap.png" 
+                     alt="icon" 
+                     width="27px" 
+                     height="27px" 
+                     *ngIf="category.id == 'cdc'">
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                  <span class="categoryTitle" 
+                        *ngIf="category.id != 'rcdc' && category.id != 'cp' && category.id != 'fun'">{{ category.value }}
+                  </span>
+                  <span class="categoryTitleLong" 
+                        *ngIf="category.id == 'rcdc' || category.id == 'cp' || category.id == 'fun'">{{ category.value }}
+                  </span>
             </mat-panel-title>
           </mat-expansion-panel-header>
           <ng-template matExpansionPanelContent *ngIf="category.id != 'anno'">
@@ -108,25 +119,43 @@
                                (click)="select(checkbox.code, category.id); onNgModelChange();"
                                [selected]="selectedFilters[category.id].includes(checkbox.code)"
                                [value]="checkbox.code">
-                <mat-icon matListIcon *ngIf="category.id != 't8' && category.id != 'l136'">keyboard_arrow_right</mat-icon>
-                <mat-icon matListIcon *ngIf="category.id == 't8' && checkbox.descr == 'N'">close</mat-icon>
-                <mat-icon matListIcon *ngIf="category.id == 't8' && checkbox.descr == 'S'">check</mat-icon>
-                <mat-icon matListIcon *ngIf="category.id == 'l136' && checkbox.descr == '1'">close</mat-icon>
-                <mat-icon matListIcon *ngIf="category.id == 'l136' && checkbox.descr == '2'">check</mat-icon>
-                <mat-icon matListIcon *ngIf="category.id == 'l136' && checkbox.descr == '3'">timer</mat-icon>
-                <mat-icon matListIcon *ngIf="category.id == 'l136' && checkbox.descr == '4'">priority_high</mat-icon>
-                  <p class="noSelect">{{ checkbox.descr }} ({{ checkbox.count }})</p>
+                <mat-icon matListIcon 
+                          *ngIf="category.id != 't8' && category.id != 'l136'">keyboard_arrow_right
+                </mat-icon>
+                <mat-icon matListIcon 
+                          *ngIf="category.id == 't8' && checkbox.descr == 'N'">close
+                </mat-icon>
+                <mat-icon matListIcon 
+                          *ngIf="category.id == 't8' && checkbox.descr == 'S'">check
+                        </mat-icon>
+                <mat-icon matListIcon 
+                          *ngIf="category.id == 'l136' && checkbox.descr == '1'">close
+                </mat-icon>
+                <mat-icon matListIcon 
+                          *ngIf="category.id == 'l136' && checkbox.descr == '2'">check
+                </mat-icon>
+                <mat-icon matListIcon 
+                          *ngIf="category.id == 'l136' && checkbox.descr == '3'">timer
+                </mat-icon>
+                <mat-icon matListIcon 
+                          *ngIf="category.id == 'l136' && checkbox.descr == '4'">priority_high
+                </mat-icon>
+                <p class="noSelect">{{ checkbox.descr }} ({{ checkbox.count }})</p>
               </mat-list-option>
-              <button mat-raised-button class="moreButton"
+              <button mat-raised-button 
+                      class="moreButton"
                       *ngIf="hasMore[category.id]"         
                       (click)="showMore(category.id)">Mostra di più</button>
-              <button mat-raised-button class="moreButton" 
+              <button mat-raised-button 
+                      class="moreButton" 
                       *ngIf="numMore[category.id] > 1" 
                       (click)="showLess(category.id)">Mostra meno</button>
             </mat-selection-list>
               </ng-template>
-          <ng-template matExpansionPanelContent *ngIf="category.id == 'anno'">
-            <canvas baseChart *ngIf="barChartData[0].data.length > 0"
+          <ng-template matExpansionPanelContent 
+                       *ngIf="category.id == 'anno'">
+            <canvas baseChart 
+                    *ngIf="barChartData[0].data.length > 0"
                     [datasets]="barChartData"
                     [labels]="barChartLabels"
                     [options]="barChartOptions"
@@ -156,17 +185,18 @@
                                    class="viewport">
         <div *cdkVirtualFor="let item of activePageDataChunk" 
               class="viewport-item mat-elevation-z1"
-              (click) = "openSidenav(item); snav1.open(); snav.close()"
+              (click) = "openSidenav(item); snav1.open()"
               cdkVirtualForTrackBy= 'trakByFn()'>
           <div class="round mat-elevation-z4"
                [ngClass]="{'hideOnSmall': mobileQuery.matches}">{{ item.comCodice | slice:0:3 }}</div>
           <div class="feature"
                [ngClass]="{'hideOnSmall': mobileQuery.matches}">
-            <mat-icon svgIcon="feature-search-outline" matListIcon></mat-icon>
+            <mat-icon svgIcon="feature-search-outline" 
+                      matListIcon>
+            </mat-icon>
           </div>
           <div class="viewport-item-title">
-            <div class="title" 
-                 [ngClass]="{'smallerStatus': sidenav.opened}">
+            <div class="title">
               <div class="infoFirst">
                 <span class="code">{{ item.comCodice }}</span> {{item.comDescrizione}}</div>
               <div class="info">
@@ -176,10 +206,14 @@
               <br>
               <div class="info">
                   <div class="infoIcon">
-                    <img class="cdcIcon" src="../../../assets/sitemap.png" alt="icon" width="22px" height="22px"></div>
-                    <!-- <mat-icon>euro_symbol</mat-icon> -->
+                    <img class="cdcIcon" 
+                         src="../../../assets/sitemap.png" 
+                         alt="icon" 
+                         width="22px" 
+                         height="22px">
+                  </div>
                   <span class="code">{{item.cdcCodice}}</span>{{item.cdcDescrizione}}, {{item.cdcBusinessUnit}}
-                </div>
+              </div>
               <br>
               <div class="info">
                 <div class="infoIcon"><mat-icon>visibility</mat-icon></div>
@@ -188,51 +222,40 @@
               <div class="info">
               <div class="infoIcon">
                 <mat-icon class="statusIconC" 
-                          *ngIf="item.comStato=='C'"
-                          [ngClass]="{'smallIcons': mobileQuery.matches}">assignment_turned_in
+                          *ngIf="item.comStato=='C'">assignment_turned_in
                 </mat-icon>
                 <mat-icon class="statusIconA" 
-                          *ngIf="item.comStato=='A'"
-                          [ngClass]="{'smallIcons': mobileQuery.matches}">assignment
+                          *ngIf="item.comStato=='A'">assignment
                 </mat-icon>
                 <mat-icon class="statusIconS" 
-                          *ngIf="item.comStato=='S'"
-                          [ngClass]="{'smallIcons': mobileQuery.matches}">assignment_returned
+                          *ngIf="item.comStato=='S'">assignment_returned
                 </mat-icon>
                 <mat-icon class="statusIconI" 
-                          *ngIf="item.comStato=='I'"
-                          [ngClass]="{'smallIcons': mobileQuery.matches}">assignment_late
+                          *ngIf="item.comStato=='I'">assignment_late
                 </mat-icon>
                 <div class="yearIcon">
-                  <mat-icon [ngClass]="{'smallIcons': mobileQuery.matches}">
+                  <mat-icon>
                     date_range
                   </mat-icon>
-                  <div class="iconText"
-                           [ngClass]="{'smallIcons': mobileQuery.matches}">{{item.anno}}
+                  <div class="iconText">{{item.anno}}
                   </div>
                 </div>
                 <div [ngClass]="{'goodStatus': ((item.ricaviC12-item.costiC12) &gt; 0), 'badStatus': ((item.costiC12-item.ricaviC12) &gt; 0), 'neutralStatus': (item.costiC12==item.ricaviC12)}">
-                  <mat-icon class="bigcrIcon"
-                            [ngClass]="{'smallIcons': mobileQuery.matches}">
+                  <mat-icon class="bigcrIcon">
                     euro_symbol
                   </mat-icon>
-                  <mat-icon class="crIcon"
-                            [ngClass]="{'smallIcons': mobileQuery.matches}">
+                  <mat-icon class="crIcon">
                     remove
                   </mat-icon>
-                  <div class="iconText"
-                       [ngClass]="{'smallIcons': mobileQuery.matches}">{{item.costiC12 | number:'1.0-0'}}
+                  <div class="iconText">{{item.costiC12 | number:'1.0-0'}}
                   </div>
-                  <mat-icon class="bigcrIcon"
-                            [ngClass]="{'smallIcons': mobileQuery.matches}">
+                  <mat-icon class="bigcrIcon">
                       euro_symbol
                   </mat-icon>
-                  <mat-icon class="crIcon"
-                            [ngClass]="{'smallIcons': mobileQuery.matches}">
+                  <mat-icon class="crIcon">
                       add
                   </mat-icon>
-                  <div class="iconText"
-                       [ngClass]="{'smallIcons': mobileQuery.matches}">{{item.ricaviC12 | number:'1.0-0'}}
+                  <div class="iconText">{{item.ricaviC12 | number:'1.0-0'}}
                   </div>
                 </div>
               </div>
@@ -243,12 +266,14 @@
         </div>
       </cdk-virtual-scroll-viewport>
     </mat-sidenav-content>
-
-    <mat-sidenav class="endSidenav" #snav1 [opened]="false" 
-              [mode]="mobileQuery.matches ? 'over' : 'side'"
-              [fixedInViewport]="mobileQuery.matches" 
-              [fixedTopGap]="mobileQuery.matches ? 97 : 97"
-              [position]="'end'">
+    <!-- Right sidenav -->
+    <mat-sidenav class="endSidenav" 
+                 #snav1 
+                 [opened]="false" 
+                 [mode]="mobileQuery.matches ? 'over' : 'side'"
+                 [fixedInViewport]="mobileQuery.matches" 
+                 [fixedTopGap]="mobileQuery.matches ? 97 : 97"
+                 [position]="'end'">
       <app-dialog></app-dialog>
     </mat-sidenav>
  
