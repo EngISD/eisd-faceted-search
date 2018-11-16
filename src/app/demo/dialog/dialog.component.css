@@ -28,7 +28,7 @@
 .lIcon {
     display: inline;
     position: relative;
-    top: 5px;
+    top: 6px;
 }
 .cdcIcon {
     padding: 1px 1px;
@@ -106,4 +106,67 @@
     color: rgb(222, 178, 47);
     position: relative;
     top: 4px;
+}
+.soc1 {
+    background-color: #0277bde6 !important;
+}
+.soc2 {
+    background-color: #c72187e6 !important;
+}
+.soc3 {
+    background-color: #3cada6e6 !important;
+}
+.soc4 {
+    background-color: #835104e6 !important;
+}
+.soc5 {
+    background-color: #cfb365e6 !important;
+}
+.soc6 {
+    background-color: #7372dbe6 !important;
+}
+.soc7 {
+    background-color: #009c34e6 !important;
+}
+.soc8 {
+    background-color: #479b9ee6 !important;
+}
+.soc9 {
+    background-color: #BF320Ce6 !important;
+}
+.soc10 {
+    background-color: #ee003be6 !important;
+}
+.soc11 {
+    background-color: #FAB11De6 !important;
+}
+.soc12 {
+    background-color: #87b800e6 !important;
+}
+.soc13 {
+    background-color: #b90072e6 !important;
+}
+.soc14 {
+    background-color: #cf6a56e6 !important;
+}
+.soc15 {
+    background-color: #ae68d1e6 !important;
+}
+.soc16 {
+    background-color: #4b0c0ce6 !important;
+}
+.soc17 {
+    background-color: #c48e19e6 !important;
+}
+.soc18 {
+    background-color: #314a53e6 !important;
+}
+.soc19 {
+    background-color: #927687e6 !important;
+}
+.soc20 {
+    background-color: #00b8aee6 !important;
+}
+.soc21 {
+    background-color: #8936dce6 !important;
 }

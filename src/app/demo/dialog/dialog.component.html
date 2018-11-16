@@ -1,5 +1,28 @@
 <div class="card">
-  <h3 class="noWrap mat-elevation-z6">{{receivedItem.comCodice}} - {{receivedItem.comDescrizione}}</h3>
+  <h3 class="noWrap mat-elevation-z6"
+      [ngClass]="{
+        'soc1': receivedItem.socCodice == 'E',
+        'soc2': receivedItem.socCodice == 'R',
+        'soc3': receivedItem.socCodice == 'M',
+        'soc4': receivedItem.socCodice == 'O',
+        'soc5': receivedItem.socCodice == 'F',
+        'soc6': receivedItem.socCodice == 'X',
+        'soc7': receivedItem.socCodice == 'I',
+        'soc8': receivedItem.socCodice == 'V',
+        'soc9': receivedItem.socCodice == 'B',
+        'soc10': receivedItem.socCodice == 'L',
+        'soc11': receivedItem.socCodice == 'U',
+        'soc12': receivedItem.socCodice == 'W',
+        'soc13': receivedItem.socCodice == '°',
+        'soc14': receivedItem.socCodice == 'A',
+        'soc15': receivedItem.socCodice == 'S',
+        'soc16': receivedItem.socCodice == 'H',
+        'soc17': receivedItem.socCodice == 'Y',
+        'soc18': receivedItem.socCodice == 'T',
+        'soc19': receivedItem.socCodice == 'K',
+        'soc20': receivedItem.socCodice == 'C',
+        'soc21': receivedItem.socCodice == '>'}">
+        {{receivedItem.comCodice}} - {{receivedItem.comDescrizione}}</h3>
   <div>
     <img class="cdcIcon" src="../../../assets/sitemap.png" alt="icon" width="22px" height="22px"><p class="info">{{receivedItem.cdcCodice}} - {{receivedItem.cdcDescrizione}}</p>
     <p class="info">{{receivedItem.cdcConsolidationSegment}}({{receivedItem.cdcSegmentsDg}})<br></p>
@@ -22,7 +45,10 @@
     
     <mat-divider></mat-divider>
     
-    <mat-icon class="icon">business</mat-icon><p class="info">{{receivedItem.socCodiceSap}}({{receivedItem.socCodice}}) - {{receivedItem.socDescrizione}}</p>
+    <mat-icon class="icon">business
+    </mat-icon>
+    <p class="info">{{receivedItem.socCodiceSap}}({{receivedItem.socCodice}}) - {{receivedItem.socDescrizione}}
+    </p>
     
     <mat-divider></mat-divider>
     

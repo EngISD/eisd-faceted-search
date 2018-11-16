@@ -332,7 +332,7 @@ mat-selection-list {
 }
 .round {
     border-radius: 50%;
-    background-color: rgba(2, 120, 189, 0.847);
+    background-color: #1eff00;
     min-width: 60px;
     height: 60px;
     display: inline-block;
@@ -343,67 +343,67 @@ mat-selection-list {
     margin: 33px 0 0 30px;
 }
 .soc1 {
-    background-color: #0277bd !important;
+    background-color: #0277bde6 !important;
 }
 .soc2 {
-    background-color: #54BDE0 !important;
+    background-color: #c72187e6 !important;
 }
 .soc3 {
-    background-color: #32847E !important;
+    background-color: #3cada6e6 !important;
 }
 .soc4 {
-    background-color: #835104 !important;
+    background-color: #835104e6 !important;
 }
 .soc5 {
-    background-color: #D8C17F !important;
+    background-color: #cfb365e6 !important;
 }
 .soc6 {
-    background-color: #5A5997 !important;
+    background-color: #7372dbe6 !important;
 }
 .soc7 {
-    background-color: #005f20 !important;
+    background-color: #009c34e6 !important;
 }
 .soc8 {
-    background-color: #2B4C4D !important;
+    background-color: #479b9ee6 !important;
 }
 .soc9 {
-    background-color: #BF320C!important;
+    background-color: #BF320Ce6 !important;
 }
 .soc10 {
-    background-color: #9C9BCD !important;
+    background-color: #ee003be6 !important;
 }
 .soc11 {
-    background-color: #FAB11D !important;
+    background-color: #FAB11De6 !important;
 }
 .soc12 {
-    background-color: #3D6092 !important;
+    background-color: #87b800e6 !important;
 }
 .soc13 {
-    background-color: #D8263F !important;
+    background-color: #b90072e6 !important;
 }
 .soc14 {
-    background-color: #B16C5F !important;
+    background-color: #cf6a56e6 !important;
 }
 .soc15 {
-    background-color: #955FB1 !important;
+    background-color: #ae68d1e6 !important;
 }
 .soc16 {
-    background-color: #83BD96 !important;
+    background-color: #4b0c0ce6 !important;
 }
 .soc17 {
-    background-color: #9D80FC !important;
+    background-color: #c48e19e6 !important;
 }
 .soc18 {
-    background-color: #365B68 !important;
+    background-color: #314a53e6 !important;
 }
 .soc19 {
-    background-color: #927687 !important;
+    background-color: #927687e6 !important;
 }
 .soc20 {
-    background-color: #079861 !important;
+    background-color: #00b8aee6 !important;
 }
 .soc21 {
-    background-color: #8936DC !important;
+    background-color: #8936dce6 !important;
 }
 .hideOnSmall {
     display: none !important;
