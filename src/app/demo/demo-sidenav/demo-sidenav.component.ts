@@ -15,7 +15,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
 
   // Sort variables
   descending: boolean = true;
-  option: any = 'Inizio Validita';
+  option: any = 1;
   options = [
     {id: '1', value: 'Inizio Validita'},
     {id: '2', value: 'Descrizione'},

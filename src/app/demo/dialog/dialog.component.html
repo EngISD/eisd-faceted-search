@@ -24,7 +24,7 @@
         'soc21': receivedItem.socCodice == '>'}">
         {{receivedItem.comCodice}} - {{receivedItem.comDescrizione}}</h3>
   <div>
-    <img class="cdcIcon" src="../../../assets/sitemap.png" alt="icon" width="22px" height="22px"><p class="info">{{receivedItem.cdcCodice}} - {{receivedItem.cdcDescrizione}}</p>
+    <img class="cdcIcon noSelect" src="../../../assets/sitemap.png" alt="icon" width="22px" height="22px"><p class="info">{{receivedItem.cdcCodice}} - {{receivedItem.cdcDescrizione}}</p>
     <p class="info">{{receivedItem.cdcConsolidationSegment}}({{receivedItem.cdcSegmentsDg}})<br></p>
     <p class="info">{{receivedItem.cdcBusinessUnit}}<span *ngIf="receivedItem.cdcBusinessArea">- {{receivedItem.cdcBusinessArea}}</span><br></p>
     <p class="info" *ngIf="receivedItem.cdcDepartment1">- {{receivedItem.cdcDepartment1}}<br></p>
@@ -35,51 +35,51 @@
  
     <mat-divider></mat-divider>
     
-    <mat-icon class="icon">date_range</mat-icon><p class="info">{{receivedItem.anno}}</p>
+    <mat-icon class="icon noSelect">date_range</mat-icon><p class="info">{{receivedItem.anno}}</p>
     
     <mat-divider></mat-divider>
     
-    <mat-icon class="icon">account_box</mat-icon><p class="info">{{receivedItem.cliId}} - {{receivedItem.comCliente}}<br></p>
+    <mat-icon class="icon noSelect">account_box</mat-icon><p class="info">{{receivedItem.cliId}} - {{receivedItem.comCliente}}<br></p>
     <p class="info">{{receivedItem.cliPartitaIva}} - {{receivedItem.cliTipologia}}<br></p>
     <p class="info">{{receivedItem.desIndirizzo}}<br>{{receivedItem.codCap}} {{receivedItem.localita}}({{receivedItem.codProvincia}}), {{receivedItem.codNazione}}</p>
     
     <mat-divider></mat-divider>
     
-    <mat-icon class="icon">business
+    <mat-icon class="icon noSelect">business
     </mat-icon>
     <p class="info">{{receivedItem.socCodiceSap}}({{receivedItem.socCodice}}) - {{receivedItem.socDescrizione}}
     </p>
     
     <mat-divider></mat-divider>
     
-    <mat-icon class="icon">visibility</mat-icon><p class="info">{{receivedItem.cdcResponsabile}} - {{receivedItem.respCognome}} {{receivedItem.respNome}}</p>
+    <mat-icon class="icon noSelect">visibility</mat-icon><p class="info">{{receivedItem.cdcResponsabile}} - {{receivedItem.respCognome}} {{receivedItem.respNome}}</p>
     
     <mat-divider></mat-divider>
     
-    <mat-icon class="icon">person</mat-icon><p class="info">{{receivedItem.comCp}} - {{receivedItem.cpCognome}} {{receivedItem.cpNome}}</p>
+    <mat-icon class="icon noSelect">person</mat-icon><p class="info">{{receivedItem.comCp}} - {{receivedItem.cpCognome}} {{receivedItem.cpNome}}</p>
     
     <mat-divider></mat-divider>
     
-    <mat-icon class="icon">person_outline</mat-icon><p class="info">{{receivedItem.comFunzionario}} - {{receivedItem.funzCognome}} {{receivedItem.funzNome}}</p>
+    <mat-icon class="icon noSelect">person_outline</mat-icon><p class="info">{{receivedItem.comFunzionario}} - {{receivedItem.funzCognome}} {{receivedItem.funzNome}}</p>
     
     <mat-divider></mat-divider>
     
     <div [ngClass]="{'goodStatus': ((receivedItem.ricaviC12-receivedItem.costiC12) &gt; 0), 'badStatus': ((receivedItem.costiC12-receivedItem.ricaviC12) &gt; 0), 'neutralStatus': (receivedItem.costiC12==receivedItem.ricaviC12)}">
       <div class="inline-block">
-        <p class="costInfo">Costi: </p><mat-icon class="iconC">
+        <p class="costInfo">Costi: </p><mat-icon class="iconC noSelect">
           euro_symbol
         </mat-icon>
-        <mat-icon class="crIcon">
+        <mat-icon class="crIcon noSelect">
           remove
         </mat-icon>
         <div class="costs">{{receivedItem.costiC12 | number:'1.0-0'}}
         </div>
       </div>
       <div class="inline-block">
-        <p class="costInfo">Ricavi: </p><mat-icon class="iconC">
+        <p class="costInfo">Ricavi: </p><mat-icon class="iconC noSelect">
             euro_symbol
         </mat-icon>
-        <mat-icon class="crIcon">
+        <mat-icon class="crIcon noSelect">
             add
         </mat-icon>
         <div class="costs">{{receivedItem.ricaviC12 | number:'1.0-0'}}</div>
@@ -91,19 +91,19 @@
     
     <p class="plainInfo">Stato: </p>
     <div class="statusInfo" *ngIf="receivedItem.comStato=='C'">
-      <mat-icon class="statusIconC">assignment_turned_in</mat-icon>
+      <mat-icon class="statusIconC noSelect">assignment_turned_in</mat-icon>
       <span>Chiuso</span>
     </div>
     <div class="statusInfo" *ngIf="receivedItem.comStato=='A'">
-        <mat-icon class="statusIconA">assignment</mat-icon>
+        <mat-icon class="statusIconA noSelect">assignment</mat-icon>
         <span>Attivo</span>
     </div>
     <div class="statusInfo" *ngIf="receivedItem.comStato=='S'">
-        <mat-icon class="statusIconS">assignment_returned</mat-icon>
+        <mat-icon class="statusIconS noSelect">assignment_returned</mat-icon>
         <span>Sospeso</span>
     </div>
     <div class="statusInfo" *ngIf="receivedItem.comStato=='I'">
-        <mat-icon class="statusIconI">assignment_late</mat-icon>
+        <mat-icon class="statusIconI noSelect">assignment_late</mat-icon>
         <span>Nuovo</span>
     </div>
     
@@ -115,19 +115,19 @@
     
     <p class="plainInfo">Legge 136: </p>
     <div class="statusInfo" *ngIf="receivedItem.comLegge136=='1'">
-      <mat-icon class="lIcon">close</mat-icon>
+      <mat-icon class="lIcon noSelect">close</mat-icon>
       <span>Non conforme</span>
     </div>
     <div class="statusInfo" *ngIf="receivedItem.comLegge136=='2'">
-      <mat-icon class="lIcon">check</mat-icon>
+      <mat-icon class="lIcon noSelect">check</mat-icon>
       <span>Conforme</span>
     </div>
     <div class="statusInfo" *ngIf="receivedItem.comLegge136=='3'">
-      <mat-icon class="lIcon">timer</mat-icon>
+      <mat-icon class="lIcon noSelect">timer</mat-icon>
       <span>In attesa di conferma</span>
     </div>
     <div class="statusInfo" *ngIf="receivedItem.comLegge136=='4'">
-      <mat-icon class="lIcon">priority_high</mat-icon>
+      <mat-icon class="lIcon noSelect">priority_high</mat-icon>
       <span>In deroga</span>
     </div>
     
@@ -151,11 +151,11 @@
     
     <p class="plainInfo">Esiste T8 Corrente: </p>
     <div class="statusInfo" *ngIf="receivedItem.comEsisteT8Corrente=='N'">
-      <mat-icon class="lIcon">close</mat-icon>
+      <mat-icon class="lIcon noSelect">close</mat-icon>
       <span>Non conforme</span>
     </div>
     <div class="statusInfo" *ngIf="receivedItem.comEsisteT8Corrente=='S'">
-      <mat-icon class="lIcon">check</mat-icon>
+      <mat-icon class="lIcon noSelect">check</mat-icon>
       <span>Conforme</span>
     </div>
   </div>

@@ -56,6 +56,7 @@
     line-height: 1.5pc; 
     font-size: 18px;
     color: black;
+    margin-right: 6px;
 }
 .statusInfo {
     display: inline;
@@ -169,4 +170,13 @@
 }
 .soc21 {
     background-color: #8936dce6 !important;
+}
+.noSelect {
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome and Opera */
 }
