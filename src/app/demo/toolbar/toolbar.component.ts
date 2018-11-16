@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class ToolbarComponent implements OnInit {
 
   // Clears input value
-  value: string = '';
+  value = '';
   // Change searchbar colors
   searchColor: string;
   iconColor: string;
@@ -19,17 +19,17 @@ export class ToolbarComponent implements OnInit {
   ngOnInit() {
   }
 
-  toHome(){
+  toHome() {
     location.reload();
   }
-  cleanValue(){
+  cleanValue() {
     this.value = '';
   }
-  onFocus(){
+  onFocus() {
     this.searchColor = 'white';
     this.iconColor = 'rgb(2, 119, 189)';
   }
-  onFocusOut(){
+  onFocusOut() {
     this.searchColor = 'rgb(2, 107, 170)';
     this.iconColor = 'white';
   }

@@ -11,8 +11,8 @@ export class ServiceService {
   // Variable that shares the value with all components
   filteredValue = new BehaviorSubject<any>([]);
   // Link providing the results from a JSON file or a database
-  dataUrl: string = 'https://raw.githubusercontent.com/prust/wikipedia-movie-data/master/movies.json';
-
+  /* dataUrl = 'https://raw.githubusercontent.com/prust/wikipedia-movie-data/master/movies.json'; */
+  dataUrl = 'https://jsonplaceholder.typicode.com/users';
   // Variables that track the changes made on search
   filterValue$: Observable<any>;
   private _filterValue: BehaviorSubject<any>;
@@ -127,14 +127,14 @@ export class ServiceService {
   // tslint:disable:max-line-length
 
   refreshFacets(category, selection, num?) {
-    if (num == undefined) {
+    if (num === undefined) {
       num = 1;
     }
     let facet = '';
     const temp = selection;
     Object.entries(temp).forEach(
       ([key, value]) => {
-        if (key != category) {
+        if (key !== category) {
           Object.entries(value).forEach(
             ([key1, value1]) => {
               facet = facet.concat('&', key, '=', encodeURIComponent(value1.toString()));
@@ -143,14 +143,14 @@ export class ServiceService {
         }
       }
     );
-    if (category == 'anno') {
+    if (category === 'anno') {
       return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/facet?facetMaxOptions=10&facet=' + category + facet).pipe(
         map(items => {
           return items;
         }, error => error)
       );
     }
-    return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/facet?facetMaxOptions=' + num*5 + '&facet=' + category + facet).pipe(
+    return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/facet?facetMaxOptions=' + num * 5 + '&facet=' + category + facet).pipe(
       map(items => {
         return items;
       }, error => error)
@@ -159,7 +159,7 @@ export class ServiceService {
   sortAllResults(value, pageSize, pageIndex, desc, facets?) {
     let res = '';
     let facet = '';
-    if (facets != undefined) {
+    if (facets !== undefined) {
       Object.entries(facets).forEach(
         ([key1, value1]) => {
           Object.entries(value1).forEach(
@@ -178,7 +178,7 @@ export class ServiceService {
         }, error => error)
       );
   }
-  receiveValue(item){
+  receiveValue(item) {
     this.itemValue$ = item;
   }
 }
