@@ -165,11 +165,11 @@
               </mat-list-option>
               <button mat-raised-button 
                       class="moreButton"
-                      *ngIf="hasMore[category.id]"         
+                      [disabled]="!hasMore[category.id]"       
                       (click)="showMore(category.id)">Mostra di più</button>
               <button mat-raised-button 
                       class="moreButton" 
-                      *ngIf="numMore[category.id] > 1" 
+                      *ngIf="numMore[category.id] > 1"
                       (click)="showLess(category.id)">Mostra meno</button>
             </mat-selection-list>
               </ng-template>
