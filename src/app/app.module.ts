@@ -1,3 +1,4 @@
+import { HighlightSearch } from './highlight.pipe';
 import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -51,7 +52,8 @@ import { DialogComponent } from './demo/dialog/dialog.component';
     DemoSidenavComponent,
     StartpageComponent,
     FilterPageComponent,
-    DialogComponent
+    DialogComponent,
+    HighlightSearch
   ],
   imports: [
     BrowserModule,

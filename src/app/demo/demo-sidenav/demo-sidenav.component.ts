@@ -90,6 +90,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
   pageIndex = 0;
   pageSizeOptions: number[] = [10, 20, 50, 100];
   activePageDataChunk = [];
+  searchValue: string;
   @ViewChild(CdkVirtualScrollViewport) scroll: CdkVirtualScrollViewport;
 
   private _mobileQueryListener: () => void;
@@ -107,32 +108,35 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
   }
   ngOnInit() {
     this.changeDetectorRef.detectChanges();
-    this.loading = true;
-    this.service.sortAllResults(this.option, this.pageSize, this.pageIndex, this.descending, this.selectedFilters).subscribe(res => {
-      this.activePageDataChunk = res['data'];
-      this.length = res['count'];
-      this.loading = false;
-    });
-    for (let i = 0; i < this.categories.length; i++) {
-      this.numMore[this.categories[i].id] = 1;
-      this.service.refreshFacets(this.categories[i].id, this.selectedFilters).subscribe(res => {
-        this.checkboxes[this.categories[i].id] = res['facetOptions'];
-        this.hasMore[this.categories[i].id] = res['hasMore'];
-
-        if (this.categories[i].id === 'anno') {
-          const temp = [];
-          const temp1 = [];
-          for (let j = 0; j < this.checkboxes['anno'].length; j++) {
-            temp.push(this.checkboxes['anno'][j].code);
-            temp1.push(this.checkboxes['anno'][j].count);
-          }
-          this.barChartLabels = temp;
-          this.barChartData[0] = Object.assign({
-            data: temp1, label: 'Number of items'
-          });
-        }
+    this.service.searchValue$.subscribe(response => {
+      this.searchValue = response;
+      this.loading = true;
+      this.service.sortAllResults(this.option, this.pageSize, this.pageIndex, this.descending, this.selectedFilters, this.searchValue).subscribe(res => {
+        this.activePageDataChunk = res['data'];
+        this.length = res['count'];
+        this.loading = false;
       });
-    }
+      for (let i = 0; i < this.categories.length; i++) {
+        this.numMore[this.categories[i].id] = 1;
+        this.service.refreshFacets(this.categories[i].id, this.selectedFilters, this.searchValue).subscribe(res => {
+          this.checkboxes[this.categories[i].id] = res['facetOptions'];
+          this.hasMore[this.categories[i].id] = res['hasMore'];
+
+          if (this.categories[i].id === 'anno') {
+            const temp = [];
+            const temp1 = [];
+            for (let j = 0; j < this.checkboxes['anno'].length; j++) {
+              temp.push(this.checkboxes['anno'][j].code);
+              temp1.push(this.checkboxes['anno'][j].count);
+            }
+            this.barChartLabels = temp;
+            this.barChartData[0] = Object.assign({
+              data: temp1, label: 'Number of items'
+            });
+          }
+        });
+      }
+    });
   }
   ngAfterViewChecked() {
     this.changeDetectorRef.detectChanges();
@@ -148,14 +152,14 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
     this.loading = true;
     this.pageIndex = 0;
     this.paginator.pageIndex = 0;
-    this.service.sortAllResults(this.option, this.pageSize, this.pageIndex, this.descending, this.selectedFilters).subscribe(res => {
+    this.service.sortAllResults(this.option, this.pageSize, this.pageIndex, this.descending, this.selectedFilters, this.searchValue).subscribe(res => {
       this.activePageDataChunk = res['data'];
       this.scroll.scrollToIndex(0);
       this.length = res['count'];
       this.loading = false;
     });
     for (let i = 0; i < this.categories.length; i++) {
-      this.service.refreshFacets(this.categories[i].id, this.selectedFilters, 41).subscribe(res => {
+      this.service.refreshFacets(this.categories[i].id, this.selectedFilters, this.searchValue, 41).subscribe(res => {
         const temp = res['facetOptions'];
         for (let j = 0; j < this.selectedFilters[this.categories[i].id].length; j++) {
           const tempSelect = this.selectedFilters[this.categories[i].id][j];
@@ -169,7 +173,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
           }
         }
       });
-      this.service.refreshFacets(this.categories[i].id, this.selectedFilters, this.numMore[this.categories[i].id]).subscribe(res => {
+      this.service.refreshFacets(this.categories[i].id, this.selectedFilters, this.searchValue, this.numMore[this.categories[i].id]).subscribe(res => {
         this.checkboxes[this.categories[i].id] = res['facetOptions'];
         this.checkboxes[this.categories[i].id].sort((n1, n2) => {
           if ((this.selectedFilters[this.categories[i].id].indexOf(n1.code) !== -1) && (this.selectedFilters[this.categories[i].id].indexOf(n2.code) === -1)) {
@@ -206,7 +210,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
   }
   onPageChanged(e) {
     this.loading = true;
-    this.service.sortAllResults(this.option, e.pageSize, e.pageIndex, this.descending, this.selectedFilters).subscribe(res => {
+    this.service.sortAllResults(this.option, e.pageSize, e.pageIndex, this.descending, this.selectedFilters, this.searchValue).subscribe(res => {
       this.activePageDataChunk = res['data'];
       this.pageSize = e.pageSize;
       this.scroll.scrollToIndex(0);
@@ -216,7 +220,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
   // Paginator functions
   showMore(cat) {
     ++this.numMore[cat];
-    this.service.refreshFacets(cat, this.selectedFilters, this.numMore[cat]).subscribe(res => {
+    this.service.refreshFacets(cat, this.selectedFilters, this.searchValue, this.numMore[cat]).subscribe(res => {
       this.checkboxes[cat] = res['facetOptions'];
       this.checkboxes[cat].sort((n1, n2) => {
         if ((this.selectedFilters[cat].indexOf(n1.code) !== -1) && (this.selectedFilters[cat].indexOf(n2.code) === -1)) {
@@ -232,7 +236,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
   }
   showLess(cat) {
     this.numMore[cat] = 1;
-    this.service.refreshFacets(cat, this.selectedFilters).subscribe(res => {
+    this.service.refreshFacets(cat, this.selectedFilters, this.searchValue).subscribe(res => {
       this.checkboxes[cat] = res['facetOptions'];
       this.checkboxes[cat].sort((n1, n2) => {
         if ((this.selectedFilters[cat].indexOf(n1.code) !== -1) && (this.selectedFilters[cat].indexOf(n2.code) === -1)) {
@@ -276,7 +280,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
     this.loading = true;
     this.pageIndex = 0;
     this.paginator.pageIndex = 0;
-    this.service.sortAllResults(this.option, this.pageSize, 0, this.descending, this.selectedFilters).subscribe(res => {
+    this.service.sortAllResults(this.option, this.pageSize, 0, this.descending, this.selectedFilters, this.searchValue).subscribe(res => {
       this.activePageDataChunk = res['data'];
       this.scroll.scrollToIndex(0);
       this.loading = false;

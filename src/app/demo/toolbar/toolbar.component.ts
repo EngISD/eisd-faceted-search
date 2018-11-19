@@ -28,6 +28,8 @@ export class ToolbarComponent implements OnInit {
   }
   cleanValue() {
     this.value = '';
+    this.searchResult = [];
+    this.selectOption(this.value);
   }
   onFocus() {
     this.searchColor = 'white';
@@ -44,7 +46,7 @@ export class ToolbarComponent implements OnInit {
     }
   }
   selectOption(value: string){
-    this.service.setValueSearch(value);    
+    this.service.setValueSearch(value);
   }
 
   onKeyUp(text: string) {
@@ -54,9 +56,12 @@ export class ToolbarComponent implements OnInit {
           debounceTime(500)
         )
         .subscribe(response => {
-          this.searchResult = response['data'];
+          this.searchResult = response['data'].slice(0, 50);
         }
       );
     }
+  }
+  trackByFn(index, item) {
+    return index;
   }
 }

@@ -95,3 +95,11 @@ mat-toolbar {
 .menuIcon:hover {
     color: rgba(255, 255, 255, 0.74);
 }
+::ng-deep mark {
+    color: black !important;
+    background-color: rgba(0, 0, 0, 0) !important;
+    font-weight: bold;
+}
+.bold {
+    font-weight: bold !important;
+}

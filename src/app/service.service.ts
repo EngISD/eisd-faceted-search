@@ -130,11 +130,12 @@ export class ServiceService {
   // DEMO SERVICE
   // tslint:disable:max-line-length
 
-  refreshFacets(category, selection, num?) {
+  refreshFacets(category, selection, searchValue, num?) {
     if (num === undefined) {
       num = 1;
     }
     let facet = '';
+    let search = '';
     const temp = selection;
     Object.entries(temp).forEach(
       ([key, value]) => {
@@ -147,14 +148,18 @@ export class ServiceService {
         }
       }
     );
-    if (category === 'anno') {
-      return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/facet?facetMaxOptions=10&facet=' + category + facet);
+    if (searchValue.length !== 0) {
+      search = search.concat('&internalOrderText=', searchValue);
     }
-    return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/facet?facetMaxOptions=' + num * 5 + '&facet=' + category + facet);
+    if (category === 'anno') {
+      return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/facet?facetMaxOptions=10&facet=' + category + facet + search);
+    }
+    return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/facet?facetMaxOptions=' + num * 5 + '&facet=' + category + facet + search);
   }
-  sortAllResults(value, pageSize, pageIndex, desc, facets?) {
+  sortAllResults(value, pageSize, pageIndex, desc, facets?, searchValue?) {
     let res = '';
     let facet = '';
+    let search = '';
     if (facets !== undefined) {
       Object.entries(facets).forEach(
         ([key1, value1]) => {
@@ -166,8 +171,11 @@ export class ServiceService {
         }
       );
     }
+    if (searchValue.length !== 0) {
+      search = search.concat('&internalOrderText=', encodeURIComponent(searchValue.toString()));
+    }
     res = res.concat('&order=', value.toString());
-    return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/list?size=' + pageSize + '&page=' + (pageIndex + 1) + res + '&asc=' + !desc + facet);
+    return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/list?size=' + pageSize + '&page=' + (pageIndex + 1) + res + '&asc=' + !desc + facet + search);
   }
   receiveValue(item) {
     this.itemValue$ = item;
@@ -176,7 +184,6 @@ export class ServiceService {
     this._searchValue.next(value);
   }
   getValuesBySearchText(text){
-    return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/list?size=50&page=1&internalOrderText=' + text.toLowerCase());
-     
+    return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/list?size=100&page=1&internalOrderText=' + text.toLowerCase());
   }
 }
