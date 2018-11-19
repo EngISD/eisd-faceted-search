@@ -159,6 +159,20 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
       this.loading = false;
     });
     for (let i = 0; i < this.categories.length; i++) {
+      this.service.refreshFacets(this.categories[i].id, this.selectedFilters, 41).subscribe(res => {
+        const temp = res['facetOptions'];
+        for (let j = 0; j < this.selectedFilters[this.categories[i].id].length; j++) {
+          const tempSelect = this.selectedFilters[this.categories[i].id][j];
+          const tempAllCodes = [];
+          for (let g = 0; g < temp.length; g++) {
+            tempAllCodes.push(temp[g].code);
+          }
+          if (tempAllCodes.indexOf(tempSelect) === -1) {
+            const index = this.selectedFilters[this.categories[i].id].indexOf(tempSelect);
+            this.selectedFilters[this.categories[i].id].splice(index, 1);
+          }
+        }
+      });
       this.service.refreshFacets(this.categories[i].id, this.selectedFilters, this.numMore[this.categories[i].id]).subscribe(res => {
         this.checkboxes[this.categories[i].id] = res['facetOptions'];
         this.checkboxes[this.categories[i].id].sort((n1, n2) => {
