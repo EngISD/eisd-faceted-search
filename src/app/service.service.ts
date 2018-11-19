@@ -19,11 +19,15 @@ export class ServiceService {
   private categories = [];
   _itemValue = new BehaviorSubject<any>([]);
   itemValue$: Observable<any>;
+  // demo search variable
+  _searchValue = new BehaviorSubject<any>([]);
+  searchValue$: Observable<any>;
 
   constructor(private http: HttpClient) {
     this._filterValue = new BehaviorSubject<any>([]);
     this.filterValue$ = this._filterValue.asObservable();
     this.itemValue$ = this._itemValue.asObservable();
+    this.searchValue$ = this._searchValue.asObservable();
 
     this.getCategories().subscribe(res => {
       this.categories = res;
@@ -144,17 +148,9 @@ export class ServiceService {
       }
     );
     if (category === 'anno') {
-      return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/facet?facetMaxOptions=10&facet=' + category + facet).pipe(
-        map(items => {
-          return items;
-        }, error => error)
-      );
+      return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/facet?facetMaxOptions=10&facet=' + category + facet);
     }
-    return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/facet?facetMaxOptions=' + num * 5 + '&facet=' + category + facet).pipe(
-      map(items => {
-        return items;
-      }, error => error)
-    );
+    return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/facet?facetMaxOptions=' + num * 5 + '&facet=' + category + facet);
   }
   sortAllResults(value, pageSize, pageIndex, desc, facets?) {
     let res = '';
@@ -171,14 +167,16 @@ export class ServiceService {
       );
     }
     res = res.concat('&order=', value.toString());
-    return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/list?size=' + pageSize + '&page=' + (pageIndex + 1) + res + '&asc=' + !desc + facet)
-      .pipe(
-        map(items => {
-          return items;
-        }, error => error)
-      );
+    return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/list?size=' + pageSize + '&page=' + (pageIndex + 1) + res + '&asc=' + !desc + facet);
   }
   receiveValue(item) {
     this.itemValue$ = item;
+  }
+  setValueSearch(value){
+    this._searchValue.next(value);
+  }
+  getValuesBySearchText(text){
+    return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/list?size=50&page=1&internalOrderText=' + text.toLowerCase());
+     
   }
 }
