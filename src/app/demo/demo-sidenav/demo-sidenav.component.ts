@@ -4,7 +4,6 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { MatSidenav, PageEvent, MatPaginator } from '@angular/material';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { ngxLoadingAnimationTypes } from 'ngx-loading';
-import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'demo-sidenav',
@@ -32,7 +31,6 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
     {id: '13', value: 'Tipo Ricavo'},
     {id: '14', value: 'Azienda Descrizione'},
   ];
-  test: any;
   mobileQuery: MediaQueryList;
   mobileQueryWide: MediaQueryList;
   @ViewChild('snav') sidenav: MatSidenav;
@@ -97,7 +95,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
   private _mobileQueryListener: () => void;
 
   // tslint:disable:max-line-length
-  constructor(private changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private service: ServiceService, public dialog: MatDialog) {
+  constructor(private changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private service: ServiceService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this.mobileQueryWide = media.matchMedia('(max-width: 770px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -110,10 +108,9 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
   ngOnInit() {
     this.changeDetectorRef.detectChanges();
     this.loading = true;
-    this.service.sortAllResults(this.option, this.pageSize, 0, this.descending, this.selectedFilters).subscribe(res => {
-      this.test = res['data'];
+    this.service.sortAllResults(this.option, this.pageSize, this.pageIndex, this.descending, this.selectedFilters).subscribe(res => {
+      this.activePageDataChunk = res['data'];
       this.length = res['count'];
-      this.activePageDataChunk = this.test;
       this.loading = false;
     });
     for (let i = 0; i < this.categories.length; i++) {
@@ -151,9 +148,8 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
     this.loading = true;
     this.pageIndex = 0;
     this.paginator.pageIndex = 0;
-    this.service.sortAllResults(this.option, this.pageSize, 0, this.descending, this.selectedFilters).subscribe(res => {
-      this.test = res['data'];
-      this.activePageDataChunk = this.test;
+    this.service.sortAllResults(this.option, this.pageSize, this.pageIndex, this.descending, this.selectedFilters).subscribe(res => {
+      this.activePageDataChunk = res['data'];
       this.scroll.scrollToIndex(0);
       this.length = res['count'];
       this.loading = false;
@@ -211,9 +207,8 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
   onPageChanged(e) {
     this.loading = true;
     this.service.sortAllResults(this.option, e.pageSize, e.pageIndex, this.descending, this.selectedFilters).subscribe(res => {
-      this.test = res['data'];
+      this.activePageDataChunk = res['data'];
       this.pageSize = e.pageSize;
-      this.activePageDataChunk = this.test;
       this.scroll.scrollToIndex(0);
       this.loading = false;
     });
@@ -282,8 +277,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
     this.pageIndex = 0;
     this.paginator.pageIndex = 0;
     this.service.sortAllResults(this.option, this.pageSize, 0, this.descending, this.selectedFilters).subscribe(res => {
-      this.test = res['data'];
-      this.activePageDataChunk = this.test;
+      this.activePageDataChunk = res['data'];
       this.scroll.scrollToIndex(0);
       this.loading = false;
     });

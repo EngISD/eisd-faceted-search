@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ServiceService } from 'src/app/service.service';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'demo-toolbar',
@@ -12,11 +14,13 @@ export class ToolbarComponent implements OnInit {
   // Change searchbar colors
   searchColor: string;
   iconColor: string;
+  searchResult: any[];
 
-  constructor() {
+  constructor(private service: ServiceService) {
    }
 
   ngOnInit() {
+
   }
 
   toHome() {
@@ -39,5 +43,20 @@ export class ToolbarComponent implements OnInit {
       return true;
     }
   }
+  selectOption(value: string){
+    this.service.setValueSearch(value);    
+  }
 
+  onKeyUp(text: string) {
+    if (text.length > 2) {
+      this.service.getValuesBySearchText(text)
+        .pipe(
+          debounceTime(500)
+        )
+        .subscribe(response => {
+          this.searchResult = response['data'];
+        }
+      );
+    }
+  }
 }

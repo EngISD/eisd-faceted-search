@@ -24,7 +24,12 @@
         'soc21': receivedItem.socCodice == '>'}">
         {{receivedItem.comCodice}} - {{receivedItem.comDescrizione}}</h3>
   <div>
-    <img class="cdcIcon noSelect" src="../../../assets/sitemap.png" alt="icon" width="22px" height="22px"><p class="info">{{receivedItem.cdcCodice}} - {{receivedItem.cdcDescrizione}}</p>
+    <img class="cdcIcon noSelect" 
+         src="../../../assets/sitemap.png" 
+         alt="icon" 
+         width="22px" 
+         height="22px">
+    <p class="info">{{receivedItem.cdcCodice}} - {{receivedItem.cdcDescrizione}}</p>
     <p class="info">{{receivedItem.cdcConsolidationSegment}}({{receivedItem.cdcSegmentsDg}})<br></p>
     <p class="info">{{receivedItem.cdcBusinessUnit}}<span *ngIf="receivedItem.cdcBusinessArea">- {{receivedItem.cdcBusinessArea}}</span><br></p>
     <p class="info" *ngIf="receivedItem.cdcDepartment1">- {{receivedItem.cdcDepartment1}}<br></p>
@@ -39,7 +44,8 @@
     
     <mat-divider></mat-divider>
     
-    <mat-icon class="icon noSelect">account_box</mat-icon><p class="info">{{receivedItem.cliId}} - {{receivedItem.comCliente}}<br></p>
+    <mat-icon class="icon noSelect">account_box</mat-icon>
+    <p class="info">{{receivedItem.cliId}} - {{receivedItem.comCliente}}<br></p>
     <p class="info">{{receivedItem.cliPartitaIva}} - {{receivedItem.cliTipologia}}<br></p>
     <p class="info">{{receivedItem.desIndirizzo}}<br>{{receivedItem.codCap}} {{receivedItem.localita}}({{receivedItem.codProvincia}}), {{receivedItem.codNazione}}</p>
     
@@ -52,15 +58,18 @@
     
     <mat-divider></mat-divider>
     
-    <mat-icon class="icon noSelect">visibility</mat-icon><p class="info">{{receivedItem.cdcResponsabile}} - {{receivedItem.respCognome}} {{receivedItem.respNome}}</p>
+    <mat-icon class="icon noSelect">visibility</mat-icon>
+    <p class="info">{{receivedItem.cdcResponsabile}} - {{receivedItem.respCognome}} {{receivedItem.respNome}}</p>
     
     <mat-divider></mat-divider>
     
-    <mat-icon class="icon noSelect">person</mat-icon><p class="info">{{receivedItem.comCp}} - {{receivedItem.cpCognome}} {{receivedItem.cpNome}}</p>
+    <mat-icon class="icon noSelect">person</mat-icon>
+    <p class="info">{{receivedItem.comCp}} - {{receivedItem.cpCognome}} {{receivedItem.cpNome}}</p>
     
     <mat-divider></mat-divider>
     
-    <mat-icon class="icon noSelect">person_outline</mat-icon><p class="info">{{receivedItem.comFunzionario}} - {{receivedItem.funzCognome}} {{receivedItem.funzNome}}</p>
+    <mat-icon class="icon noSelect">person_outline</mat-icon>
+    <p class="info">{{receivedItem.comFunzionario}} - {{receivedItem.funzCognome}} {{receivedItem.funzNome}}</p>
     
     <mat-divider></mat-divider>
     

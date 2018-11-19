@@ -19,12 +19,12 @@
              name="input" 
              (focus)="onFocus()"
              (focusout)="onFocusOut()"
-             [ngStyle]="{'background-color': searchColor}">
+             (ngModelChange)="onKeyUp(value)">
       <button  mat-icon-button class="cancel" (click)="cleanValue()">
         <mat-icon class="cancel" [ngStyle]="{'color': iconColor}">clear</mat-icon>
       </button>
       <mat-autocomplete #auto="matAutocomplete" autoActiveFirstOption>
-        <mat-option #option class="data-option" *ngIf="trigger(value)"></mat-option>
+        <mat-option #option class="data-option" value="{{value}}" *ngFor="let item of searchResult" (click)="selectOption(item)">{{item.comDescrizione}}</mat-option>
       </mat-autocomplete>
     </form>
 <!-- Searchbar -->

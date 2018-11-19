@@ -427,7 +427,6 @@ mat-selection-list {
 }
 .infoFirst {
     font-size: 18px;
-    font-family: 'Roboto', sans-serif;
     color: rgb(2, 119, 189) !important;
     display: inline-block;
     width: 90%;
@@ -476,9 +475,6 @@ mat-selection-list {
     color: rgb(222, 178, 47);
     position: relative;
     top: 0.8px;
-}
-.yearIcon {
-    display: inline-block;
 }
 .iconText {
     position: relative;
