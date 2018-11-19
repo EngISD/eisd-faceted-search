@@ -205,8 +205,9 @@
       </ngx-loading>
       <cdk-virtual-scroll-viewport [itemSize]="137.5" 
                                    class="viewport">
-        <div *cdkVirtualFor="let item of activePageDataChunk" 
+        <div *cdkVirtualFor="let item of activePageDataChunk; let last = last" 
               class="viewport-item mat-elevation-z1 noSelect"
+              [class.last]="last"
               (click) = "openSidenav(item); snav1.open();"
               cdkVirtualForTrackBy= 'trakByFn()'>
           <div class="round mat-elevation-z4"

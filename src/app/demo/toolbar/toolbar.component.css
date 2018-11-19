@@ -103,3 +103,6 @@ mat-toolbar {
 .bold {
     font-weight: bold !important;
 }
+.data-option{
+    border: 0.5px solid rgba(228, 223, 223, 0.664);
+}
