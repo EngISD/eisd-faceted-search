@@ -95,3 +95,9 @@ mat-toolbar {
 .menuIcon:hover {
     color: rgba(255, 255, 255, 0.74);
 }
+.data-option{
+    border: 0.5px solid rgba(228, 223, 223, 0.664);
+}
+.bold {
+    font-weight: bold !important;
+}

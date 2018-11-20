@@ -184,6 +184,6 @@ export class ServiceService {
     this._searchValue.next(value);
   }
   getValuesBySearchText(text){
-    return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/list?size=100&page=1&internalOrderText=' + text.toLowerCase());
+    return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/list?size=100&page=1&internalOrderText=' + text);
   }
 }
