@@ -9,8 +9,7 @@ constructor() {
 transform(data: string,
           highlightText: string,
           option: string = 'Multi-Match',
-          caseSensitive: boolean = false,
-          highlightStyleName: string = 'highlight'): SafeHtml {
+          caseSensitive: boolean = false): SafeHtml {
     if (highlightText && data && option) {
         let regex: any = '';
         const caseFlag: string = !caseSensitive ? 'i' : '';
