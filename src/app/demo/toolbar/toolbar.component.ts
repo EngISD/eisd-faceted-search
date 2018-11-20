@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ServiceService } from 'src/app/service.service';
 import { debounceTime } from 'rxjs/operators';
+import { MatAutocomplete, MatAutocompleteTrigger } from '@angular/material';
 
 @Component({
   selector: 'demo-toolbar',
@@ -15,6 +16,7 @@ export class ToolbarComponent implements OnInit {
   searchColor: string;
   iconColor: string;
   searchResult: any[];
+  @ViewChild(MatAutocomplete) autocomplete: MatAutocomplete;
 
   constructor(private service: ServiceService) {
    }
@@ -59,6 +61,8 @@ export class ToolbarComponent implements OnInit {
           this.searchResult = response['data'].slice(0, 50);
         }
       );
+    } else {
+      this.searchResult = [];
     }
   }
   trackByFn(index, item) {

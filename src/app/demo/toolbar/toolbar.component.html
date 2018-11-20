@@ -26,7 +26,7 @@
       </button>
       <mat-autocomplete #auto="matAutocomplete" autoActiveFirstOption>
         <mat-option #optionFree value="{{value}}" class="data-option bold" *ngIf="trigger(value)" (click)="selectOption(value)">{{value}}</mat-option>
-        <mat-option #option class="data-option" value="{{value}}" *ngFor="let item of searchResult; trackBy: trackByFn;" (click)="selectOption(value)" innerHTML="{{item.comDescrizione | highlight: value}}"></mat-option>
+        <mat-option #option class="data-option" value="{{value}}" *ngFor="let item of searchResult; trackBy: trackByFn;" (click)="selectOption(value)" innerHTML="&lt;span>{{item.comDescrizione | highlight: value}}&lt;/span>"></mat-option>
       </mat-autocomplete>
     </form>
 <!-- Searchbar -->
