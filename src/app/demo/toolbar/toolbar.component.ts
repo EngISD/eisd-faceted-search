@@ -16,18 +16,18 @@ export class ToolbarComponent implements OnInit {
   searchColor: string;
   iconColor: string;
   searchResult: any[];
-  @ViewChild(MatAutocomplete) autocomplete: MatAutocomplete;
 
   constructor(private service: ServiceService) {
-   }
+  
+  }
 
   ngOnInit() {
 
   }
-
   toHome() {
     location.reload();
   }
+  // Clears input value
   cleanValue() {
     this.value = '';
     this.searchResult = [];
