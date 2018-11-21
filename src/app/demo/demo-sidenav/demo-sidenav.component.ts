@@ -63,7 +63,15 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
   barSelected = [];
   public barChartOptions: any = {
     scaleShowVerticalLines: false,
-    responsive: true
+    responsive: true,
+    scales : {
+      yAxes: [{
+         ticks: {
+            beginAtZero: true,
+            precision: 0
+          }
+      }]
+    }
   };
   public barChartLabels: string[] = [];
   public barChartType = 'bar';
