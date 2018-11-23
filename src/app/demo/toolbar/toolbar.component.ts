@@ -1,5 +1,4 @@
-import { DemoSidenavComponent } from './../demo-sidenav/demo-sidenav.component';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ServiceService } from 'src/app/service.service';
 import { debounceTime } from 'rxjs/operators';
 
@@ -40,6 +39,7 @@ export class ToolbarComponent implements OnInit {
     this.searchResultCustomer = [];
     this.searchResultProjectManager = [];
     this.searchResultResponsible = [];
+    this.selectOption('internalOrder', '');
   }
   onFocus() {
     this.searchColor = 'white';
@@ -55,7 +55,7 @@ export class ToolbarComponent implements OnInit {
       return true;
     }
   }
-  selectOption(cat: string, value: string){
+  selectOption(cat: string, value: string) {
     const temp = {'cat': cat, 'value': value};
     this.service.setValueSearch(temp);
   }
@@ -67,7 +67,7 @@ export class ToolbarComponent implements OnInit {
           debounceTime(500)
         )
         .subscribe(response => {
-          this.searchResultInternal = response['data'];
+          this.searchResultInternal = response['count'];
         }
       );
       this.service.getValuesByCustomerText(text)

@@ -20,51 +20,71 @@
              (focus)="onFocus()"
              (focusout)="onFocusOut()"
              (ngModelChange)="onKeyUp(value)"
-             (keydown.enter)="$event.preventDefault(); selectOption(value)">
+             (keydown.enter)="$event.preventDefault(); selectOption('internalOrder', value)">
       <button  mat-icon-button class="cancel" (click)="cleanValue()">
         <mat-icon class="cancel" [ngStyle]="{'color': iconColor}">clear</mat-icon>
       </button>
       <mat-autocomplete #auto="matAutocomplete" autoActiveFirstOption>
-        <!-- <mat-option #option class="data-option" value="{{value}}" *ngFor="let item of searchResultInternal; trackBy: trackByFn;" (click)="selectOption(value)">{{value}} ({{item.comDescrizione}})</mat-option> -->
         <mat-option #option 
-                    class="data-option" 
-                    value="{{item.code}} - {{item.descr}}" 
-                    *ngFor="let item of searchResultProjectManager; trackBy: trackByFn;" 
-                    (click)="selectOption('cp', item.code)">
-          <mat-icon class="icon1 noSelect">person</mat-icon>({{item.count}}) {{item.code}} - {{item.descr}}
+                    class="data-option"
+                    value="{{value}}" 
+                    (click)="selectOption('internalOrder', value)"
+                    *ngIf="value.length > 2">{{searchResultInternal}} comesse con "{{ value }}"
         </mat-option>
-        <mat-option #option 
-                    class="data-option" 
-                    value="{{item.code}} - {{item.descr}}" 
-                    *ngFor="let item of searchResultCustomer; trackBy: trackByFn;" 
-                    (click)="selectOption('cliente', item.code)">
-          <mat-icon class="icon1 noSelect">account_box</mat-icon>({{item.count}}) {{item.code}} - {{item.descr}}
-        </mat-option>
-        <mat-option #option 
-                    class="data-option" 
-                    value="{{item.code}} - {{item.descr}}" 
-                    *ngFor="let item of searchResultCostCenter; trackBy: trackByFn;" 
-                    (click)="selectOption('cdc', item.code)">
-          <img class="cdcIcon noSelect" 
-               src="../../../assets/sitemap.png" 
-               alt="icon" 
-               width="22px" 
-               height="22px">&nbsp;&nbsp;&nbsp;&nbsp;({{item.count}}) {{item.code}} - {{item.descr}}
-        </mat-option>
-        <mat-option #option 
-                    class="data-option" 
-                    value="{{item.code}} - {{item.descr}}" 
-                    *ngFor="let item of searchResultResponsible; trackBy: trackByFn;" 
-                    (click)="selectOption('rcdc', item.code)">
-          <mat-icon class="icon1 noSelect">visibility</mat-icon>({{item.count}}) {{item.code}} - {{item.descr}}
-        </mat-option>
-        <mat-option #option 
-                    class="data-option" 
-                    value="{{item.code}} - {{item.descr}}" 
-                    *ngFor="let item of searchResultCommercial; trackBy: trackByFn;" 
-                    (click)="selectOption('fun', item.code)">
-          <mat-icon class="icon1 noSelect">person_outline</mat-icon>({{item.count}}) {{item.code}} - {{item.descr}}
-        </mat-option>
+        <mat-optgroup *ngIf="searchResultProjectManager != 0" 
+                      [label]="'Responsabile del Progetto'">
+          <mat-option #option 
+                      class="data-option" 
+                      value="{{item.code}} - {{item.descr}}" 
+                      *ngFor="let item of searchResultProjectManager; trackBy: trackByFn;" 
+                      (click)="selectOption('cp', item.code)">
+            <mat-icon class="noSelect">person</mat-icon>({{item.count}}) {{item.code}} - {{item.descr}}
+          </mat-option>
+        </mat-optgroup>
+        <mat-optgroup *ngIf="searchResultCustomer != 0" 
+                      [label]="'Cliente'">
+          <mat-option #option 
+                      class="data-option" 
+                      value="{{item.code}} - {{item.descr}}" 
+                      *ngFor="let item of searchResultCustomer; trackBy: trackByFn;" 
+                      (click)="selectOption('cliente', item.code)">
+            <mat-icon class="noSelect">account_box</mat-icon>({{item.count}}) {{item.code}} - {{item.descr}}
+          </mat-option>
+        </mat-optgroup>
+        <mat-optgroup *ngIf="searchResultCostCenter != 0" 
+                      [label]="'Centro di Costo'">
+          <mat-option #option 
+                      class="data-option" 
+                      value="{{item.code}} - {{item.descr}}" 
+                      *ngFor="let item of searchResultCostCenter; trackBy: trackByFn;" 
+                      (click)="selectOption('cdc', item.code)">
+            <img class="cdcIcon noSelect" 
+                src="../../../assets/sitemap.png" 
+                alt="icon" 
+                width="22px" 
+                height="22px">&nbsp;&nbsp;&nbsp;&nbsp;({{item.count}}) {{item.code}} - {{item.descr}}
+          </mat-option>
+        </mat-optgroup>
+        <mat-optgroup *ngIf="searchResultResponsible != 0" 
+                      [label]="'Centro di Costo Responsabile'">
+          <mat-option #option 
+                      class="data-option" 
+                      value="{{item.code}} - {{item.descr}}" 
+                      *ngFor="let item of searchResultResponsible; trackBy: trackByFn;" 
+                      (click)="selectOption('rcdc', item.code)">
+            <mat-icon class="noSelect">visibility</mat-icon>({{item.count}}) {{item.code}} - {{item.descr}}
+          </mat-option>
+        </mat-optgroup>
+        <mat-optgroup *ngIf="searchResultCommercial != 0" 
+                      [label]="'Responsabile Commerciale'">
+          <mat-option #option 
+                      class="data-option" 
+                      value="{{item.code}} - {{item.descr}}" 
+                      *ngFor="let item of searchResultCommercial; trackBy: trackByFn;" 
+                      (click)="selectOption('fun', item.code)">
+            <mat-icon class="noSelect">person_outline</mat-icon>({{item.count}}) {{item.code}} - {{item.descr}}
+          </mat-option>
+        </mat-optgroup>
       </mat-autocomplete>
     </form>
 <!-- Searchbar -->

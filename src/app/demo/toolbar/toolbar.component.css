@@ -107,3 +107,6 @@ mat-toolbar {
     left: 1px;
     margin-right: 2px;
 }
+::ng-deep .mat-autocomplete-panel {
+    max-height: 500px !important;
+}

@@ -114,12 +114,18 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
       this.selectedFilters[this.categories[i].id] = [];
       this.numMore[this.categories[i].id] = 1;
     }
+    this.selectedFilters['internalOrder'] = [];
   }
   ngOnInit() {
     this.changeDetectorRef.detectChanges();
     this.service.searchValue$.subscribe(response => {
       this.searchValue = response;
       if (response.length !== 0) {
+        for (let i = 0; i < this.categories.length; i++) {
+          this.selectedFilters[this.categories[i].id] = [];
+          this.numMore[this.categories[i].id] = 1;
+        }
+        this.barSelected = [];
         this.select(response['value'], response['cat']);
       }
       this.onNgModelChange();
@@ -200,7 +206,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
   }
   showLess(cat) {
     this.numMore[cat] = 1;
-    this.service.refreshFacets(cat, this.selectedFilters, this.searchValue).subscribe(res => {
+    this.service.refreshFacets(cat, this.selectedFilters).subscribe(res => {
       this.filterCheck(cat, res);
     });
   }
