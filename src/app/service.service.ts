@@ -186,4 +186,19 @@ export class ServiceService {
   getValuesBySearchText(text) {
     return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/list?size=100&page=1&internalOrderText=' + text);
   }
+  getValuesByCustomerText(text){
+    return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/list?size=100&page=1&customerText=' + text);
+  }
+  getValuesByCostCenterText(text){
+    return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/list?size=100&page=1&cdcText=' + text);
+  }
+  getValuesByResponsibleText(text){
+    return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/list?size=100&page=1&rcdcText=' + text);
+  }
+  getValuesByProjectManagerText(text){
+    return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/list?size=100&page=1&cpText=' + text);
+  }
+  getValuesByCommercialText(text){
+    return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/list?size=100&page=1&funText=' + text);
+  }
 }
