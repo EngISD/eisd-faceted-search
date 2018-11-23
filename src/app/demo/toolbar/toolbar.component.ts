@@ -1,7 +1,7 @@
+import { DemoSidenavComponent } from './../demo-sidenav/demo-sidenav.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ServiceService } from 'src/app/service.service';
 import { debounceTime } from 'rxjs/operators';
-import { MatAutocomplete, MatAutocompleteTrigger } from '@angular/material';
 
 @Component({
   selector: 'demo-toolbar',
@@ -23,7 +23,6 @@ export class ToolbarComponent implements OnInit {
   searchResultCostCenter: any[];
 
   constructor(private service: ServiceService) {
-  
   }
 
   ngOnInit() {
@@ -36,7 +35,11 @@ export class ToolbarComponent implements OnInit {
   cleanValue() {
     this.value = '';
     this.searchResultInternal = [];
-    this.selectOption(this.value);
+    this.searchResultCommercial = [];
+    this.searchResultCostCenter = [];
+    this.searchResultCustomer = [];
+    this.searchResultProjectManager = [];
+    this.searchResultResponsible = [];
   }
   onFocus() {
     this.searchColor = 'white';
@@ -52,8 +55,9 @@ export class ToolbarComponent implements OnInit {
       return true;
     }
   }
-  selectOption(value: string){
-    this.service.setValueSearch(value);
+  selectOption(cat: string, value: string){
+    const temp = {'cat': cat, 'value': value};
+    this.service.setValueSearch(temp);
   }
 
   onKeyUp(text: string) {

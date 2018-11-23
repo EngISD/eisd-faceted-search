@@ -98,7 +98,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
   pageIndex = 0;
   pageSizeOptions: number[] = [10, 20, 50, 100, 200];
   activePageDataChunk = [];
-  searchValue: string;
+  searchValue: any;
   @ViewChild(CdkVirtualScrollViewport) scroll: CdkVirtualScrollViewport;
 
   private _mobileQueryListener: () => void;
@@ -119,6 +119,9 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
     this.changeDetectorRef.detectChanges();
     this.service.searchValue$.subscribe(response => {
       this.searchValue = response;
+      if (response.length !== 0) {
+        this.select(response['value'], response['cat']);
+      }
       this.onNgModelChange();
     });
   }
@@ -140,7 +143,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
     }
   }
   refreshCheckboxFacets(i) {
-    this.service.refreshFacets(this.categories[i].id, this.selectedFilters, this.searchValue, 41).subscribe(res => {
+    this.service.refreshFacets(this.categories[i].id, this.selectedFilters, 41).subscribe(res => {
       const temp = res['facetOptions'];
       for (let j = 0; j < this.selectedFilters[this.categories[i].id].length; j++) {
         const tempSelect = this.selectedFilters[this.categories[i].id][j];
@@ -156,7 +159,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
     });
   }
   refreshChartFacets(i, override?) {
-    this.service.refreshFacets(this.categories[i].id, this.selectedFilters, this.searchValue, this.numMore[this.categories[i].id]).subscribe(res => {
+    this.service.refreshFacets(this.categories[i].id, this.selectedFilters, this.numMore[this.categories[i].id]).subscribe(res => {
       this.filterCheck(this.categories[i].id, res);
       if ((this.categories[i].id === 'anno') && (override === undefined)) {
         const temp = [];
@@ -181,7 +184,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
   }
   onPageChanged(e) {
     this.loading = true;
-    this.service.sortAllResults(this.option, e.pageSize, e.pageIndex, this.descending, this.selectedFilters, this.searchValue).subscribe(res => {
+    this.service.sortAllResults(this.option, e.pageSize, e.pageIndex, this.descending, this.selectedFilters).subscribe(res => {
       this.activePageDataChunk = res['data'];
       this.pageSize = e.pageSize;
       this.scroll.scrollToIndex(0);
@@ -191,7 +194,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
   // Paginator functions
   showMore(cat) {
     ++this.numMore[cat];
-    this.service.refreshFacets(cat, this.selectedFilters, this.searchValue, this.numMore[cat]).subscribe(res => {
+    this.service.refreshFacets(cat, this.selectedFilters, this.numMore[cat]).subscribe(res => {
       this.filterCheck(cat, res);
     });
   }
@@ -241,7 +244,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
     this.loading = true;
     this.pageIndex = 0;
     this.paginator.pageIndex = 0;
-    this.service.sortAllResults(this.option, this.pageSize, 0, this.descending, this.selectedFilters, this.searchValue).subscribe(res => {
+    this.service.sortAllResults(this.option, this.pageSize, 0, this.descending, this.selectedFilters).subscribe(res => {
       this.activePageDataChunk = res['data'];
       this.length = res['count'];
       this.scroll.scrollToIndex(0);

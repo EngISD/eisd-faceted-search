@@ -28,23 +28,23 @@
         <!-- <mat-option #option class="data-option" value="{{value}}" *ngFor="let item of searchResultInternal; trackBy: trackByFn;" (click)="selectOption(value)">{{value}} ({{item.comDescrizione}})</mat-option> -->
         <mat-option #option 
                     class="data-option" 
-                    value="{{value}}" 
+                    value="{{item.code}} - {{item.descr}}" 
                     *ngFor="let item of searchResultProjectManager; trackBy: trackByFn;" 
-                    (click)="selectOption(value)">
+                    (click)="selectOption('cp', item.code)">
           <mat-icon class="icon1 noSelect">person</mat-icon>({{item.count}}) {{item.code}} - {{item.descr}}
         </mat-option>
         <mat-option #option 
                     class="data-option" 
-                    value="{{value}}" 
+                    value="{{item.code}} - {{item.descr}}" 
                     *ngFor="let item of searchResultCustomer; trackBy: trackByFn;" 
-                    (click)="selectOption(value)">
+                    (click)="selectOption('cliente', item.code)">
           <mat-icon class="icon1 noSelect">account_box</mat-icon>({{item.count}}) {{item.code}} - {{item.descr}}
         </mat-option>
         <mat-option #option 
                     class="data-option" 
-                    value="{{value}}" 
+                    value="{{item.code}} - {{item.descr}}" 
                     *ngFor="let item of searchResultCostCenter; trackBy: trackByFn;" 
-                    (click)="selectOption(value)">
+                    (click)="selectOption('cdc', item.code)">
           <img class="cdcIcon noSelect" 
                src="../../../assets/sitemap.png" 
                alt="icon" 
@@ -53,16 +53,16 @@
         </mat-option>
         <mat-option #option 
                     class="data-option" 
-                    value="{{value}}" 
+                    value="{{item.code}} - {{item.descr}}" 
                     *ngFor="let item of searchResultResponsible; trackBy: trackByFn;" 
-                    (click)="selectOption(value)">
+                    (click)="selectOption('rcdc', item.code)">
           <mat-icon class="icon1 noSelect">visibility</mat-icon>({{item.count}}) {{item.code}} - {{item.descr}}
         </mat-option>
         <mat-option #option 
                     class="data-option" 
-                    value="{{value}}" 
+                    value="{{item.code}} - {{item.descr}}" 
                     *ngFor="let item of searchResultCommercial; trackBy: trackByFn;" 
-                    (click)="selectOption(value)">
+                    (click)="selectOption('fun', item.code)">
           <mat-icon class="icon1 noSelect">person_outline</mat-icon>({{item.count}}) {{item.code}} - {{item.descr}}
         </mat-option>
       </mat-autocomplete>
