@@ -101,3 +101,9 @@ mat-toolbar {
 .bold {
     font-weight: bold !important;
 }
+.cdcIcon {
+    position: relative;
+    top: 5px;
+    left: 1px;
+    margin-right: 2px;
+}

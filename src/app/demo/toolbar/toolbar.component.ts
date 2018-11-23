@@ -63,7 +63,7 @@ export class ToolbarComponent implements OnInit {
           debounceTime(500)
         )
         .subscribe(response => {
-          this.searchResultInternal = response;
+          this.searchResultInternal = response['data'];
         }
       );
       this.service.getValuesByCustomerText(text)
@@ -71,7 +71,7 @@ export class ToolbarComponent implements OnInit {
           debounceTime(500)
         )
         .subscribe(response => {
-          this.searchResultCustomer = response;
+          this.searchResultCustomer = response['facetOptions'];
         }
       );
       this.service.getValuesByCostCenterText(text)
@@ -79,7 +79,7 @@ export class ToolbarComponent implements OnInit {
           debounceTime(500)
         )
         .subscribe(response => {
-          this.searchResultCostCenter = response;
+          this.searchResultCostCenter = response['facetOptions'];
         }
       );
       this.service.getValuesByResponsibleText(text)
@@ -87,7 +87,7 @@ export class ToolbarComponent implements OnInit {
           debounceTime(500)
         )
         .subscribe(response => {
-          this.searchResultResponsible = response;
+          this.searchResultResponsible = response['facetOptions'];
         }
       );
       this.service.getValuesByProjectManagerText(text)
@@ -95,7 +95,7 @@ export class ToolbarComponent implements OnInit {
           debounceTime(500)
         )
         .subscribe(response => {
-          this.searchResultProjectManager = response;
+          this.searchResultProjectManager = response['facetOptions'];
         }
       );
       this.service.getValuesByCommercialText(text)
@@ -103,7 +103,7 @@ export class ToolbarComponent implements OnInit {
           debounceTime(500)
         )
         .subscribe(response => {
-          this.searchResultCommercial = response;
+          this.searchResultCommercial = response['facetOptions'];
         }
       );
     } else {

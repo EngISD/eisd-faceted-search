@@ -25,12 +25,46 @@
         <mat-icon class="cancel" [ngStyle]="{'color': iconColor}">clear</mat-icon>
       </button>
       <mat-autocomplete #auto="matAutocomplete" autoActiveFirstOption>
-        <mat-option #option class="data-option" value="{{value}}" *ngFor="let item of searchResultInternal; trackBy: trackByFn;" (click)="selectOption(value)">{{value}} ({{item.count}})</mat-option>
-        <mat-option #option class="data-option" value="{{value}}" *ngFor="let item of searchResultProjectManager; trackBy: trackByFn;" (click)="selectOption(value)">{{item.data[0].comCp}} - {{item.data[0].cpCognome}} {{item.data[0].cpNome}} ({{item.count}})</mat-option>
-        <mat-option #option class="data-option" value="{{value}}" *ngFor="let item of searchResultCustomer; trackBy: trackByFn;" (click)="selectOption(value)">{{item.data[0].cliId}} - {{item.data[0].comCliente}} ({{item.count}})</mat-option>
-        <mat-option #option class="data-option" value="{{value}}" *ngFor="let item of searchResultCostCenter; trackBy: trackByFn;" (click)="selectOption(value)">{{item.data[0].cdcCodice}} - {{item.data[0].cdcDescrizione}} ({{item.count}})</mat-option>
-        <mat-option #option class="data-option" value="{{value}}" *ngFor="let item of searchResultResponsible; trackBy: trackByFn;" (click)="selectOption(value)">{{item.data[0].cdcResponsabile}} - {{item.data[0].respCognome}} {{item.data[0].respNome}} ({{item.count}})</mat-option>
-        <mat-option #option class="data-option" value="{{value}}" *ngFor="let item of searchResultCommercial; trackBy: trackByFn;" (click)="selectOption(value)">{{item.data[0].comFunzionario}} - {{item.data[0].funzCognome}} {{item.data[0].funzNome}} ({{item.count}})</mat-option>
+        <!-- <mat-option #option class="data-option" value="{{value}}" *ngFor="let item of searchResultInternal; trackBy: trackByFn;" (click)="selectOption(value)">{{value}} ({{item.comDescrizione}})</mat-option> -->
+        <mat-option #option 
+                    class="data-option" 
+                    value="{{value}}" 
+                    *ngFor="let item of searchResultProjectManager; trackBy: trackByFn;" 
+                    (click)="selectOption(value)">
+          <mat-icon class="icon1 noSelect">person</mat-icon>({{item.count}}) {{item.code}} - {{item.descr}}
+        </mat-option>
+        <mat-option #option 
+                    class="data-option" 
+                    value="{{value}}" 
+                    *ngFor="let item of searchResultCustomer; trackBy: trackByFn;" 
+                    (click)="selectOption(value)">
+          <mat-icon class="icon1 noSelect">account_box</mat-icon>({{item.count}}) {{item.code}} - {{item.descr}}
+        </mat-option>
+        <mat-option #option 
+                    class="data-option" 
+                    value="{{value}}" 
+                    *ngFor="let item of searchResultCostCenter; trackBy: trackByFn;" 
+                    (click)="selectOption(value)">
+          <img class="cdcIcon noSelect" 
+               src="../../../assets/sitemap.png" 
+               alt="icon" 
+               width="22px" 
+               height="22px">&nbsp;&nbsp;&nbsp;&nbsp;({{item.count}}) {{item.code}} - {{item.descr}}
+        </mat-option>
+        <mat-option #option 
+                    class="data-option" 
+                    value="{{value}}" 
+                    *ngFor="let item of searchResultResponsible; trackBy: trackByFn;" 
+                    (click)="selectOption(value)">
+          <mat-icon class="icon1 noSelect">visibility</mat-icon>({{item.count}}) {{item.code}} - {{item.descr}}
+        </mat-option>
+        <mat-option #option 
+                    class="data-option" 
+                    value="{{value}}" 
+                    *ngFor="let item of searchResultCommercial; trackBy: trackByFn;" 
+                    (click)="selectOption(value)">
+          <mat-icon class="icon1 noSelect">person_outline</mat-icon>({{item.count}}) {{item.code}} - {{item.descr}}
+        </mat-option>
       </mat-autocomplete>
     </form>
 <!-- Searchbar -->
