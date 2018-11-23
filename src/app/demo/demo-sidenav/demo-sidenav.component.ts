@@ -98,7 +98,6 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
   pageIndex = 0;
   pageSizeOptions: number[] = [10, 20, 50, 100, 200];
   activePageDataChunk = [];
-  searchValue: any;
   @ViewChild(CdkVirtualScrollViewport) scroll: CdkVirtualScrollViewport;
 
   private _mobileQueryListener: () => void;
@@ -119,13 +118,13 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
   ngOnInit() {
     this.changeDetectorRef.detectChanges();
     this.service.searchValue$.subscribe(response => {
-      this.searchValue = response;
       if (response.length !== 0) {
         for (let i = 0; i < this.categories.length; i++) {
           this.selectedFilters[this.categories[i].id] = [];
           this.numMore[this.categories[i].id] = 1;
         }
         this.barSelected = [];
+        this.selectedFilters['internalOrder'] = [];
         this.select(response['value'], response['cat']);
       }
       this.onNgModelChange();
