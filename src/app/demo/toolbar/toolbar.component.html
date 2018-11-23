@@ -25,8 +25,12 @@
         <mat-icon class="cancel" [ngStyle]="{'color': iconColor}">clear</mat-icon>
       </button>
       <mat-autocomplete #auto="matAutocomplete" autoActiveFirstOption>
-        <mat-option #optionFree value="{{value}}" class="data-option bold" *ngIf="trigger(value)" (click)="selectOption(value)">{{value}}</mat-option>
-        <mat-option #option class="data-option" value="{{value}}" *ngFor="let item of searchResult; trackBy: trackByFn;" (click)="selectOption(value)" innerHTML="&lt;span>{{item.comDescrizione | highlight: value}}&lt;/span>"></mat-option>
+        <mat-option #option class="data-option" value="{{value}}" *ngFor="let item of searchResultInternal; trackBy: trackByFn;" (click)="selectOption(value)">{{value}} ({{item.count}})</mat-option>
+        <mat-option #option class="data-option" value="{{value}}" *ngFor="let item of searchResultProjectManager; trackBy: trackByFn;" (click)="selectOption(value)">{{item.data[0].comCp}} - {{item.data[0].cpCognome}} {{item.data[0].cpNome}} ({{item.count}})</mat-option>
+        <mat-option #option class="data-option" value="{{value}}" *ngFor="let item of searchResultCustomer; trackBy: trackByFn;" (click)="selectOption(value)">{{item.data[0].cliId}} - {{item.data[0].comCliente}} ({{item.count}})</mat-option>
+        <mat-option #option class="data-option" value="{{value}}" *ngFor="let item of searchResultCostCenter; trackBy: trackByFn;" (click)="selectOption(value)">{{item.data[0].cdcCodice}} - {{item.data[0].cdcDescrizione}} ({{item.count}})</mat-option>
+        <mat-option #option class="data-option" value="{{value}}" *ngFor="let item of searchResultResponsible; trackBy: trackByFn;" (click)="selectOption(value)">{{item.data[0].cdcResponsabile}} - {{item.data[0].respCognome}} {{item.data[0].respNome}} ({{item.count}})</mat-option>
+        <mat-option #option class="data-option" value="{{value}}" *ngFor="let item of searchResultCommercial; trackBy: trackByFn;" (click)="selectOption(value)">{{item.data[0].comFunzionario}} - {{item.data[0].funzCognome}} {{item.data[0].funzNome}} ({{item.count}})</mat-option>
       </mat-autocomplete>
     </form>
 <!-- Searchbar -->

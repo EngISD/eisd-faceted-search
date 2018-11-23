@@ -15,7 +15,12 @@ export class ToolbarComponent implements OnInit {
   // Change searchbar colors
   searchColor: string;
   iconColor: string;
-  searchResult: any[];
+  searchResultInternal: any[];
+  searchResultCommercial: any[];
+  searchResultCustomer: any[];
+  searchResultResponsible: any[];
+  searchResultProjectManager: any[];
+  searchResultCostCenter: any[];
 
   constructor(private service: ServiceService) {
   
@@ -30,7 +35,7 @@ export class ToolbarComponent implements OnInit {
   // Clears input value
   cleanValue() {
     this.value = '';
-    this.searchResult = [];
+    this.searchResultInternal = [];
     this.selectOption(this.value);
   }
   onFocus() {
@@ -58,11 +63,56 @@ export class ToolbarComponent implements OnInit {
           debounceTime(500)
         )
         .subscribe(response => {
-          this.searchResult = response['data'].slice(0, 50);
+          this.searchResultInternal = response;
+        }
+      );
+      this.service.getValuesByCustomerText(text)
+        .pipe(
+          debounceTime(500)
+        )
+        .subscribe(response => {
+          this.searchResultCustomer = response;
+        }
+      );
+      this.service.getValuesByCostCenterText(text)
+        .pipe(
+          debounceTime(500)
+        )
+        .subscribe(response => {
+          this.searchResultCostCenter = response;
+        }
+      );
+      this.service.getValuesByResponsibleText(text)
+        .pipe(
+          debounceTime(500)
+        )
+        .subscribe(response => {
+          this.searchResultResponsible = response;
+        }
+      );
+      this.service.getValuesByProjectManagerText(text)
+        .pipe(
+          debounceTime(500)
+        )
+        .subscribe(response => {
+          this.searchResultProjectManager = response;
+        }
+      );
+      this.service.getValuesByCommercialText(text)
+        .pipe(
+          debounceTime(500)
+        )
+        .subscribe(response => {
+          this.searchResultCommercial = response;
         }
       );
     } else {
-      this.searchResult = [];
+      this.searchResultInternal = [];
+      this.searchResultCustomer = [];
+      this.searchResultCostCenter = [];
+      this.searchResultResponsible = [];
+      this.searchResultProjectManager = [];
+      this.searchResultCommercial = [];
     }
   }
   trackByFn(index, item) {
