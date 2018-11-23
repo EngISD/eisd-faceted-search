@@ -96,7 +96,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
   length = 0;
   pageSize = 50;
   pageIndex = 0;
-  pageSizeOptions: number[] = [10, 20, 50, 100];
+  pageSizeOptions: number[] = [10, 20, 50, 100, 200];
   activePageDataChunk = [];
   searchValue: string;
   @ViewChild(CdkVirtualScrollViewport) scroll: CdkVirtualScrollViewport;
@@ -139,7 +139,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
       this.refreshChartFacets(i, override);
     }
   }
-  refreshCheckboxFacets(i){
+  refreshCheckboxFacets(i) {
     this.service.refreshFacets(this.categories[i].id, this.selectedFilters, this.searchValue, 41).subscribe(res => {
       const temp = res['facetOptions'];
       for (let j = 0; j < this.selectedFilters[this.categories[i].id].length; j++) {
@@ -155,7 +155,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
       }
     });
   }
-  refreshChartFacets(i, override?){
+  refreshChartFacets(i, override?) {
     this.service.refreshFacets(this.categories[i].id, this.selectedFilters, this.searchValue, this.numMore[this.categories[i].id]).subscribe(res => {
       this.filterCheck(this.categories[i].id, res);
       if ((this.categories[i].id === 'anno') && (override === undefined)) {
@@ -201,7 +201,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
       this.filterCheck(cat, res);
     });
   }
-  filterCheck(cat, res){
+  filterCheck(cat, res) {
     this.checkboxes[cat] = res['facetOptions'];
       this.checkboxes[cat].sort((n1, n2) => {
         if ((this.selectedFilters[cat].indexOf(n1.code) !== -1) && (this.selectedFilters[cat].indexOf(n2.code) === -1)) {

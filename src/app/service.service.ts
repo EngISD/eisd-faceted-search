@@ -149,7 +149,7 @@ export class ServiceService {
       }
     );
     if (searchValue.length !== 0) {
-      search = search.concat('&internalOrderText=', searchValue);
+      search = search.concat('&internalOrderText=', encodeURIComponent(searchValue));
     }
     if (category === 'anno') {
       return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/facet?facetMaxOptions=10&facet=' + category + facet + search);
@@ -180,10 +180,10 @@ export class ServiceService {
   receiveValue(item) {
     this.itemValue$ = item;
   }
-  setValueSearch(value){
+  setValueSearch(value) {
     this._searchValue.next(value);
   }
-  getValuesBySearchText(text){
+  getValuesBySearchText(text) {
     return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/list?size=100&page=1&internalOrderText=' + text);
   }
   getValuesByCustomerText(text){
