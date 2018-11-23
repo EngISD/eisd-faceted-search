@@ -1,7 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ServiceService } from 'src/app/service.service';
 import { debounceTime } from 'rxjs/operators';
-import { MatAutocomplete, MatAutocompleteTrigger } from '@angular/material';
 
 @Component({
   selector: 'demo-toolbar',
@@ -63,7 +62,7 @@ export class ToolbarComponent implements OnInit {
           debounceTime(500)
         )
         .subscribe(response => {
-          this.searchResultInternal = response['data'];
+          this.searchResultInternal = response['count'];
         }
       );
       this.service.getValuesByCustomerText(text)
