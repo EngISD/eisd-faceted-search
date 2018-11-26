@@ -555,7 +555,8 @@ mat-selection-list {
     right: 0;
     width: 30px !important;
     height: 22px !important;
-    color: rgba(0,0,0,.87) !important;
+    color: rgb(2, 119, 189) !important;
+    opacity: 1 !important;
 }
 .chipContainer {
     background-color:  rgb(224, 224, 224) !important;
@@ -579,5 +580,20 @@ mat-selection-list {
     display: inline-block;
     position: relative;
     top: 6px;
+}
+.noResults {
+    width: 100%;
+    height: calc(100vh - 98px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.responsive {
+    width: 40%;
+    height: auto;
+    max-height: calc(100vh - 98px);
+    margin: auto;
+    margin-top: 10%;
+    text-align: center;
 
 }

@@ -95,7 +95,7 @@
         <mat-expansion-panel-header class="noSelect">
           <mat-panel-title>
             <div matBadge="{{chosenFilters.length}}" matBadgeSize="medium" matBadgeOverlap="false"></div>
-            <span>Selected filters</span> 
+            <span>Filtri selezionati</span> 
           </mat-panel-title>
         </mat-expansion-panel-header>
         <mat-chip-list class="mat-chip-list-stacked">
@@ -220,8 +220,12 @@
       <ngx-loading [show]="loading" 
                    [config]="{animationType: ngxLoadingAnimationTypes.circle, primaryColour: primaryColour, secondaryColour: secondaryColour, backdropBorderRadius: '3px'}">
       </ngx-loading>
+     
       <cdk-virtual-scroll-viewport [itemSize]="137.5" 
                                    class="viewport">
+        <div class="noResults" *ngIf="length === 0">
+          <img class="responsive" src="../../../assets/noResults.png" alt="pic">
+        </div>
         <div *cdkVirtualFor="let item of activePageDataChunk; let last = last" 
               class="viewport-item mat-elevation-z1 noSelect"
               [class.last]="last"
