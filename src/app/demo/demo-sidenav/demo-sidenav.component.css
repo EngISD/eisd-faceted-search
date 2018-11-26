@@ -244,12 +244,23 @@ mat-sidenav {
 mat-panel-title {
     font-size: 1.3em;
 }
+::ng-deep .mat-content {
+    padding: 20px 0 !important;
+}
 mat-expansion-panel {
     margin: 3px 0;
     background-color: rgba(245, 245, 245, 0.01);
 }
 mat-selection-list {
     outline: none;
+}
+.mat-badge {
+    top: 11px !important;
+    left: 2px !important;
+    margin-right: 47px !important;
+}
+.mat-badge-content.mat-badge-active {
+    background-color: #0277bd !important;
 }
 .sidenav-container {
 /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
@@ -538,4 +549,9 @@ mat-selection-list {
 }
 .last {
     border-bottom: 1px solid rgba(165, 162, 162, 0.7);
+}
+.cancelIcon {
+    position: relative;
+    bottom: 2px;
+    left: 180px;
 }

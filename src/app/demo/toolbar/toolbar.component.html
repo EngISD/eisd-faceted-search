@@ -19,7 +19,7 @@
              name="input" 
              (focus)="onFocus()"
              (focusout)="onFocusOut()"
-             (ngModelChange)="onKeyUp(value)"
+             (keyup)="onKeyUp(value)"
              (keydown.enter)="$event.preventDefault(); selectOption('internalOrder', value)">
       <button  mat-icon-button class="cancel" (click)="cleanValue()">
         <mat-icon class="cancel" [ngStyle]="{'color': iconColor}">clear</mat-icon>
@@ -29,7 +29,7 @@
                     class="data-option"
                     value="{{value}}" 
                     (click)="selectOption('internalOrder', value)"
-                    *ngIf="value.length > 2">{{searchResultInternal}} comesse con "{{ value }}"
+                    *ngIf="value.length > 2 && searchResultInternal != 0">{{searchResultInternal}} comesse con "{{ value }}"
         </mat-option>
         <mat-optgroup *ngIf="searchResultProjectManager != 0" 
                       [label]="'Responsabile del Progetto'">

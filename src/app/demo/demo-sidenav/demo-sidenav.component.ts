@@ -1,7 +1,7 @@
 import { ServiceService } from './../../service.service';
-import { Component, OnInit, OnDestroy, ChangeDetectorRef, ViewChild, AfterViewChecked } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef, ViewChild, AfterViewChecked, ViewChildren } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
-import { MatSidenav, PageEvent, MatPaginator } from '@angular/material';
+import { MatSidenav, PageEvent, MatPaginator, MatExpansionPanel } from '@angular/material';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { ngxLoadingAnimationTypes } from 'ngx-loading';
 
@@ -56,6 +56,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
   selectedFilters = [];
   // Loading animation parameters
   public loading = false;
+  public loadingFacets = false;
   public ngxLoadingAnimationTypes = ngxLoadingAnimationTypes;
   public primaryColour = '#006dddee';
   public secondaryColour = '#cccccc01';
@@ -99,6 +100,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
   pageSizeOptions: number[] = [10, 20, 50, 100, 200];
   activePageDataChunk = [];
   @ViewChild(CdkVirtualScrollViewport) scroll: CdkVirtualScrollViewport;
+  @ViewChildren(MatExpansionPanel) panels: Array<MatExpansionPanel>;
 
   private _mobileQueryListener: () => void;
 
@@ -147,21 +149,31 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
     }
   }
   refreshChartFacets(i, override?) {
-    this.service.refreshFacets(this.categories[i].id, this.selectedFilters, this.numMore[this.categories[i].id]).subscribe(res => {
-      this.filterCheck(this.categories[i].id, res);
-      if ((this.categories[i].id === 'anno') && (override === undefined)) {
-        const temp = [];
-        const temp1 = [];
-        for (let j = 0; j < this.checkboxes['anno'].length; j++) {
-          temp.push(this.checkboxes['anno'][j].code);
-          temp1.push(this.checkboxes['anno'][j].count);
+    if (this.panels['_results'][i+1].expanded === true) {
+      this.service.refreshFacets(this.categories[i].id, this.selectedFilters, this.numMore[this.categories[i].id]).subscribe(res => {
+        this.filterCheck(this.categories[i].id, res);
+        if ((this.categories[i].id === 'anno') && (override === undefined)) {
+          const temp = [];
+          const temp1 = [];
+          for (let j = 0; j < this.checkboxes['anno'].length; j++) {
+            temp.push(this.checkboxes['anno'][j].code);
+            temp1.push(this.checkboxes['anno'][j].count);
+          }
+          this.barChartLabels = temp;
+          this.barChartData[0] = Object.assign({
+            data: temp1, label: 'Number of items'
+          });
         }
-        this.barChartLabels = temp;
-        this.barChartData[0] = Object.assign({
-          data: temp1, label: 'Number of items'
-        });
-      }
-    });
+        this.loadingFacets = false;
+      });
+    }
+    
+  }
+  lazyLoad(i) {
+    if (this.checkboxes[this.categories[i].id] === undefined && i >= 2) {
+      this.loadingFacets = true;
+      this.refreshChartFacets(i);
+    }
   }
   trackByFn(index, item) {
     return index;

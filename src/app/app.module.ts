@@ -25,6 +25,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { NgxLoadingModule } from 'ngx-loading';
 import {MatChipsModule} from '@angular/material/chips';
+import {MatBadgeModule} from '@angular/material/badge';
 import { MatButtonModule, MatListModule, MatFormFieldModule, MatIconModule, MatIconRegistry,  MatExpansionModule, MatSliderModule, MatInputModule, MatCardModule, MatDividerModule, MatSelectModule, MatTooltipModule } from '@angular/material';
 // Components
 import { AppComponent } from './app.component';
@@ -87,7 +88,8 @@ import { DialogComponent } from './demo/dialog/dialog.component';
     MatDividerModule,
     MatSelectModule,
     MatTooltipModule,
-    MatChipsModule
+    MatChipsModule,
+    MatBadgeModule
   ],
   entryComponents: [DialogComponent],
   providers: [{ provide: MatPaginatorIntl, useClass: MatPaginatorIntlIta}, ScrollDispatcher],

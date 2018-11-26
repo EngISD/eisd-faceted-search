@@ -91,10 +91,26 @@
                  [mode]="mobileQuery.matches ? 'over' : 'side'"
                  [fixedInViewport]="mobileQuery.matches" 
                  [fixedTopGap]="mobileQuery.matches ? 97 : 97">
+      <mat-expansion-panel (opened)="panelOpenState = true"
+                 (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <div matBadge="5" matBadgeSize="medium" matBadgeOverlap="false"></div>
+            <span>Selected filters</span> 
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-chip-list class="mat-chip-list-stacked">
+          <mat-chip *ngFor="let item of " selected [removable]="removable">
+            chip
+            <mat-icon matChipRemove class="cancelIcon">cancel</mat-icon>
+          </mat-chip>
+        </mat-chip-list>
+      </mat-expansion-panel>
       <mat-nav-list class="facet">
         <mat-expansion-panel [expanded]="i &lt; 2" 
-                             *ngFor="let category of categories; trackBy: trackByFn; let i = index">
-          <mat-expansion-panel-header>
+                             *ngFor="let category of categories; trackBy: trackByFn; let i = index"
+                             (opened)="lazyLoad(i);">
+          <mat-expansion-panel-header>  
             <mat-panel-title class="noSelect">
               <mat-icon class="catIcon" 
                         matListIcon 
