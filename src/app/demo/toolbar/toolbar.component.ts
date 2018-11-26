@@ -39,7 +39,7 @@ export class ToolbarComponent implements OnInit {
     this.searchResultCustomer = [];
     this.searchResultProjectManager = [];
     this.searchResultResponsible = [];
-    this.selectOption('internalOrder', '');
+    this.selectOption('internalOrder', '', '');
   }
   onFocus() {
     this.searchColor = 'white';
@@ -55,9 +55,9 @@ export class ToolbarComponent implements OnInit {
       return true;
     }
   }
-  selectOption(cat: string, value: string) {
-    const temp = {'cat': cat, 'value': value};
-    this.service.setValueSearch(temp);
+  selectOption(cat: string, value: string, descr: string) {
+      const temp = {'cat': cat, 'value': value, 'descr': descr};
+      this.service.setValueSearch(temp);
   }
 
   onKeyUp(text: string) {

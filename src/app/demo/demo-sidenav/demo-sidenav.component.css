@@ -560,6 +560,7 @@ mat-selection-list {
 .chipContainer {
     background-color:  rgb(224, 224, 224) !important;
     color: black !important;
+    cursor: pointer;
 }
 .chipItem {
     max-width: 200px;

@@ -91,8 +91,7 @@
                  [mode]="mobileQuery.matches ? 'over' : 'side'"
                  [fixedInViewport]="mobileQuery.matches" 
                  [fixedTopGap]="mobileQuery.matches ? 97 : 97">
-      <mat-expansion-panel (opened)="panelOpenState = true"
-                 (closed)="panelOpenState = false">
+      <mat-expansion-panel [disabled]="chosenFilters.length === 0" [expanded]="chosenFilters.length !== 0">
         <mat-expansion-panel-header class="noSelect">
           <mat-panel-title>
             <div matBadge="{{chosenFilters.length}}" matBadgeSize="medium" matBadgeOverlap="false"></div>
@@ -104,7 +103,7 @@
             <div class="chipItem noSelect">
               <img class="chipImg" src="../../../assets/sitemap.png" alt="icon" *ngIf="item.icon==='sitemap'" width="22px" height="22px">
               <mat-icon class="chipIcons" *ngIf="item.icon!=='sitemap'">{{item.icon}}</mat-icon>{{item.descr}}</div>
-            <mat-icon matChipRemove class="cancelIcon">cancel</mat-icon>
+            <mat-icon matChipRemove class="cancelIcon" (click)="disableOption(item); onNgModelChange();">cancel</mat-icon>
           </mat-chip>
         </mat-chip-list>
       </mat-expansion-panel>
@@ -134,7 +133,7 @@
           <ng-template matExpansionPanelContent *ngIf="category.id != 'anno'">
             <mat-selection-list dense>
               <mat-list-option *ngFor="let checkbox of checkboxes[category.id]; trackBy: trackByFn;"
-                               (click)="select(checkbox.code, category.id); onNgModelChange(); moveToChosen(checkbox, category.icon)"
+                               (click)="select(checkbox.code, category.id); moveToChosen(checkbox, category.icon, category.id); onNgModelChange();"
                                [selected]="selectedFilters[category.id].includes(checkbox.code)"
                                [value]="checkbox.code">
                 <mat-icon matListIcon class="noSelect"
@@ -202,10 +201,10 @@
                     [legend]="barChartLegend"
                     [colors]="barChartColors"
                     [chartType]="barChartType"
-                    (chartClick)="chartClicked($event)"></canvas>
+                    (chartClick)="chartClicked($event); "></canvas>
             <div class="chipTable">
               <mat-chip-list #chipTable>
-                <mat-chip class="mat-elevation-z4" *ngFor="let item of barSelected" [selectable]="false" (removed)="removeBarSelected(item)">
+                <mat-chip class="mat-elevation-z4 noSelect" *ngFor="let item of barSelected" [selectable]="false" (removed)="removeBarSelected(item)">
                   {{item}}
                   <mat-icon matChipRemove class="removeIcon">cancel</mat-icon>
                 </mat-chip>

@@ -112,7 +112,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
     this.mobileQueryWide.addListener(this._mobileQueryListener);
     for (let i = 0; i < this.categories.length; i++) {
       this.selectedFilters[this.categories[i].id] = [];
-      this.numMore[this.categories[i].id] = 1;      
+      this.numMore[this.categories[i].id] = 1;
     }
     this.selectedFilters['internalOrder'] = [];
   }
@@ -126,6 +126,15 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
         }
         this.barSelected = [];
         this.selectedFilters['internalOrder'] = [];
+        this.chosenFilters = [];
+        const index = this.categories.findIndex(i => i.id === response['cat']);
+        if (response['cat'] !== 'internalOrder') {
+          const tempObject = {'cat': response['cat'], 'icon': this.categories[index].icon, 'descr': response['descr'], 'code': response['value'] };
+          const indexInChosen = this.chosenFilters.findIndex(i => i.code === tempObject.code);
+          if (indexInChosen === -1) {
+            this.chosenFilters.push(tempObject);
+          }
+        }
         this.select(response['value'], response['cat']);
       }
       this.onNgModelChange();
@@ -148,7 +157,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
     }
   }
   refreshChartFacets(i, override?) {
-    if (this.panels['_results'][i+1].expanded === true) {
+    if (this.panels['_results'][i + 1].expanded === true) {
       this.service.refreshFacets(this.categories[i].id, this.selectedFilters, this.numMore[this.categories[i].id]).subscribe(res => {
         this.filterCheck(this.categories[i].id, res);
         if ((this.categories[i].id === 'anno') && (override === undefined)) {
@@ -196,7 +205,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
     });
   }
   filterCheck(cat, res) {
-    this.checkboxes[cat] = res['facetOptions'];    
+    this.checkboxes[cat] = res['facetOptions'];
       this.checkboxes[cat].sort((n1, n2) => {
         if ((this.selectedFilters[cat].indexOf(n1.code) !== -1) && (this.selectedFilters[cat].indexOf(n2.code) === -1)) {
           return -1;
@@ -212,6 +221,11 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
     if (e.active.length > 0) {
       const temp = e.active[0]._model.label;
       const index = this.barSelected.findIndex(x => x === e.active[0]._model.label);
+      const tempObject = {'cat': 'anno', 'icon': 'date_range', 'descr': temp, 'code': temp };
+      const indexInChosen = this.chosenFilters.findIndex(i => i.code === tempObject.code);
+      if (indexInChosen === -1) {
+        this.chosenFilters.push(tempObject);
+      }
       if (index === -1) {
         this.barSelected.push(temp);
         this.selectedFilters['anno'] = this.barSelected;
@@ -225,6 +239,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
       this.numMore[this.categories[i].id] = 1;
     }
     this.barSelected = [];
+    this.chosenFilters = [];
     this.onNgModelChange();
   }
   sortResults() {
@@ -249,17 +264,26 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
       this.selectedFilters[cat].push(code);
     } else {
       this.selectedFilters[cat].splice(index, 1);
-    }    
+    }
   }
-  moveToChosen(item, icon){
-    const index = this.chosenFilters.findIndex(i => i.code === item.code);    
+  moveToChosen(item, icon, cat){
+    const index = this.chosenFilters.findIndex(i => i.code === item.code);
     if (index === -1) {
-      this.chosenFilters.push({'icon': icon, 'descr' :item.descr, 'code': item.code});
+      this.chosenFilters.push({'cat': cat, 'icon': icon, 'descr' : item.descr, 'code': item.code});
     } else {
       this.chosenFilters.splice(index, 1);
     }
   }
-
+  disableOption(item) {
+    const index = this.chosenFilters.findIndex(i => i.code === item.code);
+    const indexInSelected = this.selectedFilters[item.cat].indexOf(item.code);
+    if (index !== -1) {
+      this.chosenFilters.splice(index, 1);
+    }
+    if (indexInSelected !== -1) {
+      this.selectedFilters[item.cat].splice(indexInSelected, 1);
+    }
+  }
   openSidenav(item) {
     this.service.receiveValue(item);
     if (this.mobileQueryWide.matches && this.sidenav.opened) {
@@ -280,6 +304,11 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
     const index = this.barSelected.findIndex(x => x === item);
     if (index !== -1) {
       this.barSelected.splice(index, 1);
+    }
+    const tempObject = {'cat': 'anno', 'icon': 'date_range', 'descr': item, 'code': item };
+    const indexInChosen = this.chosenFilters.findIndex(i => i.code === tempObject.code);
+    if (indexInChosen !== -1) {
+      this.chosenFilters.splice(indexInChosen, 1);
     }
     this.selectedFilters['anno'] = this.barSelected;
     this.onNgModelChange(false);
