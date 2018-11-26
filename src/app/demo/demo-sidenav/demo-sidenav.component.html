@@ -93,15 +93,17 @@
                  [fixedTopGap]="mobileQuery.matches ? 97 : 97">
       <mat-expansion-panel (opened)="panelOpenState = true"
                  (closed)="panelOpenState = false">
-        <mat-expansion-panel-header>
+        <mat-expansion-panel-header class="noSelect">
           <mat-panel-title>
-            <div matBadge="5" matBadgeSize="medium" matBadgeOverlap="false"></div>
+            <div matBadge="{{chosenFilters.length}}" matBadgeSize="medium" matBadgeOverlap="false"></div>
             <span>Selected filters</span> 
           </mat-panel-title>
         </mat-expansion-panel-header>
         <mat-chip-list class="mat-chip-list-stacked">
-          <mat-chip *ngFor="let item of " selected [removable]="removable">
-            chip
+          <mat-chip class="chipContainer mat-elevation-z4" *ngFor="let item of chosenFilters " selected [removable]="removable">
+            <div class="chipItem noSelect">
+              <img class="chipImg" src="../../../assets/sitemap.png" alt="icon" *ngIf="item.icon==='sitemap'" width="22px" height="22px">
+              <mat-icon class="chipIcons" *ngIf="item.icon!=='sitemap'">{{item.icon}}</mat-icon>{{item.descr}}</div>
             <mat-icon matChipRemove class="cancelIcon">cancel</mat-icon>
           </mat-chip>
         </mat-chip-list>
@@ -109,7 +111,7 @@
       <mat-nav-list class="facet">
         <mat-expansion-panel [expanded]="i &lt; 2" 
                              *ngFor="let category of categories; trackBy: trackByFn; let i = index"
-                             (opened)="lazyLoad(i);">
+                             (afterExpand)="refreshChartFacets(i);">
           <mat-expansion-panel-header>  
             <mat-panel-title class="noSelect">
               <mat-icon class="catIcon" 
@@ -132,7 +134,7 @@
           <ng-template matExpansionPanelContent *ngIf="category.id != 'anno'">
             <mat-selection-list dense>
               <mat-list-option *ngFor="let checkbox of checkboxes[category.id]; trackBy: trackByFn;"
-                               (click)="select(checkbox.code, category.id); onNgModelChange();"
+                               (click)="select(checkbox.code, category.id); onNgModelChange(); moveToChosen(checkbox, category.icon)"
                                [selected]="selectedFilters[category.id].includes(checkbox.code)"
                                [value]="checkbox.code">
                 <mat-icon matListIcon class="noSelect"

@@ -551,7 +551,32 @@ mat-selection-list {
     border-bottom: 1px solid rgba(165, 162, 162, 0.7);
 }
 .cancelIcon {
+    position: absolute;
+    right: 0;
+    width: 30px !important;
+    height: 22px !important;
+    color: rgba(0,0,0,.87) !important;
+}
+.chipContainer {
+    background-color:  rgb(224, 224, 224) !important;
+    color: black !important;
+}
+.chipItem {
+    max-width: 200px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: inline-block;
+    line-height: 33px;
+}
+.chipImg {
     position: relative;
-    bottom: 2px;
-    left: 180px;
+    top: 6px;
+    margin-right: 2px;  
+}
+.chipIcons {
+    display: inline-block;
+    position: relative;
+    top: 6px;
+
 }

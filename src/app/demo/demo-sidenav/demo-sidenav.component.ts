@@ -37,7 +37,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
   @ViewChild('snav1') sidenav1: MatSidenav;
   // Facet categories
   categories = [
-    {id: 'cdc', icon: 'euro_symbol', value: 'Centro di Costo'},
+    {id: 'cdc', icon: 'sitemap', value: 'Centro di Costo'},
     {id: 'anno', icon: 'date_range', value: 'Anno'},
     {id: 'cliente', icon: 'account_box', value: 'Cliente'},
     {id: 'soc', icon: 'business', value: 'Azienda'},
@@ -54,9 +54,9 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
   numMore = [];
   hasMore = [];
   selectedFilters = [];
+  chosenFilters = [];
   // Loading animation parameters
   public loading = false;
-  public loadingFacets = false;
   public ngxLoadingAnimationTypes = ngxLoadingAnimationTypes;
   public primaryColour = '#006dddee';
   public secondaryColour = '#cccccc01';
@@ -101,7 +101,6 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
   activePageDataChunk = [];
   @ViewChild(CdkVirtualScrollViewport) scroll: CdkVirtualScrollViewport;
   @ViewChildren(MatExpansionPanel) panels: Array<MatExpansionPanel>;
-
   private _mobileQueryListener: () => void;
 
   // tslint:disable:max-line-length
@@ -113,7 +112,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
     this.mobileQueryWide.addListener(this._mobileQueryListener);
     for (let i = 0; i < this.categories.length; i++) {
       this.selectedFilters[this.categories[i].id] = [];
-      this.numMore[this.categories[i].id] = 1;
+      this.numMore[this.categories[i].id] = 1;      
     }
     this.selectedFilters['internalOrder'] = [];
   }
@@ -164,16 +163,8 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
             data: temp1, label: 'Number of items'
           });
         }
-        this.loadingFacets = false;
       });
-    }
-    
-  }
-  lazyLoad(i) {
-    if (this.checkboxes[this.categories[i].id] === undefined && i >= 2) {
-      this.loadingFacets = true;
-      this.refreshChartFacets(i);
-    }
+    } 
   }
   trackByFn(index, item) {
     return index;
@@ -205,7 +196,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
     });
   }
   filterCheck(cat, res) {
-    this.checkboxes[cat] = res['facetOptions'];
+    this.checkboxes[cat] = res['facetOptions'];    
       this.checkboxes[cat].sort((n1, n2) => {
         if ((this.selectedFilters[cat].indexOf(n1.code) !== -1) && (this.selectedFilters[cat].indexOf(n2.code) === -1)) {
           return -1;
@@ -258,6 +249,14 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
       this.selectedFilters[cat].push(code);
     } else {
       this.selectedFilters[cat].splice(index, 1);
+    }    
+  }
+  moveToChosen(item, icon){
+    const index = this.chosenFilters.findIndex(i => i.code === item.code);    
+    if (index === -1) {
+      this.chosenFilters.push({'icon': icon, 'descr' :item.descr, 'code': item.code});
+    } else {
+      this.chosenFilters.splice(index, 1);
     }
   }
 
