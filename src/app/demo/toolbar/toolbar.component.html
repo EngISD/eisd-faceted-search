@@ -19,7 +19,7 @@
              name="input" 
              (focus)="onFocus()"
              (focusout)="onFocusOut()"
-             (keyup)="onKeyUp(value)"
+             (ngModelChange)="onKeyUp($event)"
              (keydown.enter)="$event.preventDefault(); selectOption('internalOrder', value)">
       <button  mat-icon-button class="cancel" (click)="cleanValue()">
         <mat-icon class="cancel" [ngStyle]="{'color': iconColor}">clear</mat-icon>

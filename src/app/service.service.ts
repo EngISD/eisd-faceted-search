@@ -23,11 +23,15 @@ export class ServiceService {
   _searchValue = new BehaviorSubject<any>([]);
   searchValue$: Observable<any>;
 
+  _clean = new BehaviorSubject<any>([]);
+  clean$: Observable<any>;
+
   constructor(private http: HttpClient) {
     this._filterValue = new BehaviorSubject<any>([]);
     this.filterValue$ = this._filterValue.asObservable();
     this.itemValue$ = this._itemValue.asObservable();
     this.searchValue$ = this._searchValue.asObservable();
+    this.clean$ = this._clean.asObservable();
 
     this.getCategories().subscribe(res => {
       this.categories = res;
@@ -185,8 +189,11 @@ export class ServiceService {
   setValueSearch(value) {
     this._searchValue.next(value);
   }
+  setClean(value) {
+    this._clean.next(value);
+  }
   getValuesBySearchText(text) {
-    return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/list?size=100&page=1&internalOrderText=' + text);
+    return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/list?size=10&page=1&internalOrderText=' + text);
   }
   getValuesByCustomerText(text){
     return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/facet?facetMaxOptions=5&facet=cliente&customerText=' + text);

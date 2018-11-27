@@ -110,7 +110,7 @@
       <mat-nav-list class="facet">
         <mat-expansion-panel [expanded]="i &lt; 2" 
                              *ngFor="let category of categories; trackBy: trackByFn; let i = index"
-                             (afterExpand)="refreshChartFacets(i);">
+                             (opened)="refreshChartFacets(i);">
           <mat-expansion-panel-header>  
             <mat-panel-title class="noSelect">
               <mat-icon class="catIcon" 

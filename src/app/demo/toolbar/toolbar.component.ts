@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiceService } from 'src/app/service.service';
-import { debounceTime } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'demo-toolbar',
@@ -25,7 +25,11 @@ export class ToolbarComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.service.clean$.subscribe(res => {
+      if (res === true) {
+        this.cleanValue();
+      }
+    });
   }
   toHome() {
     location.reload();
@@ -56,58 +60,80 @@ export class ToolbarComponent implements OnInit {
     }
   }
   selectOption(cat: string, value: string, descr: string) {
-      const temp = {'cat': cat, 'value': value, 'descr': descr};
-      this.service.setValueSearch(temp);
+    let temp;
+    if (cat === 'internalOrder') {
+      temp = {'cat': cat, 'value': value, 'descr': value};
+    } else {
+      temp = {'cat': cat, 'value': value, 'descr': descr};
+    }
+    this.service.setValueSearch(temp);
   }
 
-  onKeyUp(text: string) {
+  onKeyUp(text) {
     if (text.length > 2) {
-      this.service.getValuesBySearchText(text)
-        .pipe(
-          debounceTime(500)
-        )
-        .subscribe(response => {
-          this.searchResultInternal = response['count'];
-        }
-      );
       this.service.getValuesByCustomerText(text)
-        .pipe(
-          debounceTime(500)
-        )
         .subscribe(response => {
           this.searchResultCustomer = response['facetOptions'];
+          console.log(text);
+          console.log(response['facetOptions']);
+        }
+      );
+      this.service.getValuesBySearchText(text)
+        .pipe(
+          debounceTime(300),
+          distinctUntilChanged()
+        )
+        .subscribe(response => {
+          this.searchResultInternal = [0];
+          this.searchResultInternal = response['count'];
         }
       );
       this.service.getValuesByCostCenterText(text)
         .pipe(
-          debounceTime(500)
+          debounceTime(300),
+          distinctUntilChanged()
         )
         .subscribe(response => {
+          this.searchResultCostCenter = [];
           this.searchResultCostCenter = response['facetOptions'];
+          console.log(text);
+          console.log(response['facetOptions']);
         }
       );
       this.service.getValuesByResponsibleText(text)
         .pipe(
-          debounceTime(500)
+          debounceTime(300),
+          distinctUntilChanged()
         )
         .subscribe(response => {
+          this.searchResultResponsible = [];
           this.searchResultResponsible = response['facetOptions'];
+          console.log(text);
+          console.log(response['facetOptions']);
         }
       );
       this.service.getValuesByProjectManagerText(text)
         .pipe(
-          debounceTime(500)
+          debounceTime(300),
+          distinctUntilChanged()
         )
         .subscribe(response => {
+          this.searchResultProjectManager = [];
           this.searchResultProjectManager = response['facetOptions'];
+          console.log(text);
+          console.log(response['facetOptions']);
         }
       );
       this.service.getValuesByCommercialText(text)
         .pipe(
-          debounceTime(500)
+          debounceTime(300),
+          distinctUntilChanged()
         )
         .subscribe(response => {
+          this.searchResultCommercial = [];
           this.searchResultCommercial = response['facetOptions'];
+          console.log(text);
+          console.log(response['facetOptions']);
         }
       );
     } else {

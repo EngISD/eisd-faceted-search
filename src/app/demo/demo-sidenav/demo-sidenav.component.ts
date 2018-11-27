@@ -134,8 +134,20 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
           if (indexInChosen === -1) {
             this.chosenFilters.push(tempObject);
           }
+        } else {
+          const tempObject = {'cat': response['cat'], 'icon': 'search', 'descr': response['descr'], 'code': response['value'] };
+          const indexInChosen = this.chosenFilters.findIndex(i => i.code === tempObject.code);
+          if (indexInChosen === -1) {
+            this.chosenFilters.push(tempObject);
+          }
         }
         this.select(response['value'], response['cat']);
+        if (response['cat'] === 'internalOrder' && response['value'] === '') {
+          const cleanIndex = this.chosenFilters.findIndex(i => i.code === '');
+          if (cleanIndex !== -1) {
+            this.chosenFilters.splice(cleanIndex, 1);
+          }
+        }
       }
       this.onNgModelChange();
     });
@@ -157,23 +169,32 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
     }
   }
   refreshChartFacets(i, override?) {
-    if (this.panels['_results'][i + 1].expanded === true) {
-      this.service.refreshFacets(this.categories[i].id, this.selectedFilters, this.numMore[this.categories[i].id]).subscribe(res => {
-        this.filterCheck(this.categories[i].id, res);
-        if ((this.categories[i].id === 'anno') && (override === undefined)) {
-          const temp = [];
-          const temp1 = [];
-          for (let j = 0; j < this.checkboxes['anno'].length; j++) {
-            temp.push(this.checkboxes['anno'][j].code);
-            temp1.push(this.checkboxes['anno'][j].count);
+    if (this.panels !== undefined) {
+      this.panels['_results'][i + 1].disabled = false;
+      if (this.panels['_results'][i + 1].expanded === true) {
+        this.service.refreshFacets(this.categories[i].id, this.selectedFilters, this.numMore[this.categories[i].id]).subscribe(res => {
+          this.filterCheck(this.categories[i].id, res);
+          if ((this.categories[i].id === 'anno') && (override === undefined)) {
+            const temp = [];
+            const temp1 = [];
+            for (let j = 0; j < this.checkboxes['anno'].length; j++) {
+              temp.push(this.checkboxes['anno'][j].code);
+              temp1.push(this.checkboxes['anno'][j].count);
+            }
+            this.barChartLabels = temp;
+            this.barChartData[0] = Object.assign({
+              data: temp1, label: 'Number of items'
+            });
           }
-          this.barChartLabels = temp;
-          this.barChartData[0] = Object.assign({
-            data: temp1, label: 'Number of items'
-          });
-        }
-      });
-    } 
+          if (this.checkboxes[this.categories[i].id].length === 0) {
+            this.panels['_results'][i + 1].close();
+            this.panels['_results'][i + 1].disabled = true;
+          } else {
+            this.panels['_results'][i + 1].disabled = false;
+          }
+        });
+      }
+    }
   }
   trackByFn(index, item) {
     return index;
@@ -254,6 +275,12 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
       this.activePageDataChunk = res['data'];
       this.length = res['count'];
       this.scroll.scrollToIndex(0);
+      if (this.panels !== undefined && this.length === 0) {
+        for (let i = 1; i < this.panels['_results'].length; i++) {
+          this.panels['_results'][i].close();
+          this.panels['_results'][i].disabled = true;
+        }
+      }
       this.loading = false;
     });
   }
@@ -266,7 +293,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
       this.selectedFilters[cat].splice(index, 1);
     }
   }
-  moveToChosen(item, icon, cat){
+  moveToChosen(item, icon, cat) {
     const index = this.chosenFilters.findIndex(i => i.code === item.code);
     if (index === -1) {
       this.chosenFilters.push({'cat': cat, 'icon': icon, 'descr' : item.descr, 'code': item.code});
@@ -282,6 +309,11 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
     }
     if (indexInSelected !== -1) {
       this.selectedFilters[item.cat].splice(indexInSelected, 1);
+    }
+    if (item.cat === 'internalOrder') {
+      this.service.setClean(true);
+    } else {
+      this.service.setClean(false);
     }
   }
   openSidenav(item) {
