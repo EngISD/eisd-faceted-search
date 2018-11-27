@@ -552,6 +552,8 @@ mat-selection-list {
 }
 .removeIcon {
     font-size: 18px !important;
+    color: rgb(2, 119, 189) !important;
+    opacity: 1 !important;
 }
 .inline-block {
     display: inline-block;
@@ -568,6 +570,11 @@ mat-selection-list {
     opacity: 1 !important;
 }
 .chipContainer {
+    background-color:  rgb(224, 224, 224) !important;
+    color: black !important;
+    cursor: pointer;
+}
+.chipContainer::after {
     background-color:  rgb(224, 224, 224) !important;
     color: black !important;
     cursor: pointer;

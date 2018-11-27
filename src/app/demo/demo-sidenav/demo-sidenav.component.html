@@ -87,11 +87,13 @@
   <mat-sidenav-container class="sidenav-container"
                          [style.marginTop.px]="mobileQuery.matches ? 0 : 0">
   <!-- Sidenav -->
-    <mat-sidenav #snav [opened]="mobileQuery.matches ? 'false' : 'true'" 
+    <mat-sidenav #snav 
+                 [opened]="mobileQuery.matches ? 'false' : 'true'" 
                  [mode]="mobileQuery.matches ? 'over' : 'side'"
                  [fixedInViewport]="mobileQuery.matches" 
                  [fixedTopGap]="mobileQuery.matches ? 97 : 97">
-      <mat-expansion-panel [disabled]="chosenFilters.length === 0" [expanded]="chosenFilters.length !== 0">
+      <mat-expansion-panel [disabled]="chosenFilters.length === 0" 
+                           [expanded]="chosenFilters.length !== 0">
         <mat-expansion-panel-header class="noSelect">
           <mat-panel-title>
             <div matBadge="{{chosenFilters.length}}" 
@@ -103,9 +105,7 @@
         </mat-expansion-panel-header>
         <mat-chip-list class="mat-chip-list-stacked">
           <mat-chip class="chipContainer mat-elevation-z4" 
-                    *ngFor="let item of chosenFilters " 
-                    selected 
-                    [removable]="removable">
+                    *ngFor="let item of chosenFilters">
             <div class="chipItem noSelect">
               <img class="chipImg" 
                    src="../../../assets/sitemap.png" 
@@ -116,7 +116,7 @@
               <mat-icon class="chipIcons" 
                         *ngIf="item.icon!=='sitemap'"
                         >{{item.icon}}
-              </mat-icon>{{item.descr}}
+              </mat-icon><span *ngIf="item.cat === 'l136' || item.cat === 'tr' || item.cat === 'ta' || item.cat === 'lp' || item.cat === 't8'">{{item.cat | uppercase }}:</span> {{item.descr}}
             </div>
             <mat-icon matChipRemove 
                       class="cancelIcon" 
@@ -147,52 +147,67 @@
                   </span>
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <ng-template matExpansionPanelContent *ngIf="category.id != 'anno'">
+          <ng-template matExpansionPanelContent 
+                       *ngIf="category.id != 'anno'">
             <mat-selection-list dense>
               <mat-list-option *ngFor="let checkbox of checkboxes[category.id]; trackBy: trackByFn;"
                                (click)="select(checkbox.code, category.id); moveToChosen(checkbox, category.icon, category.id); onNgModelChange();"
                                [selected]="selectedFilters[category.id].includes(checkbox.code)"
                                [value]="checkbox.code">
-                <mat-icon matListIcon class="noSelect"
+                <mat-icon matListIcon 
+                          class="noSelect"
                           *ngIf="category.id != 't8' && category.id != 'l136' && category.id != 'tr' && category.id != 'ta'">keyboard_arrow_right
                 </mat-icon>
-                <mat-icon matListIcon class="noSelect"
+                <mat-icon matListIcon 
+                          class="noSelect"
                           *ngIf="category.id == 't8' && checkbox.descr == 'N'">close
                 </mat-icon>
-                <mat-icon matListIcon class="noSelect"
+                <mat-icon matListIcon 
+                          class="noSelect"
                           *ngIf="category.id == 't8' && checkbox.descr == 'S'">check
                         </mat-icon>
-                <mat-icon matListIcon class="noSelect"
+                <mat-icon matListIcon 
+                          class="noSelect"
                           *ngIf="category.id == 'l136' && checkbox.descr == '1'">close
                 </mat-icon>
-                <mat-icon matListIcon class="noSelect"
+                <mat-icon matListIcon 
+                          class="noSelect"
                           *ngIf="category.id == 'l136' && checkbox.descr == '2'">check
                 </mat-icon>
-                <mat-icon matListIcon class="noSelect"
+                <mat-icon matListIcon 
+                          class="noSelect"
                           *ngIf="category.id == 'l136' && checkbox.descr == '3'">timer
                 </mat-icon>
-                <mat-icon matListIcon class="noSelect"
+                <mat-icon matListIcon 
+                          class="noSelect"
                           *ngIf="category.id == 'l136' && checkbox.descr == '4'">priority_high
                 </mat-icon>
-                <mat-icon matListIcon class="noSelect"
+                <mat-icon matListIcon 
+                          class="noSelect"
                           *ngIf="category.id == 'tr'">euro_symbol
                 </mat-icon>
-                <mat-icon matListIcon class="noSelect"
+                <mat-icon matListIcon 
+                          class="noSelect"
                           *ngIf="category.id == 'ta' && checkbox.descr != 'C' && checkbox.descr != 'P' && checkbox.descr != 'E' && checkbox.descr != 'L' && checkbox.descr != 'R'">trending_up
                 </mat-icon>
-                <mat-icon matListIcon class="noSelect"
+                <mat-icon matListIcon 
+                          class="noSelect"
                           *ngIf="category.id == 'ta' && checkbox.descr == 'C'">account_balance_wallet
                 </mat-icon>
-                <mat-icon matListIcon class="noSelect"
+                <mat-icon matListIcon 
+                          class="noSelect"
                           *ngIf="category.id == 'ta' && checkbox.descr == 'P'">timer
                 </mat-icon>
-                <mat-icon matListIcon class="noSelect"
+                <mat-icon matListIcon 
+                          class="noSelect"
                           *ngIf="category.id == 'ta' && checkbox.descr == 'E'">event
                 </mat-icon>
-                <mat-icon matListIcon class="noSelect"
+                <mat-icon matListIcon 
+                          class="noSelect"
                           *ngIf="category.id == 'ta' && checkbox.descr == 'L'">euro_symbol
                 </mat-icon>
-                <mat-icon matListIcon class="noSelect"
+                <mat-icon matListIcon 
+                          class="noSelect"
                           *ngIf="category.id == 'ta' && checkbox.descr == 'R'">directions_run
                 </mat-icon>
                 <p class="noSelect">{{ checkbox.descr }} ({{ checkbox.count }})</p>
@@ -207,7 +222,7 @@
                       *ngIf="numMore[category.id] > 1"
                       (click)="showLess(category.id)">Mostra meno</button>
             </mat-selection-list>
-              </ng-template>
+          </ng-template>
           <ng-template matExpansionPanelContent 
                        *ngIf="category.id == 'anno'">
             <canvas baseChart 
@@ -218,12 +233,16 @@
                     [legend]="barChartLegend"
                     [colors]="barChartColors"
                     [chartType]="barChartType"
-                    (chartClick)="chartClicked($event); "></canvas>
+                    (chartClick)="chartClicked($event); ">
+            </canvas>
             <div class="chipTable">
               <mat-chip-list #chipTable>
-                <mat-chip class="mat-elevation-z4 noSelect" *ngFor="let item of barSelected" [selectable]="false" (removed)="removeBarSelected(item)">
-                  {{item}}
-                  <mat-icon matChipRemove class="removeIcon">cancel</mat-icon>
+                <mat-chip class="mat-elevation-z4 noSelect chipContainer" 
+                          *ngFor="let item of barSelected" 
+                          (removed)="removeBarSelected(item)">{{item}}
+                  <mat-icon matChipRemove 
+                            class="removeIcon">cancel
+                  </mat-icon>
                 </mat-chip>
               </mat-chip-list>
             </div>
@@ -240,16 +259,20 @@
      
       <cdk-virtual-scroll-viewport [itemSize]="137.5" 
                                    class="viewport">
-        <div class="noResults" *ngIf="length === 0" [ngStyle]="{'display': ifVisible}">
-          <img class="responsive" src="../../../assets/noResults.png" alt="pic">
+        <div class="noResults" 
+             *ngIf="length === 0" 
+             [ngStyle]="{'display': ifVisible}">
+          <img class="responsive noSelect" 
+               src="../../../assets/noResults.png" 
+               alt="pic">
           <p class="noResultsText noSelect">Siamo spiacenti, nessun risultato trovato per la domanda selezionata
           </p>
         </div>
         <div *cdkVirtualFor="let item of activePageDataChunk; let last = last" 
               class="viewport-item mat-elevation-z1 noSelect"
               [class.last]="last"
-              (click) = "openSidenav(item); snav1.open();"
-              cdkVirtualForTrackBy= 'trakByFn()'>
+              (click)="openSidenav(item); snav1.open();"
+              cdkVirtualForTrackBy='trakByFn()'>
           <div class="round mat-elevation-z4"
                [ngClass]="{
                  'hideOnSmall': mobileQuery.matches,
@@ -284,9 +307,12 @@
           <div class="viewport-item-title">
             <div class="title">
               <div class="infoFirst">
-                <span class="code">{{ item.comCodice }}</span> {{item.comDescrizione}}</div>
+                <span class="code">{{ item.comCodice }}</span> {{item.comDescrizione}}
+              </div>
               <div class="info">
-                <div class="infoIcon"><mat-icon>account_box</mat-icon></div>
+                <div class="infoIcon">
+                  <mat-icon>account_box</mat-icon>
+                </div>
                 <span class="code">{{ item.cliId }}</span>{{ item.comCliente }} 
               </div>
               <br>
@@ -302,76 +328,78 @@
               </div>
               <br>
               <div class="info">
-                <div class="infoIcon"><mat-icon>visibility</mat-icon></div>
+                <div class="infoIcon">
+                  <mat-icon>visibility</mat-icon>
+                </div>
                 <span class="code">{{ item.cdcResponsabile }}</span>{{ item.respCognome }} {{ item.respNome }}
                 <div class="infoIcon">
                   <mat-icon [ngStyle]="
-                  item.socCodice === 'E' && {'color': '#0277bde6'} ||
-                  item.socCodice === 'R' && {'color': '#c72187e6'} ||
-                  item.socCodice === 'M' && {'color': '#3cada6e6'} ||
-                  item.socCodice === 'O' && {'color': '#835104e6'} ||
-                  item.socCodice === 'F' && {'color': '#cfb365e6'} ||
-                  item.socCodice === 'X' && {'color': '#7372dbe6'} ||
-                  item.socCodice === 'I' && {'color': '#009c34e6'} ||
-                  item.socCodice === 'V' && {'color': '#479b9ee6'} ||
-                  item.socCodice === 'B' && {'color': '#BF320Ce6'} ||
-                  item.socCodice === 'L' && {'color': '#ee003be6'} ||
-                  item.socCodice === 'U' && {'color': '#FAB11De6'} ||
-                  item.socCodice === 'W' && {'color': '#87b800e6'} ||
-                  item.socCodice === '°' && {'color': '#b90072e6'} ||
-                  item.socCodice === 'A' && {'color': '#cf6a56e6'} ||
-                  item.socCodice === 'S' && {'color': '#ae68d1e6'} ||
-                  item.socCodice === 'H' && {'color': '#4b0c0ce6'} ||
-                  item.socCodice === 'Y' && {'color': '#c48e19e6'} ||
-                  item.socCodice === 'T' && {'color': '#314a53e6'} ||
-                  item.socCodice === 'K' && {'color': '#927687e6'} ||
-                  item.socCodice === 'C' && {'color': '#00b8aee6'} ||
-                  item.socCodice === '>' && {'color': '#8936dce6'}">
-                  business</mat-icon>
+                    item.socCodice === 'E' && {'color': '#0277bde6'} ||
+                    item.socCodice === 'R' && {'color': '#c72187e6'} ||
+                    item.socCodice === 'M' && {'color': '#3cada6e6'} ||
+                    item.socCodice === 'O' && {'color': '#835104e6'} ||
+                    item.socCodice === 'F' && {'color': '#cfb365e6'} ||
+                    item.socCodice === 'X' && {'color': '#7372dbe6'} ||
+                    item.socCodice === 'I' && {'color': '#009c34e6'} ||
+                    item.socCodice === 'V' && {'color': '#479b9ee6'} ||
+                    item.socCodice === 'B' && {'color': '#BF320Ce6'} ||
+                    item.socCodice === 'L' && {'color': '#ee003be6'} ||
+                    item.socCodice === 'U' && {'color': '#FAB11De6'} ||
+                    item.socCodice === 'W' && {'color': '#87b800e6'} ||
+                    item.socCodice === '°' && {'color': '#b90072e6'} ||
+                    item.socCodice === 'A' && {'color': '#cf6a56e6'} ||
+                    item.socCodice === 'S' && {'color': '#ae68d1e6'} ||
+                    item.socCodice === 'H' && {'color': '#4b0c0ce6'} ||
+                    item.socCodice === 'Y' && {'color': '#c48e19e6'} ||
+                    item.socCodice === 'T' && {'color': '#314a53e6'} ||
+                    item.socCodice === 'K' && {'color': '#927687e6'} ||
+                    item.socCodice === 'C' && {'color': '#00b8aee6'} ||
+                    item.socCodice === '>' && {'color': '#8936dce6'}">
+                    business
+                  </mat-icon>
                 </div>
                 <span class="code">{{ item.socCodiceSap }}</span>{{ item.socDescrizione }}
               </div>
               <div class="info">
-              <div class="infoIcon">
-                <mat-icon class="statusIconC" 
-                          *ngIf="item.comStato=='C'">assignment_turned_in
-                </mat-icon>
-                <mat-icon class="statusIconA" 
-                          *ngIf="item.comStato=='A'">assignment
-                </mat-icon>
-                <mat-icon class="statusIconS" 
-                          *ngIf="item.comStato=='S'">assignment_returned
-                </mat-icon>
-                <mat-icon class="statusIconI" 
-                          *ngIf="item.comStato=='I'">assignment_late
-                </mat-icon>
-                <div class="inline-block">
-                  <mat-icon>
-                    date_range
+                <div class="infoIcon">
+                  <mat-icon class="statusIconC" 
+                            *ngIf="item.comStato=='C'">assignment_turned_in
                   </mat-icon>
-                  <div class="iconText">{{item.anno}}
+                  <mat-icon class="statusIconA" 
+                            *ngIf="item.comStato=='A'">assignment
+                  </mat-icon>
+                  <mat-icon class="statusIconS" 
+                            *ngIf="item.comStato=='S'">assignment_returned
+                  </mat-icon>
+                  <mat-icon class="statusIconI" 
+                            *ngIf="item.comStato=='I'">assignment_late
+                  </mat-icon>
+                  <div class="inline-block">
+                    <mat-icon>
+                      date_range
+                    </mat-icon>
+                    <div class="iconText">{{item.anno}}
+                    </div>
                   </div>
-                </div>
-                <div [ngClass]="{'goodStatus': ((item.ricaviC12-item.costiC12) &gt; 0), 'badStatus': ((item.costiC12-item.ricaviC12) &gt; 0), 'neutralStatus': (item.costiC12==item.ricaviC12)}">
-                  <mat-icon class="bigcrIcon">
-                    euro_symbol
-                  </mat-icon>
-                  <mat-icon class="crIcon">
-                    remove
-                  </mat-icon>
-                  <div class="iconText">{{item.costiC12 | number:'1.0-0'}}
-                  </div>
-                  <mat-icon class="bigcrIcon">
+                  <div [ngClass]="{'goodStatus': ((item.ricaviC12-item.costiC12) &gt; 0), 'badStatus': ((item.costiC12-item.ricaviC12) &gt; 0), 'neutralStatus': (item.costiC12==item.ricaviC12)}">
+                    <mat-icon class="bigcrIcon">
                       euro_symbol
-                  </mat-icon>
-                  <mat-icon class="crIcon">
-                      add
-                  </mat-icon>
-                  <div class="iconText">{{item.ricaviC12 | number:'1.0-0'}}
+                    </mat-icon>
+                    <mat-icon class="crIcon">
+                      remove
+                    </mat-icon>
+                    <div class="iconText">{{item.costiC12 | number:'1.0-0'}}
+                    </div>
+                    <mat-icon class="bigcrIcon">
+                        euro_symbol
+                    </mat-icon>
+                    <mat-icon class="crIcon">
+                        add
+                    </mat-icon>
+                    <div class="iconText">{{item.ricaviC12 | number:'1.0-0'}}
+                    </div>
                   </div>
                 </div>
-              </div>
-
               </div> 
             </div>
           </div>
