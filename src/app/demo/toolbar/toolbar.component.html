@@ -19,12 +19,18 @@
              name="input" 
              (focus)="onFocus()"
              (focusout)="onFocusOut()"
+<<<<<<< HEAD
              (ngModelChange)="onKeyUp($event)"
              (keydown.enter)="$event.preventDefault(); selectOption('internalOrder', value)">
+=======
+             (keyup)="onKeyUp(value)"
+             (keydown.enter)="$event.preventDefault(); selectOption('internalOrder', value)"
+             >
+>>>>>>> 00e469612e4caab8fab941c386709c3afeb12064
       <button  mat-icon-button class="cancel" (click)="cleanValue()">
         <mat-icon class="cancel" [ngStyle]="{'color': iconColor}">clear</mat-icon>
       </button>
-      <mat-autocomplete #auto="matAutocomplete" autoActiveFirstOption>
+      <mat-autocomplete #auto="matAutocomplete">
         <mat-option #option 
                     class="data-option"
                     value="{{value}}" 

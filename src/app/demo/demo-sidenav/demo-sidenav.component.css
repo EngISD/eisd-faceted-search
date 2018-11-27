@@ -53,6 +53,9 @@
     mat-sidenav.endSidenav {
         width: 300px !important; 
     }
+    .responsive {
+        width: 30% !important;
+    }
 }
 @media only screen and (max-width: 830px) {
     ::ng-deep .mat-paginator-page-size-label {
@@ -87,6 +90,9 @@
     .paginator {
         width: 38% !important;
     }
+    .responsive {
+        width: 60% !important;
+    }
 }
 @media only screen and (max-width: 630px) {
     .filterIcons {
@@ -100,7 +106,10 @@
     }
     .endSidenavOpen {
         width: 7% !important;
-    } 
+    }
+    .responsive {
+        width: 80% !important;
+    }
 }
 @media only screen and (max-width: 600px) {
     ::ng-deep .mat-paginator-range-label, ::ng-deep .mat-paginator-page-size-label {
@@ -584,16 +593,30 @@ mat-selection-list {
 .noResults {
     width: 100%;
     height: calc(100vh - 98px);
-    display: flex;
+    display: block;
     justify-content: center;
     align-items: center;
+}
+.noResultsText {
+    text-align: center;
+    font-size: 24px;
+    margin: 0 8%;
+    letter-spacing: 1px;
+    word-spacing: 1px;
+    font-style: italic;
+    font-weight: 100; 
 }
 .responsive {
     width: 40%;
     height: auto;
     max-height: calc(100vh - 98px);
-    margin: auto;
-    margin-top: 10%;
-    text-align: center;
-
+    margin: 0 auto;
+    display: block;
+    padding: 3% 10%;
+}
+.noFilters {
+    display: none;
+}
+.includeMargin {
+    margin-left: 47px;
 }
