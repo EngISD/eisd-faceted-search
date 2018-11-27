@@ -1,14 +1,19 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
 <!-- Menu and title -->
-    <button class="menubutton" mat-icon-button>
+    <button mat-icon-button
+            class="menubutton">
       <mat-icon>menu</mat-icon>
     </button>
-    <h1 class="title" (click)="toHome()">Ricerca Commesse</h1>
+    <h1 class="title" 
+        (click)="toHome()">Ricerca Commesse</h1>
 <!-- Menu and title -->
 <!-- Searchbar -->
-    <form class="searchbar" [ngStyle]="{'background-color': searchColor}">
-      <mat-icon class="searchicon" [ngStyle]="{'color': iconColor}">search</mat-icon>
+    <form class="searchbar" 
+          [ngStyle]="{'background-color': searchColor}">
+      <mat-icon class="searchicon" 
+                [ngStyle]="{'color': iconColor}">search
+      </mat-icon>
       <input [matAutocomplete]="auto" 
              autocomplete="off" 
              matInput 
@@ -21,8 +26,11 @@
              (focusout)="onFocusOut()"
              (ngModelChange)="onKeyUp($event)"
              (keydown.enter)="$event.preventDefault(); selectOption('internalOrder', value); panel.closePanel();">
-      <button  mat-icon-button class="cancel" (click)="cleanValue()">
-        <mat-icon class="cancel" [ngStyle]="{'color': iconColor}">clear</mat-icon>
+      <button  mat-icon-button 
+               class="cancel" 
+               (click)="cleanValue()">
+        <mat-icon class="cancel" 
+                  [ngStyle]="{'color': iconColor}">clear</mat-icon>
       </button>
       <mat-autocomplete #auto="matAutocomplete">
         <mat-option #option 
@@ -59,10 +67,10 @@
                       *ngFor="let item of searchResultCostCenter; trackBy: trackByFn;" 
                       (click)="selectOption('cdc', item.code, item.descr)">
             <img class="cdcIcon noSelect" 
-                src="../../../assets/sitemap.png" 
-                alt="icon" 
-                width="22px" 
-                height="22px">&nbsp;&nbsp;&nbsp;&nbsp;({{item.count}}) {{item.code}} - {{item.descr}}
+                 src="../../../assets/sitemap.png" 
+                 alt="icon" 
+                 width="22px" 
+                 height="22px">&nbsp;&nbsp;&nbsp;&nbsp;({{item.count}}) {{item.code}} - {{item.descr}}
           </mat-option>
         </mat-optgroup>
         <mat-optgroup *ngIf="searchResultResponsible != 0" 
@@ -89,9 +97,18 @@
     </form>
 <!-- Searchbar -->
 <!-- Buttons -->
-    <button mat-icon-button class="iconButton"><mat-icon class="icon">help</mat-icon></button>
-    <button mat-icon-button class="iconButton"><mat-icon class="icon">person_pin</mat-icon></button>
-    <button mat-icon-button class="menuIconButton"><mat-icon class="menuIcon">more_vert</mat-icon></button>
+    <button mat-icon-button 
+            class="iconButton">
+      <mat-icon class="icon">help</mat-icon>
+    </button>
+    <button mat-icon-button 
+            class="iconButton">
+      <mat-icon class="icon">person_pin</mat-icon>
+    </button>
+    <button mat-icon-button 
+            class="menuIconButton">
+      <mat-icon class="menuIcon">more_vert</mat-icon>
+    </button>
 <!-- Buttons -->
   </mat-toolbar-row>
 </mat-toolbar>
