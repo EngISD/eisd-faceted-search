@@ -94,16 +94,33 @@
       <mat-expansion-panel [disabled]="chosenFilters.length === 0" [expanded]="chosenFilters.length !== 0">
         <mat-expansion-panel-header class="noSelect">
           <mat-panel-title>
-            <div matBadge="{{chosenFilters.length}}" matBadgeSize="medium" matBadgeOverlap="false"></div>
-            <span>Filtri selezionati</span> 
+            <div matBadge="{{chosenFilters.length}}" 
+                 matBadgeSize="medium" 
+                 matBadgeOverlap="false"
+                 [ngClass]="{'noFilters': chosenFilters.length === 0}"></div>
+            <span [ngClass]="{'includeMargin': chosenFilters.length === 0}">Filtri selezionati</span> 
           </mat-panel-title>
         </mat-expansion-panel-header>
         <mat-chip-list class="mat-chip-list-stacked">
-          <mat-chip class="chipContainer mat-elevation-z4" *ngFor="let item of chosenFilters " selected [removable]="removable">
+          <mat-chip class="chipContainer mat-elevation-z4" 
+                    *ngFor="let item of chosenFilters " 
+                    selected 
+                    [removable]="removable">
             <div class="chipItem noSelect">
-              <img class="chipImg" src="../../../assets/sitemap.png" alt="icon" *ngIf="item.icon==='sitemap'" width="22px" height="22px">
-              <mat-icon class="chipIcons" *ngIf="item.icon!=='sitemap'">{{item.icon}}</mat-icon>{{item.descr}}</div>
-            <mat-icon matChipRemove class="cancelIcon" (click)="disableOption(item); onNgModelChange();">cancel</mat-icon>
+              <img class="chipImg" 
+                   src="../../../assets/sitemap.png" 
+                   alt="icon" 
+                   *ngIf="item.icon==='sitemap'" 
+                   width="22px" 
+                   height="22px">
+              <mat-icon class="chipIcons" 
+                        *ngIf="item.icon!=='sitemap'"
+                        >{{item.icon}}
+              </mat-icon>{{item.descr}}
+            </div>
+            <mat-icon matChipRemove 
+                      class="cancelIcon" 
+                      (click)="disableOption(item); onNgModelChange();">cancel</mat-icon>
           </mat-chip>
         </mat-chip-list>
       </mat-expansion-panel>
@@ -223,8 +240,10 @@
      
       <cdk-virtual-scroll-viewport [itemSize]="137.5" 
                                    class="viewport">
-        <div class="noResults" *ngIf="length === 0">
+        <div class="noResults" *ngIf="length === 0" [ngStyle]="{'display': ifVisible}">
           <img class="responsive" src="../../../assets/noResults.png" alt="pic">
+          <p class="noResultsText noSelect">Siamo spiacenti, nessun risultato trovato per la domanda selezionata
+          </p>
         </div>
         <div *cdkVirtualFor="let item of activePageDataChunk; let last = last" 
               class="viewport-item mat-elevation-z1 noSelect"

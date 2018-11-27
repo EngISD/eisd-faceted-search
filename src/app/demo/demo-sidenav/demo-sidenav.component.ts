@@ -55,6 +55,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
   hasMore = [];
   selectedFilters = [];
   chosenFilters = [];
+  ifVisible: string = 'none';
   // Loading animation parameters
   public loading = false;
   public ngxLoadingAnimationTypes = ngxLoadingAnimationTypes;
@@ -255,6 +256,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
       this.length = res['count'];
       this.scroll.scrollToIndex(0);
       this.loading = false;
+      this.ifVisible = 'block';
     });
   }
 
