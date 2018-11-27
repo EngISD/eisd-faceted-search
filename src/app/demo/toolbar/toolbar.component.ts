@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ServiceService } from 'src/app/service.service';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { MatAutocompleteTrigger } from '@angular/material';
 
 @Component({
   selector: 'demo-toolbar',
@@ -20,6 +21,7 @@ export class ToolbarComponent implements OnInit {
   searchResultResponsible: any[];
   searchResultProjectManager: any[];
   searchResultCostCenter: any[];
+  @ViewChild(MatAutocompleteTrigger) panel: MatAutocompleteTrigger;
 
   constructor(private service: ServiceService) {
   }
@@ -72,6 +74,10 @@ export class ToolbarComponent implements OnInit {
   onKeyUp(text) {
     if (text.length > 2) {
       this.service.getValuesByCustomerText(text)
+      .pipe(
+        debounceTime(500),
+        distinctUntilChanged()
+      )
         .subscribe(response => {
           this.searchResultCustomer = response['facetOptions'];
           console.log(text);

@@ -20,7 +20,7 @@
              (focus)="onFocus()"
              (focusout)="onFocusOut()"
              (ngModelChange)="onKeyUp($event)"
-             (keydown.enter)="$event.preventDefault(); selectOption('internalOrder', value)">
+             (keydown.enter)="$event.preventDefault(); selectOption('internalOrder', value); panel.closePanel();">
       <button  mat-icon-button class="cancel" (click)="cleanValue()">
         <mat-icon class="cancel" [ngStyle]="{'color': iconColor}">clear</mat-icon>
       </button>

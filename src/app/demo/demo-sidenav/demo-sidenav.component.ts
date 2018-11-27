@@ -136,7 +136,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
             this.chosenFilters.push(tempObject);
           }
         } else {
-          const tempObject = {'cat': response['cat'], 'icon': 'search', 'descr': response['descr'], 'code': response['value'] };
+          const tempObject = {'cat': response['cat'], 'icon': 'search', 'descr': '\"' + response['descr'] + '\"', 'code': response['value'] };
           const indexInChosen = this.chosenFilters.findIndex(i => i.code === tempObject.code);
           if (indexInChosen === -1) {
             this.chosenFilters.push(tempObject);
@@ -262,6 +262,8 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
     }
     this.barSelected = [];
     this.chosenFilters = [];
+    this.service.setClean(false);
+    this.service.setClean(true);
     this.onNgModelChange();
   }
   sortResults() {
@@ -346,5 +348,9 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
     }
     this.selectedFilters['anno'] = this.barSelected;
     this.onNgModelChange(false);
+  }
+  hideToggleArrow(i): boolean {
+    if (this.panels !== undefined) {
+      return this.panels['_results'][i + 1].disabled;    }
   }
 }

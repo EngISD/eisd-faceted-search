@@ -126,6 +126,7 @@
       </mat-expansion-panel>
       <mat-nav-list class="facet">
         <mat-expansion-panel [expanded]="i &lt; 2" 
+                             [hideToggle]="hideToggleArrow(i)"
                              *ngFor="let category of categories; trackBy: trackByFn; let i = index"
                              (opened)="refreshChartFacets(i);">
           <mat-expansion-panel-header>  

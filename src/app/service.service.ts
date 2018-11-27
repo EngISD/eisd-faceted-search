@@ -193,21 +193,21 @@ export class ServiceService {
     this._clean.next(value);
   }
   getValuesBySearchText(text) {
-    return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/list?size=10&page=1&internalOrderText=' + text);
+    return this.http.get<any>('http://161.27.12.15:8180/proto_co/api/internal_order/list?size=10&page=1&internalOrderText=' + text);
   }
   getValuesByCustomerText(text){
-    return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/facet?facetMaxOptions=5&facet=cliente&customerText=' + text);
+    return this.http.get<any>('http://161.27.12.15:8180/proto_co/api/internal_order/facet?facetMaxOptions=5&facet=cliente&customerText=' + text);
   }
   getValuesByCostCenterText(text){
-    return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/facet?facetMaxOptions=5&facet=cdc&cdcText=' + text);
+    return this.http.get<any>('http://161.27.12.15:8180/proto_co/api/internal_order/facet?facetMaxOptions=5&facet=cdc&cdcText=' + text);
   }
   getValuesByResponsibleText(text){
-    return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/facet?facetMaxOptions=5&facet=rcdc&rcdcText=' + text);
+    return this.http.get<any>('http://161.27.12.15:8180/proto_co/api/internal_order/facet?facetMaxOptions=5&facet=rcdc&rcdcText=' + text);
   }
   getValuesByProjectManagerText(text){
-    return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/facet?facetMaxOptions=5&facet=cp&cpText=' + text);
+    return this.http.get<any>('http://161.27.12.15:8180/proto_co/api/internal_order/facet?facetMaxOptions=5&facet=cp&cpText=' + text);
   }
   getValuesByCommercialText(text){
-    return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/facet?facetMaxOptions=5&facet=fun&funText=' + text);
+    return this.http.get<any>('http://161.27.12.15:8180/proto_co/api/internal_order/facet?facetMaxOptions=5&facet=fun&funText=' + text);
   }
 }
