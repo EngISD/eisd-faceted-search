@@ -119,7 +119,7 @@
               </mat-icon><span *ngIf="item.cat === 'l136' || item.cat === 'tr' || item.cat === 'ta' || item.cat === 'lp' || item.cat === 't8'">{{item.cat | uppercase }}:</span> {{item.descr}}
             </div>
             <mat-icon matChipRemove 
-                      class="cancelIcon" 
+                      class="cancelIcon noSelect" 
                       (click)="disableOption(item); onNgModelChange();">cancel</mat-icon>
           </mat-chip>
         </mat-chip-list>

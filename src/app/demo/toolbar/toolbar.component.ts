@@ -31,7 +31,7 @@ export class ToolbarComponent implements OnInit {
   ngOnInit() {
     this.service.clean$.subscribe(res => {
       if (res === true) {
-        this.cleanValue(true);
+        this.cleanValue();
       }
     });
     this.name.valueChanges
@@ -113,7 +113,7 @@ export class ToolbarComponent implements OnInit {
     location.reload();
   }
   // Clears input value
-  cleanValue(override?) {
+  cleanValue() {
     this.value = '';
     this.name.setValue('');
     this.searchResultInternal = [];
@@ -122,9 +122,6 @@ export class ToolbarComponent implements OnInit {
     this.searchResultCustomer = [];
     this.searchResultProjectManager = [];
     this.searchResultResponsible = [];
-    if (override !== true) {
-      this.selectOption('internalOrder', '', '');
-    }
   }
   onFocus() {
     this.searchColor = 'white';

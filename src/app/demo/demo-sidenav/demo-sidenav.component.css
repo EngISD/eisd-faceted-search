@@ -310,6 +310,10 @@ mat-selection-list {
 ::ng-deep .mat-drawer-inner-container {
     background-color: #f2f2f2 !important;
 }
+.ng-star-inserted.chartjs-render-monitor {
+    margin-left: -7px;
+    height: 125px !important;
+}
 /* Viewport content */
 .viewport {
     height: calc(100vh - 98px) !important;
