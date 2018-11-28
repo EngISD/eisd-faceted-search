@@ -55,7 +55,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
   hasMore = [];
   selectedFilters = [];
   chosenFilters = [];
-  ifVisible: string = 'none';
+  ifVisible = 'none';
   // Loading animation parameters
   public loading = false;
   public ngxLoadingAnimationTypes = ngxLoadingAnimationTypes;
@@ -259,6 +259,12 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
     for (let i = 0; i < this.categories.length; i++) {
       this.selectedFilters[this.categories[i].id] = [];
       this.numMore[this.categories[i].id] = 1;
+    }
+    this.selectedFilters['internalOrder'] = [];
+    if (this.panels !== undefined) {
+      for (let i = 1; i < this.panels['_results'].length; i++) {
+        this.panels['_results'][i].close();
+      }
     }
     this.barSelected = [];
     this.chosenFilters = [];
