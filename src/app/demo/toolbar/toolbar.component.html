@@ -32,7 +32,7 @@
         <mat-icon class="cancel" 
                   [ngStyle]="{'color': iconColor}">clear</mat-icon>
       </button>
-      <mat-autocomplete #auto="matAutocomplete">
+      <mat-autocomplete #auto="matAutocomplete" [ngClass]="{'displayNone': value.length &lt; 2}">
         <mat-option #option 
                     class="data-option"
                     value="{{value}}" 
