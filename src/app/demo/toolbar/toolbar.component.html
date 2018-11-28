@@ -20,11 +20,11 @@
              class="search" 
              type="text" 
              placeholder="Ricerca..." 
-             [(ngModel)]="value" 
+             [(ngModel)]="value"
+             [formControl]="name" 
              name="input" 
              (focus)="onFocus()"
              (focusout)="onFocusOut()"
-             (ngModelChange)="onKeyUp($event)"
              (keydown.enter)="$event.preventDefault(); selectOption('internalOrder', value); panel.closePanel();">
       <button  mat-icon-button 
                class="cancel" 
