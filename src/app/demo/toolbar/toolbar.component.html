@@ -12,7 +12,8 @@
     <form class="searchbar" 
           [ngStyle]="{'background-color': searchColor}">
       <mat-icon class="searchicon" 
-                [ngStyle]="{'color': iconColor}">search
+                [ngStyle]="{'color': iconColor}"
+                (click)="selectOption('internalOrder', value.slice(0, 12)); panel.closePanel();">search
       </mat-icon>
       <input [matAutocomplete]="auto" 
              autocomplete="off" 
@@ -25,7 +26,7 @@
              name="input" 
              (focus)="onFocus()"
              (focusout)="onFocusOut()"
-             (keydown.enter)="$event.preventDefault(); selectOption('internalOrder', value); panel.closePanel();">
+             (keydown.enter)="$event.preventDefault(); selectOption('internalOrder', value.slice(0, 12), value); panel.closePanel();">
       <button  mat-icon-button 
                class="cancel" 
                (click)="cleanValue()">
@@ -36,7 +37,7 @@
         <mat-option #option 
                     class="data-option"
                     value="{{value}}" 
-                    (click)="selectOption('internalOrder', value, value)"
+                    (click)="selectOption('internalOrder', value.slice(0, 12), value)"
                     *ngIf="value.length > 2 && searchResultInternal != 0">{{searchResultInternal}} comesse con "{{ value }}"
         </mat-option>
         <mat-optgroup *ngIf="searchResultProjectManager != 0" 

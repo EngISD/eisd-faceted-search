@@ -267,7 +267,8 @@
                src="../../../assets/noResults.png" 
                alt="pic">
           <p class="noResultsText noSelect">Siamo spiacenti, nessun risultato trovato per la domanda selezionata
-          </p>
+          </p><br>
+          <p class="noResultsText"><a class="noResultsLink" (click)="resetAll()">Resetta la ricerca</a></p>
         </div>
         <div *cdkVirtualFor="let item of activePageDataChunk; let last = last" 
               class="viewport-item mat-elevation-z1 noSelect"

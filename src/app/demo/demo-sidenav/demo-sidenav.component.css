@@ -631,3 +631,11 @@ mat-selection-list {
 .includeMargin {
     margin-left: 47px;
 }
+.noResultsLink {
+    cursor: pointer;
+    color: #0277bd;
+    font-size: 28px;
+}
+.noResultsLink:hover {
+    color: #005c91;
+}
