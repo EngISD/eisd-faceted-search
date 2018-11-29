@@ -31,7 +31,7 @@ export class ToolbarComponent implements OnInit {
   ngOnInit() {
     this.service.clean$.subscribe(res => {
       if (res === true) {
-        this.cleanValue(true);
+        this.cleanValue();
       }
     });
     this.name.valueChanges
@@ -40,7 +40,7 @@ export class ToolbarComponent implements OnInit {
       )
       .subscribe(res => {
           if (res.length > 2) {
-            this.service.getValuesByCustomerText(res)
+            this.service.getValuesByCustomerText(res.slice(0, 12))
             .pipe(
               debounceTime(500),
               distinctUntilChanged()
@@ -49,7 +49,7 @@ export class ToolbarComponent implements OnInit {
                 this.searchResultCustomer = response['facetOptions'];
               }
             );
-            this.service.getValuesBySearchText(res)
+            this.service.getValuesBySearchText(res.slice(0, 12))
               .pipe(
                 debounceTime(300),
                 distinctUntilChanged()
@@ -59,7 +59,7 @@ export class ToolbarComponent implements OnInit {
                 this.searchResultInternal = response['count'];
               }
             );
-            this.service.getValuesByCostCenterText(res)
+            this.service.getValuesByCostCenterText(res.slice(0, 12))
               .pipe(
                 debounceTime(300),
                 distinctUntilChanged()
@@ -69,7 +69,7 @@ export class ToolbarComponent implements OnInit {
                 this.searchResultCostCenter = response['facetOptions'];
               }
             );
-            this.service.getValuesByResponsibleText(res)
+            this.service.getValuesByResponsibleText(res.slice(0, 12))
               .pipe(
                 debounceTime(300),
                 distinctUntilChanged()
@@ -79,7 +79,7 @@ export class ToolbarComponent implements OnInit {
                 this.searchResultResponsible = response['facetOptions'];
               }
             );
-            this.service.getValuesByProjectManagerText(res)
+            this.service.getValuesByProjectManagerText(res.slice(0, 12))
               .pipe(
                 debounceTime(300),
                 distinctUntilChanged()
@@ -89,7 +89,7 @@ export class ToolbarComponent implements OnInit {
                 this.searchResultProjectManager = response['facetOptions'];
               }
             );
-            this.service.getValuesByCommercialText(res)
+            this.service.getValuesByCommercialText(res.slice(0, 12))
               .pipe(
                 debounceTime(300),
                 distinctUntilChanged()
@@ -113,7 +113,7 @@ export class ToolbarComponent implements OnInit {
     location.reload();
   }
   // Clears input value
-  cleanValue(override?) {
+  cleanValue() {
     this.value = '';
     this.name.setValue('');
     this.searchResultInternal = [];
@@ -122,9 +122,6 @@ export class ToolbarComponent implements OnInit {
     this.searchResultCustomer = [];
     this.searchResultProjectManager = [];
     this.searchResultResponsible = [];
-    if (override !== true) {
-      this.selectOption('internalOrder', '', '');
-    }
   }
   onFocus() {
     this.searchColor = 'white';
@@ -143,7 +140,7 @@ export class ToolbarComponent implements OnInit {
   selectOption(cat: string, value: string, descr: string) {
     let temp;
     if (cat === 'internalOrder') {
-      temp = {'cat': cat, 'value': value, 'descr': value};
+      temp = {'cat': cat, 'value': value, 'descr': descr};
     } else {
       temp = {'cat': cat, 'value': value, 'descr': descr};
     }

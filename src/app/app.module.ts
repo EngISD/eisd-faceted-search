@@ -61,7 +61,7 @@ import { DialogComponent } from './demo/dialog/dialog.component';
     BrowserAnimationsModule,
     NgPipesModule,
     FormsModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
     HttpClientModule,
     RouterModule.forRoot(Routes),
     NgxLoadingModule.forRoot({}),

@@ -70,14 +70,41 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
       yAxes: [{
          ticks: {
             beginAtZero: true,
-            precision: 0
+            precision: 0,
+            fontColor: '#000000'
+          },
+          scaleLabel: {
+            display: true,
+            labelString: 'Risultati',
+            lineHeight: 1,
+            padding: 1,
+            fontColor: '#000000'
           }
-      }]
+      }],
+      xAxes: [{
+        ticks: {
+          fontSize: 11,
+          fontColor: '#000000'
+        },
+         scaleLabel: {
+           display: true,
+           labelString: 'Anno',
+           lineHeight: 1,
+           padding: {
+             top: 0,
+             bottom: 4
+           },
+           fontColor: '#000000'
+         }
+     }]
+    },
+    animation: {
+      duration: 1100
     }
   };
   public barChartLabels: string[] = [];
   public barChartType = 'bar';
-  public barChartLegend = true;
+  public barChartLegend = false;
   public barChartColors: Array<any> = [
     {
       backgroundColor: '#0278bd8a',
@@ -228,7 +255,8 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
   }
   filterCheck(cat, res) {
     this.checkboxes[cat] = res['facetOptions'];
-      this.checkboxes[cat].sort((n1, n2) => {
+    // sort facets - selected on top
+      /* this.checkboxes[cat].sort((n1, n2) => {
         if ((this.selectedFilters[cat].indexOf(n1.code) !== -1) && (this.selectedFilters[cat].indexOf(n2.code) === -1)) {
           return -1;
         }
@@ -236,7 +264,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
           return 1;
         }
         return 0;
-      });
+      }); */
       this.hasMore[cat] = res['hasMore'];
   }
   public chartClicked(e: any): void {
@@ -256,21 +284,23 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
     }
   }
   resetAll() {
-    for (let i = 0; i < this.categories.length; i++) {
-      this.selectedFilters[this.categories[i].id] = [];
-      this.numMore[this.categories[i].id] = 1;
-    }
-    this.selectedFilters['internalOrder'] = [];
     if (this.panels !== undefined) {
       for (let i = 1; i < this.panels['_results'].length; i++) {
         this.panels['_results'][i].close();
       }
     }
-    this.barSelected = [];
-    this.chosenFilters = [];
-    this.service.setClean(false);
-    this.service.setClean(true);
-    this.onNgModelChange();
+    if (!(this.selectedFilters['internalOrder'].length === 0 && this.chosenFilters.length === 0)) {
+      for (let i = 0; i < this.categories.length; i++) {
+        this.selectedFilters[this.categories[i].id] = [];
+        this.numMore[this.categories[i].id] = 1;
+      }
+      this.selectedFilters['internalOrder'] = [];
+      this.barSelected = [];
+      this.chosenFilters = [];
+      this.service.setClean(false);
+      this.service.setClean(true);
+      this.onNgModelChange();
+    }
   }
   sortResults() {
     this.descending = !this.descending;
