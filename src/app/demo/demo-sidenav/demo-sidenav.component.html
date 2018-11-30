@@ -419,7 +419,9 @@
                   [fixedInViewport]="mobileQuery.matches" 
                   [fixedTopGap]="mobileQuery.matches ? 97 : 97"
                   [position]="'end'">
-      <app-dialog></app-dialog>
+      <perfect-scrollbar [config]="config">
+        <app-dialog></app-dialog>
+      </perfect-scrollbar>
     </mat-sidenav>
   <!-- Content -->
   </mat-sidenav-container>
