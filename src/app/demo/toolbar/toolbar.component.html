@@ -13,7 +13,7 @@
           [ngStyle]="{'background-color': searchColor}">
       <mat-icon class="searchicon" 
                 [ngStyle]="{'color': iconColor}"
-                (click)="selectOption('internalOrder', value.slice(0, 12)); panel.closePanel();">search
+                (click)="selectOption('internalOrder', value.slice(0, 12), value); panel.closePanel();">search
       </mat-icon>
       <input [matAutocomplete]="auto" 
              autocomplete="off" 
