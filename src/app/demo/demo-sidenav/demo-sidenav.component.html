@@ -262,7 +262,7 @@
       </ngx-loading>
      
       <cdk-virtual-scroll-viewport [itemSize]="137.5" 
-                                   class="viewport">
+                                   class="viewport" [perfectScrollbar]="config">
         <div class="noResults" 
              *ngIf="length === 0" 
              [ngStyle]="{'display': ifVisible}">
