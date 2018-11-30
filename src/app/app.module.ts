@@ -41,6 +41,12 @@ import { FilterPageComponent } from './filter-page/filter-page.component';
 import { MatPaginatorIntlIta } from './demo/demo-sidenav/customPaginatorLabels';
 import { DialogComponent } from './demo/dialog/dialog.component';
 
+import { PerfectScrollbarModule, PerfectScrollbarConfigInterface, PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
+
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  wheelPropagation: true
+};
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -89,10 +95,21 @@ import { DialogComponent } from './demo/dialog/dialog.component';
     MatSelectModule,
     MatTooltipModule,
     MatChipsModule,
-    MatBadgeModule
+    MatBadgeModule,
+    PerfectScrollbarModule
   ],
   entryComponents: [DialogComponent],
-  providers: [{ provide: MatPaginatorIntl, useClass: MatPaginatorIntlIta}, ScrollDispatcher],
+  providers: [
+    {
+      provide: MatPaginatorIntl,
+      useClass: MatPaginatorIntlIta
+    },
+    ScrollDispatcher,
+    {
+      provide: PERFECT_SCROLLBAR_CONFIG,
+      useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

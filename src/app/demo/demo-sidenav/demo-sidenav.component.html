@@ -87,11 +87,12 @@
   <mat-sidenav-container class="sidenav-container"
                          [style.marginTop.px]="mobileQuery.matches ? 0 : 0">
   <!-- Sidenav -->
-    <mat-sidenav #snav 
+    <mat-sidenav #snav
                  [opened]="mobileQuery.matches ? 'false' : 'true'" 
                  [mode]="mobileQuery.matches ? 'over' : 'side'"
                  [fixedInViewport]="mobileQuery.matches" 
                  [fixedTopGap]="mobileQuery.matches ? 97 : 97">
+      <perfect-scrollbar [config]="config">
       <mat-expansion-panel [disabled]="chosenFilters.length === 0" 
                            [expanded]="chosenFilters.length !== 0">
         <mat-expansion-panel-header class="noSelect">
@@ -250,16 +251,18 @@
           </ng-template>
         </mat-expansion-panel>
       </mat-nav-list>
+    </perfect-scrollbar>
     </mat-sidenav>
   <!-- Sidenav -->
   <!-- Content -->
     <mat-sidenav-content>
+      
       <ngx-loading [show]="loading" 
                    [config]="{animationType: ngxLoadingAnimationTypes.circle, primaryColour: primaryColour, secondaryColour: secondaryColour, backdropBorderRadius: '3px'}">
       </ngx-loading>
      
       <cdk-virtual-scroll-viewport [itemSize]="137.5" 
-                                   class="viewport">
+                                   class="viewport" [perfectScrollbar]="config">
         <div class="noResults" 
              *ngIf="length === 0" 
              [ngStyle]="{'display': ifVisible}">

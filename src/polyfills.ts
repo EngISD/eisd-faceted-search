@@ -40,7 +40,6 @@ import 'classlist.js';  // Run `npm install --save classlist.js`.
 /** IE10 and IE11 requires the following for the Reflect API. */
 import 'core-js/es6/reflect';
 
-
 /** Evergreen browsers require these. **/
 // Used for reflect-metadata in JIT. If you use AOT (and only Angular decorators), you can remove.
 import 'core-js/es7/reflect';
@@ -59,7 +58,7 @@ import 'core-js/es7/array';
  * user can disable parts of macroTask/DomEvents patch by setting following flags
  */
 
- // (window as any).__Zone_disable_requestAnimationFrame = true; // disable patch requestAnimationFrame
+ (window as any).__Zone_disable_requestAnimationFrame = true; // disable patch requestAnimationFrame
  // (window as any).__Zone_disable_on_property = true; // disable patch onProperty such as onclick
  // (window as any).__zone_symbol__BLACK_LISTED_EVENTS = ['scroll', 'mousemove']; // disable patch specified eventNames
 

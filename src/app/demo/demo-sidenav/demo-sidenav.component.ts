@@ -4,6 +4,8 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { MatSidenav, PageEvent, MatPaginator, MatExpansionPanel } from '@angular/material';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { ngxLoadingAnimationTypes } from 'ngx-loading';
+import { PerfectScrollbarConfigInterface, PerfectScrollbarComponent, PerfectScrollbarDirective } from 'ngx-perfect-scrollbar';
+
 
 @Component({
   selector: 'demo-sidenav',
@@ -130,6 +132,11 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
   @ViewChild(CdkVirtualScrollViewport) scroll: CdkVirtualScrollViewport;
   @ViewChildren(MatExpansionPanel) panels: Array<MatExpansionPanel>;
   private _mobileQueryListener: () => void;
+
+  public config: PerfectScrollbarConfigInterface = {};
+
+  @ViewChild(PerfectScrollbarComponent) componentRef?: PerfectScrollbarComponent;
+  @ViewChild(PerfectScrollbarDirective) directiveRef?: PerfectScrollbarDirective;
 
   // tslint:disable:max-line-length
   constructor(private changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private service: ServiceService) {
