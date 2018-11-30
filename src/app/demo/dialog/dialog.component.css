@@ -9,7 +9,7 @@
     border-top-left-radius: 30px;
     border-bottom-right-radius: 30px;
     padding: 10px;
-    background-color: #0278bdc7;
+    background-color: rgba(1, 119, 186, 0.78);
     color: white;
 }
 .content {
@@ -109,67 +109,67 @@
     top: 4px;
 }
 .soc1 {
-    background-color: #0277bde6 !important;
+    background-color: rgba(2, 119, 189, 0.902) !important;
 }
 .soc2 {
-    background-color: #c72187e6 !important;
+    background-color: rgba(199, 33, 135, 0.902) !important;
 }
 .soc3 {
-    background-color: #3cada6e6 !important;
+    background-color: rgba(60, 173, 166, 0.902) !important;
 }
 .soc4 {
-    background-color: #835104e6 !important;
+    background-color: rgba(131, 81, 4, 0.902) !important;
 }
 .soc5 {
-    background-color: #cfb365e6 !important;
+    background-color: rgba(207, 179, 101, 0.902) !important;
 }
 .soc6 {
-    background-color: #7372dbe6 !important;
+    background-color: rgba(115, 114, 219, 0.902) !important;
 }
 .soc7 {
-    background-color: #009c34e6 !important;
+    background-color: rgba(0, 156, 52, 0.902) !important;
 }
 .soc8 {
-    background-color: #479b9ee6 !important;
+    background-color: rgba(71, 155, 158, 0.902) !important;
 }
 .soc9 {
-    background-color: #BF320Ce6 !important;
+    background-color: rgba(191, 50, 12, 0.902) !important;
 }
 .soc10 {
-    background-color: #ee003be6 !important;
+    background-color: rgba(238, 0, 59, 0.902) !important;
 }
 .soc11 {
-    background-color: #FAB11De6 !important;
+    background-color: rgba(250, 177, 29, 0.902) !important;
 }
 .soc12 {
-    background-color: #87b800e6 !important;
+    background-color: rgba(135, 184, 0, 0.902) !important;
 }
 .soc13 {
-    background-color: #b90072e6 !important;
+    background-color: rgba(185, 0, 114, 0.902) !important;
 }
 .soc14 {
-    background-color: #cf6a56e6 !important;
+    background-color: rgba(207, 106, 86, 0.902) !important;
 }
 .soc15 {
-    background-color: #ae68d1e6 !important;
+    background-color: rgba(174, 104, 209, 0.902) !important;
 }
 .soc16 {
-    background-color: #4b0c0ce6 !important;
+    background-color: rgba(75, 12, 12, 0.902) !important;
 }
 .soc17 {
-    background-color: #c48e19e6 !important;
+    background-color: rgba(196, 142, 25, 0.902) !important;
 }
 .soc18 {
-    background-color: #314a53e6 !important;
+    background-color: rgba(49, 74, 83, 0.902) !important;
 }
 .soc19 {
-    background-color: #927687e6 !important;
+    background-color: rgba(146, 118, 135, 0.902) !important;
 }
 .soc20 {
-    background-color: #00b8aee6 !important;
+    background-color: rgba(0, 184, 174, 0.902) !important;
 }
 .soc21 {
-    background-color: #8936dce6 !important;
+    background-color: rgba(137, 54, 220, 0.902) !important;
 }
 .noSelect {
     -webkit-touch-callout: none; /* iOS Safari */
