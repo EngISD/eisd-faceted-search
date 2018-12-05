@@ -40,6 +40,8 @@ import { StartpageComponent } from './startpage/startpage.component';
 import { FilterPageComponent } from './filter-page/filter-page.component';
 import { MatPaginatorIntlIta } from './demo/demo-sidenav/customPaginatorLabels';
 import { DialogComponent } from './demo/dialog/dialog.component';
+import { registerLocaleData } from '@angular/common';
+import localeIt from '@angular/common/locales/it';
 
 import { PerfectScrollbarModule, PerfectScrollbarConfigInterface, PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 
@@ -96,7 +98,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MatTooltipModule,
     MatChipsModule,
     MatBadgeModule,
-    PerfectScrollbarModule
+    PerfectScrollbarModule,
   ],
   entryComponents: [DialogComponent],
   providers: [
@@ -116,5 +118,6 @@ export class AppModule {
 
   constructor(matIconRegistry: MatIconRegistry, domSanitizer: DomSanitizer) {
     matIconRegistry.addSvgIconSet(domSanitizer.bypassSecurityTrustResourceUrl('https://chan4077.github.io/res/mdi.svg'));
+    registerLocaleData(localeIt);
   }
 }

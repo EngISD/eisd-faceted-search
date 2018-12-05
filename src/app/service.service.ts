@@ -13,6 +13,10 @@ export class ServiceService {
   // Link providing the results from a JSON file or a database
   /* dataUrl = 'https://raw.githubusercontent.com/prust/wikipedia-movie-data/master/movies.json'; */
   dataUrl = 'https://jsonplaceholder.typicode.com/users';
+
+  // serverURL = 'http://161.27.12.15:8180/proto_co/api/internal_order/';
+  serverURL = 'http://localhost:50010/internal_order/api/internal_order/';
+  facetURL = this.serverURL + 'facet?facetMaxOptions=';
   // Variables that track the changes made on search
   filterValue$: Observable<any>;
   private _filterValue: BehaviorSubject<any>;
@@ -138,6 +142,9 @@ export class ServiceService {
     if (num === undefined) {
       num = 1;
     }
+    if (category === 'anno') {
+      num = 2;
+    }
     let facet = '';
     let search = '';
     const temp = selection;
@@ -156,10 +163,7 @@ export class ServiceService {
         }
       }
     );
-    if (category === 'anno') {
-      return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/facet?facetMaxOptions=10&facet=' + category + facet + search);
-    }
-    return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/facet?facetMaxOptions=' + num * 5 + '&facet=' + category + facet + search);
+    return this.http.get<Array<any>>(this.facetURL + num * 5 + '&facet=' + category + facet + search);
   }
   sortAllResults(value, pageSize, pageIndex, desc, facets?) {
     let res = '';
@@ -181,7 +185,7 @@ export class ServiceService {
       );
     }
     res = res.concat('&order=', value.toString());
-    return this.http.get<Array<any>>('http://161.27.12.15:8180/proto_co/api/internal_order/list?size=' + pageSize + '&page=' + (pageIndex + 1) + res + '&asc=' + !desc + facet + search);
+    return this.http.get<Array<any>>(this.serverURL + 'list?size=' + pageSize + '&page=' + (pageIndex + 1) + res + '&asc=' + !desc + facet + search);
   }
   receiveValue(item) {
     this.itemValue$ = item;
@@ -193,21 +197,21 @@ export class ServiceService {
     this._clean.next(value);
   }
   getValuesBySearchText(text) {
-    return this.http.get<any>('http://161.27.12.15:8180/proto_co/api/internal_order/list?size=10&page=1&internalOrderText=' + text);
+    return this.http.get<any>(this.serverURL + 'list?size=10&page=1&internalOrderText=' + text);
   }
-  getValuesByCustomerText(text){
-    return this.http.get<any>('http://161.27.12.15:8180/proto_co/api/internal_order/facet?facetMaxOptions=5&facet=cliente&customerText=' + text);
+  getValuesByCustomerText(text) {
+    return this.http.get<any>(this.facetURL + '5&facet=cliente&customerText=' + text);
   }
-  getValuesByCostCenterText(text){
-    return this.http.get<any>('http://161.27.12.15:8180/proto_co/api/internal_order/facet?facetMaxOptions=5&facet=cdc&cdcText=' + text);
+  getValuesByCostCenterText(text) {
+    return this.http.get<any>(this.facetURL + '5&facet=cdc&cdcText=' + text);
   }
-  getValuesByResponsibleText(text){
-    return this.http.get<any>('http://161.27.12.15:8180/proto_co/api/internal_order/facet?facetMaxOptions=5&facet=rcdc&rcdcText=' + text);
+  getValuesByResponsibleText(text) {
+    return this.http.get<any>(this.facetURL + '5&facet=rcdc&rcdcText=' + text);
   }
-  getValuesByProjectManagerText(text){
-    return this.http.get<any>('http://161.27.12.15:8180/proto_co/api/internal_order/facet?facetMaxOptions=5&facet=cp&cpText=' + text);
+  getValuesByProjectManagerText(text) {
+    return this.http.get<any>(this.facetURL + '5&facet=cp&cpText=' + text);
   }
-  getValuesByCommercialText(text){
-    return this.http.get<any>('http://161.27.12.15:8180/proto_co/api/internal_order/facet?facetMaxOptions=5&facet=fun&funText=' + text);
+  getValuesByCommercialText(text) {
+    return this.http.get<any>(this.facetURL + '5&facet=fun&funText=' + text);
   }
 }

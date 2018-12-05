@@ -170,19 +170,19 @@
                         </mat-icon>
                 <mat-icon matListIcon 
                           class="noSelect"
-                          *ngIf="category.id == 'l136' && checkbox.descr == '1'">close
+                          *ngIf="category.id == 'l136' && checkbox.code == '1'">close
                 </mat-icon>
                 <mat-icon matListIcon 
                           class="noSelect"
-                          *ngIf="category.id == 'l136' && checkbox.descr == '2'">check
+                          *ngIf="category.id == 'l136' && checkbox.code == '2'">check
                 </mat-icon>
                 <mat-icon matListIcon 
                           class="noSelect"
-                          *ngIf="category.id == 'l136' && checkbox.descr == '3'">timer
+                          *ngIf="category.id == 'l136' && checkbox.code == '3'">timer
                 </mat-icon>
                 <mat-icon matListIcon 
                           class="noSelect"
-                          *ngIf="category.id == 'l136' && checkbox.descr == '4'">priority_high
+                          *ngIf="category.id == 'l136' && checkbox.code == '4'">priority_high
                 </mat-icon>
                 <mat-icon matListIcon 
                           class="noSelect"
@@ -212,7 +212,8 @@
                           class="noSelect"
                           *ngIf="category.id == 'ta' && checkbox.descr == 'R'">directions_run
                 </mat-icon>
-                <p class="noSelect">{{ checkbox.descr }} ({{ checkbox.count }})</p>
+                <p class="noSelect" *ngIf="category.id !== 'cdc' && category.id !== 'rcdc' && category.id !== 'cp' && category.id !== 'fun'">{{ checkbox.descr }} ({{ checkbox.count }})</p>
+                <p class="noSelect" *ngIf="category.id === 'cdc' || category.id === 'rcdc' || category.id === 'cp' || category.id === 'fun'">{{ checkbox.code }} - {{ checkbox.descr }} ({{ checkbox.count }})</p>
               </mat-list-option>
               <button mat-raised-button 
                       class="moreButton"
@@ -316,7 +317,7 @@
               </div>
               <div class="info">
                 <div class="infoIcon">
-                  <mat-icon>account_box</mat-icon>
+                  <mat-icon matTooltip="Cliente">account_box</mat-icon>
                 </div>
                 <span class="code">{{ item.cliId }}</span>{{ item.comCliente }} 
               </div>
@@ -327,14 +328,15 @@
                          src="../../../assets/sitemap.png" 
                          alt="icon" 
                          width="22px" 
-                         height="22px">
+                         height="22px"                        
+                         matTooltip="Centro di Costo">
                   </div>
                   <span class="code">{{item.cdcCodice}}</span>{{item.cdcDescrizione}}, {{item.cdcBusinessUnit}}
               </div>
               <br>
               <div class="info">
                 <div class="infoIcon">
-                  <mat-icon>visibility</mat-icon>
+                  <mat-icon matTooltip="CDC Responsabile">visibility</mat-icon>
                 </div>
                 <span class="code">{{ item.cdcResponsabile }}</span>{{ item.respCognome }} {{ item.respNome }}
                 <div class="infoIcon">
@@ -359,7 +361,8 @@
                     item.socCodice === 'T' && {'color': '#314a53'} ||
                     item.socCodice === 'K' && {'color': '#927687'} ||
                     item.socCodice === 'C' && {'color': '#00b8ae'} ||
-                    item.socCodice === '>' && {'color': '#8936dc'}">
+                    item.socCodice === '>' && {'color': '#8936dc'}"
+                    matTooltip="Azienda">
                     business
                   </mat-icon>
                 </div>
@@ -368,40 +371,44 @@
               <div class="info">
                 <div class="infoIcon">
                   <mat-icon class="statusIconC" 
-                            *ngIf="item.comStato=='C'">assignment_turned_in
+                            *ngIf="item.comStato=='C'"
+                            matTooltip="Stato">assignment_turned_in
                   </mat-icon>
                   <mat-icon class="statusIconA" 
-                            *ngIf="item.comStato=='A'">assignment
+                            *ngIf="item.comStato=='A'"
+                            matTooltip="Stato">assignment
                   </mat-icon>
                   <mat-icon class="statusIconS" 
-                            *ngIf="item.comStato=='S'">assignment_returned
+                            *ngIf="item.comStato=='S'"
+                            matTooltip="Stato">assignment_returned
                   </mat-icon>
                   <mat-icon class="statusIconI" 
-                            *ngIf="item.comStato=='I'">assignment_late
+                            *ngIf="item.comStato=='I'"
+                            matTooltip="Stato">assignment_late
                   </mat-icon>
                   <div class="inline-block">
-                    <mat-icon>
+                    <mat-icon matTooltip="Anno">
                       date_range
                     </mat-icon>
                     <div class="iconText">{{item.anno}}
                     </div>
                   </div>
                   <div [ngClass]="{'goodStatus': ((item.ricaviC12-item.costiC12) &gt; 0), 'badStatus': ((item.costiC12-item.ricaviC12) &gt; 0), 'neutralStatus': (item.costiC12==item.ricaviC12)}">
-                    <mat-icon class="bigcrIcon">
+                    <mat-icon class="bigcrIcon" matTooltip="Costi">
                       euro_symbol
                     </mat-icon>
                     <mat-icon class="crIcon">
                       remove
                     </mat-icon>
-                    <div class="iconText">{{item.costiC12 | number:'1.0-0'}}
+                    <div class="iconText">{{item.costiC12 | currency:'EUR':'':'1.2-2':'it'}}
                     </div>
-                    <mat-icon class="bigcrIcon">
+                    <mat-icon class="bigcrIcon" matTooltip="Ricavi">
                         euro_symbol
                     </mat-icon>
                     <mat-icon class="crIcon">
                         add
                     </mat-icon>
-                    <div class="iconText">{{item.ricaviC12 | number:'1.0-0'}}
+                    <div class="iconText">{{item.ricaviC12 | currency:'EUR':'':'1.2-2':'it'}}
                     </div>
                   </div>
                 </div>

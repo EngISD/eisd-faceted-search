@@ -285,8 +285,8 @@ mat-selection-list {
     background: #0277bd !important;
 }
 .moreButton {
-    margin-left: 4px;
-    margin-right: 4px;
+    margin-left: 20px;
+    margin-right: 0px;
     color: #00639e;
     border-radius: 20px;
 }
@@ -311,7 +311,7 @@ mat-selection-list {
     background-color: #f2f2f2 !important;
 }
 .ng-star-inserted.chartjs-render-monitor {
-    margin-left: -7px;
+    margin-left: 0px;
     height: 125px !important;
 }
 /* Viewport content */
@@ -642,4 +642,15 @@ mat-selection-list {
 }
 .noResultsLink:hover {
     color: #005c91;
+}
+::ng-deep .mat-expansion-panel-body {
+    padding: 0px 15px 10px 5px !important;
+}
+::ng-deep .mat-list-item-content.mat-list-item-content-reverse {
+    padding: 0px 5px !important;
+}
+::ng-deep .mat-list-text {
+    padding-right: 16px !important;
+    padding-left: 5px !important;
+    line-height: 18px !important;
 }
