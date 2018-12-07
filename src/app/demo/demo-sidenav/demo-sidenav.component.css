@@ -257,8 +257,9 @@ mat-panel-title {
     padding: 20px 0 !important;
 }
 mat-expansion-panel {
-    margin: 3px 0;
     background-color: rgba(245, 245, 245, 0.01);
+    box-shadow: 0px 0px 0px 0px rgba(0,0,0,0) !important;
+    border-bottom: 1px solid lightgray;
 }
 mat-selection-list {
     outline: none;
@@ -327,7 +328,7 @@ mat-selection-list {
     width: 100%;
     display: flex;
     padding-top: 4px;
-    padding-bottom: 4px;
+    padding-bottom: 6px;
     margin-top: 2px;
     border-radius: 3px;
 }
@@ -437,15 +438,15 @@ mat-selection-list {
     top: 5px;
     left: 1px;
     display: inline-block;
-    color: rgb(98, 98, 98);
+    color: rgba(98, 98, 98, 0.649);
 }
 .cdcIcon {
     padding-right: 2px;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
-    filter: alpha(opacity=60);
-    -moz-opacity: 0.6;
-    -khtml-opacity: 0.6;
-    opacity: 0.6;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
+    filter: alpha(opacity=40);
+    -moz-opacity: 0.4;
+    -khtml-opacity: 0.4;
+    opacity: 0.4;
 }
 .material-icons {
     font-size: 22px !important;
@@ -454,15 +455,15 @@ mat-selection-list {
     font-size: 27px !important;
 }
 .infoFirst {
-    font-size: 18px;
-    color: rgb(2, 119, 189) !important;
+    font-size: 19px;
+    color: rgb(0, 103, 163) !important;
     display: inline-block;
     width: 90%;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
     max-height: 4.5em;
-    line-height: 1em;
+    line-height: 1.1em;
     letter-spacing: 2px;
 }
 .infoFirst > .code {
@@ -473,12 +474,12 @@ mat-selection-list {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
-    line-height: 17px;
+    line-height: 19px;
     position: relative;
     bottom: 6px;
     display: inline-block;
     letter-spacing: 1px;
-    color: rgba(75, 77, 78, 0.801);
+    color: rgba(75, 77, 78, 0.95);
 }
 .title {
     width: 97%;
@@ -531,13 +532,12 @@ mat-selection-list {
     left: 5px;
 }
 .code {
-    font-weight: 700;
-    text-decoration-line: underline;
     display: inline-block;
     margin-right: 12px;
     margin-left: 3px;
-    letter-spacing: 1px;
-    color: rgba(72, 72, 80, 0.98);
+    letter-spacing: 1.5px;
+    color: rgb(40, 40, 40);
+    font-size: 18px;
 }
 .mat-form-field.mat-focused.mat-form-field-label {
     color: #0277bd !important;
@@ -557,6 +557,7 @@ mat-selection-list {
 }
 .chipTable {
     width: 101%;
+    margin-left: 20px;
 }
 .removeIcon {
     font-size: 18px !important;
@@ -581,6 +582,13 @@ mat-selection-list {
     background-color:  rgb(224, 224, 224) !important;
     color: black !important;
     cursor: pointer;
+}
+.chipContainerChosen {
+    background-color:  rgba(224, 224, 224, 0.575) !important;
+    color: black !important;
+    cursor: pointer;
+    width: 93% !important;
+    margin-left: 15px !important;
 }
 .chipContainer::after {
     background-color:  rgb(224, 224, 224) !important;
@@ -646,6 +654,13 @@ mat-selection-list {
 ::ng-deep .mat-expansion-panel-body {
     padding: 0px 15px 10px 5px !important;
 }
+::ng-deep .mat-expansion-panel-header {
+    padding: 0 24px 0 22px !important;
+}
+::ng-deep .mat-list-option {
+    width: 98% !important;
+    padding: 0 0 0 10px !important;
+}
 ::ng-deep .mat-list-item-content.mat-list-item-content-reverse {
     padding: 0px 5px !important;
 }
@@ -653,4 +668,18 @@ mat-selection-list {
     padding-right: 16px !important;
     padding-left: 5px !important;
     line-height: 18px !important;
+}
+.mat-list-icon {
+    margin-top: -1px !important;
+}
+.codeCliente {
+    font-size: 13px !important;
+    vertical-align: bottom !important;
+}
+.infoCliente {
+    color: rgb(0, 0, 0);
+}
+.codeFirst {
+    font-size: 20px;
+    color: rgb(1, 105, 165) !important;
 }

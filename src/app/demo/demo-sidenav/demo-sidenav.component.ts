@@ -41,6 +41,7 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
   categories = [
     {id: 'cdc', icon: 'sitemap', value: 'Centro di Costo'},
     {id: 'anno', icon: 'date_range', value: 'Anno'},
+    {id: 'stato', icon: 'assignment', value: 'Stato'},
     {id: 'cliente', icon: 'account_box', value: 'Cliente'},
     {id: 'soc', icon: 'business', value: 'Azienda'},
     {id: 'rcdc', icon: 'visibility', value: 'Centro di Costo Resp.'},
@@ -320,6 +321,9 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
     this.service.sortAllResults(this.option, this.pageSize, 0, this.descending, this.selectedFilters).subscribe(res => {
       this.activePageDataChunk = res['data'];
       this.length = res['count'];
+      if (this.length === 0) {
+        this.sidenav1.close();
+      }
       this.scroll.scrollToIndex(0);
       if (this.panels !== undefined && this.length === 0) {
         for (let i = 1; i < this.panels['_results'].length; i++) {

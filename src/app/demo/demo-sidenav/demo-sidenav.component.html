@@ -105,7 +105,7 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <mat-chip-list class="mat-chip-list-stacked">
-          <mat-chip class="chipContainer mat-elevation-z4" 
+          <mat-chip class="chipContainerChosen mat-elevation-z2" 
                     *ngFor="let item of chosenFilters">
             <div class="chipItem noSelect">
               <img class="chipImg" 
@@ -158,15 +158,31 @@
                                [value]="checkbox.code">
                 <mat-icon matListIcon 
                           class="noSelect"
-                          *ngIf="category.id != 't8' && category.id != 'l136' && category.id != 'tr' && category.id != 'ta'">keyboard_arrow_right
+                          *ngIf="category.id != 't8' && category.id != 'l136' && category.id != 'ta' && category.id != 'stato'">keyboard_arrow_right
                 </mat-icon>
                 <mat-icon matListIcon 
                           class="noSelect"
-                          *ngIf="category.id == 't8' && checkbox.descr == 'N'">close
+                          *ngIf="category.id == 'stato' && checkbox.code == 'I'">event
                 </mat-icon>
                 <mat-icon matListIcon 
                           class="noSelect"
-                          *ngIf="category.id == 't8' && checkbox.descr == 'S'">check
+                          *ngIf="category.id == 'stato' && checkbox.code == 'A'">event_note
+                </mat-icon>
+                <mat-icon matListIcon 
+                          class="noSelect"
+                          *ngIf="category.id == 'stato' && checkbox.code == 'S'">event_busy
+                </mat-icon>
+                <mat-icon matListIcon 
+                          class="noSelect"
+                          *ngIf="category.id == 'stato' && checkbox.code == 'C'">event_available
+                </mat-icon>
+                <mat-icon matListIcon 
+                          class="noSelect"
+                          *ngIf="category.id == 't8' && checkbox.code == 'N'">close
+                </mat-icon>
+                <mat-icon matListIcon 
+                          class="noSelect"
+                          *ngIf="category.id == 't8' && checkbox.code == 'S'">check
                         </mat-icon>
                 <mat-icon matListIcon 
                           class="noSelect"
@@ -186,31 +202,27 @@
                 </mat-icon>
                 <mat-icon matListIcon 
                           class="noSelect"
-                          *ngIf="category.id == 'tr'">euro_symbol
+                          *ngIf="category.id == 'ta' && checkbox.code != 'C' && checkbox.code != 'P' && checkbox.code != 'E' && checkbox.code != 'L' && checkbox.code != 'R'">trending_up
                 </mat-icon>
                 <mat-icon matListIcon 
                           class="noSelect"
-                          *ngIf="category.id == 'ta' && checkbox.descr != 'C' && checkbox.descr != 'P' && checkbox.descr != 'E' && checkbox.descr != 'L' && checkbox.descr != 'R'">trending_up
+                          *ngIf="category.id == 'ta' && checkbox.code == 'C'">account_balance_wallet
                 </mat-icon>
                 <mat-icon matListIcon 
                           class="noSelect"
-                          *ngIf="category.id == 'ta' && checkbox.descr == 'C'">account_balance_wallet
+                          *ngIf="category.id == 'ta' && checkbox.code == 'P'">timer
                 </mat-icon>
                 <mat-icon matListIcon 
                           class="noSelect"
-                          *ngIf="category.id == 'ta' && checkbox.descr == 'P'">timer
+                          *ngIf="category.id == 'ta' && checkbox.code == 'E'">event
                 </mat-icon>
                 <mat-icon matListIcon 
                           class="noSelect"
-                          *ngIf="category.id == 'ta' && checkbox.descr == 'E'">event
+                          *ngIf="category.id == 'ta' && checkbox.code == 'L'">euro_symbol
                 </mat-icon>
                 <mat-icon matListIcon 
                           class="noSelect"
-                          *ngIf="category.id == 'ta' && checkbox.descr == 'L'">euro_symbol
-                </mat-icon>
-                <mat-icon matListIcon 
-                          class="noSelect"
-                          *ngIf="category.id == 'ta' && checkbox.descr == 'R'">directions_run
+                          *ngIf="category.id == 'ta' && checkbox.code == 'R'">directions_run
                 </mat-icon>
                 <p class="noSelect" *ngIf="category.id !== 'cdc' && category.id !== 'rcdc' && category.id !== 'cp' && category.id !== 'fun'">{{ checkbox.descr }} ({{ checkbox.count }})</p>
                 <p class="noSelect" *ngIf="category.id === 'cdc' || category.id === 'rcdc' || category.id === 'cp' || category.id === 'fun'">{{ checkbox.code }} - {{ checkbox.descr }} ({{ checkbox.count }})</p>
@@ -313,13 +325,13 @@
           <div class="viewport-item-title">
             <div class="title">
               <div class="infoFirst">
-                <span class="code">{{ item.comCodice }}</span> {{item.comDescrizione}}
+                <span class="code codeFirst">{{ item.comCodice }}</span> {{item.comDescrizione}}
               </div>
-              <div class="info">
+              <div class="info infoCliente">
                 <div class="infoIcon">
                   <mat-icon matTooltip="Cliente">account_box</mat-icon>
                 </div>
-                <span class="code">{{ item.cliId }}</span>{{ item.comCliente }} 
+                <span class="code codeCliente">{{ item.cliId }}</span> {{ item.comCliente }} 
               </div>
               <br>
               <div class="info">
@@ -331,14 +343,14 @@
                          height="22px"                        
                          matTooltip="Centro di Costo">
                   </div>
-                  <span class="code">{{item.cdcCodice}}</span>{{item.cdcDescrizione}}, {{item.cdcBusinessUnit}}
+                  <span class="code">{{item.cdcCodice}}</span>{{item.cdcDescrizione}}<span *ngIf="item.cdcBusinessUnit">, {{item.cdcBusinessUnit}}</span>
               </div>
               <br>
               <div class="info">
                 <div class="infoIcon">
                   <mat-icon matTooltip="CDC Responsabile">visibility</mat-icon>
                 </div>
-                <span class="code">{{ item.cdcResponsabile }}</span>{{ item.respCognome }} {{ item.respNome }}
+                <span class="code">{{item.cdcResponsabile}}</span>{{item.respCognome}} {{item.respNome}}&nbsp;&nbsp;
                 <div class="infoIcon">
                   <mat-icon [ngStyle]="
                     item.socCodice === 'E' && {'color': '#0277bd'} ||
@@ -371,20 +383,20 @@
               <div class="info">
                 <div class="infoIcon">
                   <mat-icon class="statusIconC" 
-                            *ngIf="item.comStato=='C'"
-                            matTooltip="Stato">assignment_turned_in
+                            *ngIf="item.comStato=='Chiusa'"
+                            matTooltip="Stato: Chiusa">assignment_turned_in
                   </mat-icon>
                   <mat-icon class="statusIconA" 
-                            *ngIf="item.comStato=='A'"
-                            matTooltip="Stato">assignment
+                            *ngIf="item.comStato=='Attiva'"
+                            matTooltip="Stato: Attiva">assignment
                   </mat-icon>
                   <mat-icon class="statusIconS" 
-                            *ngIf="item.comStato=='S'"
-                            matTooltip="Stato">assignment_returned
+                            *ngIf="item.comStato=='Sospesa'"
+                            matTooltip="Stato: Sospesa">assignment_returned
                   </mat-icon>
                   <mat-icon class="statusIconI" 
-                            *ngIf="item.comStato=='I'"
-                            matTooltip="Stato">assignment_late
+                            *ngIf="item.comStato=='Da Iniziare'"
+                            matTooltip="Stato: Da Iniziare">assignment_late
                   </mat-icon>
                   <div class="inline-block">
                     <mat-icon matTooltip="Anno">

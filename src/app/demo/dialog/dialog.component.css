@@ -24,6 +24,7 @@
 }
 .iconC {
     display: inline; 
+    font-size: 20px;
 }
 .lIcon {
     display: inline;
@@ -37,14 +38,13 @@
 .info {
     display: inline;
     position: relative;
-    bottom: 6px;
+    bottom: 5px;
     left: 5px;
     line-height: 1.5pc;
 }
 .plainInfo {
     display: inline;
     position: relative;
-    left: 5px;
     line-height: 1.5pc; 
     font-size: 18px;
 }
@@ -52,11 +52,12 @@
     display: inline;
     position: relative;
     left: 5px;
-    bottom: 6px;
     line-height: 1.5pc; 
     font-size: 18px;
-    color: black;
+    color: rgba(0, 0, 0, 0.87);
     margin-right: 6px;
+    margin-left: -25px;
+    top: -4px;
 }
 .statusInfo {
     display: inline;
@@ -66,9 +67,10 @@
     font-size: 18px;  
 }
 .crIcon {
-    transform: scale(0.7);
+    transform: scale(0.5);
     position: relative;
     right: 16px;
+    top:2px;
 }
 .goodStatus {
     display: inline-block;
@@ -179,4 +181,11 @@
           -ms-user-select: none; /* Internet Explorer/Edge */
               user-select: none; /* Non-prefixed version, currently
                                     supported by Chrome and Opera */
+}
+.move {
+    display: inline-block;
+    margin: 0 0 0 24px;
+}
+.infoCo {
+    bottom: 4px !important;
 }
