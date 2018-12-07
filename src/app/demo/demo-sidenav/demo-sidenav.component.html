@@ -252,7 +252,7 @@
             </canvas>
             <div class="chipTable">
               <mat-chip-list #chipTable>
-                <mat-chip class="mat-elevation-z4 noSelect chipContainer" 
+                <mat-chip class="mat-elevation-z2 noSelect chipContainer" 
                           *ngFor="let item of barSelected" 
                           (removed)="removeBarSelected(item)">{{item}}
                   <mat-icon matChipRemove 
@@ -331,7 +331,7 @@
                 <div class="infoIcon">
                   <mat-icon matTooltip="Cliente">account_box</mat-icon>
                 </div>
-                <span class="code codeCliente">{{ item.cliId }}</span> {{ item.comCliente }} 
+                <span class="code codeCliente">{{ item.cliId }}</span>{{ item.comCliente }} 
               </div>
               <br>
               <div class="info">
@@ -378,7 +378,7 @@
                     business
                   </mat-icon>
                 </div>
-                <span class="code">{{ item.socCodiceSap }}</span>{{ item.socDescrizione }}
+                <span class="code codeAzienda">{{ item.socCodiceSap }}</span>{{ item.socDescrizione }}
               </div>
               <div class="info">
                 <div class="infoIcon">

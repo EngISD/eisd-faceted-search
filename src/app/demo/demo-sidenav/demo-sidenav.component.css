@@ -355,7 +355,7 @@ mat-selection-list {
     text-align: center;
     line-height: 60px;
     transform: scale(1.2);
-    margin: 40px 0 0 30px;
+    margin: 42px 0 0 30px;
 }
 .round {
     border-radius: 50%;
@@ -367,7 +367,7 @@ mat-selection-list {
     color: white;
     line-height: 60px;
     font-size: 1.2em;
-    margin: 33px 0 0 30px;
+    margin: 35px 0 0 30px;
 }
 .soc1 {
     background-color: rgba(2, 119, 189, 0.902) !important;
@@ -484,7 +484,7 @@ mat-selection-list {
     color: rgba(75, 77, 78, 0.95);
 }
 .title {
-    width: 97%;
+    width: 105%;
     padding-left: 3%;
 }
 .statusIconC {
@@ -515,14 +515,17 @@ mat-selection-list {
 .goodStatus {
     display: inline-block;
     color: rgb(36, 146, 32);
+    margin-left: 52px;
 }
 .badStatus {
     display: inline-block;
     color: rgb(228, 45, 45);
+    margin-left: 52px;
 }
 .neutralStatus {
     display: inline-block;
     color: rgb(142, 163, 199);
+    margin-left: 52px;
 }
 .bigcrIcon {
     position: relative;
@@ -540,6 +543,7 @@ mat-selection-list {
     letter-spacing: 1.5px;
     color: rgb(40, 40, 40);
     font-size: 18px;
+    width: 120px;
 }
 .mat-form-field.mat-focused.mat-form-field-label {
     color: #0277bd !important;
@@ -684,4 +688,8 @@ mat-selection-list {
 .codeFirst {
     font-size: 20px;
     color: rgb(1, 105, 165) !important;
+    width: 137px !important;
+}
+.codeAzienda {
+    width: auto !important;
 }
