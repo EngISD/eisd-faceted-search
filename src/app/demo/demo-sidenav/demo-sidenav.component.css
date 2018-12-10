@@ -326,7 +326,7 @@ mat-selection-list {
     position: relative !important;
 }
 .viewport-item {
-    height: 130px;
+    height: 134px;
     width: 100%;
     display: flex;
     padding-top: 4px;
@@ -356,7 +356,7 @@ mat-selection-list {
     text-align: center;
     line-height: 60px;
     transform: scale(1.2);
-    margin: 42px 0 0 30px;
+    margin: 45px 0 0 30px;
 }
 .round {
     border-radius: 50%;
@@ -368,7 +368,7 @@ mat-selection-list {
     color: white;
     line-height: 60px;
     font-size: 1.2em;
-    margin: 35px 0 0 30px;
+    margin: 38px 0 0 30px;
 }
 .soc1 {
     background-color: rgba(2, 119, 189, 0.902) !important;
@@ -458,7 +458,7 @@ mat-selection-list {
     font-size: 27px !important;
 }
 .infoFirst {
-    font-size: 19px;
+    font-size: 21px;
     color: rgb(0, 103, 163) !important;
     display: inline-block;
     width: 90%;
@@ -690,6 +690,7 @@ mat-selection-list {
     font-size: 20px;
     color: rgb(1, 105, 165) !important;
     width: 137px !important;
+    font-weight: bold;
 }
 .codeAzienda {
     width: auto !important;
