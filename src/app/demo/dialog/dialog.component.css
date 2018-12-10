@@ -93,17 +93,17 @@
 .statusIconC {
     color: rgb(30, 145, 30);
     position: relative;
-    top: 4px;
+    top: 6px;
 }
 .statusIconA {
     color: rgb(2, 119, 189);
     position: relative;
-    top: 4px;
+    top: 6px;
 }
 .statusIconS {
     color: rgb(132, 134, 132);
     position: relative;
-    top: 4px;
+    top: 6px;
 }
 .statusIconI {
     color: rgb(222, 178, 47);
