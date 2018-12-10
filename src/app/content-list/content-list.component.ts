@@ -22,6 +22,7 @@ export class ContentListComponent implements OnInit {
   currentPage = 0;
   length;
   pageSize = 10;
+  pageIndex = 0;
   pageSizeOptions: number[] = [5, 10, 25, 100];
   activePageDataChunk = [];
   // Paginator variables
