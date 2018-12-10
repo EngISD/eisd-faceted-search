@@ -287,7 +287,7 @@
           <p class="noResultsText"><a class="noResultsLink" (click)="resetAll()">Resetta la ricerca</a></p>
         </div>
         <div *cdkVirtualFor="let item of activePageDataChunk; let last = last" 
-              class="viewport-item mat-elevation-z1 noSelect"
+              class="viewport-item noSelect"
               [class.last]="last"
               (click)="openSidenav(item); snav1.open();"
               cdkVirtualForTrackBy='trakByFn()'>
@@ -384,19 +384,19 @@
                 <div class="infoIcon">
                   <mat-icon class="statusIconC" 
                             *ngIf="item.comStato=='Chiusa'"
-                            matTooltip="Stato: Chiusa">assignment_turned_in
+                            matTooltip="Stato: Chiusa">event_available
                   </mat-icon>
                   <mat-icon class="statusIconA" 
                             *ngIf="item.comStato=='Attiva'"
-                            matTooltip="Stato: Attiva">assignment
+                            matTooltip="Stato: Attiva">event_note
                   </mat-icon>
                   <mat-icon class="statusIconS" 
                             *ngIf="item.comStato=='Sospesa'"
-                            matTooltip="Stato: Sospesa">assignment_returned
+                            matTooltip="Stato: Sospesa">event_busy
                   </mat-icon>
                   <mat-icon class="statusIconI" 
                             *ngIf="item.comStato=='Da Iniziare'"
-                            matTooltip="Stato: Da Iniziare">assignment_late
+                            matTooltip="Stato: Da Iniziare">event
                   </mat-icon>
                   <div class="inline-block">
                     <mat-icon matTooltip="Anno">
@@ -438,8 +438,8 @@
                   [fixedInViewport]="mobileQuery.matches" 
                   [fixedTopGap]="mobileQuery.matches ? 97 : 97"
                   [position]="'end'">
-      <perfect-scrollbar [config]="config">
-        <app-dialog></app-dialog>
+      <perfect-scrollbar [config]="config" #dialogScroll>
+        <app-dialog id="containerScroll"></app-dialog>
       </perfect-scrollbar>
     </mat-sidenav>
   <!-- Content -->

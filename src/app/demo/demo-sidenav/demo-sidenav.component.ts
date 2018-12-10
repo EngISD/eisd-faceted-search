@@ -5,6 +5,7 @@ import { MatSidenav, PageEvent, MatPaginator, MatExpansionPanel } from '@angular
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { ngxLoadingAnimationTypes } from 'ngx-loading';
 import { PerfectScrollbarConfigInterface, PerfectScrollbarComponent, PerfectScrollbarDirective } from 'ngx-perfect-scrollbar';
+import PerfectScrollbar from 'perfect-scrollbar';
 
 
 @Component({
@@ -132,6 +133,8 @@ export class DemoSidenavComponent implements OnInit, OnDestroy, AfterViewChecked
   activePageDataChunk = [];
   @ViewChild(CdkVirtualScrollViewport) scroll: CdkVirtualScrollViewport;
   @ViewChildren(MatExpansionPanel) panels: Array<MatExpansionPanel>;
+  @ViewChild('dialogScroll') scrollbar;
+
   private _mobileQueryListener: () => void;
 
   public config: PerfectScrollbarConfigInterface = {};

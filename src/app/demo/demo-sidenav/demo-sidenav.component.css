@@ -333,6 +333,7 @@ mat-selection-list {
     padding-bottom: 6px;
     margin-top: 2px;
     border-radius: 3px;
+    border-bottom: 1px solid lightgray;
 }
 .viewport-item:hover {
     background-color: rgb(245, 245, 245);
@@ -488,22 +489,22 @@ mat-selection-list {
     padding-left: 3%;
 }
 .statusIconC {
-    color: rgb(30, 145, 30);
+    color: rgba(30, 145, 30, 0.801);
     position: relative;
     top: 0.8px;
 }
 .statusIconA {
-    color: rgb(2, 119, 189);
+    color: rgba(2, 120, 189, 0.801);
     position: relative;
     top: 0.8px;
 }
 .statusIconS {
-    color: rgb(132, 134, 132);
+    color: rgba(132, 134, 132, 0.801);
     position: relative;
     top: 0.8px;
 }
 .statusIconI {
-    color: rgb(222, 178, 47);
+    color: rgba(222, 178, 47, 0.801);
     position: relative;
     top: 0.8px;
 }
