@@ -3,7 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  serverBaseURL: 'http://localhost:50010/internal_order/api/internal_order/'
 };
 
 /*
