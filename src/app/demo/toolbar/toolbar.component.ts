@@ -16,12 +16,12 @@ export class ToolbarComponent implements OnInit {
   // Change searchbar colors
   searchColor: string;
   iconColor: string;
-  searchResultInternal: any[];
-  searchResultCommercial: any[];
-  searchResultCustomer: any[];
-  searchResultResponsible: any[];
-  searchResultProjectManager: any[];
-  searchResultCostCenter: any[];
+  searchResultInternal: number;
+  searchResultCommercial: any[] = [];
+  searchResultCustomer: any[]  = [];
+  searchResultResponsible: any[]  = [];
+  searchResultProjectManager: any[]  = [];
+  searchResultCostCenter: any[]  = [];
   name = new FormControl('');
   @ViewChild(MatAutocompleteTrigger) panel: MatAutocompleteTrigger;
 
@@ -55,7 +55,6 @@ export class ToolbarComponent implements OnInit {
                 distinctUntilChanged()
               )
               .subscribe(response => {
-                this.searchResultInternal = [0];
                 this.searchResultInternal = response['count'];
               }
             );
@@ -65,7 +64,6 @@ export class ToolbarComponent implements OnInit {
                 distinctUntilChanged()
               )
               .subscribe(response => {
-                this.searchResultCostCenter = [];
                 this.searchResultCostCenter = response['facetOptions'];
               }
             );
@@ -75,7 +73,6 @@ export class ToolbarComponent implements OnInit {
                 distinctUntilChanged()
               )
               .subscribe(response => {
-                this.searchResultResponsible = [];
                 this.searchResultResponsible = response['facetOptions'];
               }
             );
@@ -85,7 +82,6 @@ export class ToolbarComponent implements OnInit {
                 distinctUntilChanged()
               )
               .subscribe(response => {
-                this.searchResultProjectManager = [];
                 this.searchResultProjectManager = response['facetOptions'];
               }
             );
@@ -95,12 +91,11 @@ export class ToolbarComponent implements OnInit {
                 distinctUntilChanged()
               )
               .subscribe(response => {
-                this.searchResultCommercial = [];
                 this.searchResultCommercial = response['facetOptions'];
               }
             );
           } else {
-            this.searchResultInternal = [];
+            this.searchResultInternal = 0;
             this.searchResultCustomer = [];
             this.searchResultCostCenter = [];
             this.searchResultResponsible = [];
@@ -116,7 +111,7 @@ export class ToolbarComponent implements OnInit {
   cleanValue() {
     this.value = '';
     this.name.setValue('');
-    this.searchResultInternal = [];
+    this.searchResultInternal = 0;
     this.searchResultCommercial = [];
     this.searchResultCostCenter = [];
     this.searchResultCustomer = [];

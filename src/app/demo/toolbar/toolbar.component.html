@@ -40,7 +40,7 @@
                     (click)="selectOption('internalOrder', value.slice(0, 12), value)"
                     *ngIf="value.length > 2 && searchResultInternal != 0">{{searchResultInternal}} comesse con "{{ value }}"
         </mat-option>
-        <mat-optgroup *ngIf="searchResultProjectManager != 0" 
+        <mat-optgroup *ngIf="searchResultProjectManager.length" 
                       [label]="'Responsabile del Progetto'">
           <mat-option #option 
                       class="data-option" 
@@ -50,7 +50,7 @@
             <mat-icon class="noSelect">person</mat-icon>({{item.count}}) {{item.code}} - {{item.descr}}
           </mat-option>
         </mat-optgroup>
-        <mat-optgroup *ngIf="searchResultCustomer != 0" 
+        <mat-optgroup *ngIf="searchResultCustomer.length" 
                       [label]="'Cliente'">
           <mat-option #option 
                       class="data-option" 
@@ -60,7 +60,7 @@
             <mat-icon class="noSelect">account_box</mat-icon>({{item.count}}) {{item.code}} - {{item.descr}}
           </mat-option>
         </mat-optgroup>
-        <mat-optgroup *ngIf="searchResultCostCenter != 0" 
+        <mat-optgroup *ngIf="searchResultCostCenter.length" 
                       [label]="'Centro di Costo'">
           <mat-option #option 
                       class="data-option" 
@@ -74,7 +74,7 @@
                  height="22px">&nbsp;&nbsp;&nbsp;&nbsp;({{item.count}}) {{item.code}} - {{item.descr}}
           </mat-option>
         </mat-optgroup>
-        <mat-optgroup *ngIf="searchResultResponsible != 0" 
+        <mat-optgroup *ngIf="searchResultResponsible.length" 
                       [label]="'Centro di Costo Responsabile'">
           <mat-option #option 
                       class="data-option" 
@@ -84,7 +84,7 @@
             <mat-icon class="noSelect">visibility</mat-icon>({{item.count}}) {{item.code}} - {{item.descr}}
           </mat-option>
         </mat-optgroup>
-        <mat-optgroup *ngIf="searchResultCommercial != 0" 
+        <mat-optgroup *ngIf="searchResultCommercial.length" 
                       [label]="'Responsabile Commerciale'">
           <mat-option #option 
                       class="data-option" 

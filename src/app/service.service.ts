@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Observable, BehaviorSubject } from 'rxjs';
+import { environment } from 'src/environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +17,7 @@ export class ServiceService {
   dataUrl = 'https://jsonplaceholder.typicode.com/users';
 
   // serverURL = 'http://161.27.12.15:8180/proto_co/api/internal_order/';
-  serverURL = 'http://localhost:50010/internal_order/api/internal_order/';
+  serverURL =  environment.serverBaseURL;
   facetURL = this.serverURL + 'facet?facetMaxOptions=';
   // Variables that track the changes made on search
   filterValue$: Observable<any>;
