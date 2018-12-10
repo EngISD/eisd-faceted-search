@@ -3,6 +3,24 @@
     mat-sidenav.endSidenav {
         width: 500px !important; 
     }
+    .info {
+        min-width: 660px !important;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        line-height: 19px;
+        position: relative;
+        bottom: -18px;
+        display: inline-block;
+        letter-spacing: 2px;
+        color: rgba(75, 77, 78, 0.95);
+    }
+    .infoFirst {
+        font-size: 24px;
+    }
+    .codeFirst {
+        font-size: 23px !important;
+    }
 }
 @media only screen and (max-width: 1470px) {
     .filterIcons {
@@ -29,6 +47,24 @@
     .paginator {
         width: 52% !important;
     } 
+    .info {
+        width: 100%;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        line-height: 19px;
+        position: relative;
+        bottom: 6px;
+        display: inline-block;
+        letter-spacing: 1px;
+        color: rgba(75, 77, 78, 0.95);
+    }
+    .infoFirst {
+        font-size: 21px;
+    }
+    .codeFirst {
+        font-size: 20px !important;
+    }
 }
 @media only screen and (max-width: 1100px) {
     .filterIcons {
@@ -458,7 +494,7 @@ mat-selection-list {
     font-size: 27px !important;
 }
 .infoFirst {
-    font-size: 21px;
+    /* font-size: 21px; */
     color: rgb(0, 103, 163) !important;
     display: inline-block;
     width: 90%;
@@ -471,18 +507,6 @@ mat-selection-list {
 }
 .infoFirst > .code {
     color: rgb(2, 119, 189);
-}
-.info {
-    width: 100%;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-    line-height: 19px;
-    position: relative;
-    bottom: 6px;
-    display: inline-block;
-    letter-spacing: 1px;
-    color: rgba(75, 77, 78, 0.95);
 }
 .title {
     width: 105%;
@@ -687,7 +711,7 @@ mat-selection-list {
     color: rgb(0, 0, 0);
 }
 .codeFirst {
-    font-size: 20px;
+    /* font-size: 20px; */
     color: rgb(1, 105, 165) !important;
     width: 137px !important;
     font-weight: bold;
