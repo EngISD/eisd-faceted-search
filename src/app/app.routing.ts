@@ -3,7 +3,7 @@ import { DemoComponent } from './demo/demo.component';
 import { StartpageComponent } from './startpage/startpage.component';
 
 export const Routes = [
-    { path: '', component: StartpageComponent },
+    { path: '', component: DemoComponent },
     { path: 'filter', component: FilterPageComponent},
     { path: 'demo', component: DemoComponent}
 ];

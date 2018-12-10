@@ -29,6 +29,7 @@
           },
           "configurations": {
             "production": {
+              "baseHref" :"/internal_order/",
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
