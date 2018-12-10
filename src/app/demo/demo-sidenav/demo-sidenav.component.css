@@ -3,7 +3,7 @@
     mat-sidenav.endSidenav {
         width: 500px !important; 
     }
-    .info {
+    /* .info {
         min-width: 660px !important;
         text-overflow: ellipsis;
         overflow: hidden;
@@ -20,7 +20,7 @@
     }
     .codeFirst {
         font-size: 23px !important;
-    }
+    } */
 }
 @media only screen and (max-width: 1470px) {
     .filterIcons {
@@ -493,8 +493,20 @@ mat-selection-list {
 .material-icons.catIcon {
     font-size: 27px !important;
 }
+.info {
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    line-height: 19px;
+    position: relative;
+    bottom: 6px;
+    display: inline-block;
+    letter-spacing: 1px;
+    color: rgba(75, 77, 78, 0.95);
+}
 .infoFirst {
-    /* font-size: 21px; */
+    font-size: 21px;
     color: rgb(0, 103, 163) !important;
     display: inline-block;
     width: 90%;
@@ -711,7 +723,7 @@ mat-selection-list {
     color: rgb(0, 0, 0);
 }
 .codeFirst {
-    /* font-size: 20px; */
+    font-size: 20px;
     color: rgb(1, 105, 165) !important;
     width: 137px !important;
     font-weight: bold;
